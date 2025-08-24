@@ -7,6 +7,9 @@ database LS as "Local Storage\n(assistantState, jobDraft)"
 participant PJ as "Post Job Wizard\n(/prototype/post-job.html)"
 participant API as "Backend API\n(auth/jobs) [optional]"
 control ANA as "Analytics\n(client-side)"
+participant GHL as "GoHighLevel\nOpportunity Pipeline"
+participant GH as "GitHub\nPages"
+participant DEV as "Developer Team\nEmail"
 
 ' Session start
 U ->> FE : Open AI Project Assistant
@@ -92,4 +95,27 @@ opt Public Status feature installed
     PJ ->> API : Initialize Job.publicStatus = "posted"
     API -->> PJ: ok
 end
+
+' Capture project details
+U ->> FE : Provide project details
+FE ->> SE : handleUserMessage(text)
+SE ->> LS : persist(assistantState)
+
+' Post job on site
+SE ->> PJ : createJobPost(slots)
+PJ ->> API : POST /jobs (jobDraft)
+API -->> PJ: 201 Created {jobId}
+PJ ->> ANA : post_published
+
+' Update GoHighLevel pipeline
+PJ ->> GHL : updateOpportunity(jobId)
+GHL -->> PJ : Opportunity updated
+
+' Trigger build and send to GitHub
+PJ ->> GH : triggerBuild(jobId)
+GH -->> PJ : Build completed
+
+' Email output to developer team
+PJ ->> DEV : sendEmail(jobId, buildOutput)
+DEV -->> PJ : Email sent
 @enduml 
