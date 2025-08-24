@@ -1,0 +1,108 @@
+<!-- /wireframes/browse-jobs.html -->
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Jobs - Wireframe</title>
+    <link rel="stylesheet" href="../assets/css/wireframe.css">
+    <style>
+        .wf-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-md);
+            border: 2px dashed var(--wf-border);
+            background: var(--wf-surface);
+            position: relative;
+        }
+
+        .wf-header,
+        .wf-footer {
+            background: var(--wf-bg);
+            padding: var(--space-md);
+            text-align: center;
+            border-bottom: 2px dashed var(--wf-border);
+        }
+
+        .wf-main {
+            padding: var(--space-md);
+        }
+
+        .wf-search-bar {
+            margin-bottom: var(--space-lg);
+            border: 2px dashed var(--wf-border);
+            padding: var(--space-sm);
+            text-align: center;
+        }
+
+        .wf-filters {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--space-lg);
+            border: 2px dashed var(--wf-border);
+            padding: var(--space-sm);
+        }
+
+        .wf-job-listings {
+            border: 2px dashed var(--wf-border);
+            padding: var(--space-sm);
+        }
+
+        .wf-job-item {
+            border-bottom: 2px dashed var(--wf-border);
+            padding: var(--space-sm);
+            margin-bottom: var(--space-sm);
+        }
+
+        .wf-note {
+            position: absolute;
+            background: var(--wf-note-bg);
+            color: var(--wf-note-text);
+            padding: var(--space-xs);
+            border-radius: var(--radius-sm);
+            font-size: var(--text-xs);
+            box-shadow: var(--shadow-sm);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="wf-header">
+        <h1>Browse Jobs - Wireframe</h1>
+    </header>
+
+    <main class="wf-main">
+        <div class="wf-container">
+            <div class="wf-search-bar">
+                <p>Search Bar</p>
+                <span class="wf-note" style="top: 10px; right: 10px;">Search for jobs, companies, or skills</span>
+            </div>
+
+            <div class="wf-filters">
+                <p>Filters</p>
+                <span class="wf-note" style="top: 10px; right: 10px;">Filter by category, type, and location</span>
+            </div>
+
+            <div class="wf-job-listings">
+                <div class="wf-job-item">
+                    <p>Job Listing 1</p>
+                    <span class="wf-note" style="top: 10px; right: 10px;">Job title, company, location, and brief
+                        description</span>
+                </div>
+                <div class="wf-job-item">
+                    <p>Job Listing 2</p>
+                    <span class="wf-note" style="top: 10px; right: 10px;">Job title, company, location, and brief
+                        description</span>
+                </div>
+                <!-- Additional job listings can be added here -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="wf-footer">
+        <p>Footer - Navigation and Contact Information</p>
+    </footer>
+</body>
+
+</html>

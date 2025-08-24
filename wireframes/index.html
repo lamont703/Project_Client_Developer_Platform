@@ -1,0 +1,286 @@
+<!-- /wireframes/index.html -->
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireframes Hub - Dev Jobs Platform</title>
+    <meta name="description"
+        content="Low-fidelity wireframes showing layout structure and user flows for the Dev Jobs Platform">
+    <link rel="stylesheet" href="../assets/css/wireframe.css">
+    <style>
+        .wireframes-hero {
+            background: var(--wf-bg);
+            border: 2px dashed var(--wf-border);
+            padding: var(--space-2xl) var(--space-md);
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .wireframes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+
+        .wireframe-card {
+            background: var(--wf-surface);
+            border: 2px solid var(--wf-border);
+            padding: var(--space-lg);
+            text-decoration: none;
+            color: var(--wf-text);
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .wireframe-card:hover {
+            border-color: var(--wf-accent);
+            transform: translateY(-2px);
+        }
+
+        .wireframe-preview {
+            background: repeating-linear-gradient(45deg,
+                    var(--wf-border),
+                    var(--wf-border) 2px,
+                    transparent 2px,
+                    transparent 12px);
+            height: 200px;
+            border: 1px solid var(--wf-border);
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--wf-muted);
+        }
+
+        .wireframe-title {
+            font-size: var(--text-lg);
+            font-weight: bold;
+            margin-bottom: var(--space-sm);
+        }
+
+        .wireframe-description {
+            font-size: var(--text-sm);
+            color: var(--wf-muted);
+            margin-bottom: var(--space-md);
+        }
+
+        .wireframe-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: var(--text-xs);
+            color: var(--wf-muted);
+            border-top: 1px solid var(--wf-border);
+            padding-top: var(--space-sm);
+        }
+
+        .breadcrumb {
+            margin-bottom: var(--space-lg);
+            font-size: var(--text-sm);
+            color: var(--wf-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--wf-accent);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="wf-header">
+        <div class="wf-container">
+            <h2><a href="../index.html" style="text-decoration: none; color: inherit;">🚀 Dev Jobs Platform</a></h2>
+            <span>Wireframes Hub</span>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <span class="theme-icon">🌙</span>
+            </button>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <div class="wf-container">
+            <div class="breadcrumb">
+                <a href="../index.html">Home</a> / Wireframes
+            </div>
+
+            <section class="wireframes-hero">
+                <h1>Wireframes Collection</h1>
+                <p>Low-fidelity, navigable HTML screens showing layout structure and user flows</p>
+                <div class="wf-note">
+                    💡 These wireframes focus on structure and functionality rather than visual design. Click through to
+                    explore user flows and layout patterns.
+                </div>
+            </section>
+
+            <section class="wireframes-grid">
+                <a href="landing.html" class="wireframe-card">
+                    <div class="wireframe-preview">LANDING PAGE</div>
+                    <h3 class="wireframe-title">Landing Page</h3>
+                    <p class="wireframe-description">
+                        Hero section, value proposition, featured jobs, and call-to-action for both developers and
+                        clients.
+                    </p>
+                    <div class="wireframe-meta">
+                        <span>Entry Point</span>
+                        <span>Mobile + Desktop</span>
+                    </div>
+                </a>
+
+                <a href="browse-jobs.html" class="wireframe-card">
+                    <div class="wireframe-preview">JOB LISTINGS</div>
+                    <h3 class="wireframe-title">Browse Jobs</h3>
+                    <p class="wireframe-description">
+                        Job search interface with filters, sorting, pagination, and job card layouts for different
+                        screen sizes.
+                    </p>
+                    <div class="wireframe-meta">
+                        <span>Core Feature</span>
+                        <span>Responsive Grid</span>
+                    </div>
+                </a>
+
+                <a href="job-detail.html" class="wireframe-card">
+                    <div class="wireframe-preview">JOB DETAILS</div>
+                    <h3 class="wireframe-title">Job Detail</h3>
+                    <p class="wireframe-description">
+                        Complete job information, application form, company details, and related job suggestions.
+                    </p>
+                    <div class="wireframe-meta">
+                        <span>Conversion Page</span>
+                        <span>Sticky CTA</span>
+                    </div>
+                </a>
+
+                <a href="post-job.html" class="wireframe-card">
+                    <div class="wireframe-preview">JOB POSTING</div>
+                    <h3 class="wireframe-title">Post Job</h3>
+                    <p class="wireframe-description">
+                        Multi-step job posting wizard with form validation, preview, and publishing workflow.
+                    </p>
+                    <div class="wireframe-meta">
+                        <span>Multi-Step Form</span>
+                        <span>Validation</span>
+                    </div>
+                </a>
+
+                <a href="developer-profile.html" class="wireframe-card">
+                    <div class="wireframe-preview">DEV PROFILE</div>
+                    <h3 class="wireframe-title">Developer Profile</h3>
+                    <p class="wireframe-description">
+                        Developer showcase with skills, portfolio, reviews, and availability status for public viewing.
+                    </p>
+                    <div class="wireframe-meta">
+                        <span>Profile Page</span>
+                        <span>Portfolio Grid</span>
+                    </div>
+                </a>
+
+                <a href="auth.html" class="wireframe-card">
+                    <div class="wireframe-preview">AUTHENTICATION</div>
+                    <h3 class="wireframe-title">Authentication</h3>
+                    <p class="wireframe-description">
+                        Sign up, sign in, and password reset flows with form validation and user type selection.
+                    </p>
+                    <div class="wireframe-meta">
+                        <span>User Onboarding</span>
+                        <span>Form Validation</span>
+                    </div>
+                </a>
+
+                <a href="dashboard-client.html" class="wireframe-card">
+                    <div class="wireframe-preview">CLIENT DASHBOARD</div>
+                    <h3 class="wireframe-title">Client Dashboard</h3>
+                    <p class="wireframe-description">
+                        Job management interface for clients to track posted jobs, review applications, and manage
+                        hiring.
+                    </p>
+                    <div class="wireframe-meta">
+                        <span>Management UI</span>
+                        <span>Data Tables</span>
+                    </div>
+                </a>
+
+                <a href="dashboard-developer.html" class="wireframe-card">
+                    <div class="wireframe-preview">DEV DASHBOARD</div>
+                    <h3 class="wireframe-title">Developer Dashboard</h3>
+                    <p class="wireframe-description">
+                        Application tracking, saved jobs, profile management, and earnings overview for developers.
+                    </p>
+                    <div class="wireframe-meta">
+                        <span>Personal Hub</span>
+                        <span>Status Tracking</span>
+                    </div>
+                </a>
+
+                <a href="messaging.html" class="wireframe-card">
+                    <div class="wireframe-preview">MESSAGING</div>
+                    <h3 class="wireframe-title">Messaging</h3>
+                    <p class="wireframe-description">
+                        Two-pane messaging interface with conversation list, message thread, and file sharing
+                        capabilities.
+                    </p>
+                    <div class="wireframe-meta">
+                        <span>Communication</span>
+                        <span>Real-time UI</span>
+                    </div>
+                </a>
+            </section>
+
+            <section class="wf-section" data-label="wireframe guidelines">
+                <h2>Wireframe Guidelines</h2>
+                <div class="wf-grid wf-grid-2">
+                    <div class="wf-box">
+                        <h3>📱 Mobile-First Approach</h3>
+                        <p>All wireframes start with mobile layout (360-428px) and progressively enhance for larger
+                            screens.</p>
+                    </div>
+                    <div class="wf-box">
+                        <h3>🔗 Clickable Navigation</h3>
+                        <p>Interactive elements allow you to experience user flows and understand page relationships.
+                        </p>
+                    </div>
+                    <div class="wf-box">
+                        <h3>📝 Annotation Notes</h3>
+                        <p>Yellow callouts explain layout decisions, interaction patterns, and responsive behavior.</p>
+                    </div>
+                    <div class="wf-box">
+                        <h3>⚡ Performance Focus</h3>
+                        <p>Layouts prioritize fast loading, accessibility, and smooth user experience across devices.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Quick Navigation</h2>
+                <div style="display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-top: var(--space-md);">
+                    <a href="../docs/index.html" class="wf-button">View Documentation</a>
+                    <a href="../prototype/index.html" class="wf-button wf-button-primary">Launch Prototype</a>
+                    <a href="../index.html" class="wf-button">Back to Hub</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="wf-footer">
+        <div class="wf-container">
+            <p>&copy; 2024 Dev Jobs Platform Design System</p>
+            <p>Wireframes Hub | Low-Fidelity Layouts</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+</body>
+
+</html>

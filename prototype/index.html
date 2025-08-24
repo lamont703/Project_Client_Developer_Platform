@@ -1,0 +1,429 @@
+<!-- /prototype/index.html -->
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Prototype - Dev Jobs Platform</title>
+    <meta name="description"
+        content="High-fidelity interactive prototype with real functionality and mock data for the Dev Jobs Platform">
+    <link rel="stylesheet" href="../assets/css/prototype.css">
+    <style>
+        .prototype-hero {
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+            color: white;
+            padding: var(--space-3xl) var(--space-md);
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .prototype-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+
+        .prototype-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prototype-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--brand-primary);
+        }
+
+        .prototype-preview {
+            background: linear-gradient(45deg, var(--bg-muted), var(--bg-secondary));
+            height: 180px;
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--text-muted);
+            position: relative;
+        }
+
+        .prototype-preview::after {
+            content: '🚀';
+            position: absolute;
+            top: var(--space-sm);
+            right: var(--space-sm);
+            font-size: var(--text-lg);
+        }
+
+        .prototype-title {
+            font-size: var(--text-xl);
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+            color: var(--text-primary);
+        }
+
+        .prototype-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-md);
+            line-height: 1.6;
+        }
+
+        .prototype-features {
+            list-style: none;
+            padding: 0;
+            margin: var(--space-md) 0;
+        }
+
+        .prototype-features li {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            margin-bottom: var(--space-xs);
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+        }
+
+        .prototype-features li::before {
+            content: '✓';
+            color: var(--color-success);
+            font-weight: bold;
+        }
+
+        .prototype-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: var(--space-md);
+            padding-top: var(--space-sm);
+            border-top: 1px solid var(--border-color);
+            font-size: var(--text-sm);
+        }
+
+        .prototype-status {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: var(--space-xs) var(--space-sm);
+            background: var(--color-success);
+            color: white;
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: 500;
+        }
+
+        .breadcrumb {
+            margin-bottom: var(--space-lg);
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--brand-primary);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .feature-highlight {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin: var(--space-xl) 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-lg);
+        }
+
+        .feature-item {
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-sm);
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h2><a href="../index.html" style="text-decoration: none; color: inherit;">🚀 Dev Jobs Platform</a>
+                    </h2>
+                    <span class="subtitle">Interactive Prototype</span>
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="../index.html">Home</a> / Prototype
+            </div>
+
+            <section class="prototype-hero">
+                <h1>Interactive Prototype</h1>
+                <p class="lead">High-fidelity, functional prototype with real interactions and mock data</p>
+                <div style="margin-top: var(--space-lg);">
+                    <span class="tag tag-success">✓ Fully Interactive</span>
+                    <span class="tag tag-primary">🎨 Polished UI</span>
+                    <span class="tag tag-warning">📱 Mobile Optimized</span>
+                </div>
+            </section>
+
+            <section class="prototype-grid">
+                <a href="landing.html" class="prototype-card">
+                    <div class="prototype-preview">LANDING PAGE</div>
+                    <h3 class="prototype-title">Landing Page</h3>
+                    <p class="prototype-description">
+                        Hero section with search, featured jobs carousel, category chips, and social proof elements.
+                    </p>
+                    <ul class="prototype-features">
+                        <li>Interactive search bar</li>
+                        <li>Featured jobs carousel</li>
+                        <li>Category navigation</li>
+                        <li>Social proof metrics</li>
+                    </ul>
+                    <div class="prototype-meta">
+                        <span class="prototype-status">🎯 Entry Point</span>
+                        <span>Mobile + Desktop</span>
+                    </div>
+                </a>
+
+                <a href="browse-jobs.html" class="prototype-card">
+                    <div class="prototype-preview">JOB BROWSER</div>
+                    <h3 class="prototype-title">Browse Jobs</h3>
+                    <p class="prototype-description">
+                        Advanced job search with real-time filters, sorting, pagination, and save functionality.
+                    </p>
+                    <ul class="prototype-features">
+                        <li>Real-time search & filters</li>
+                        <li>Save/unsave jobs</li>
+                        <li>Sort by relevance/date/budget</li>
+                        <li>Responsive job cards</li>
+                    </ul>
+                    <div class="prototype-meta">
+                        <span class="prototype-status">⚡ Interactive</span>
+                        <span>Core Feature</span>
+                    </div>
+                </a>
+
+                <a href="job-detail.html" class="prototype-card">
+                    <div class="prototype-preview">JOB DETAILS</div>
+                    <h3 class="prototype-title">Job Detail</h3>
+                    <p class="prototype-description">
+                        Complete job information with sticky apply bar, company details, and related jobs.
+                    </p>
+                    <ul class="prototype-features">
+                        <li>Sticky apply bar</li>
+                        <li>Rich job description</li>
+                        <li>Company information</li>
+                        <li>Related job suggestions</li>
+                    </ul>
+                    <div class="prototype-meta">
+                        <span class="prototype-status">💼 Conversion</span>
+                        <span>Key Page</span>
+                    </div>
+                </a>
+
+                <a href="post-job.html" class="prototype-card">
+                    <div class="prototype-preview">JOB WIZARD</div>
+                    <h3 class="prototype-title">Post Job</h3>
+                    <p class="prototype-description">
+                        Multi-step job posting wizard with validation, draft saving, and preview functionality.
+                    </p>
+                    <ul class="prototype-features">
+                        <li>4-step wizard interface</li>
+                        <li>Form validation</li>
+                        <li>Draft auto-save</li>
+                        <li>Preview before publish</li>
+                    </ul>
+                    <div class="prototype-meta">
+                        <span class="prototype-status">📝 Multi-Step</span>
+                        <span>Complex Form</span>
+                    </div>
+                </a>
+
+                <a href="developer-profile.html" class="prototype-card">
+                    <div class="prototype-preview">DEV PROFILE</div>
+                    <h3 class="prototype-title">Developer Profile</h3>
+                    <p class="prototype-description">
+                        Comprehensive developer showcase with portfolio, skills, reviews, and availability.
+                    </p>
+                    <ul class="prototype-features">
+                        <li>Portfolio project grid</li>
+                        <li>Skills with proficiency</li>
+                        <li>Client reviews & ratings</li>
+                        <li>Availability toggle</li>
+                    </ul>
+                    <div class="prototype-meta">
+                        <span class="prototype-status">👤 Profile</span>
+                        <span>Showcase</span>
+                    </div>
+                </a>
+
+                <a href="auth.html" class="prototype-card">
+                    <div class="prototype-preview">AUTH FLOW</div>
+                    <h3 class="prototype-title">Authentication</h3>
+                    <p class="prototype-description">
+                        Complete auth flow with sign up, sign in, password reset, and user type selection.
+                    </p>
+                    <ul class="prototype-features">
+                        <li>Client-side validation</li>
+                        <li>User type selection</li>
+                        <li>Password strength meter</li>
+                        <li>Social login options</li>
+                    </ul>
+                    <div class="prototype-meta">
+                        <span class="prototype-status">🔐 Security</span>
+                        <span>Onboarding</span>
+                    </div>
+                </a>
+
+                <a href="dashboard-client.html" class="prototype-card">
+                    <div class="prototype-preview">CLIENT HUB</div>
+                    <h3 class="prototype-title">Client Dashboard</h3>
+                    <p class="prototype-description">
+                        Job management interface with application tracking, analytics, and hiring tools.
+                    </p>
+                    <ul class="prototype-features">
+                        <li>Job performance metrics</li>
+                        <li>Application management</li>
+                        <li>Bulk actions</li>
+                        <li>Analytics dashboard</li>
+                    </ul>
+                    <div class="prototype-meta">
+                        <span class="prototype-status">📊 Management</span>
+                        <span>Data-Rich</span>
+                    </div>
+                </a>
+
+                <a href="dashboard-developer.html" class="prototype-card">
+                    <div class="prototype-preview">DEV HUB</div>
+                    <h3 class="prototype-title">Developer Dashboard</h3>
+                    <p class="prototype-description">
+                        Personal hub for tracking applications, saved jobs, earnings, and profile management.
+                    </p>
+                    <ul class="prototype-features">
+                        <li>Application status tracking</li>
+                        <li>Saved jobs collection</li>
+                        <li>Earnings overview</li>
+                        <li>Profile completion</li>
+                    </ul>
+                    <div class="prototype-meta">
+                        <span class="prototype-status">🎯 Personal</span>
+                        <span>Tracking</span>
+                    </div>
+                </a>
+
+                <a href="messaging.html" class="prototype-card">
+                    <div class="prototype-preview">MESSAGES</div>
+                    <h3 class="prototype-title">Messaging</h3>
+                    <p class="prototype-description">
+                        Two-pane messaging interface with conversation management and real-time updates.
+                    </p>
+                    <ul class="prototype-features">
+                        <li>Two-pane layout</li>
+                        <li>Message composer</li>
+                        <li>File attachments</li>
+                        <li>Read receipts</li>
+                    </ul>
+                    <div class="prototype-meta">
+                        <span class="prototype-status">💬 Real-time</span>
+                        <span>Communication</span>
+                    </div>
+                </a>
+            </section>
+
+            <section class="feature-highlight">
+                <h2>Prototype Features</h2>
+                <p>This interactive prototype demonstrates the complete user experience with real functionality and
+                    polished UI components.</p>
+
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <span class="feature-icon">🎨</span>
+                        <h3>Polished UI</h3>
+                        <p>Complete design system with consistent components, animations, and responsive layouts.</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">⚡</span>
+                        <h3>Real Interactions</h3>
+                        <p>Functional forms, filters, search, and navigation with client-side validation and feedback.
+                        </p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">📱</span>
+                        <h3>Mobile Optimized</h3>
+                        <p>Mobile-first responsive design with touch-friendly interactions and adaptive layouts.</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🌙</span>
+                        <h3>Dark Mode</h3>
+                        <p>Complete dark mode implementation with theme persistence and smooth transitions.</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">♿</span>
+                        <h3>Accessible</h3>
+                        <p>WCAG AA compliant with keyboard navigation, screen reader support, and focus management.</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">📊</span>
+                        <h3>Mock Data</h3>
+                        <p>Realistic data including jobs, companies, users, and messages for authentic experience.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Quick Navigation</h2>
+                <div style="display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-top: var(--space-md);">
+                    <a href="../docs/index.html" class="btn btn-outline">View Documentation</a>
+                    <a href="../wireframes/index.html" class="btn btn-outline">View Wireframes</a>
+                    <a href="landing.html" class="btn btn-primary">Start Prototype →</a>
+                    <a href="../index.html" class="btn btn-secondary">Back to Hub</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Dev Jobs Platform Design System</p>
+                <p>Interactive Prototype | High-Fidelity Experience</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/data.js"></script>
+    <script src="../assets/js/components.js"></script>
+</body>
+
+</html>

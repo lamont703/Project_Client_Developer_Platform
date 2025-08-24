@@ -1,0 +1,290 @@
+<!-- /docs/index.html -->
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation Hub - Dev Jobs Platform</title>
+    <meta name="description"
+        content="Complete documentation for the Dev Jobs Platform design system and product specifications">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <style>
+        .docs-hero {
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+            color: white;
+            padding: var(--space-3xl) var(--space-md);
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .docs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+
+        .doc-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .doc-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--brand-primary);
+        }
+
+        .doc-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-md);
+            display: block;
+        }
+
+        .doc-title {
+            font-size: var(--text-xl);
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+            color: var(--text-primary);
+        }
+
+        .doc-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .doc-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: var(--space-md);
+            padding-top: var(--space-sm);
+            border-top: 1px solid var(--border-color);
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+        }
+
+        .breadcrumb {
+            margin-bottom: var(--space-lg);
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--brand-primary);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h2><a href="../index.html" style="text-decoration: none; color: inherit;">🚀 Dev Jobs Platform</a>
+                    </h2>
+                    <span class="subtitle">Documentation Hub</span>
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <div class="breadcrumb container">
+            <a href="../index.html">Home</a> / Documentation
+        </div>
+
+        <section class="docs-hero">
+            <h1>Product Documentation</h1>
+            <p class="lead">Complete specifications, requirements, and guidelines for the Dev Jobs Platform</p>
+        </section>
+
+        <div class="container">
+            <section class="docs-grid">
+                <a href="product-brief.html" class="doc-card">
+                    <span class="doc-icon">📋</span>
+                    <h3 class="doc-title">Product Brief</h3>
+                    <p class="doc-description">
+                        Problem statement, target audience, value proposition, and competitive analysis for the
+                        developer job marketplace platform.
+                    </p>
+                    <div class="doc-meta">
+                        <span>Essential Reading</span>
+                        <span>5 min read</span>
+                    </div>
+                </a>
+
+                <a href="requirements.html" class="doc-card">
+                    <span class="doc-icon">📝</span>
+                    <h3 class="doc-title">Requirements</h3>
+                    <p class="doc-description">
+                        Functional and non-functional requirements prioritized using MoSCoW method, platform
+                        constraints, and technical specifications.
+                    </p>
+                    <div class="doc-meta">
+                        <span>Technical Specs</span>
+                        <span>8 min read</span>
+                    </div>
+                </a>
+
+                <a href="user-stories.html" class="doc-card">
+                    <span class="doc-icon">👥</span>
+                    <h3 class="doc-title">User Stories</h3>
+                    <p class="doc-description">
+                        Detailed user stories for job posters, developers, and administrators with acceptance criteria
+                        and user journey mapping.
+                    </p>
+                    <div class="doc-meta">
+                        <span>User Experience</span>
+                        <span>6 min read</span>
+                    </div>
+                </a>
+
+                <a href="flows.html" class="doc-card">
+                    <span class="doc-icon">🔄</span>
+                    <h3 class="doc-title">User Flows</h3>
+                    <p class="doc-description">
+                        Complete user flow diagrams for job posting, application process, messaging, and hiring
+                        workflows with decision points.
+                    </p>
+                    <div class="doc-meta">
+                        <span>Process Design</span>
+                        <span>7 min read</span>
+                    </div>
+                </a>
+
+                <a href="ia-sitemap.html" class="doc-card">
+                    <span class="doc-icon">🗺️</span>
+                    <h3 class="doc-title">Information Architecture</h3>
+                    <p class="doc-description">
+                        Site structure, navigation taxonomy, content organization, and information hierarchy for optimal
+                        user experience.
+                    </p>
+                    <div class="doc-meta">
+                        <span>Structure</span>
+                        <span>4 min read</span>
+                    </div>
+                </a>
+
+                <a href="data-model.html" class="doc-card">
+                    <span class="doc-icon">🗄️</span>
+                    <h3 class="doc-title">Data Model</h3>
+                    <p class="doc-description">
+                        Entity relationship diagrams, database schema, data types, and relationships between jobs,
+                        users, and applications.
+                    </p>
+                    <div class="doc-meta">
+                        <span>Database Design</span>
+                        <span>6 min read</span>
+                    </div>
+                </a>
+
+                <a href="analytics.html" class="doc-card">
+                    <span class="doc-icon">📊</span>
+                    <h3 class="doc-title">Analytics Strategy</h3>
+                    <p class="doc-description">
+                        Event tracking, conversion funnels, KPI definitions, and analytics implementation for measuring
+                        platform success.
+                    </p>
+                    <div class="doc-meta">
+                        <span>Measurement</span>
+                        <span>5 min read</span>
+                    </div>
+                </a>
+
+                <a href="content-style.html" class="doc-card">
+                    <span class="doc-icon">✍️</span>
+                    <h3 class="doc-title">Content & Style Guide</h3>
+                    <p class="doc-description">
+                        Voice and tone guidelines, microcopy standards, error messaging, and content strategy for
+                        consistent communication.
+                    </p>
+                    <div class="doc-meta">
+                        <span>Content Strategy</span>
+                        <span>4 min read</span>
+                    </div>
+                </a>
+
+                <a href="accessibility.html" class="doc-card">
+                    <span class="doc-icon">♿</span>
+                    <h3 class="doc-title">Accessibility Plan</h3>
+                    <p class="doc-description">
+                        WCAG 2.1 AA compliance strategy, keyboard navigation, screen reader support, and inclusive
+                        design principles.
+                    </p>
+                    <div class="doc-meta">
+                        <span>Accessibility</span>
+                        <span>7 min read</span>
+                    </div>
+                </a>
+            </section>
+
+            <section
+                style="background: var(--bg-secondary); padding: var(--space-xl); border-radius: var(--radius-lg); margin-bottom: var(--space-xl);">
+                <h2>Documentation Overview</h2>
+                <div class="grid md:grid-cols-2 gap-lg">
+                    <div>
+                        <h3>📖 How to Use This Documentation</h3>
+                        <ul style="margin-left: var(--space-lg);">
+                            <li><strong>Start with the Product Brief</strong> to understand the problem and solution
+                            </li>
+                            <li><strong>Review Requirements</strong> for technical specifications and constraints</li>
+                            <li><strong>Study User Stories</strong> to understand user needs and behaviors</li>
+                            <li><strong>Follow User Flows</strong> to see how features connect</li>
+                            <li><strong>Reference other sections</strong> as needed during development</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>🎯 Documentation Goals</h3>
+                        <ul style="margin-left: var(--space-lg);">
+                            <li>Provide clear product vision and requirements</li>
+                            <li>Enable informed design and development decisions</li>
+                            <li>Ensure consistent user experience across features</li>
+                            <li>Support accessibility and inclusive design</li>
+                            <li>Guide analytics and measurement strategy</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Quick Navigation</h2>
+                <div class="flex flex-wrap gap-sm" style="margin-top: var(--space-md);">
+                    <a href="../wireframes/index.html" class="btn btn-outline">View Wireframes</a>
+                    <a href="../prototype/index.html" class="btn btn-outline">Launch Prototype</a>
+                    <a href="../index.html" class="btn btn-secondary">Back to Hub</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Dev Jobs Platform Design System</p>
+                <p>Documentation Hub | Version 1.0</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+</body>
+
+</html>

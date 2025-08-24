@@ -1,0 +1,211 @@
+<!-- /prototype/auth.html -->
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication - Dev Jobs Platform Prototype</title>
+    <meta name="description" content="Sign up, sign in, and password reset for the Dev Jobs Platform">
+    <link rel="stylesheet" href="../assets/css/prototype.css">
+    <style>
+        .auth-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: var(--space-lg);
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--space-xl);
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: var(--space-lg);
+        }
+
+        .auth-header h1 {
+            font-size: var(--text-2xl);
+            font-weight: 600;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .auth-header p {
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .auth-form {
+            margin-top: var(--space-lg);
+        }
+
+        .form-group {
+            margin-bottom: var(--space-md);
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: var(--space-sm) var(--space-md);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            font-size: var(--text-base);
+            transition: border-color 0.2s ease;
+            min-height: 44px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--border-focus);
+            box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1);
+        }
+
+        .form-error {
+            color: var(--color-error);
+            font-size: var(--text-sm);
+            margin-top: var(--space-xs);
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: var(--space-lg);
+        }
+
+        .form-actions a {
+            color: var(--brand-primary);
+            text-decoration: none;
+            font-size: var(--text-sm);
+        }
+
+        .form-actions a:hover {
+            text-decoration: underline;
+        }
+
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+
+        .social-button {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: var(--space-xs) var(--space-md);
+            background: var(--bg-muted);
+            color: var(--text-secondary);
+            border-radius: var(--radius-md);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .social-button:hover {
+            background: var(--brand-primary);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h2><a href="../index.html" style="text-decoration: none; color: inherit;">🚀 Dev Jobs Platform</a>
+                    </h2>
+                    <span class="subtitle">Authentication</span>
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="auth-container">
+            <div class="auth-header">
+                <h1>Sign In</h1>
+                <p>Access your account and start applying for jobs</p>
+            </div>
+
+            <form id="authForm" class="auth-form">
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email">
+                    <div class="form-error" id="email-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" name="password" class="form-input"
+                        placeholder="Enter your password">
+                    <div class="form-error" id="password-error"></div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                    <a href="#">Forgot Password?</a>
+                </div>
+            </form>
+
+            <div class="social-login">
+                <a href="#" class="social-button">Sign in with Google</a>
+                <a href="#" class="social-button">Sign in with LinkedIn</a>
+            </div>
+
+            <div style="text-align: center; margin-top: var(--space-lg);">
+                <p>Don't have an account? <a href="#">Sign Up</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Dev Jobs Platform Design System</p>
+                <p>Authentication | Interactive Prototype</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/data.js"></script>
+    <script src="../assets/js/components.js"></script>
+    <script src="../assets/js/validate.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const formValidator = new FormValidator(document.getElementById('authForm'), {
+                email: [ValidationRules.required, ValidationRules.email],
+                password: [ValidationRules.required, ValidationRules.minLength(8)]
+            });
+
+            document.getElementById('authForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (formValidator.validate()) {
+                    // Simulate successful login
+                    console.log('Login successful!');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
