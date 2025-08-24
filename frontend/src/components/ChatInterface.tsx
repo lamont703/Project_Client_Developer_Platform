@@ -47,20 +47,11 @@ const ChatInterface: React.FC = () => {
                     setMessages([...newMessages, aiResponse]);
                 } else {
                     const projectData = slotEngine.current.getSlotData();
-                    const title = Generators.generateTitle(projectData);
-                    const description = Generators.generateDescription(projectData);
-                    const skills = Generators.generateSkills(projectData);
-                    const milestones = Generators.suggestMilestones(projectData);
-                    const { budget, timeline } = Generators.estimateBudgetTimeline(projectData);
+                    const summary = Generators.generateSummary(projectData);
 
                     const aiResponse = { sender: 'AI', text: `Thank you for providing the details. Here is a summary of your project:
 
-Title: ${title}
-Description: ${description}
-Skills: ${skills.join(', ')}
-Milestones: ${milestones.join(', ')}
-Budget: ${budget}
-Timeline: ${timeline}` };
+${summary}` };
                     setMessages([...newMessages, aiResponse]);
                     console.log('Collected Project Data:', projectData);
 

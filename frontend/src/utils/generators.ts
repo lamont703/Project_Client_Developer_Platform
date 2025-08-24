@@ -40,8 +40,21 @@ export class Generators {
 
     static estimateBudgetTimeline(projectData: ProjectSchema): { budget: string, timeline: string } {
         return {
-            budget: '$5000 - $10000',
-            timeline: '3 - 6 months'
+            budget: projectData.budget || '$5000 - $10000',
+            timeline: projectData.timeline || '3 - 6 months'
         };
+    }
+
+    static generateSummary(projectData: ProjectSchema): string {
+        return `Title: ${projectData.title}
+Description: ${projectData.description}
+Category: ${projectData.category}
+Target Audience: ${projectData.targetAudience}
+Key Features: ${projectData.keyFeatures}
+Technology Stack: ${projectData.technologyStack}
+Budget: ${projectData.budget}
+Timeline: ${projectData.timeline}
+Success Criteria: ${projectData.successCriteria}
+Potential Challenges: ${projectData.potentialChallenges}`;
     }
 } 
