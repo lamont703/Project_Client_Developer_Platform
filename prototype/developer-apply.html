@@ -1,0 +1,250 @@
+<!-- /prototype/developer-apply.html -->
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Apply - Prototype</title>
+    <link rel="stylesheet" href="../assets/css/prototype.css">
+    <style>
+        .apply-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--space-lg);
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--space-xl);
+        }
+
+        .apply-header {
+            text-align: center;
+            margin-bottom: var(--space-lg);
+        }
+
+        .apply-header h1 {
+            font-size: var(--text-2xl);
+            font-weight: 600;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .apply-header p {
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .apply-form {
+            margin-top: var(--space-lg);
+        }
+
+        .form-group {
+            margin-bottom: var(--space-md);
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: var(--space-sm) var(--space-md);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            font-size: var(--text-base);
+            transition: border-color 0.2s ease;
+            min-height: 44px;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--border-focus);
+            box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-error {
+            color: var(--color-error);
+            font-size: var(--text-sm);
+            margin-top: var(--space-xs);
+        }
+
+        .form-help {
+            color: var(--text-muted);
+            font-size: var(--text-sm);
+            margin-top: var(--space-xs);
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: var(--space-lg);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h2><a href="../index.html" style="text-decoration: none; color: inherit;">🚀 Dev Jobs Platform</a>
+                    </h2>
+                    <span class="subtitle">Developer Apply</span>
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="apply-container">
+            <div class="apply-header">
+                <h1>Apply to Join Our Vetted Talent Pool</h1>
+                <p>Submit your application to be considered for our exclusive developer network.</p>
+            </div>
+
+            <form id="applyForm" class="apply-form">
+                <div class="form-group">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" id="name" name="name" class="form-input" placeholder="Enter your full name">
+                    <div class="form-error" id="name-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" name="email" class="form-input"
+                        placeholder="Enter your email address">
+                    <div class="form-error" id="email-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" id="location" name="location" class="form-input"
+                        placeholder="Enter your current location">
+                    <div class="form-error" id="location-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="role" class="form-label">Role</label>
+                    <select id="role" name="role" class="form-select">
+                        <option value="">Select your primary role</option>
+                        <option value="frontend">Frontend Developer</option>
+                        <option value="backend">Backend Developer</option>
+                        <option value="fullstack">Fullstack Developer</option>
+                        <option value="devops">DevOps Engineer</option>
+                        <option value="designer">Designer</option>
+                    </select>
+                    <div class="form-error" id="role-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="stacks" class="form-label">Primary Stacks</label>
+                    <input type="text" id="stacks" name="stacks" class="form-input"
+                        placeholder="Enter your primary technology stacks">
+                    <div class="form-error" id="stacks-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="rate" class="form-label">Hourly/Project Rate</label>
+                    <input type="text" id="rate" name="rate" class="form-input" placeholder="Enter your rate">
+                    <div class="form-error" id="rate-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="portfolio" class="form-label">Portfolio Links</label>
+                    <input type="text" id="portfolio" name="portfolio" class="form-input"
+                        placeholder="Provide links to your portfolio">
+                    <div class="form-error" id="portfolio-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="github" class="form-label">GitHub/LinkedIn</label>
+                    <input type="text" id="github" name="github" class="form-input"
+                        placeholder="Provide your GitHub or LinkedIn profile">
+                    <div class="form-error" id="github-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="bio" class="form-label">Short Bio</label>
+                    <textarea id="bio" name="bio" class="form-textarea"
+                        placeholder="Write a short bio about yourself"></textarea>
+                    <div class="form-error" id="bio-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="availability" class="form-label">Availability</label>
+                    <input type="checkbox" id="availability" name="availability">
+                    <span class="form-help">Toggle your availability</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="nda" class="form-label">NDA Acceptance</label>
+                    <input type="checkbox" id="nda" name="nda">
+                    <span class="form-help">Accept the NDA to proceed</span>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Submit Application</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Dev Jobs Platform Design System</p>
+                <p>Developer Apply | Interactive Prototype</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/data.js"></script>
+    <script src="../assets/js/components.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const formValidator = new FormValidator(document.getElementById('applyForm'), {
+                name: [ValidationRules.required],
+                email: [ValidationRules.required, ValidationRules.email],
+                location: [ValidationRules.required],
+                role: [ValidationRules.required],
+                stacks: [ValidationRules.required],
+                rate: [ValidationRules.required],
+                portfolio: [ValidationRules.required],
+                github: [ValidationRules.required],
+                bio: [ValidationRules.required, ValidationRules.minLength(50)],
+                nda: [ValidationRules.requiredTrue]
+            });
+
+            document.getElementById('applyForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (formValidator.validate()) {
+                    // Simulate application submission
+                    console.log('Application submitted!');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
