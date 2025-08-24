@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../styles/ChatInterface.css';
 import SlotEngine from '../utils/slotEngine';
 import { Generators } from '../utils/generators';
+import PostJobWizard from './PostJobWizard';
 
 const ChatInterface: React.FC = () => {
     const slotEngine = useRef(new SlotEngine());
@@ -9,6 +10,7 @@ const ChatInterface: React.FC = () => {
         { sender: 'AI', text: slotEngine.current.getCurrentQuestion() }
     ]);
     const [input, setInput] = useState('');
+    const [showWizard, setShowWizard] = useState(false);
 
     useEffect(() => {
         // Load assistant state from localStorage
@@ -57,10 +59,17 @@ ${summary}` };
 
                     // Save job draft to localStorage
                     localStorage.setItem('jobDraft', JSON.stringify(projectData));
+
+                    // Show Post Job Wizard
+                    setShowWizard(true);
                 }
             }, 1000);
         }
     };
+
+    if (showWizard) {
+        return <PostJobWizard />;
+    }
 
     return (
         <div className="chat-interface">
