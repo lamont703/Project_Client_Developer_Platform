@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post Job - Dev Jobs Platform Prototype</title>
-    <meta name="description" content="Post a new job with a multi-step wizard and form validation">
+    <title>Post Project - Dev Jobs Platform Prototype</title>
+    <meta name="description" content="Post a new project with a multi-step wizard and form validation">
     <link rel="stylesheet" href="../assets/css/prototype.css">
     <style>
         .post-job {
@@ -144,6 +144,24 @@
             align-items: center;
             margin-top: var(--space-lg);
         }
+
+        .ai-assistant-banner {
+            background: var(--bg-muted);
+            padding: var(--space-md);
+            text-align: center;
+            margin-bottom: var(--space-lg);
+            border-radius: var(--radius-md);
+        }
+
+        .btn-link {
+            color: var(--brand-primary);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -156,7 +174,7 @@
                 <div class="logo">
                     <h2><a href="../index.html" style="text-decoration: none; color: inherit;">🚀 Dev Jobs Platform</a>
                     </h2>
-                    <span class="subtitle">Post a Job</span>
+                    <span class="subtitle">Post a Project</span>
                 </div>
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
                     <span class="theme-icon">🌙</span>
@@ -167,6 +185,9 @@
 
     <main id="main-content">
         <section class="post-job">
+            <div class="ai-assistant-banner">
+                <p>Prefer to talk it out? <a href="ai-assistant.html" class="btn btn-link">Try the AI Assistant</a></p>
+            </div>
             <div class="stepper">
                 <div class="step active">
                     <div class="step-indicator">1</div>
@@ -186,17 +207,17 @@
                 </div>
             </div>
 
-            <form id="postJobForm">
+            <form id="postProjectForm">
                 <div class="form-group">
-                    <label for="title" class="form-label">Job Title</label>
-                    <input type="text" id="title" name="title" class="form-input" placeholder="Enter job title">
+                    <label for="title" class="form-label">Project Title</label>
+                    <input type="text" id="title" name="title" class="form-input" placeholder="Enter project title">
                     <div class="form-error" id="title-error"></div>
                 </div>
 
                 <div class="form-group">
-                    <label for="description" class="form-label">Job Description</label>
+                    <label for="description" class="form-label">Project Description</label>
                     <textarea id="description" name="description" class="form-textarea"
-                        placeholder="Describe the job responsibilities and requirements"></textarea>
+                        placeholder="Describe the project responsibilities and requirements"></textarea>
                     <div class="form-error" id="description-error"></div>
                 </div>
 
@@ -237,7 +258,7 @@
     <script src="../assets/js/validate.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const formValidator = new FormValidator(document.getElementById('postJobForm'), {
+            const formValidator = new FormValidator(document.getElementById('postProjectForm'), {
                 title: [ValidationRules.required, ValidationRules.minLength(5)],
                 description: [ValidationRules.required, ValidationRules.minLength(50)],
                 category: [ValidationRules.required]
@@ -245,11 +266,12 @@
 
             const stepper = new Stepper(document.querySelector('.stepper'));
 
-            document.getElementById('postJobForm').addEventListener('submit', (e) => {
+            document.getElementById('postProjectForm').addEventListener('submit', (e) => {
                 e.preventDefault();
                 if (formValidator.validate()) {
                     if (!stepper.isLastStep()) {
                         stepper.next();
+                        updateStepVisibility();
                     } else {
                         // Submit the form
                         console.log('Form submitted!');
@@ -257,9 +279,22 @@
                 }
             });
 
+            function updateStepVisibility() {
+                const steps = document.querySelectorAll('.step');
+                const forms = document.querySelectorAll('.form-group');
+                steps.forEach((step, index) => {
+                    if (step.classList.contains('active')) {
+                        forms.forEach((form, formIndex) => {
+                            form.style.display = formIndex === index ? 'block' : 'none';
+                        });
+                    }
+                });
+            }
+
             document.querySelector('.btn-secondary').addEventListener('click', () => {
                 if (!stepper.isFirstStep()) {
                     stepper.previous();
+                    updateStepVisibility();
                 }
             });
         });

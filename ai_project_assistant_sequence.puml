@@ -1,0 +1,95 @@
+@startuml
+actor U as "User <<Client>>"
+participant FE as "Frontend\n(Assistant UI)"
+participant SE as "Slot Engine\n(state machine)"
+participant GEN as "Generators\n(title/desc/skills/milestones/budget)"
+database LS as "Local Storage\n(assistantState, jobDraft)"
+participant PJ as "Post Job Wizard\n(/prototype/post-job.html)"
+participant API as "Backend API\n(auth/jobs) [optional]"
+control ANA as "Analytics\n(client-side)"
+
+' Session start
+U ->> FE : Open AI Project Assistant
+FE ->> ANA : assistant_started
+FE ->> SE  : initSession()
+SE -->> FE : ready()
+
+' Initial idea
+U ->> FE : "I need an AI chatbot for my store…"
+FE ->> SE : handleUserMessage(text)
+SE ->> LS : persist(assistantState)
+SE ->> SE : extract intents/keywords (rule-based)
+SE ->> SE : updateSlots({projectType, goal?})
+
+alt Missing core slots
+    SE -->> FE : ask follow-up\n(chips: Platforms, Integrations, Budget)
+    FE ->> U   : Prompt user for details
+else Template is applicable
+    SE -->> FE : suggestTemplate("AI Chatbot for E‑commerce")
+    FE ->> U   : Show quick-reply chips
+end
+
+' Iterative slot filling
+loop Conversational slot filling
+    U  ->> FE : Reply (chips/text/voice)
+    FE ->> SE : handleUserMessage(payload)
+    SE ->> SE : validate & fill slots\n(timeline, deliverables, techStack, budgetModel…)
+    SE ->> LS : persist(assistantState)
+    FE ->> ANA: slot_filled(slotName)
+end
+
+' Optional voice path
+opt Voice available
+    U  ->> FE : Dictate idea (Web Speech API)
+    FE ->> SE : transcript → handleUserMessage
+end
+
+' Draft generation threshold
+SE ->> SE : isComplete? (≥ threshold)
+alt Threshold met
+    SE ->> GEN : generateTitle(slots)
+    SE ->> GEN : generateDescription(slots)
+    SE ->> GEN : generateSkills(slots)
+    SE ->> GEN : suggestMilestones(slots)
+    SE ->> GEN : estimateBudgetTimeline(slots)
+    GEN -->> SE: draft package
+    SE ->> LS  : save(jobDraft)
+    FE ->> ANA : draft_generated
+    SE -->> FE : present Draft\n(title/desc/skills/milestones/budget/timeline/score)
+else More info needed
+    SE -->> FE : prompt for gaps (e.g., success criteria)
+end
+
+' Review & refine
+U  ->> FE : Edit / Regenerate section(s)
+FE ->> GEN: regenerate(section, slots)
+GEN-->> FE : updated section
+FE ->> LS : update(jobDraft)
+FE ->> ANA: section_regenerated
+
+' Export to Post Job wizard
+U  ->> FE : Export to posting
+FE ->> LS : set(jobDraft)
+FE ->> ANA: draft_exported
+FE ->> PJ : navigate(/post-job.html#draft)
+
+' Wizard import & publish
+PJ ->> LS : read(jobDraft)
+PJ -->> U : Pre-filled wizard steps\n(Basics → Details → Budget → Review)
+U  ->> PJ : Review & Publish
+
+opt Authenticated user
+    PJ ->> API : POST /jobs (jobDraft)
+    API -->> PJ: 201 Created {jobId}
+    PJ ->> ANA : post_published
+else Not authenticated (prototype)
+    PJ -->> U : Show success toast (mock)
+    PJ ->> ANA : post_published (mock)
+end
+
+' Public project status (integration hook)
+opt Public Status feature installed
+    PJ ->> API : Initialize Job.publicStatus = "posted"
+    API -->> PJ: ok
+end
+@enduml 

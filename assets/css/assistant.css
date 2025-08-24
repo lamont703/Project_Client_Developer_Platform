@@ -1,0 +1,94 @@
+/* /assets/css/assistant.css */
+
+/* Chat UI Styles */
+.assistant-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--space-lg);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: var(--space-xl);
+}
+
+.assistant-header {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+}
+
+.assistant-header h1 {
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.chat-transcript {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: var(--space-lg);
+}
+
+.chat-message {
+    margin-bottom: var(--space-md);
+    display: flex;
+    align-items: flex-start;
+}
+
+.chat-message.assistant {
+    justify-content: flex-start;
+}
+
+.chat-message.user {
+    justify-content: flex-end;
+}
+
+.message-bubble {
+    max-width: 70%;
+    padding: var(--space-md);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.message-bubble.assistant {
+    background: var(--bg-muted);
+    color: var(--text-secondary);
+}
+
+.message-bubble.user {
+    background: var(--brand-primary);
+    color: white;
+}
+
+.composer {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.composer textarea {
+    flex: 1;
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    font-size: var(--text-base);
+    resize: none;
+    min-height: 44px;
+}
+
+.composer button {
+    padding: var(--space-sm) var(--space-md);
+    background: var(--brand-primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.composer button:hover {
+    background: var(--brand-primary-dark);
+} 
