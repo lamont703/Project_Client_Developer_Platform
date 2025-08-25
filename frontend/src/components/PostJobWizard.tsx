@@ -29,7 +29,7 @@ const PostJobWizard: React.FC = () => {
             const isAuthenticated = true; // Replace with actual authentication check
 
             if (isAuthenticated) {
-                fetch('/api/jobs', {
+                fetch('http://localhost:3001/api/jobs', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
