@@ -50,7 +50,7 @@ export class Generators {
 Description: ${projectData.description}
 Category: ${projectData.category}
 Target Audience: ${projectData.targetAudience}
-Key Features: ${projectData.keyFeatures}
+Key Features: ${projectData.key_features}
 Technology Stack: ${projectData.technologyStack}
 Budget: ${projectData.budget}
 Timeline: ${projectData.timeline}

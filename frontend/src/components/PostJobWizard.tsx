@@ -32,7 +32,7 @@ const PostJobWizard: React.FC = () => {
                 fetch('http://localhost:3001/api/jobs', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(jobDraft),
                 })
@@ -40,6 +40,14 @@ const PostJobWizard: React.FC = () => {
                     .then(data => {
                         console.log('Job published:', data);
                         console.log('Analytics: post_published');
+
+                        // Send Google Analytics event for post published
+                        if (window.gtag) {
+                            window.gtag('event', 'post_published', {
+                                event_category: 'Post Job Wizard',
+                                event_label: 'User published job post'
+                            });
+                        }
                     })
                     .catch(error => {
                         console.error('Error publishing job:', error);
@@ -47,6 +55,14 @@ const PostJobWizard: React.FC = () => {
             } else {
                 console.log('Simulating job publish for unauthenticated user');
                 console.log('Analytics: post_published (mock)');
+
+                // Send Google Analytics event for post published (mock)
+                if (window.gtag) {
+                    window.gtag('event', 'post_published', {
+                        event_category: 'Post Job Wizard',
+                        event_label: 'User published job post (mock)'
+                    });
+                }
             }
         }
     };

@@ -3,7 +3,7 @@ export interface ProjectSchema {
     description: string;
     category: string;
     targetAudience: string;
-    keyFeatures: string;
+    key_features: string;
     technologyStack: string;
     budget: string;
     timeline: string;
@@ -27,7 +27,7 @@ class SlotEngine {
             { name: 'description', value: '', question: 'Can you describe the project responsibilities and requirements?' },
             { name: 'category', value: '', question: 'What category does your project fall under? (e.g., AI & Machine Learning, Blockchain, Automation, etc.)' },
             { name: 'targetAudience', value: '', question: 'Who is the target audience for this project?' },
-            { name: 'keyFeatures', value: '', question: 'What are the key features or functionalities you want to include?' },
+            { name: 'key_features', value: '', question: 'What are the key features or functionalities you want to include?' },
             { name: 'technologyStack', value: '', question: 'What technology stack do you plan to use? (e.g., React, Node.js, Python)' },
             { name: 'budget', value: '', question: 'What is your estimated budget for this project?' },
             { name: 'timeline', value: '', question: 'What is your expected timeline for project completion?' },

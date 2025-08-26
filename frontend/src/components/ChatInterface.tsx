@@ -4,6 +4,12 @@ import SlotEngine from '../utils/slotEngine';
 import { Generators } from '../utils/generators';
 import PostJobWizard from './PostJobWizard';
 
+declare global {
+    interface Window {
+        gtag?: (...args: any[]) => void;
+    }
+}
+
 const ChatInterface: React.FC = () => {
     const slotEngine = useRef(new SlotEngine());
     const [messages, setMessages] = useState<{ sender: string, text: string }[]>([
@@ -19,6 +25,14 @@ const ChatInterface: React.FC = () => {
             const { messages, currentSlotIndex } = JSON.parse(savedState);
             setMessages(messages);
             slotEngine.current.setCurrentSlotIndex(currentSlotIndex);
+        }
+
+        // Send Google Analytics event for assistant start
+        if (window.gtag) {
+            window.gtag('event', 'assistant_started', {
+                event_category: 'AI Project Assistant',
+                event_label: 'User started AI Project Assistant'
+            });
         }
     }, []);
 
