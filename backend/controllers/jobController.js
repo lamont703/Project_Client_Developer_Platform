@@ -1,7 +1,7 @@
 // jobController.js
 
 const { sendDataToGoHighLevel } = require('../goHighLevelService');
-const { insertJobDraft } = require('../db');
+const { insertJobDraft, getAllJobs } = require('../db');
 
 // In-memory job data storage
 let jobs = [];
@@ -27,5 +27,17 @@ exports.createJob = async (req, res) => {
         await sendDataToGoHighLevel(jobData);
     } catch (error) {
         console.error('Failed to send job data to GoHighLevel:', error);
+    }
+};
+
+// Controller to handle fetching all jobs
+exports.getAllJobs = async (req, res) => {
+    try {
+        console.log('Fetching all jobs from database...');
+        const jobs = await getAllJobs();
+        res.status(200).json(jobs);
+    } catch (error) {
+        console.error('Error fetching jobs:', error);
+        res.status(500).json({ error: 'Failed to fetch jobs' });
     }
 }; 

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import ChatInterface from './components/ChatInterface';
+import JobListing from './components/JobListing';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -9,5 +10,6 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ChatInterface />
+    <JobListing />
   </React.StrictMode>
 );

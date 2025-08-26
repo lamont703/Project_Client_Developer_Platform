@@ -67,7 +67,28 @@ async function insertJobDraft(jobData) {
     }
 }
 
+async function getAllJobs() {
+    try {
+        const { data, error } = await supabase
+            .from('job_drafts')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+        if (error) {
+            console.error('Error returned from Supabase:', error);
+            throw error;
+        }
+
+        console.log('Jobs fetched from Supabase:', data);
+        return data;
+    } catch (error) {
+        console.error('Error fetching jobs from Supabase:', error);
+        throw error;
+    }
+}
+
 module.exports = {
   saveTokensToDatabase,
-  insertJobDraft
+  insertJobDraft,
+  getAllJobs
 };
