@@ -1,6 +1,6 @@
 // jobController.js
 
-const { sendDataToGoHighLevel } = require('../goHighLevelService');
+const { createOpportunityInPipeline } = require('../goHighLevelService');
 const { insertJobDraft, getAllJobs } = require('../db');
 
 // In-memory job data storage
@@ -22,11 +22,12 @@ exports.createJob = async (req, res) => {
         console.error('Error saving job draft to Supabase:', error);
     }
 
-    // Send job data to GoHighLevel
+    // Create opportunity in GoHighLevel pipeline
     try {
-        await sendDataToGoHighLevel(jobData);
+        await createOpportunityInPipeline(jobData.title);
+        console.log('Opportunity created successfully in GoHighLevel pipeline');
     } catch (error) {
-        console.error('Failed to send job data to GoHighLevel:', error);
+        console.error('Failed to create opportunity in GoHighLevel pipeline:', error);
     }
 };
 

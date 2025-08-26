@@ -1,0 +1,147 @@
+{
+  "pipelines": [
+    {
+      "stages": [
+        {
+          "id": "6c36dbcf-5711-4759-bbb8-182527cb0758",
+          "name": "Software Client Network",
+          "position": 0,
+          "showInFunnel": true,
+          "showInPieChart": true
+        },
+        {
+          "id": "94d76438-fa70-4282-a4df-ad5286a6bf76",
+          "name": "Discovery Call",
+          "position": 1,
+          "showInFunnel": true,
+          "showInPieChart": true
+        },
+        {
+          "id": "84de19a4-2f96-4932-ab9c-8ddf4ba29a45",
+          "name": "Initial Prototype",
+          "position": 2,
+          "showInFunnel": true,
+          "showInPieChart": true
+        },
+        {
+          "id": "e336a05d-cf8b-40d6-9ab7-f7952199e18e",
+          "name": "Prototype Review Meeting",
+          "position": 3,
+          "showInFunnel": true,
+          "showInPieChart": true
+        },
+        {
+          "id": "bc431d28-10b2-4c0f-bf80-71744c202eb0",
+          "name": "Prototype Update Round",
+          "position": 4,
+          "showInFunnel": true,
+          "showInPieChart": true
+        },
+        {
+          "id": "af821356-d6a6-4c6b-a379-36c0ea30e2b6",
+          "name": "Final Prototype Review",
+          "position": 5,
+          "showInFunnel": true,
+          "showInPieChart": true
+        },
+        {
+          "id": "f7791bd6-bb2d-49ab-9f86-bdd486570564",
+          "name": "Technical Developer Review",
+          "position": 6,
+          "showInFunnel": true,
+          "showInPieChart": true
+        },
+        {
+          "id": "397db6fe-f6fa-41eb-82a2-7d14f3b09aca",
+          "name": "Cost Analysis & Timeline Review",
+          "position": 7,
+          "showInFunnel": true,
+          "showInPieChart": true
+        },
+        {
+          "id": "52ed5cd7-4539-4e65-93ef-29d5fa14e3c2",
+          "name": "Contract & Proposal",
+          "position": 8,
+          "showInFunnel": true,
+          "showInPieChart": true
+        },
+        {
+          "id": "ef17e0d2-759b-48ec-aa8f-3af430ecda27",
+          "name": "Proposal Paid & Accepted",
+          "position": 9,
+          "showInFunnel": true,
+          "showInPieChart": true
+        },
+        {
+          "id": "a0e5408c-7638-4edf-87e6-f7c296cd1893",
+          "name": "Initialize Prototype For Development",
+          "position": 10,
+          "showInFunnel": true,
+          "showInPieChart": true
+        },
+        {
+          "id": "f0a8c85c-944b-452c-bd8e-e619d10f3150",
+          "name": "Development Roadmap",
+          "position": 11,
+          "showInFunnel": true,
+          "showInPieChart": true
+        },
+        {
+          "id": "0a04dce0-2447-4f9a-90f7-8d5f8525b5ef",
+          "name": "MVP Delivered - LIVE Testing",
+          "position": 12,
+          "showInFunnel": true,
+          "showInPieChart": true
+        },
+        {
+          "id": "5762923f-6951-4dc9-b19e-81fee9d4675a",
+          "name": "Product Delivery",
+          "position": 13,
+          "showInFunnel": true,
+          "showInPieChart": true
+        }
+      ],
+      "dateAdded": "2025-07-10T22:42:46.852Z",
+      "dateUpdated": "2025-08-18T20:26:59.148Z",
+      "name": "Client Software Development Pipeline",
+      "showInFunnel": true,
+      "showInPieChart": true,
+      "id": "uR2CMkTiwqoUOYuf8oGR"
+    },
+    {
+      "stages": [
+        {
+          "id": "2e6d6b9e-bad8-4a71-9bb8-25db8118eaff",
+          "name": "Initial Project Idea",
+          "position": 0,
+          "showInFunnel": true,
+          "showInPieChart": true
+        }
+      ],
+      "dateAdded": "2025-08-04T18:11:22.977Z",
+      "dateUpdated": "2025-08-04T18:11:22.977Z",
+      "name": "Internal Software Development Pipeline",
+      "showInFunnel": true,
+      "showInPieChart": true,
+      "id": "45C9XEovSQeO2m0cXaQI"
+    },
+    {
+      "stages": [
+        {
+          "id": "58a45354-8c40-4ea2-ba40-4900c3dfbc8e",
+          "name": "Lost Clients",
+          "position": 0,
+          "showInFunnel": true,
+          "showInPieChart": true
+        }
+      ],
+      "dateAdded": "2025-08-09T04:35:04.049Z",
+      "dateUpdated": "2025-08-09T04:35:04.049Z",
+      "name": "Lost Client Pipeline",
+      "showInFunnel": true,
+      "showInPieChart": true,
+      "id": "rL1mRIG8mnNx3JDs7XI2"
+    }
+  ],
+  "traceId": "53c58e8f-1e62-4403-9979-a335265df0ed"
+}

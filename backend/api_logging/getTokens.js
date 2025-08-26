@@ -2,7 +2,7 @@ const axios = require('axios');
 const qs = require('qs');
 require('dotenv').config();
 
-const callbackCode = '6647595619661428b1e2b4e00a312cc553658bc4';
+const callbackCode = '4fe2b5b98b1c2677632d736ad464576bb1209672';
 
 let data = qs.stringify({
   'client_id': process.env.GHL_CLIENT_ID,
