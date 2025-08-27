@@ -17,6 +17,8 @@ const ChatInterface: React.FC = () => {
     ]);
     const [input, setInput] = useState('');
     const [showWizard, setShowWizard] = useState(false);
+    const [isTyping, setIsTyping] = useState(false);
+    const chatWindowRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         // Load assistant state from localStorage
@@ -45,6 +47,21 @@ const ChatInterface: React.FC = () => {
         localStorage.setItem('assistantState', JSON.stringify(state));
     }, [messages]);
 
+    // Auto-scroll to bottom when new messages are added
+    useEffect(() => {
+        if (chatWindowRef.current) {
+            chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
+        }
+    }, [messages, isTyping]);
+
+    const TypingIndicator = () => (
+        <div className="typing-indicator">
+            <div className="typing-dot"></div>
+            <div className="typing-dot"></div>
+            <div className="typing-dot"></div>
+        </div>
+    );
+
     const handleSend = () => {
         if (input.trim()) {
             const newMessages = [...messages, { sender: 'User', text: input }];
@@ -55,9 +72,12 @@ const ChatInterface: React.FC = () => {
             slotEngine.current.fillSlot(input);
 
             setInput('');
+            setIsTyping(true);
 
-            // Simulate AI response
+            // Simulate AI typing and response
             setTimeout(() => {
+                setIsTyping(false);
+                
                 if (!slotEngine.current.isComplete()) {
                     const aiResponse = { sender: 'AI', text: slotEngine.current.getCurrentQuestion() };
                     setMessages([...newMessages, aiResponse]);
@@ -65,19 +85,46 @@ const ChatInterface: React.FC = () => {
                     const projectData = slotEngine.current.getSlotData();
                     const summary = Generators.generateSummary(projectData);
 
-                    const aiResponse = { sender: 'AI', text: `Thank you for providing the details. Here is a summary of your project:
+                    const aiResponse = { sender: 'AI', text: `Thank you for providing the details! 🎉 Here's a comprehensive summary of your project:
 
-${summary}` };
+${summary}
+
+I'm excited to help you bring this project to life! Let's proceed to create your job posting.` };
                     setMessages([...newMessages, aiResponse]);
                     console.log('Collected Project Data:', projectData);
 
                     // Save job draft to localStorage
                     localStorage.setItem('jobDraft', JSON.stringify(projectData));
 
-                    // Show Post Job Wizard
+                    // Show Post Job Wizard after a short delay
+                    setTimeout(() => {
                     setShowWizard(true);
+                    }, 2000);
                 }
-            }, 1000);
+            }, Math.random() * 1000 + 1500); // Random delay between 1.5-2.5 seconds for more natural feel
+        }
+    };
+
+    const handleKeyPress = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            handleSend();
+        }
+    };
+
+    const getPlaceholderText = () => {
+        const currentQuestion = slotEngine.current.getCurrentQuestion().toLowerCase();
+        
+        if (currentQuestion.includes('project') && currentQuestion.includes('name')) {
+            return "e.g., 'E-commerce Mobile App' or 'Company Website Redesign'";
+        } else if (currentQuestion.includes('describe')) {
+            return "Share your vision and requirements in detail...";
+        } else if (currentQuestion.includes('budget')) {
+            return "e.g., '$5,000 - $10,000' or 'Open to discussion'";
+        } else if (currentQuestion.includes('timeline')) {
+            return "e.g., '2-3 months' or 'ASAP'";
+        } else {
+            return "Type your response here...";
         }
     };
 
@@ -87,21 +134,46 @@ ${summary}` };
 
     return (
         <div className="chat-interface">
-            <h1>AI Project Assistant</h1>
-            <div className="chat-window">
+            <h1>🤖 AI Project Assistant</h1>
+            <div className="chat-window" ref={chatWindowRef}>
                 {messages.map((msg, index) => (
                     <div key={index} className={`chat-message ${msg.sender.toLowerCase()}`}>
-                        <strong>{msg.sender}:</strong> {msg.text}
+                        <strong>{msg.sender}:</strong> 
+                        <div style={{ whiteSpace: 'pre-line' }}>{msg.text}</div>
                     </div>
                 ))}
+                {isTyping && <TypingIndicator />}
             </div>
             <div className="chat-input">
                 <textarea 
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    placeholder="Type your message..."
-                ></textarea>
-                <button onClick={handleSend}>Send</button>
+                    onKeyPress={handleKeyPress}
+                    placeholder={getPlaceholderText()}
+                    disabled={isTyping}
+                    rows={1}
+                    style={{ 
+                        height: 'auto',
+                        minHeight: '50px',
+                        maxHeight: '120px',
+                        resize: 'none'
+                    }}
+                    onInput={(e) => {
+                        const target = e.target as HTMLTextAreaElement;
+                        target.style.height = 'auto';
+                        target.style.height = Math.min(target.scrollHeight, 120) + 'px';
+                    }}
+                />
+                <button 
+                    onClick={handleSend}
+                    disabled={!input.trim() || isTyping}
+                    style={{
+                        opacity: (!input.trim() || isTyping) ? 0.6 : 1,
+                        cursor: (!input.trim() || isTyping) ? 'not-allowed' : 'pointer'
+                    }}
+                >
+                    {isTyping ? '⏳' : '✈️'}
+                </button>
             </div>
         </div>
     );
