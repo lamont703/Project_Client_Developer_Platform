@@ -1,56 +1,59 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/JobListing.css';
 
-interface Job {
+interface Opportunity {
     id: number;
-    title: string;
-    category: string;
-    target_audience: string;
-    description: string;
-    key_features: string;
-    technology_stack: string;
-    budget: string;
-    timeline: string;
-    success_criteria: string;
-    potential_challenges: string;
+    opportunity_id: string;
+    name: string;
+    status: string;
+    monetary_value: number;
+    contact_id?: string;
+    pipeline_id?: string;
+    pipeline_stage_id?: string;
+    assigned_to?: string;
     created_at: string;
+    updated_at: string;
 }
 
-const JobListing: React.FC = () => {
-    const [jobs, setJobs] = useState<Job[]>([]);
+const OpportunityListing: React.FC = () => {
+    const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        fetchJobs();
+        fetchOpportunities();
     }, []);
 
-    const fetchJobs = async () => {
+    const fetchOpportunities = async () => {
         try {
-            const response = await fetch('http://localhost:3001/api/jobs');
+            const response = await fetch('http://localhost:3001/api/opportunities');
             if (!response.ok) {
-                throw new Error('Failed to fetch jobs');
+                throw new Error('Failed to fetch opportunities');
             }
             const data = await response.json();
-            setJobs(data);
+            if (data.success) {
+                setOpportunities(data.opportunities);
+            } else {
+                throw new Error(data.error || 'Failed to fetch opportunities');
+            }
         } catch (err) {
-            setError('Error fetching jobs. Please try again later.');
-            console.error('Error fetching jobs:', err);
+            setError('Error fetching opportunities. Please try again later.');
+            console.error('Error fetching opportunities:', err);
         } finally {
             setLoading(false);
         }
     };
 
-    const handleApply = (jobId: number) => {
+    const handleApply = (opportunityId: string) => {
         // Placeholder for apply functionality
-        const job = jobs.find(j => j.id === jobId);
-        alert(`🚀 Applied to "${job?.title}"! This feature will be implemented soon.`);
+        const opportunity = opportunities.find(o => o.opportunity_id === opportunityId);
+        alert(`🚀 Applied to "${opportunity?.name}"! This feature will be implemented soon.`);
         
-        // Send Google Analytics event for job application
+        // Send Google Analytics event for opportunity application
         if (window.gtag) {
-            window.gtag('event', 'job_application', {
-                event_category: 'Job Listing',
-                event_label: `Applied to job ${jobId}`
+            window.gtag('event', 'opportunity_application', {
+                event_category: 'Opportunity Listing',
+                event_label: `Applied to opportunity ${opportunityId}`
             });
         }
     };
@@ -63,15 +66,36 @@ const JobListing: React.FC = () => {
         });
     };
 
-    const truncateText = (text: string | null | undefined, maxLength: number = 150) => {
-        if (!text) return '';
-        if (text.length <= maxLength) return text;
-        return text.substring(0, maxLength) + '...';
+    const formatCurrency = (amount: number) => {
+        if (!amount) return 'Not specified';
+        return new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0
+        }).format(amount);
+    };
+
+    const getStatusColor = (status: string) => {
+        switch (status?.toLowerCase()) {
+            case 'open':
+                return '#10b981'; // Green
+            case 'qualified':
+                return '#3b82f6'; // Blue
+            case 'proposal':
+                return '#f59e0b'; // Yellow
+            case 'closed won':
+                return '#059669'; // Dark green
+            case 'closed lost':
+                return '#dc2626'; // Red
+            default:
+                return '#6b7280'; // Gray
+        }
     };
 
     const LoadingSpinner = () => (
         <div className="job-listing-container">
-            <h1>💼 Available Jobs</h1>
+            <h1>💼 Pipeline Opportunities</h1>
             <div style={{ 
                 display: 'flex', 
                 justifyContent: 'center', 
@@ -81,7 +105,7 @@ const JobListing: React.FC = () => {
                 gap: '20px'
             }}>
                 <div className="loading-spinner"></div>
-                <p>Loading amazing opportunities for you...</p>
+                <p>Loading opportunities from your pipeline...</p>
             </div>
         </div>
     );
@@ -93,7 +117,7 @@ const JobListing: React.FC = () => {
     if (error) {
         return (
             <div className="job-listing-container">
-                <h1>💼 Available Jobs</h1>
+                <h1>💼 Pipeline Opportunities</h1>
                 <div className="error">
                     <h3>😞 Oops! Something went wrong</h3>
                     <p>{error}</p>
@@ -101,7 +125,7 @@ const JobListing: React.FC = () => {
                         onClick={() => {
                             setError(null);
                             setLoading(true);
-                            fetchJobs();
+                            fetchOpportunities();
                         }}
                         style={{
                             marginTop: '16px',
@@ -123,9 +147,9 @@ const JobListing: React.FC = () => {
 
     return (
         <div className="job-listing-container">
-            <h1>💼 Available Jobs</h1>
+            <h1>💼 Pipeline Opportunities</h1>
             
-            {jobs.length === 0 ? (
+            {opportunities.length === 0 ? (
                 <div style={{
                     textAlign: 'center',
                     padding: '60px 20px',
@@ -141,7 +165,7 @@ const JobListing: React.FC = () => {
                         fontSize: '24px',
                         fontWeight: '700'
                     }}>
-                        No Jobs Available Yet
+                        No Opportunities Yet
                     </h2>
                     <p style={{ 
                         color: 'rgba(255, 255, 255, 0.8)', 
@@ -149,7 +173,8 @@ const JobListing: React.FC = () => {
                         lineHeight: '1.6',
                         margin: '0'
                     }}>
-                        Be the first to post an amazing project! Use our AI Project Assistant to create your job posting.
+                        Opportunities will appear here as they're created in your GoHighLevel pipeline. 
+                        Create a new job posting to see it appear here!
                     </p>
                 </div>
             ) : (
@@ -161,66 +186,96 @@ const JobListing: React.FC = () => {
                         fontSize: '18px',
                         fontWeight: '500'
                     }}>
-                        🌟 Discover {jobs.length} amazing project{jobs.length !== 1 ? 's' : ''} waiting for talented developers
+                        🌟 {opportunities.length} opportunity{opportunities.length !== 1 ? 's' : ''} in your pipeline
                     </div>
                     
                     <div className="jobs-grid">
-                        {jobs.map((job) => (
-                            <div key={job.id} className="job-card">
+                        {opportunities.map((opportunity) => (
+                            <div key={opportunity.id} className="job-card">
                                 <div className="job-header">
-                                    <h2>{job.title}</h2>
-                                    <span className="job-category">{job.category}</span>
+                                    <h2>{opportunity.name || 'Untitled Opportunity'}</h2>
+                                    <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                                        <span 
+                                            className="job-category"
+                                            style={{
+                                                backgroundColor: getStatusColor(opportunity.status),
+                                                color: 'white',
+                                                padding: '4px 12px',
+                                                borderRadius: '12px',
+                                                fontSize: '12px',
+                                                fontWeight: '600',
+                                                textTransform: 'uppercase'
+                                            }}
+                                        >
+                                            {opportunity.status || 'Unknown Status'}
+                                        </span>
+                                        {opportunity.pipeline_stage_id && (
+                                            <span className="job-category">
+                                                Stage: {opportunity.pipeline_stage_id}
+                                            </span>
+                                        )}
+                                    </div>
                                 </div>
                                 
                                 <div className="job-details">
                                     <div className="job-field">
-                                        <strong>Target Audience</strong>
-                                        <p>{truncateText(job.target_audience, 100)}</p>
+                                        <strong>Opportunity ID</strong>
+                                        <p style={{ fontFamily: 'monospace', fontSize: '14px' }}>
+                                            {opportunity.opportunity_id}
+                                        </p>
                                     </div>
                                     
                                     <div className="job-field">
-                                        <strong>Description</strong>
-                                        <p>{truncateText(job.description, 120)}</p>
+                                        <strong>Value</strong>
+                                        <p style={{ 
+                                            fontSize: '18px', 
+                                            fontWeight: '600',
+                                            color: '#10b981'
+                                        }}>
+                                            {formatCurrency(opportunity.monetary_value)}
+                                        </p>
                                     </div>
                                     
-                                    <div className="job-field">
-                                        <strong>Key Features</strong>
-                                        <p>{truncateText(job.key_features, 100)}</p>
-                                    </div>
+                                    {opportunity.contact_id && (
+                                        <div className="job-field">
+                                            <strong>Contact ID</strong>
+                                            <p style={{ fontFamily: 'monospace', fontSize: '14px' }}>
+                                                {opportunity.contact_id}
+                                            </p>
+                                        </div>
+                                    )}
                                     
-                                    <div className="job-field">
-                                        <strong>Technology Stack</strong>
-                                        <p>{job.technology_stack}</p>
-                                    </div>
+                                    {opportunity.pipeline_id && (
+                                        <div className="job-field">
+                                            <strong>Pipeline ID</strong>
+                                            <p style={{ fontFamily: 'monospace', fontSize: '14px' }}>
+                                                {opportunity.pipeline_id}
+                                            </p>
+                                        </div>
+                                    )}
                                     
-                                    <div className="job-field">
-                                        <strong>Budget</strong>
-                                        <p>{job.budget}</p>
-                                    </div>
-                                    
-                                    <div className="job-field">
-                                        <strong>Timeline</strong>
-                                        <p>{job.timeline}</p>
-                                    </div>
-                                    
-                                    <div className="job-field">
-                                        <strong>Success Criteria</strong>
-                                        <p>{truncateText(job.success_criteria, 100)}</p>
-                                    </div>
-                                    
-                                    <div className="job-field">
-                                        <strong>Potential Challenges</strong>
-                                        <p>{truncateText(job.potential_challenges, 100)}</p>
-                                    </div>
+                                    {opportunity.assigned_to && (
+                                        <div className="job-field">
+                                            <strong>Assigned To</strong>
+                                            <p>{opportunity.assigned_to}</p>
+                                        </div>
+                                    )}
                                 </div>
                                 
                                 <div className="job-footer">
-                                    <p className="job-date">Posted: {formatDate(job.created_at)}</p>
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                                        <p className="job-date">Created: {formatDate(opportunity.created_at)}</p>
+                                        {opportunity.updated_at !== opportunity.created_at && (
+                                            <p className="job-date" style={{ fontSize: '12px', opacity: 0.7 }}>
+                                                Updated: {formatDate(opportunity.updated_at)}
+                                            </p>
+                                        )}
+                                    </div>
                                     <button 
                                         className="apply-button"
-                                        onClick={() => handleApply(job.id)}
+                                        onClick={() => handleApply(opportunity.opportunity_id)}
                                     >
-                                        🚀 Apply Now
+                                        🚀 View Details
                                     </button>
                                 </div>
                             </div>
@@ -232,4 +287,4 @@ const JobListing: React.FC = () => {
     );
 };
 
-export default JobListing; 
+export default OpportunityListing; 

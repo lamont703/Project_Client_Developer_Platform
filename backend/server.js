@@ -8,6 +8,7 @@ const logger = require('./config/logger');
 const oauthRoutes = require('./routes/oauthRoutes');
 const webhookRoutes = require('./routes/webhookRoutes');
 const tokenRoutes = require('./routes/tokenRoutes');
+const opportunityRoutes = require('./routes/opportunityRoutes');
 
 const app = express();
 const port = 3001;
@@ -32,6 +33,9 @@ app.use('/api/webhooks', webhookRoutes);
 
 // Use token management routes
 app.use('/api/tokens', tokenRoutes);
+
+// Use opportunity routes
+app.use('/api/opportunities', opportunityRoutes);
 
 // Start the server
 app.listen(port, () => {

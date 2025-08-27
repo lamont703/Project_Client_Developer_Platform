@@ -3,7 +3,8 @@ const {
     updateOpportunity, 
     deleteOpportunity, 
     updateOpportunityStage,
-    opportunityExists 
+    opportunityExists,
+    getAllOpportunities
 } = require('../db');
 const logger = require('../config/logger');
 
@@ -258,6 +259,8 @@ function testWebhook(webhookData) {
     };
 }
 
+
+
 module.exports = {
     processWebhook,
     handleOpportunityCreated,
@@ -266,5 +269,6 @@ module.exports = {
     handleOpportunityStageChanged,
     syncPipelineData,
     getWebhookHealth,
-    testWebhook
+    testWebhook,
+    getAllOpportunities
 }; 
