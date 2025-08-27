@@ -90,8 +90,189 @@ async function getAllJobs() {
     }
 }
 
+// ===== OPPORTUNITY DATABASE OPERATIONS =====
+
+// Insert new opportunity into database
+async function insertOpportunity(opportunityData) {
+    try {
+        const { data, error } = await supabase
+            .from('ghl_opportunities')
+            .insert([{
+                opportunity_id: opportunityData.opportunity_id,
+                name: opportunityData.name,
+                status: opportunityData.status,
+                monetary_value: opportunityData.monetary_value,
+                contact_id: opportunityData.contact_id,
+                pipeline_id: opportunityData.pipeline_id,
+                pipeline_stage_id: opportunityData.pipeline_stage_id,
+                assigned_to: opportunityData.assigned_to,
+                created_at: opportunityData.created_at,
+                updated_at: opportunityData.updated_at
+            }]);
+
+        if (error) {
+            console.error('Error inserting opportunity:', error);
+            throw error;
+        }
+
+        console.log('Opportunity inserted successfully:', data);
+        return data;
+    } catch (error) {
+        console.error('Error during opportunity insertion:', error);
+        throw error;
+    }
+}
+
+// Update existing opportunity in database
+async function updateOpportunity(opportunityId, updateData) {
+    try {
+        const { data, error } = await supabase
+            .from('ghl_opportunities')
+            .update({
+                name: updateData.name,
+                status: updateData.status,
+                monetary_value: updateData.monetary_value,
+                contact_id: updateData.contact_id,
+                pipeline_id: updateData.pipeline_id,
+                pipeline_stage_id: updateData.pipeline_stage_id,
+                assigned_to: updateData.assigned_to,
+                updated_at: updateData.updated_at
+            })
+            .eq('opportunity_id', opportunityId);
+
+        if (error) {
+            console.error('Error updating opportunity:', error);
+            throw error;
+        }
+
+        console.log('Opportunity updated successfully:', data);
+        return data;
+    } catch (error) {
+        console.error('Error during opportunity update:', error);
+        throw error;
+    }
+}
+
+// Delete opportunity from database
+async function deleteOpportunity(opportunityId) {
+    try {
+        const { data, error } = await supabase
+            .from('ghl_opportunities')
+            .delete()
+            .eq('opportunity_id', opportunityId);
+
+        if (error) {
+            console.error('Error deleting opportunity:', error);
+            throw error;
+        }
+
+        console.log('Opportunity deleted successfully:', data);
+        return data;
+    } catch (error) {
+        console.error('Error during opportunity deletion:', error);
+        throw error;
+    }
+}
+
+// Update opportunity stage in database
+async function updateOpportunityStage(opportunityId, stageData) {
+    try {
+        const { data, error } = await supabase
+            .from('ghl_opportunities')
+            .update({
+                pipeline_stage_id: stageData.pipeline_stage_id,
+                status: stageData.status,
+                updated_at: stageData.updated_at
+            })
+            .eq('opportunity_id', opportunityId);
+
+        if (error) {
+            console.error('Error updating opportunity stage:', error);
+            throw error;
+        }
+
+        console.log('Opportunity stage updated successfully:', data);
+        return data;
+    } catch (error) {
+        console.error('Error during opportunity stage update:', error);
+        throw error;
+    }
+}
+
+// Get opportunity by ID
+async function getOpportunityById(opportunityId) {
+    try {
+        const { data, error } = await supabase
+            .from('ghl_opportunities')
+            .select('*')
+            .eq('opportunity_id', opportunityId)
+            .single();
+
+        if (error) {
+            console.error('Error fetching opportunity:', error);
+            throw error;
+        }
+
+        return data;
+    } catch (error) {
+        console.error('Error during opportunity fetch:', error);
+        throw error;
+    }
+}
+
+// Get all opportunities
+async function getAllOpportunities() {
+    try {
+        const { data, error } = await supabase
+            .from('ghl_opportunities')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+        if (error) {
+            console.error('Error fetching opportunities:', error);
+            throw error;
+        }
+
+        return data;
+    } catch (error) {
+        console.error('Error during opportunities fetch:', error);
+        throw error;
+    }
+}
+
+// Check if opportunity exists
+async function opportunityExists(opportunityId) {
+    try {
+        const { data, error } = await supabase
+            .from('ghl_opportunities')
+            .select('opportunity_id')
+            .eq('opportunity_id', opportunityId)
+            .single();
+
+        if (error && error.code !== 'PGRST116') { // PGRST116 = no rows returned
+            throw error;
+        }
+
+        return !!data;
+    } catch (error) {
+        console.error('Error checking opportunity existence:', error);
+        return false;
+    }
+}
+
 module.exports = {
-  saveTokensToDatabase,
-  insertJobDraft,
-  getAllJobs
+    // Existing exports
+    saveTokensToDatabase,
+    insertJobDraft,
+    getAllJobs,
+    supabase,
+    
+    // New opportunity exports
+    insertOpportunity,
+    updateOpportunity,
+    deleteOpportunity,
+    updateOpportunityStage,
+    getOpportunityById,
+    getAllOpportunities,
+    opportunityExists
 };

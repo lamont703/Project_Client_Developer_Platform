@@ -76,3 +76,648 @@
 2025-08-27 11:40:32 [INFO]: Unhandled event type: undefined
 2025-08-27 11:40:32 [INFO]: Pipeline data synced successfully
 2025-08-27 11:40:32 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 11:47:29 [INFO]: Server is running on http://localhost:3001
+2025-08-27 11:47:59 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 11:47:59 [INFO]: Request method:
+2025-08-27 11:47:59 [INFO]: Request URL:
+2025-08-27 11:47:59 [INFO]: Request headers:
+2025-08-27 11:47:59 [INFO]: Request body:
+2025-08-27 11:47:59 [INFO]: Request query:
+2025-08-27 11:47:59 [INFO]: Content-Type:
+2025-08-27 11:47:59 [INFO]: User-Agent:
+2025-08-27 11:47:59 [INFO]: ========================
+2025-08-27 11:47:59 [INFO]: Processing webhook data:
+2025-08-27 11:47:59 [INFO]: Processing webhook for event: undefined, opportunity: undefined
+2025-08-27 11:47:59 [INFO]: Unhandled event type: undefined
+2025-08-27 11:47:59 [INFO]: Pipeline data synced successfully
+2025-08-27 11:47:59 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 11:58:28 [INFO]: Server is running on http://localhost:3001
+2025-08-27 11:58:42 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 11:58:42 [INFO]: Request method:
+2025-08-27 11:58:42 [INFO]: Request URL:
+2025-08-27 11:58:42 [INFO]: Request headers:
+2025-08-27 11:58:42 [INFO]: Request body:
+2025-08-27 11:58:42 [INFO]: Request query:
+2025-08-27 11:58:42 [INFO]: Content-Type:
+2025-08-27 11:58:42 [INFO]: User-Agent:
+2025-08-27 11:58:42 [INFO]: ========================
+2025-08-27 11:58:42 [INFO]: Processing webhook data:
+2025-08-27 11:58:42 [INFO]: Processing webhook for event: undefined, opportunity: undefined
+2025-08-27 11:58:42 [INFO]: Unhandled event type: undefined
+2025-08-27 11:58:42 [INFO]: Pipeline data synced successfully
+2025-08-27 11:58:42 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 12:03:07 [INFO]: Server is running on http://localhost:3001
+2025-08-27 12:03:47 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 12:03:47 [INFO]: Request method:
+2025-08-27 12:03:47 [INFO]: Request URL:
+2025-08-27 12:03:47 [INFO]: Request headers:
+2025-08-27 12:03:47 [INFO]: Request body:
+2025-08-27 12:03:47 [INFO]: Request query:
+2025-08-27 12:03:47 [INFO]: Content-Type:
+2025-08-27 12:03:47 [INFO]: User-Agent:
+2025-08-27 12:03:47 [INFO]: ========================
+2025-08-27 12:03:47 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 12:03:47 [INFO]: Raw webhook data:
+2025-08-27 12:03:47 [INFO]: Data type:
+2025-08-27 12:03:47 [INFO]: Data keys:
+2025-08-27 12:03:47 [INFO]: Data values:
+2025-08-27 12:03:47 [INFO]: ================================
+2025-08-27 12:03:47 [INFO]: Processing webhook data:
+2025-08-27 12:03:47 [INFO]: Actual data being processed:
+2025-08-27 12:03:47 [INFO]: Extracted event_type: undefined
+2025-08-27 12:03:47 [INFO]: Extracted opportunity_id: PG6CwiPUeGGD3d1ykqL6
+2025-08-27 12:03:47 [WARN]: Missing required webhook data:
+2025-08-27 12:03:47 [WARN]: event_type: undefined
+2025-08-27 12:03:47 [WARN]: opportunity_id: PG6CwiPUeGGD3d1ykqL6
+2025-08-27 12:03:47 [WARN]: Available data keys:
+2025-08-27 12:03:47 [WARN]: Available webhookData keys:
+2025-08-27 12:03:47 [INFO]: Sending success response: Missing required webhook data (event_type or opportunity_id)
+2025-08-27 12:07:10 [INFO]: Testing different webhook data structures
+2025-08-27 12:07:10 [INFO]: Testing structure: Direct structure
+2025-08-27 12:07:10 [INFO]: Actual data being processed:
+2025-08-27 12:07:10 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 12:07:10 [INFO]: Extracted opportunity_id: test-123
+2025-08-27 12:07:10 [INFO]: Processing webhook for event: opportunity.created, opportunity: test-123
+2025-08-27 12:07:10 [INFO]: Handling opportunity.created event
+2025-08-27 12:07:10 [INFO]: Creating opportunity test-123 in database
+2025-08-27 12:07:11 [ERROR]: Error handling opportunity creation: Could not find the 'assigned_to' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:07:11 [ERROR]: Error processing webhook: Could not find the 'assigned_to' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:07:11 [INFO]: Testing structure: Nested in data property
+2025-08-27 12:07:11 [INFO]: Using data from webhookData.data property
+2025-08-27 12:07:11 [INFO]: Actual data being processed:
+2025-08-27 12:07:11 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 12:07:11 [INFO]: Extracted opportunity_id: test-456
+2025-08-27 12:07:11 [INFO]: Processing webhook for event: opportunity.updated, opportunity: test-456
+2025-08-27 12:07:11 [INFO]: Handling opportunity.updated event
+2025-08-27 12:07:11 [INFO]: Updating opportunity test-456 in database
+2025-08-27 12:07:11 [ERROR]: Error handling opportunity update: Could not find the 'name' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:07:11 [ERROR]: Error processing webhook: Could not find the 'name' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:07:11 [INFO]: Testing structure: Nested in payload property
+2025-08-27 12:07:11 [INFO]: Using data from webhookData.payload property
+2025-08-27 12:07:11 [INFO]: Actual data being processed:
+2025-08-27 12:07:11 [INFO]: Extracted event_type: opportunity.stage_changed
+2025-08-27 12:07:11 [INFO]: Extracted opportunity_id: test-789
+2025-08-27 12:07:11 [INFO]: Processing webhook for event: opportunity.stage_changed, opportunity: test-789
+2025-08-27 12:07:11 [INFO]: Handling opportunity.stage_changed event
+2025-08-27 12:07:11 [INFO]: Changing stage for opportunity test-789 to stage-1
+2025-08-27 12:07:11 [ERROR]: Error handling opportunity stage change: Could not find the 'pipeline_stage_id' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:07:11 [ERROR]: Error processing webhook: Could not find the 'pipeline_stage_id' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:07:11 [INFO]: Testing structure: Different field names
+2025-08-27 12:07:11 [INFO]: Actual data being processed:
+2025-08-27 12:07:11 [INFO]: Extracted event_type: opportunity.deleted
+2025-08-27 12:07:11 [INFO]: Extracted opportunity_id: test-999
+2025-08-27 12:07:11 [INFO]: Processing webhook for event: opportunity.deleted, opportunity: test-999
+2025-08-27 12:07:11 [INFO]: Handling opportunity.deleted event
+2025-08-27 12:07:11 [INFO]: Deleting opportunity undefined from database
+2025-08-27 12:07:12 [ERROR]: Error handling opportunity deletion: column ghl_opportunities.opportunity_id does not exist
+2025-08-27 12:07:12 [ERROR]: Error processing webhook: column ghl_opportunities.opportunity_id does not exist
+2025-08-27 12:07:38 [INFO]: Testing different webhook data structures
+2025-08-27 12:07:38 [INFO]: Testing structure: Direct structure
+2025-08-27 12:07:38 [INFO]: Actual data being processed:
+2025-08-27 12:07:38 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 12:07:38 [INFO]: Extracted opportunity_id: test-123
+2025-08-27 12:07:38 [INFO]: Processing webhook for event: opportunity.created, opportunity: test-123
+2025-08-27 12:07:38 [INFO]: Handling opportunity.created event
+2025-08-27 12:07:38 [INFO]: Creating opportunity test-123 in database
+2025-08-27 12:07:38 [ERROR]: Error handling opportunity creation: Could not find the 'assigned_to' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:07:38 [ERROR]: Error processing webhook: Could not find the 'assigned_to' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:07:38 [INFO]: Testing structure: Nested in data property
+2025-08-27 12:07:38 [INFO]: Using data from webhookData.data property
+2025-08-27 12:07:38 [INFO]: Actual data being processed:
+2025-08-27 12:07:38 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 12:07:38 [INFO]: Extracted opportunity_id: test-456
+2025-08-27 12:07:38 [INFO]: Processing webhook for event: opportunity.updated, opportunity: test-456
+2025-08-27 12:07:38 [INFO]: Handling opportunity.updated event
+2025-08-27 12:07:38 [INFO]: Updating opportunity test-456 in database
+2025-08-27 12:07:38 [ERROR]: Error handling opportunity update: Could not find the 'name' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:07:38 [ERROR]: Error processing webhook: Could not find the 'name' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:07:38 [INFO]: Testing structure: Nested in payload property
+2025-08-27 12:07:38 [INFO]: Using data from webhookData.payload property
+2025-08-27 12:07:38 [INFO]: Actual data being processed:
+2025-08-27 12:07:38 [INFO]: Extracted event_type: opportunity.stage_changed
+2025-08-27 12:07:38 [INFO]: Extracted opportunity_id: test-789
+2025-08-27 12:07:38 [INFO]: Processing webhook for event: opportunity.stage_changed, opportunity: test-789
+2025-08-27 12:07:38 [INFO]: Handling opportunity.stage_changed event
+2025-08-27 12:07:38 [INFO]: Changing stage for opportunity test-789 to stage-1
+2025-08-27 12:07:39 [ERROR]: Error handling opportunity stage change: Could not find the 'pipeline_stage_id' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:07:39 [ERROR]: Error processing webhook: Could not find the 'pipeline_stage_id' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:07:39 [INFO]: Testing structure: Different field names
+2025-08-27 12:07:39 [INFO]: Actual data being processed:
+2025-08-27 12:07:39 [INFO]: Extracted event_type: opportunity.deleted
+2025-08-27 12:07:39 [INFO]: Extracted opportunity_id: test-999
+2025-08-27 12:07:39 [INFO]: Processing webhook for event: opportunity.deleted, opportunity: test-999
+2025-08-27 12:07:39 [INFO]: Handling opportunity.deleted event
+2025-08-27 12:07:39 [INFO]: Deleting opportunity undefined from database
+2025-08-27 12:07:39 [ERROR]: Error handling opportunity deletion: column ghl_opportunities.opportunity_id does not exist
+2025-08-27 12:07:39 [ERROR]: Error processing webhook: column ghl_opportunities.opportunity_id does not exist
+2025-08-27 12:08:19 [INFO]: Server is running on http://localhost:3001
+2025-08-27 12:08:35 [INFO]: Health check requested for GoHighLevel webhooks
+2025-08-27 12:09:09 [INFO]: Server is running on http://localhost:3001
+2025-08-27 12:09:23 [ERROR]: Error in schema check: supabase.rpc(...).catch is not a function
+2025-08-27 12:09:59 [INFO]: Server is running on http://localhost:3001
+2025-08-27 12:10:29 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 12:10:29 [INFO]: Request method:
+2025-08-27 12:10:29 [INFO]: Request URL:
+2025-08-27 12:10:29 [INFO]: Request headers:
+2025-08-27 12:10:29 [INFO]: Raw request body (string):
+2025-08-27 12:10:29 [INFO]: Raw request body (typeof):
+2025-08-27 12:10:29 [INFO]: Raw request body (stringified):
+2025-08-27 12:10:29 [INFO]: Request query:
+2025-08-27 12:10:29 [INFO]: Content-Type:
+2025-08-27 12:10:29 [INFO]: User-Agent:
+2025-08-27 12:10:29 [INFO]: ========================
+2025-08-27 12:10:29 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 12:10:29 [INFO]: Raw webhook data:
+2025-08-27 12:10:29 [INFO]: Data type:
+2025-08-27 12:10:29 [INFO]: Data keys:
+2025-08-27 12:10:29 [INFO]: Data values:
+2025-08-27 12:10:29 [INFO]: ================================
+2025-08-27 12:10:29 [INFO]: Processing webhook data:
+2025-08-27 12:10:29 [INFO]: Actual data being processed:
+2025-08-27 12:10:29 [INFO]: Extracted event_type: undefined
+2025-08-27 12:10:29 [INFO]: Extracted opportunity_id: test-123
+2025-08-27 12:10:29 [WARN]: Missing required webhook data:
+2025-08-27 12:10:29 [WARN]: event_type: undefined
+2025-08-27 12:10:29 [WARN]: opportunity_id: test-123
+2025-08-27 12:10:29 [WARN]: Available data keys:
+2025-08-27 12:10:29 [WARN]: Available webhookData keys:
+2025-08-27 12:10:29 [INFO]: Sending success response: Missing required webhook data (event_type or opportunity_id)
+2025-08-27 12:20:22 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 12:20:22 [INFO]: Request method:
+2025-08-27 12:20:22 [INFO]: Request URL:
+2025-08-27 12:20:22 [INFO]: Request headers:
+2025-08-27 12:20:22 [INFO]: Raw request body (string):
+2025-08-27 12:20:22 [INFO]: Raw request body (typeof):
+2025-08-27 12:20:22 [INFO]: Raw request body (stringified):
+2025-08-27 12:20:22 [INFO]: Request query:
+2025-08-27 12:20:22 [INFO]: Content-Type:
+2025-08-27 12:20:22 [INFO]: User-Agent:
+2025-08-27 12:20:22 [INFO]: ========================
+2025-08-27 12:20:22 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 12:20:22 [INFO]: Raw webhook data:
+2025-08-27 12:20:22 [INFO]: Data type:
+2025-08-27 12:20:22 [INFO]: Data keys:
+2025-08-27 12:20:22 [INFO]: Data values:
+2025-08-27 12:20:22 [INFO]: ================================
+2025-08-27 12:20:22 [INFO]: Processing webhook data:
+2025-08-27 12:20:22 [INFO]: Actual data being processed:
+2025-08-27 12:20:22 [INFO]: Extracted event_type: undefined
+2025-08-27 12:20:22 [INFO]: Extracted opportunity_id: opp-123
+2025-08-27 12:20:22 [WARN]: Missing required webhook data:
+2025-08-27 12:20:22 [WARN]: event_type: undefined
+2025-08-27 12:20:22 [WARN]: opportunity_id: opp-123
+2025-08-27 12:20:22 [WARN]: Available data keys:
+2025-08-27 12:20:22 [WARN]: Available webhookData keys:
+2025-08-27 12:20:22 [INFO]: Sending success response: Missing required webhook data (event_type or opportunity_id)
+2025-08-27 12:21:27 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 12:21:27 [INFO]: Request method:
+2025-08-27 12:21:27 [INFO]: Request URL:
+2025-08-27 12:21:27 [INFO]: Request headers:
+2025-08-27 12:21:27 [INFO]: Raw request body (string):
+2025-08-27 12:21:27 [INFO]: Raw request body (typeof):
+2025-08-27 12:21:27 [INFO]: Raw request body (stringified):
+2025-08-27 12:21:27 [INFO]: Request query:
+2025-08-27 12:21:27 [INFO]: Content-Type:
+2025-08-27 12:21:27 [INFO]: User-Agent:
+2025-08-27 12:21:27 [INFO]: ========================
+2025-08-27 12:21:27 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 12:21:27 [INFO]: Raw webhook data:
+2025-08-27 12:21:27 [INFO]: Data type:
+2025-08-27 12:21:27 [INFO]: Data keys:
+2025-08-27 12:21:27 [INFO]: Data values:
+2025-08-27 12:21:27 [INFO]: ================================
+2025-08-27 12:21:27 [INFO]: Processing webhook data:
+2025-08-27 12:21:27 [INFO]: Actual data being processed:
+2025-08-27 12:21:27 [INFO]: Extracted event_type: undefined
+2025-08-27 12:21:27 [INFO]: Extracted opportunity_id: undefined
+2025-08-27 12:21:27 [WARN]: Missing required webhook data:
+2025-08-27 12:21:27 [WARN]: event_type: undefined
+2025-08-27 12:21:27 [WARN]: opportunity_id: undefined
+2025-08-27 12:21:27 [WARN]: Available data keys:
+2025-08-27 12:21:27 [WARN]: Available webhookData keys:
+2025-08-27 12:21:27 [INFO]: Sending success response: Missing required webhook data (event_type or opportunity_id)
+2025-08-27 12:27:36 [INFO]: Server is running on http://localhost:3001
+2025-08-27 12:27:56 [INFO]: Server is running on http://localhost:3001
+2025-08-27 12:29:16 [INFO]: Server is running on http://localhost:3001
+2025-08-27 12:29:22 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 12:29:22 [INFO]: Request method:
+2025-08-27 12:29:22 [INFO]: Request URL:
+2025-08-27 12:29:22 [INFO]: Request headers:
+2025-08-27 12:29:22 [INFO]: Raw request body (string):
+2025-08-27 12:29:22 [INFO]: Raw request body (typeof):
+2025-08-27 12:29:22 [INFO]: Raw request body (stringified):
+2025-08-27 12:29:22 [INFO]: Request query:
+2025-08-27 12:29:22 [INFO]: Content-Type:
+2025-08-27 12:29:22 [INFO]: User-Agent:
+2025-08-27 12:29:22 [INFO]: ========================
+2025-08-27 12:29:22 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 12:29:22 [INFO]: Raw webhook data:
+2025-08-27 12:29:22 [INFO]: Data type:
+2025-08-27 12:29:22 [INFO]: Data keys:
+2025-08-27 12:29:22 [INFO]: Data values:
+2025-08-27 12:29:22 [INFO]: ================================
+2025-08-27 12:29:22 [INFO]: Processing webhook data:
+2025-08-27 12:29:22 [INFO]: Actual data being processed:
+2025-08-27 12:29:23 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 12:29:23 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 12:29:23 [INFO]: Extracted opportunity_id: opp-123
+2025-08-27 12:29:23 [INFO]: Handling opportunity.created event
+2025-08-27 12:29:23 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 12:29:23 [INFO]: Field mapping:
+2025-08-27 12:29:23 [INFO]: Creating opportunity opp-123 in database
+2025-08-27 12:29:23 [ERROR]: Error handling opportunity creation: Could not find the 'assigned_to' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:29:23 [ERROR]: Error processing webhook: Could not find the 'assigned_to' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:29:23 [ERROR]: Error processing GoHighLevel webhook: Could not find the 'assigned_to' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:29:23 [ERROR]: Error stack:
+2025-08-27 12:29:23 [ERROR]: Sending error response: Error processing webhook
+2025-08-27 12:39:55 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 12:39:55 [INFO]: Request method:
+2025-08-27 12:39:55 [INFO]: Request URL:
+2025-08-27 12:39:55 [INFO]: Request headers:
+2025-08-27 12:39:55 [INFO]: Raw request body (string):
+2025-08-27 12:39:55 [INFO]: Raw request body (typeof):
+2025-08-27 12:39:55 [INFO]: Raw request body (stringified):
+2025-08-27 12:39:55 [INFO]: Request query:
+2025-08-27 12:39:55 [INFO]: Content-Type:
+2025-08-27 12:39:55 [INFO]: User-Agent:
+2025-08-27 12:39:55 [INFO]: ========================
+2025-08-27 12:39:55 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 12:39:55 [INFO]: Raw webhook data:
+2025-08-27 12:39:55 [INFO]: Data type:
+2025-08-27 12:39:55 [INFO]: Data keys:
+2025-08-27 12:39:55 [INFO]: Data values:
+2025-08-27 12:39:55 [INFO]: ================================
+2025-08-27 12:39:55 [INFO]: Processing webhook data:
+2025-08-27 12:39:55 [INFO]: Actual data being processed:
+2025-08-27 12:39:55 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 12:39:55 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 12:39:55 [INFO]: Extracted opportunity_id: opp-123
+2025-08-27 12:39:55 [INFO]: Handling opportunity.created event
+2025-08-27 12:39:55 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 12:39:55 [INFO]: Field mapping:
+2025-08-27 12:39:55 [INFO]: Creating opportunity opp-123 in database
+2025-08-27 12:39:56 [ERROR]: Error handling opportunity creation: Could not find the 'assigned_to' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:39:56 [ERROR]: Error processing webhook: Could not find the 'assigned_to' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:39:56 [ERROR]: Error processing GoHighLevel webhook: Could not find the 'assigned_to' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:39:56 [ERROR]: Error stack:
+2025-08-27 12:39:56 [ERROR]: Sending error response: Error processing webhook
+2025-08-27 12:42:08 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 12:42:08 [INFO]: Request method:
+2025-08-27 12:42:08 [INFO]: Request URL:
+2025-08-27 12:42:08 [INFO]: Request headers:
+2025-08-27 12:42:08 [INFO]: Raw request body (string):
+2025-08-27 12:42:08 [INFO]: Raw request body (typeof):
+2025-08-27 12:42:08 [INFO]: Raw request body (stringified):
+2025-08-27 12:42:08 [INFO]: Request query:
+2025-08-27 12:42:08 [INFO]: Content-Type:
+2025-08-27 12:42:08 [INFO]: User-Agent:
+2025-08-27 12:42:08 [INFO]: ========================
+2025-08-27 12:42:08 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 12:42:08 [INFO]: Raw webhook data:
+2025-08-27 12:42:08 [INFO]: Data type:
+2025-08-27 12:42:08 [INFO]: Data keys:
+2025-08-27 12:42:08 [INFO]: Data values:
+2025-08-27 12:42:08 [INFO]: ================================
+2025-08-27 12:42:08 [INFO]: Processing webhook data:
+2025-08-27 12:42:08 [INFO]: Actual data being processed:
+2025-08-27 12:42:09 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 12:42:09 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 12:42:09 [INFO]: Extracted opportunity_id: iSTa45mTlV5Xb4sk7k3E
+2025-08-27 12:42:09 [INFO]: Handling opportunity.created event
+2025-08-27 12:42:09 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 12:42:09 [INFO]: Field mapping:
+2025-08-27 12:42:09 [INFO]: Creating opportunity iSTa45mTlV5Xb4sk7k3E in database
+2025-08-27 12:42:09 [ERROR]: Error handling opportunity creation: Could not find the 'assigned_to' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:42:09 [ERROR]: Error processing webhook: Could not find the 'assigned_to' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:42:09 [ERROR]: Error processing GoHighLevel webhook: Could not find the 'assigned_to' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:42:09 [ERROR]: Error stack:
+2025-08-27 12:42:09 [ERROR]: Sending error response: Error processing webhook
+2025-08-27 12:42:44 [INFO]: Server is running on http://localhost:3001
+2025-08-27 12:42:56 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 12:42:56 [INFO]: Request method:
+2025-08-27 12:42:56 [INFO]: Request URL:
+2025-08-27 12:42:56 [INFO]: Request headers:
+2025-08-27 12:42:56 [INFO]: Raw request body (string):
+2025-08-27 12:42:56 [INFO]: Raw request body (typeof):
+2025-08-27 12:42:56 [INFO]: Raw request body (stringified):
+2025-08-27 12:42:56 [INFO]: Request query:
+2025-08-27 12:42:56 [INFO]: Content-Type:
+2025-08-27 12:42:56 [INFO]: User-Agent:
+2025-08-27 12:42:56 [INFO]: ========================
+2025-08-27 12:42:56 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 12:42:56 [INFO]: Raw webhook data:
+2025-08-27 12:42:56 [INFO]: Data type:
+2025-08-27 12:42:56 [INFO]: Data keys:
+2025-08-27 12:42:56 [INFO]: Data values:
+2025-08-27 12:42:56 [INFO]: ================================
+2025-08-27 12:42:56 [INFO]: Processing webhook data:
+2025-08-27 12:42:56 [INFO]: Actual data being processed:
+2025-08-27 12:42:56 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 12:42:56 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 12:42:56 [INFO]: Extracted opportunity_id: PG6CwiPUeGGD3d1ykqL6
+2025-08-27 12:42:56 [INFO]: Handling opportunity.created event
+2025-08-27 12:42:56 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 12:42:56 [INFO]: Field mapping:
+2025-08-27 12:42:56 [INFO]: Creating opportunity PG6CwiPUeGGD3d1ykqL6 in database
+2025-08-27 12:42:56 [ERROR]: Error handling opportunity creation: Could not find the 'assigned_to' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:42:56 [ERROR]: Error processing webhook: Could not find the 'assigned_to' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:42:56 [ERROR]: Error processing GoHighLevel webhook: Could not find the 'assigned_to' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:42:56 [ERROR]: Error stack:
+2025-08-27 12:42:56 [ERROR]: Sending error response: Error processing webhook
+2025-08-27 12:47:09 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 12:47:09 [INFO]: Request method:
+2025-08-27 12:47:09 [INFO]: Request URL:
+2025-08-27 12:47:09 [INFO]: Request headers:
+2025-08-27 12:47:09 [INFO]: Raw request body (string):
+2025-08-27 12:47:09 [INFO]: Raw request body (typeof):
+2025-08-27 12:47:09 [INFO]: Raw request body (stringified):
+2025-08-27 12:47:09 [INFO]: Request query:
+2025-08-27 12:47:09 [INFO]: Content-Type:
+2025-08-27 12:47:09 [INFO]: User-Agent:
+2025-08-27 12:47:09 [INFO]: ========================
+2025-08-27 12:47:09 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 12:47:09 [INFO]: Raw webhook data:
+2025-08-27 12:47:09 [INFO]: Data type:
+2025-08-27 12:47:09 [INFO]: Data keys:
+2025-08-27 12:47:09 [INFO]: Data values:
+2025-08-27 12:47:09 [INFO]: ================================
+2025-08-27 12:47:09 [INFO]: Processing webhook data:
+2025-08-27 12:47:09 [INFO]: Actual data being processed:
+2025-08-27 12:47:10 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 12:47:10 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 12:47:10 [INFO]: Extracted opportunity_id: iSTa45mTlV5Xb4sk7k3E
+2025-08-27 12:47:10 [INFO]: Handling opportunity.created event
+2025-08-27 12:47:10 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 12:47:10 [INFO]: Field mapping:
+2025-08-27 12:47:10 [INFO]: Creating opportunity iSTa45mTlV5Xb4sk7k3E in database
+2025-08-27 12:47:10 [ERROR]: Error handling opportunity creation: Could not find the 'assigned_to' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:47:10 [ERROR]: Error processing webhook: Could not find the 'assigned_to' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:47:10 [ERROR]: Error processing GoHighLevel webhook: Could not find the 'assigned_to' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:47:10 [ERROR]: Error stack:
+2025-08-27 12:47:10 [ERROR]: Sending error response: Error processing webhook
+2025-08-27 12:47:58 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 12:47:58 [INFO]: Request method:
+2025-08-27 12:47:58 [INFO]: Request URL:
+2025-08-27 12:47:58 [INFO]: Request headers:
+2025-08-27 12:47:58 [INFO]: Raw request body (string):
+2025-08-27 12:47:58 [INFO]: Raw request body (typeof):
+2025-08-27 12:47:58 [INFO]: Raw request body (stringified):
+2025-08-27 12:47:58 [INFO]: Request query:
+2025-08-27 12:47:58 [INFO]: Content-Type:
+2025-08-27 12:47:58 [INFO]: User-Agent:
+2025-08-27 12:47:58 [INFO]: ========================
+2025-08-27 12:47:58 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 12:47:58 [INFO]: Raw webhook data:
+2025-08-27 12:47:58 [INFO]: Data type:
+2025-08-27 12:47:58 [INFO]: Data keys:
+2025-08-27 12:47:58 [INFO]: Data values:
+2025-08-27 12:47:58 [INFO]: ================================
+2025-08-27 12:47:58 [INFO]: Processing webhook data:
+2025-08-27 12:47:58 [INFO]: Actual data being processed:
+2025-08-27 12:47:58 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 12:47:58 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 12:47:58 [INFO]: Extracted opportunity_id: PG6CwiPUeGGD3d1ykqL6
+2025-08-27 12:47:58 [INFO]: Handling opportunity.created event
+2025-08-27 12:47:58 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 12:47:58 [INFO]: Field mapping:
+2025-08-27 12:47:58 [INFO]: Creating opportunity PG6CwiPUeGGD3d1ykqL6 in database
+2025-08-27 12:47:58 [ERROR]: Error handling opportunity creation: Could not find the 'assigned_to' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:47:58 [ERROR]: Error processing webhook: Could not find the 'assigned_to' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:47:58 [ERROR]: Error processing GoHighLevel webhook: Could not find the 'assigned_to' column of 'ghl_opportunities' in the schema cache
+2025-08-27 12:47:58 [ERROR]: Error stack:
+2025-08-27 12:47:58 [ERROR]: Sending error response: Error processing webhook
+2025-08-27 12:55:31 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 12:55:31 [INFO]: Request method:
+2025-08-27 12:55:31 [INFO]: Request URL:
+2025-08-27 12:55:31 [INFO]: Request headers:
+2025-08-27 12:55:31 [INFO]: Raw request body (string):
+2025-08-27 12:55:31 [INFO]: Raw request body (typeof):
+2025-08-27 12:55:31 [INFO]: Raw request body (stringified):
+2025-08-27 12:55:31 [INFO]: Request query:
+2025-08-27 12:55:31 [INFO]: Content-Type:
+2025-08-27 12:55:31 [INFO]: User-Agent:
+2025-08-27 12:55:31 [INFO]: ========================
+2025-08-27 12:55:31 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 12:55:31 [INFO]: Raw webhook data:
+2025-08-27 12:55:31 [INFO]: Data type:
+2025-08-27 12:55:31 [INFO]: Data keys:
+2025-08-27 12:55:31 [INFO]: Data values:
+2025-08-27 12:55:31 [INFO]: ================================
+2025-08-27 12:55:31 [INFO]: Processing webhook data:
+2025-08-27 12:55:31 [INFO]: Actual data being processed:
+2025-08-27 12:55:31 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 12:55:31 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 12:55:31 [INFO]: Extracted opportunity_id: opp-123
+2025-08-27 12:55:31 [INFO]: Handling opportunity.created event
+2025-08-27 12:55:31 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 12:55:31 [INFO]: Field mapping:
+2025-08-27 12:55:31 [INFO]: Creating opportunity opp-123 in database
+2025-08-27 12:55:31 [ERROR]: Error handling opportunity creation: new row violates row-level security policy for table "ghl_opportunities"
+2025-08-27 12:55:31 [ERROR]: Error processing webhook: new row violates row-level security policy for table "ghl_opportunities"
+2025-08-27 12:55:31 [ERROR]: Error processing GoHighLevel webhook: new row violates row-level security policy for table "ghl_opportunities"
+2025-08-27 12:55:31 [ERROR]: Error stack:
+2025-08-27 12:55:31 [ERROR]: Sending error response: Error processing webhook
+2025-08-27 12:56:34 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 12:56:34 [INFO]: Request method:
+2025-08-27 12:56:34 [INFO]: Request URL:
+2025-08-27 12:56:34 [INFO]: Request headers:
+2025-08-27 12:56:34 [INFO]: Raw request body (string):
+2025-08-27 12:56:34 [INFO]: Raw request body (typeof):
+2025-08-27 12:56:34 [INFO]: Raw request body (stringified):
+2025-08-27 12:56:34 [INFO]: Request query:
+2025-08-27 12:56:34 [INFO]: Content-Type:
+2025-08-27 12:56:34 [INFO]: User-Agent:
+2025-08-27 12:56:34 [INFO]: ========================
+2025-08-27 12:56:34 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 12:56:34 [INFO]: Raw webhook data:
+2025-08-27 12:56:34 [INFO]: Data type:
+2025-08-27 12:56:34 [INFO]: Data keys:
+2025-08-27 12:56:34 [INFO]: Data values:
+2025-08-27 12:56:34 [INFO]: ================================
+2025-08-27 12:56:34 [INFO]: Processing webhook data:
+2025-08-27 12:56:34 [INFO]: Actual data being processed:
+2025-08-27 12:56:34 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 12:56:34 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 12:56:34 [INFO]: Extracted opportunity_id: opp-123
+2025-08-27 12:56:34 [INFO]: Handling opportunity.created event
+2025-08-27 12:56:34 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 12:56:34 [INFO]: Field mapping:
+2025-08-27 12:56:34 [INFO]: Creating opportunity opp-123 in database
+2025-08-27 12:56:34 [INFO]: Opportunity opp-123 created successfully in database
+2025-08-27 12:56:34 [INFO]: Pipeline data synced successfully
+2025-08-27 12:56:34 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 12:56:51 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 12:56:51 [INFO]: Request method:
+2025-08-27 12:56:51 [INFO]: Request URL:
+2025-08-27 12:56:51 [INFO]: Request headers:
+2025-08-27 12:56:51 [INFO]: Raw request body (string):
+2025-08-27 12:56:51 [INFO]: Raw request body (typeof):
+2025-08-27 12:56:51 [INFO]: Raw request body (stringified):
+2025-08-27 12:56:51 [INFO]: Request query:
+2025-08-27 12:56:51 [INFO]: Content-Type:
+2025-08-27 12:56:51 [INFO]: User-Agent:
+2025-08-27 12:56:51 [INFO]: ========================
+2025-08-27 12:56:51 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 12:56:51 [INFO]: Raw webhook data:
+2025-08-27 12:56:51 [INFO]: Data type:
+2025-08-27 12:56:51 [INFO]: Data keys:
+2025-08-27 12:56:51 [INFO]: Data values:
+2025-08-27 12:56:51 [INFO]: ================================
+2025-08-27 12:56:51 [INFO]: Processing webhook data:
+2025-08-27 12:56:51 [INFO]: Actual data being processed:
+2025-08-27 12:56:52 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 12:56:52 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 12:56:52 [INFO]: Extracted opportunity_id: opp-123
+2025-08-27 12:56:52 [INFO]: Handling opportunity.updated event
+2025-08-27 12:56:52 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 12:56:52 [INFO]: Field mapping:
+2025-08-27 12:56:52 [INFO]: Updating opportunity opp-123 in database
+2025-08-27 12:56:52 [INFO]: Opportunity opp-123 updated successfully in database
+2025-08-27 12:56:52 [INFO]: Pipeline data synced successfully
+2025-08-27 12:56:52 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 12:57:00 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 12:57:00 [INFO]: Request method:
+2025-08-27 12:57:00 [INFO]: Request URL:
+2025-08-27 12:57:00 [INFO]: Request headers:
+2025-08-27 12:57:00 [INFO]: Raw request body (string):
+2025-08-27 12:57:00 [INFO]: Raw request body (typeof):
+2025-08-27 12:57:00 [INFO]: Raw request body (stringified):
+2025-08-27 12:57:00 [INFO]: Request query:
+2025-08-27 12:57:00 [INFO]: Content-Type:
+2025-08-27 12:57:00 [INFO]: User-Agent:
+2025-08-27 12:57:00 [INFO]: ========================
+2025-08-27 12:57:00 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 12:57:00 [INFO]: Raw webhook data:
+2025-08-27 12:57:00 [INFO]: Data type:
+2025-08-27 12:57:00 [INFO]: Data keys:
+2025-08-27 12:57:00 [INFO]: Data values:
+2025-08-27 12:57:00 [INFO]: ================================
+2025-08-27 12:57:00 [INFO]: Processing webhook data:
+2025-08-27 12:57:00 [INFO]: Actual data being processed:
+2025-08-27 12:57:00 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 12:57:00 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 12:57:00 [INFO]: Extracted opportunity_id: opp-123
+2025-08-27 12:57:00 [INFO]: Handling opportunity.updated event
+2025-08-27 12:57:00 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 12:57:00 [INFO]: Field mapping:
+2025-08-27 12:57:00 [INFO]: Updating opportunity opp-123 in database
+2025-08-27 12:57:00 [INFO]: Opportunity opp-123 updated successfully in database
+2025-08-27 12:57:00 [INFO]: Pipeline data synced successfully
+2025-08-27 12:57:00 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 12:57:11 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 12:57:11 [INFO]: Request method:
+2025-08-27 12:57:11 [INFO]: Request URL:
+2025-08-27 12:57:11 [INFO]: Request headers:
+2025-08-27 12:57:11 [INFO]: Raw request body (string):
+2025-08-27 12:57:11 [INFO]: Raw request body (typeof):
+2025-08-27 12:57:11 [INFO]: Raw request body (stringified):
+2025-08-27 12:57:11 [INFO]: Request query:
+2025-08-27 12:57:11 [INFO]: Content-Type:
+2025-08-27 12:57:11 [INFO]: User-Agent:
+2025-08-27 12:57:11 [INFO]: ========================
+2025-08-27 12:57:11 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 12:57:11 [INFO]: Raw webhook data:
+2025-08-27 12:57:11 [INFO]: Data type:
+2025-08-27 12:57:11 [INFO]: Data keys:
+2025-08-27 12:57:11 [INFO]: Data values:
+2025-08-27 12:57:11 [INFO]: ================================
+2025-08-27 12:57:11 [INFO]: Processing webhook data:
+2025-08-27 12:57:11 [INFO]: Actual data being processed:
+2025-08-27 12:57:11 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 12:57:11 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 12:57:11 [INFO]: Extracted opportunity_id: iSTa45mTlV5Xb4sk7k3E
+2025-08-27 12:57:11 [INFO]: Handling opportunity.created event
+2025-08-27 12:57:11 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 12:57:11 [INFO]: Field mapping:
+2025-08-27 12:57:11 [INFO]: Creating opportunity iSTa45mTlV5Xb4sk7k3E in database
+2025-08-27 12:57:11 [INFO]: Opportunity iSTa45mTlV5Xb4sk7k3E created successfully in database
+2025-08-27 12:57:11 [INFO]: Pipeline data synced successfully
+2025-08-27 12:57:11 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 12:58:00 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 12:58:00 [INFO]: Request method:
+2025-08-27 12:58:00 [INFO]: Request URL:
+2025-08-27 12:58:00 [INFO]: Request headers:
+2025-08-27 12:58:00 [INFO]: Raw request body (string):
+2025-08-27 12:58:00 [INFO]: Raw request body (typeof):
+2025-08-27 12:58:00 [INFO]: Raw request body (stringified):
+2025-08-27 12:58:00 [INFO]: Request query:
+2025-08-27 12:58:00 [INFO]: Content-Type:
+2025-08-27 12:58:00 [INFO]: User-Agent:
+2025-08-27 12:58:00 [INFO]: ========================
+2025-08-27 12:58:00 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 12:58:00 [INFO]: Raw webhook data:
+2025-08-27 12:58:00 [INFO]: Data type:
+2025-08-27 12:58:00 [INFO]: Data keys:
+2025-08-27 12:58:00 [INFO]: Data values:
+2025-08-27 12:58:00 [INFO]: ================================
+2025-08-27 12:58:00 [INFO]: Processing webhook data:
+2025-08-27 12:58:00 [INFO]: Actual data being processed:
+2025-08-27 12:58:00 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 12:58:00 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 12:58:00 [INFO]: Extracted opportunity_id: PG6CwiPUeGGD3d1ykqL6
+2025-08-27 12:58:00 [INFO]: Handling opportunity.created event
+2025-08-27 12:58:00 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 12:58:00 [INFO]: Field mapping:
+2025-08-27 12:58:00 [INFO]: Creating opportunity PG6CwiPUeGGD3d1ykqL6 in database
+2025-08-27 12:58:00 [INFO]: Opportunity PG6CwiPUeGGD3d1ykqL6 created successfully in database
+2025-08-27 12:58:00 [INFO]: Pipeline data synced successfully
+2025-08-27 12:58:00 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 12:58:20 [INFO]: Server is running on http://localhost:3001
+2025-08-27 12:58:36 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 12:58:36 [INFO]: Request method:
+2025-08-27 12:58:36 [INFO]: Request URL:
+2025-08-27 12:58:36 [INFO]: Request headers:
+2025-08-27 12:58:36 [INFO]: Raw request body (string):
+2025-08-27 12:58:36 [INFO]: Raw request body (typeof):
+2025-08-27 12:58:36 [INFO]: Raw request body (stringified):
+2025-08-27 12:58:36 [INFO]: Request query:
+2025-08-27 12:58:36 [INFO]: Content-Type:
+2025-08-27 12:58:36 [INFO]: User-Agent:
+2025-08-27 12:58:36 [INFO]: ========================
+2025-08-27 12:58:36 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 12:58:36 [INFO]: Raw webhook data:
+2025-08-27 12:58:36 [INFO]: Data type:
+2025-08-27 12:58:36 [INFO]: Data keys:
+2025-08-27 12:58:36 [INFO]: Data values:
+2025-08-27 12:58:36 [INFO]: ================================
+2025-08-27 12:58:36 [INFO]: Processing webhook data:
+2025-08-27 12:58:36 [INFO]: Actual data being processed:
+2025-08-27 12:58:36 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 12:58:36 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 12:58:36 [INFO]: Extracted opportunity_id: PG6CwiPUeGGD3d1ykqL6
+2025-08-27 12:58:36 [INFO]: Handling opportunity.updated event
+2025-08-27 12:58:36 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 12:58:36 [INFO]: Field mapping:
+2025-08-27 12:58:36 [INFO]: Updating opportunity PG6CwiPUeGGD3d1ykqL6 in database
+2025-08-27 12:58:36 [INFO]: Opportunity PG6CwiPUeGGD3d1ykqL6 updated successfully in database
+2025-08-27 12:58:36 [INFO]: Pipeline data synced successfully
+2025-08-27 12:58:36 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 12:59:08 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 12:59:08 [INFO]: Request method:
+2025-08-27 12:59:08 [INFO]: Request URL:
+2025-08-27 12:59:08 [INFO]: Request headers:
+2025-08-27 12:59:08 [INFO]: Raw request body (string):
+2025-08-27 12:59:08 [INFO]: Raw request body (typeof):
+2025-08-27 12:59:08 [INFO]: Raw request body (stringified):
+2025-08-27 12:59:08 [INFO]: Request query:
+2025-08-27 12:59:08 [INFO]: Content-Type:
+2025-08-27 12:59:08 [INFO]: User-Agent:
+2025-08-27 12:59:08 [INFO]: ========================
+2025-08-27 12:59:08 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 12:59:08 [INFO]: Raw webhook data:
+2025-08-27 12:59:08 [INFO]: Data type:
+2025-08-27 12:59:08 [INFO]: Data keys:
+2025-08-27 12:59:08 [INFO]: Data values:
+2025-08-27 12:59:08 [INFO]: ================================
+2025-08-27 12:59:08 [INFO]: Processing webhook data:
+2025-08-27 12:59:08 [INFO]: Actual data being processed:
+2025-08-27 12:59:08 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 12:59:08 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 12:59:08 [INFO]: Extracted opportunity_id: PG6CwiPUeGGD3d1ykqL6
+2025-08-27 12:59:08 [INFO]: Handling opportunity.updated event
+2025-08-27 12:59:08 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 12:59:08 [INFO]: Field mapping:
+2025-08-27 12:59:08 [INFO]: Updating opportunity PG6CwiPUeGGD3d1ykqL6 in database
+2025-08-27 12:59:08 [INFO]: Opportunity PG6CwiPUeGGD3d1ykqL6 updated successfully in database
+2025-08-27 12:59:08 [INFO]: Pipeline data synced successfully
+2025-08-27 12:59:08 [INFO]: Sending success response: Webhook processed successfully
