@@ -1,5 +1,5 @@
 // testWireFrameService.js
-const { createWireFrame } = require('./wireFrameService');
+const { createWireFrame } = require('../wireFrameService');
 
 // Sample job data for testing
 const sampleJobData = {

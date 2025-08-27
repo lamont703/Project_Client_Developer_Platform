@@ -1,4 +1,4 @@
-const { exchangeCodeForTokens, sendDataToGoHighLevel } = require('./goHighLevelService');
+const { exchangeCodeForTokens, sendDataToGoHighLevel } = require('../goHighLevelService');
 const axios = require('axios'); // Added axios import
 
 async function getLocationId() {

@@ -29,3 +29,50 @@
 2025-08-26 17:16:06 [INFO]: Server is running on http://localhost:3001
 2025-08-26 21:51:52 [INFO]: Server is running on http://localhost:3001
 2025-08-26 23:30:28 [INFO]: Server is running on http://localhost:3001
+2025-08-27 11:10:16 [INFO]: Server is running on http://localhost:3001
+2025-08-27 11:16:28 [INFO]: Server is running on http://localhost:3001
+2025-08-27 11:32:40 [INFO]: Server is running on http://localhost:3001
+2025-08-27 11:32:47 [INFO]: Health check requested for GoHighLevel webhooks
+2025-08-27 11:32:47 [INFO]: Test webhook received
+2025-08-27 11:39:59 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 11:39:59 [INFO]: Request method:
+2025-08-27 11:39:59 [INFO]: Request URL:
+2025-08-27 11:39:59 [INFO]: Request headers:
+2025-08-27 11:39:59 [INFO]: Request body:
+2025-08-27 11:39:59 [INFO]: Request query:
+2025-08-27 11:39:59 [INFO]: Content-Type:
+2025-08-27 11:39:59 [INFO]: User-Agent:
+2025-08-27 11:39:59 [INFO]: ========================
+2025-08-27 11:39:59 [INFO]: Processing webhook data:
+2025-08-27 11:39:59 [INFO]: Extracted data:
+2025-08-27 11:39:59 [INFO]: Unhandled event type: undefined
+2025-08-27 11:39:59 [INFO]: Pipeline data synced successfully
+2025-08-27 11:39:59 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 11:40:29 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 11:40:29 [INFO]: Request method:
+2025-08-27 11:40:29 [INFO]: Request URL:
+2025-08-27 11:40:29 [INFO]: Request headers:
+2025-08-27 11:40:29 [INFO]: Request body:
+2025-08-27 11:40:29 [INFO]: Request query:
+2025-08-27 11:40:29 [INFO]: Content-Type:
+2025-08-27 11:40:29 [INFO]: User-Agent:
+2025-08-27 11:40:29 [INFO]: ========================
+2025-08-27 11:40:29 [INFO]: Processing webhook data:
+2025-08-27 11:40:29 [INFO]: Extracted data:
+2025-08-27 11:40:29 [INFO]: Unhandled event type: undefined
+2025-08-27 11:40:29 [INFO]: Pipeline data synced successfully
+2025-08-27 11:40:29 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 11:40:32 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 11:40:32 [INFO]: Request method:
+2025-08-27 11:40:32 [INFO]: Request URL:
+2025-08-27 11:40:32 [INFO]: Request headers:
+2025-08-27 11:40:32 [INFO]: Request body:
+2025-08-27 11:40:32 [INFO]: Request query:
+2025-08-27 11:40:32 [INFO]: Content-Type:
+2025-08-27 11:40:32 [INFO]: User-Agent:
+2025-08-27 11:40:32 [INFO]: ========================
+2025-08-27 11:40:32 [INFO]: Processing webhook data:
+2025-08-27 11:40:32 [INFO]: Extracted data:
+2025-08-27 11:40:32 [INFO]: Unhandled event type: undefined
+2025-08-27 11:40:32 [INFO]: Pipeline data synced successfully
+2025-08-27 11:40:32 [INFO]: Sending success response: Webhook processed successfully

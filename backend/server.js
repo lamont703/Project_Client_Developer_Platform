@@ -6,6 +6,7 @@ const jobRoutes = require('./routes/jobRoutes');
 const analyticsMiddleware = require('./middleware/analytics');
 const logger = require('./config/logger');
 const oauthRoutes = require('./routes/oauthRoutes');
+const webhookRoutes = require('./routes/webhookRoutes');
 
 const app = express();
 const port = 3001;
@@ -24,6 +25,9 @@ app.use('/api/jobs', jobRoutes);
 
 // Use OAuth routes
 app.use('/api', oauthRoutes);
+
+// Use webhook routes for GoHighLevel
+app.use('/api/webhooks', webhookRoutes);
 
 // Start the server
 app.listen(port, () => {
