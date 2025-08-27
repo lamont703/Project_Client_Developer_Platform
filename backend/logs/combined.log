@@ -721,3 +721,1226 @@
 2025-08-27 12:59:08 [INFO]: Opportunity PG6CwiPUeGGD3d1ykqL6 updated successfully in database
 2025-08-27 12:59:08 [INFO]: Pipeline data synced successfully
 2025-08-27 12:59:08 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:02:22 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:02:22 [INFO]: Request method:
+2025-08-27 13:02:22 [INFO]: Request URL:
+2025-08-27 13:02:22 [INFO]: Request headers:
+2025-08-27 13:02:22 [INFO]: Raw request body (string):
+2025-08-27 13:02:22 [INFO]: Raw request body (typeof):
+2025-08-27 13:02:22 [INFO]: Raw request body (stringified):
+2025-08-27 13:02:22 [INFO]: Request query:
+2025-08-27 13:02:22 [INFO]: Content-Type:
+2025-08-27 13:02:22 [INFO]: User-Agent:
+2025-08-27 13:02:22 [INFO]: ========================
+2025-08-27 13:02:22 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:02:22 [INFO]: Raw webhook data:
+2025-08-27 13:02:22 [INFO]: Data type:
+2025-08-27 13:02:22 [INFO]: Data keys:
+2025-08-27 13:02:22 [INFO]: Data values:
+2025-08-27 13:02:22 [INFO]: ================================
+2025-08-27 13:02:22 [INFO]: Processing webhook data:
+2025-08-27 13:02:22 [INFO]: Actual data being processed:
+2025-08-27 13:02:23 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 13:02:23 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 13:02:23 [INFO]: Extracted opportunity_id: ruylEGh9FPTzcVjvt0Jh
+2025-08-27 13:02:23 [INFO]: Handling opportunity.created event
+2025-08-27 13:02:23 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:02:23 [INFO]: Field mapping:
+2025-08-27 13:02:23 [INFO]: Creating opportunity ruylEGh9FPTzcVjvt0Jh in database
+2025-08-27 13:02:23 [INFO]: Opportunity ruylEGh9FPTzcVjvt0Jh created successfully in database
+2025-08-27 13:02:23 [INFO]: Pipeline data synced successfully
+2025-08-27 13:02:23 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:02:44 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:02:44 [INFO]: Request method:
+2025-08-27 13:02:44 [INFO]: Request URL:
+2025-08-27 13:02:44 [INFO]: Request headers:
+2025-08-27 13:02:44 [INFO]: Raw request body (string):
+2025-08-27 13:02:44 [INFO]: Raw request body (typeof):
+2025-08-27 13:02:44 [INFO]: Raw request body (stringified):
+2025-08-27 13:02:44 [INFO]: Request query:
+2025-08-27 13:02:44 [INFO]: Content-Type:
+2025-08-27 13:02:44 [INFO]: User-Agent:
+2025-08-27 13:02:44 [INFO]: ========================
+2025-08-27 13:02:44 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:02:44 [INFO]: Raw webhook data:
+2025-08-27 13:02:44 [INFO]: Data type:
+2025-08-27 13:02:44 [INFO]: Data keys:
+2025-08-27 13:02:44 [INFO]: Data values:
+2025-08-27 13:02:44 [INFO]: ================================
+2025-08-27 13:02:44 [INFO]: Processing webhook data:
+2025-08-27 13:02:44 [INFO]: Actual data being processed:
+2025-08-27 13:02:44 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 13:02:44 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 13:02:44 [INFO]: Extracted opportunity_id: ruylEGh9FPTzcVjvt0Jh
+2025-08-27 13:02:44 [INFO]: Handling opportunity.updated event
+2025-08-27 13:02:44 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:02:44 [INFO]: Field mapping:
+2025-08-27 13:02:44 [INFO]: Updating opportunity ruylEGh9FPTzcVjvt0Jh in database
+2025-08-27 13:02:44 [INFO]: Opportunity ruylEGh9FPTzcVjvt0Jh updated successfully in database
+2025-08-27 13:02:44 [INFO]: Pipeline data synced successfully
+2025-08-27 13:02:44 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:03:06 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:03:06 [INFO]: Request method:
+2025-08-27 13:03:06 [INFO]: Request URL:
+2025-08-27 13:03:06 [INFO]: Request headers:
+2025-08-27 13:03:06 [INFO]: Raw request body (string):
+2025-08-27 13:03:06 [INFO]: Raw request body (typeof):
+2025-08-27 13:03:06 [INFO]: Raw request body (stringified):
+2025-08-27 13:03:06 [INFO]: Request query:
+2025-08-27 13:03:06 [INFO]: Content-Type:
+2025-08-27 13:03:06 [INFO]: User-Agent:
+2025-08-27 13:03:06 [INFO]: ========================
+2025-08-27 13:03:06 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:03:06 [INFO]: Raw webhook data:
+2025-08-27 13:03:06 [INFO]: Data type:
+2025-08-27 13:03:06 [INFO]: Data keys:
+2025-08-27 13:03:06 [INFO]: Data values:
+2025-08-27 13:03:06 [INFO]: ================================
+2025-08-27 13:03:06 [INFO]: Processing webhook data:
+2025-08-27 13:03:06 [INFO]: Actual data being processed:
+2025-08-27 13:03:06 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 13:03:06 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 13:03:06 [INFO]: Extracted opportunity_id: qC2Cmsj4GMRZEqGNttuS
+2025-08-27 13:03:06 [INFO]: Handling opportunity.created event
+2025-08-27 13:03:06 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:03:06 [INFO]: Field mapping:
+2025-08-27 13:03:06 [INFO]: Creating opportunity qC2Cmsj4GMRZEqGNttuS in database
+2025-08-27 13:03:06 [INFO]: Opportunity qC2Cmsj4GMRZEqGNttuS created successfully in database
+2025-08-27 13:03:06 [INFO]: Pipeline data synced successfully
+2025-08-27 13:03:06 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:03:08 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:03:08 [INFO]: Request method:
+2025-08-27 13:03:08 [INFO]: Request URL:
+2025-08-27 13:03:08 [INFO]: Request headers:
+2025-08-27 13:03:08 [INFO]: Raw request body (string):
+2025-08-27 13:03:08 [INFO]: Raw request body (typeof):
+2025-08-27 13:03:08 [INFO]: Raw request body (stringified):
+2025-08-27 13:03:08 [INFO]: Request query:
+2025-08-27 13:03:08 [INFO]: Content-Type:
+2025-08-27 13:03:08 [INFO]: User-Agent:
+2025-08-27 13:03:08 [INFO]: ========================
+2025-08-27 13:03:08 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:03:08 [INFO]: Raw webhook data:
+2025-08-27 13:03:08 [INFO]: Data type:
+2025-08-27 13:03:08 [INFO]: Data keys:
+2025-08-27 13:03:08 [INFO]: Data values:
+2025-08-27 13:03:08 [INFO]: ================================
+2025-08-27 13:03:08 [INFO]: Processing webhook data:
+2025-08-27 13:03:08 [INFO]: Actual data being processed:
+2025-08-27 13:03:08 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 13:03:08 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 13:03:08 [INFO]: Extracted opportunity_id: qC2Cmsj4GMRZEqGNttuS
+2025-08-27 13:03:08 [INFO]: Handling opportunity.updated event
+2025-08-27 13:03:08 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:03:08 [INFO]: Field mapping:
+2025-08-27 13:03:08 [INFO]: Updating opportunity qC2Cmsj4GMRZEqGNttuS in database
+2025-08-27 13:03:09 [INFO]: Opportunity qC2Cmsj4GMRZEqGNttuS updated successfully in database
+2025-08-27 13:03:09 [INFO]: Pipeline data synced successfully
+2025-08-27 13:03:09 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:03:10 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:03:10 [INFO]: Request method:
+2025-08-27 13:03:10 [INFO]: Request URL:
+2025-08-27 13:03:10 [INFO]: Request headers:
+2025-08-27 13:03:10 [INFO]: Raw request body (string):
+2025-08-27 13:03:10 [INFO]: Raw request body (typeof):
+2025-08-27 13:03:10 [INFO]: Raw request body (stringified):
+2025-08-27 13:03:10 [INFO]: Request query:
+2025-08-27 13:03:10 [INFO]: Content-Type:
+2025-08-27 13:03:10 [INFO]: User-Agent:
+2025-08-27 13:03:10 [INFO]: ========================
+2025-08-27 13:03:10 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:03:10 [INFO]: Raw webhook data:
+2025-08-27 13:03:10 [INFO]: Data type:
+2025-08-27 13:03:10 [INFO]: Data keys:
+2025-08-27 13:03:10 [INFO]: Data values:
+2025-08-27 13:03:10 [INFO]: ================================
+2025-08-27 13:03:10 [INFO]: Processing webhook data:
+2025-08-27 13:03:10 [INFO]: Actual data being processed:
+2025-08-27 13:03:10 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 13:03:10 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 13:03:10 [INFO]: Extracted opportunity_id: YsvWL6vIRP1fgIULqFvz
+2025-08-27 13:03:10 [INFO]: Handling opportunity.created event
+2025-08-27 13:03:10 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:03:10 [INFO]: Field mapping:
+2025-08-27 13:03:10 [INFO]: Creating opportunity YsvWL6vIRP1fgIULqFvz in database
+2025-08-27 13:03:10 [INFO]: Opportunity YsvWL6vIRP1fgIULqFvz created successfully in database
+2025-08-27 13:03:10 [INFO]: Pipeline data synced successfully
+2025-08-27 13:03:10 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:03:11 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:03:11 [INFO]: Request method:
+2025-08-27 13:03:11 [INFO]: Request URL:
+2025-08-27 13:03:11 [INFO]: Request headers:
+2025-08-27 13:03:11 [INFO]: Raw request body (string):
+2025-08-27 13:03:11 [INFO]: Raw request body (typeof):
+2025-08-27 13:03:11 [INFO]: Raw request body (stringified):
+2025-08-27 13:03:11 [INFO]: Request query:
+2025-08-27 13:03:11 [INFO]: Content-Type:
+2025-08-27 13:03:11 [INFO]: User-Agent:
+2025-08-27 13:03:11 [INFO]: ========================
+2025-08-27 13:03:11 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:03:11 [INFO]: Raw webhook data:
+2025-08-27 13:03:11 [INFO]: Data type:
+2025-08-27 13:03:11 [INFO]: Data keys:
+2025-08-27 13:03:11 [INFO]: Data values:
+2025-08-27 13:03:11 [INFO]: ================================
+2025-08-27 13:03:11 [INFO]: Processing webhook data:
+2025-08-27 13:03:11 [INFO]: Actual data being processed:
+2025-08-27 13:03:11 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 13:03:11 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 13:03:11 [INFO]: Extracted opportunity_id: qC2Cmsj4GMRZEqGNttuS
+2025-08-27 13:03:11 [INFO]: Handling opportunity.updated event
+2025-08-27 13:03:11 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:03:11 [INFO]: Field mapping:
+2025-08-27 13:03:11 [INFO]: Updating opportunity qC2Cmsj4GMRZEqGNttuS in database
+2025-08-27 13:03:11 [INFO]: Opportunity qC2Cmsj4GMRZEqGNttuS updated successfully in database
+2025-08-27 13:03:11 [INFO]: Pipeline data synced successfully
+2025-08-27 13:03:11 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:03:14 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:03:14 [INFO]: Request method:
+2025-08-27 13:03:14 [INFO]: Request URL:
+2025-08-27 13:03:14 [INFO]: Request headers:
+2025-08-27 13:03:14 [INFO]: Raw request body (string):
+2025-08-27 13:03:14 [INFO]: Raw request body (typeof):
+2025-08-27 13:03:14 [INFO]: Raw request body (stringified):
+2025-08-27 13:03:14 [INFO]: Request query:
+2025-08-27 13:03:14 [INFO]: Content-Type:
+2025-08-27 13:03:14 [INFO]: User-Agent:
+2025-08-27 13:03:14 [INFO]: ========================
+2025-08-27 13:03:14 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:03:14 [INFO]: Raw webhook data:
+2025-08-27 13:03:14 [INFO]: Data type:
+2025-08-27 13:03:14 [INFO]: Data keys:
+2025-08-27 13:03:14 [INFO]: Data values:
+2025-08-27 13:03:14 [INFO]: ================================
+2025-08-27 13:03:14 [INFO]: Processing webhook data:
+2025-08-27 13:03:14 [INFO]: Actual data being processed:
+2025-08-27 13:03:14 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 13:03:14 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 13:03:14 [INFO]: Extracted opportunity_id: YsvWL6vIRP1fgIULqFvz
+2025-08-27 13:03:14 [INFO]: Handling opportunity.updated event
+2025-08-27 13:03:14 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:03:14 [INFO]: Field mapping:
+2025-08-27 13:03:14 [INFO]: Updating opportunity YsvWL6vIRP1fgIULqFvz in database
+2025-08-27 13:03:15 [INFO]: Opportunity YsvWL6vIRP1fgIULqFvz updated successfully in database
+2025-08-27 13:03:15 [INFO]: Pipeline data synced successfully
+2025-08-27 13:03:15 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:03:18 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:03:18 [INFO]: Request method:
+2025-08-27 13:03:18 [INFO]: Request URL:
+2025-08-27 13:03:18 [INFO]: Request headers:
+2025-08-27 13:03:18 [INFO]: Raw request body (string):
+2025-08-27 13:03:18 [INFO]: Raw request body (typeof):
+2025-08-27 13:03:18 [INFO]: Raw request body (stringified):
+2025-08-27 13:03:18 [INFO]: Request query:
+2025-08-27 13:03:18 [INFO]: Content-Type:
+2025-08-27 13:03:18 [INFO]: User-Agent:
+2025-08-27 13:03:18 [INFO]: ========================
+2025-08-27 13:03:18 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:03:18 [INFO]: Raw webhook data:
+2025-08-27 13:03:18 [INFO]: Data type:
+2025-08-27 13:03:18 [INFO]: Data keys:
+2025-08-27 13:03:18 [INFO]: Data values:
+2025-08-27 13:03:18 [INFO]: ================================
+2025-08-27 13:03:18 [INFO]: Processing webhook data:
+2025-08-27 13:03:18 [INFO]: Actual data being processed:
+2025-08-27 13:03:18 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 13:03:18 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 13:03:18 [INFO]: Extracted opportunity_id: S9jk2wv6QDknQtB9R64s
+2025-08-27 13:03:18 [INFO]: Handling opportunity.created event
+2025-08-27 13:03:18 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:03:18 [INFO]: Field mapping:
+2025-08-27 13:03:18 [INFO]: Creating opportunity S9jk2wv6QDknQtB9R64s in database
+2025-08-27 13:03:18 [INFO]: Opportunity S9jk2wv6QDknQtB9R64s created successfully in database
+2025-08-27 13:03:18 [INFO]: Pipeline data synced successfully
+2025-08-27 13:03:18 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:03:20 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:03:20 [INFO]: Request method:
+2025-08-27 13:03:20 [INFO]: Request URL:
+2025-08-27 13:03:20 [INFO]: Request headers:
+2025-08-27 13:03:20 [INFO]: Raw request body (string):
+2025-08-27 13:03:20 [INFO]: Raw request body (typeof):
+2025-08-27 13:03:20 [INFO]: Raw request body (stringified):
+2025-08-27 13:03:20 [INFO]: Request query:
+2025-08-27 13:03:20 [INFO]: Content-Type:
+2025-08-27 13:03:20 [INFO]: User-Agent:
+2025-08-27 13:03:20 [INFO]: ========================
+2025-08-27 13:03:20 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:03:20 [INFO]: Raw webhook data:
+2025-08-27 13:03:20 [INFO]: Data type:
+2025-08-27 13:03:20 [INFO]: Data keys:
+2025-08-27 13:03:20 [INFO]: Data values:
+2025-08-27 13:03:20 [INFO]: ================================
+2025-08-27 13:03:20 [INFO]: Processing webhook data:
+2025-08-27 13:03:20 [INFO]: Actual data being processed:
+2025-08-27 13:03:20 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 13:03:20 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 13:03:20 [INFO]: Extracted opportunity_id: S9jk2wv6QDknQtB9R64s
+2025-08-27 13:03:20 [INFO]: Handling opportunity.updated event
+2025-08-27 13:03:20 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:03:20 [INFO]: Field mapping:
+2025-08-27 13:03:20 [INFO]: Updating opportunity S9jk2wv6QDknQtB9R64s in database
+2025-08-27 13:03:20 [INFO]: Opportunity S9jk2wv6QDknQtB9R64s updated successfully in database
+2025-08-27 13:03:20 [INFO]: Pipeline data synced successfully
+2025-08-27 13:03:20 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:03:24 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:03:24 [INFO]: Request method:
+2025-08-27 13:03:24 [INFO]: Request URL:
+2025-08-27 13:03:24 [INFO]: Request headers:
+2025-08-27 13:03:24 [INFO]: Raw request body (string):
+2025-08-27 13:03:24 [INFO]: Raw request body (typeof):
+2025-08-27 13:03:24 [INFO]: Raw request body (stringified):
+2025-08-27 13:03:24 [INFO]: Request query:
+2025-08-27 13:03:24 [INFO]: Content-Type:
+2025-08-27 13:03:24 [INFO]: User-Agent:
+2025-08-27 13:03:24 [INFO]: ========================
+2025-08-27 13:03:24 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:03:24 [INFO]: Raw webhook data:
+2025-08-27 13:03:24 [INFO]: Data type:
+2025-08-27 13:03:24 [INFO]: Data keys:
+2025-08-27 13:03:24 [INFO]: Data values:
+2025-08-27 13:03:24 [INFO]: ================================
+2025-08-27 13:03:24 [INFO]: Processing webhook data:
+2025-08-27 13:03:24 [INFO]: Actual data being processed:
+2025-08-27 13:03:24 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 13:03:24 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 13:03:24 [INFO]: Extracted opportunity_id: qYQLZSCFe2uXlGhiQ5w8
+2025-08-27 13:03:24 [INFO]: Handling opportunity.created event
+2025-08-27 13:03:24 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:03:24 [INFO]: Field mapping:
+2025-08-27 13:03:24 [INFO]: Creating opportunity qYQLZSCFe2uXlGhiQ5w8 in database
+2025-08-27 13:03:25 [INFO]: Opportunity qYQLZSCFe2uXlGhiQ5w8 created successfully in database
+2025-08-27 13:03:25 [INFO]: Pipeline data synced successfully
+2025-08-27 13:03:25 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:03:27 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:03:27 [INFO]: Request method:
+2025-08-27 13:03:27 [INFO]: Request URL:
+2025-08-27 13:03:27 [INFO]: Request headers:
+2025-08-27 13:03:27 [INFO]: Raw request body (string):
+2025-08-27 13:03:27 [INFO]: Raw request body (typeof):
+2025-08-27 13:03:27 [INFO]: Raw request body (stringified):
+2025-08-27 13:03:27 [INFO]: Request query:
+2025-08-27 13:03:27 [INFO]: Content-Type:
+2025-08-27 13:03:27 [INFO]: User-Agent:
+2025-08-27 13:03:27 [INFO]: ========================
+2025-08-27 13:03:27 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:03:27 [INFO]: Raw webhook data:
+2025-08-27 13:03:27 [INFO]: Data type:
+2025-08-27 13:03:27 [INFO]: Data keys:
+2025-08-27 13:03:27 [INFO]: Data values:
+2025-08-27 13:03:27 [INFO]: ================================
+2025-08-27 13:03:27 [INFO]: Processing webhook data:
+2025-08-27 13:03:27 [INFO]: Actual data being processed:
+2025-08-27 13:03:27 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 13:03:27 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 13:03:27 [INFO]: Extracted opportunity_id: qYQLZSCFe2uXlGhiQ5w8
+2025-08-27 13:03:27 [INFO]: Handling opportunity.updated event
+2025-08-27 13:03:27 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:03:27 [INFO]: Field mapping:
+2025-08-27 13:03:27 [INFO]: Updating opportunity qYQLZSCFe2uXlGhiQ5w8 in database
+2025-08-27 13:03:27 [INFO]: Opportunity qYQLZSCFe2uXlGhiQ5w8 updated successfully in database
+2025-08-27 13:03:27 [INFO]: Pipeline data synced successfully
+2025-08-27 13:03:27 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:03:30 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:03:30 [INFO]: Request method:
+2025-08-27 13:03:30 [INFO]: Request URL:
+2025-08-27 13:03:30 [INFO]: Request headers:
+2025-08-27 13:03:30 [INFO]: Raw request body (string):
+2025-08-27 13:03:30 [INFO]: Raw request body (typeof):
+2025-08-27 13:03:30 [INFO]: Raw request body (stringified):
+2025-08-27 13:03:30 [INFO]: Request query:
+2025-08-27 13:03:30 [INFO]: Content-Type:
+2025-08-27 13:03:30 [INFO]: User-Agent:
+2025-08-27 13:03:30 [INFO]: ========================
+2025-08-27 13:03:30 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:03:30 [INFO]: Raw webhook data:
+2025-08-27 13:03:30 [INFO]: Data type:
+2025-08-27 13:03:30 [INFO]: Data keys:
+2025-08-27 13:03:30 [INFO]: Data values:
+2025-08-27 13:03:30 [INFO]: ================================
+2025-08-27 13:03:30 [INFO]: Processing webhook data:
+2025-08-27 13:03:30 [INFO]: Actual data being processed:
+2025-08-27 13:03:31 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 13:03:31 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 13:03:31 [INFO]: Extracted opportunity_id: vl5xgh5Z8vNvDZlHRMFw
+2025-08-27 13:03:31 [INFO]: Handling opportunity.created event
+2025-08-27 13:03:31 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:03:31 [INFO]: Field mapping:
+2025-08-27 13:03:31 [INFO]: Creating opportunity vl5xgh5Z8vNvDZlHRMFw in database
+2025-08-27 13:03:31 [INFO]: Opportunity vl5xgh5Z8vNvDZlHRMFw created successfully in database
+2025-08-27 13:03:31 [INFO]: Pipeline data synced successfully
+2025-08-27 13:03:31 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:03:32 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:03:32 [INFO]: Request method:
+2025-08-27 13:03:32 [INFO]: Request URL:
+2025-08-27 13:03:32 [INFO]: Request headers:
+2025-08-27 13:03:32 [INFO]: Raw request body (string):
+2025-08-27 13:03:32 [INFO]: Raw request body (typeof):
+2025-08-27 13:03:32 [INFO]: Raw request body (stringified):
+2025-08-27 13:03:32 [INFO]: Request query:
+2025-08-27 13:03:32 [INFO]: Content-Type:
+2025-08-27 13:03:32 [INFO]: User-Agent:
+2025-08-27 13:03:32 [INFO]: ========================
+2025-08-27 13:03:32 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:03:32 [INFO]: Raw webhook data:
+2025-08-27 13:03:32 [INFO]: Data type:
+2025-08-27 13:03:32 [INFO]: Data keys:
+2025-08-27 13:03:32 [INFO]: Data values:
+2025-08-27 13:03:32 [INFO]: ================================
+2025-08-27 13:03:32 [INFO]: Processing webhook data:
+2025-08-27 13:03:32 [INFO]: Actual data being processed:
+2025-08-27 13:03:32 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:03:32 [INFO]: Request method:
+2025-08-27 13:03:32 [INFO]: Request URL:
+2025-08-27 13:03:32 [INFO]: Request headers:
+2025-08-27 13:03:32 [INFO]: Raw request body (string):
+2025-08-27 13:03:32 [INFO]: Raw request body (typeof):
+2025-08-27 13:03:32 [INFO]: Raw request body (stringified):
+2025-08-27 13:03:32 [INFO]: Request query:
+2025-08-27 13:03:32 [INFO]: Content-Type:
+2025-08-27 13:03:32 [INFO]: User-Agent:
+2025-08-27 13:03:32 [INFO]: ========================
+2025-08-27 13:03:32 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:03:32 [INFO]: Raw webhook data:
+2025-08-27 13:03:32 [INFO]: Data type:
+2025-08-27 13:03:32 [INFO]: Data keys:
+2025-08-27 13:03:32 [INFO]: Data values:
+2025-08-27 13:03:32 [INFO]: ================================
+2025-08-27 13:03:32 [INFO]: Processing webhook data:
+2025-08-27 13:03:32 [INFO]: Actual data being processed:
+2025-08-27 13:03:33 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 13:03:33 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 13:03:33 [INFO]: Extracted opportunity_id: vl5xgh5Z8vNvDZlHRMFw
+2025-08-27 13:03:33 [INFO]: Handling opportunity.updated event
+2025-08-27 13:03:33 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:03:33 [INFO]: Field mapping:
+2025-08-27 13:03:33 [INFO]: Updating opportunity vl5xgh5Z8vNvDZlHRMFw in database
+2025-08-27 13:03:33 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 13:03:33 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 13:03:33 [INFO]: Extracted opportunity_id: S9jk2wv6QDknQtB9R64s
+2025-08-27 13:03:33 [INFO]: Handling opportunity.updated event
+2025-08-27 13:03:33 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:03:33 [INFO]: Field mapping:
+2025-08-27 13:03:33 [INFO]: Updating opportunity S9jk2wv6QDknQtB9R64s in database
+2025-08-27 13:03:33 [INFO]: Opportunity vl5xgh5Z8vNvDZlHRMFw updated successfully in database
+2025-08-27 13:03:33 [INFO]: Pipeline data synced successfully
+2025-08-27 13:03:33 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:03:33 [INFO]: Opportunity S9jk2wv6QDknQtB9R64s updated successfully in database
+2025-08-27 13:03:33 [INFO]: Pipeline data synced successfully
+2025-08-27 13:03:33 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:03:37 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:03:37 [INFO]: Request method:
+2025-08-27 13:03:37 [INFO]: Request URL:
+2025-08-27 13:03:37 [INFO]: Request headers:
+2025-08-27 13:03:37 [INFO]: Raw request body (string):
+2025-08-27 13:03:37 [INFO]: Raw request body (typeof):
+2025-08-27 13:03:37 [INFO]: Raw request body (stringified):
+2025-08-27 13:03:37 [INFO]: Request query:
+2025-08-27 13:03:37 [INFO]: Content-Type:
+2025-08-27 13:03:37 [INFO]: User-Agent:
+2025-08-27 13:03:37 [INFO]: ========================
+2025-08-27 13:03:37 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:03:37 [INFO]: Raw webhook data:
+2025-08-27 13:03:37 [INFO]: Data type:
+2025-08-27 13:03:37 [INFO]: Data keys:
+2025-08-27 13:03:37 [INFO]: Data values:
+2025-08-27 13:03:37 [INFO]: ================================
+2025-08-27 13:03:37 [INFO]: Processing webhook data:
+2025-08-27 13:03:37 [INFO]: Actual data being processed:
+2025-08-27 13:03:38 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 13:03:38 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 13:03:38 [INFO]: Extracted opportunity_id: vl5xgh5Z8vNvDZlHRMFw
+2025-08-27 13:03:38 [INFO]: Handling opportunity.updated event
+2025-08-27 13:03:38 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:03:38 [INFO]: Field mapping:
+2025-08-27 13:03:38 [INFO]: Updating opportunity vl5xgh5Z8vNvDZlHRMFw in database
+2025-08-27 13:03:38 [INFO]: Opportunity vl5xgh5Z8vNvDZlHRMFw updated successfully in database
+2025-08-27 13:03:38 [INFO]: Pipeline data synced successfully
+2025-08-27 13:03:38 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:03:40 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:03:40 [INFO]: Request method:
+2025-08-27 13:03:40 [INFO]: Request URL:
+2025-08-27 13:03:40 [INFO]: Request headers:
+2025-08-27 13:03:40 [INFO]: Raw request body (string):
+2025-08-27 13:03:40 [INFO]: Raw request body (typeof):
+2025-08-27 13:03:40 [INFO]: Raw request body (stringified):
+2025-08-27 13:03:40 [INFO]: Request query:
+2025-08-27 13:03:40 [INFO]: Content-Type:
+2025-08-27 13:03:40 [INFO]: User-Agent:
+2025-08-27 13:03:40 [INFO]: ========================
+2025-08-27 13:03:40 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:03:40 [INFO]: Raw webhook data:
+2025-08-27 13:03:40 [INFO]: Data type:
+2025-08-27 13:03:40 [INFO]: Data keys:
+2025-08-27 13:03:40 [INFO]: Data values:
+2025-08-27 13:03:40 [INFO]: ================================
+2025-08-27 13:03:40 [INFO]: Processing webhook data:
+2025-08-27 13:03:40 [INFO]: Actual data being processed:
+2025-08-27 13:03:40 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 13:03:40 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 13:03:40 [INFO]: Extracted opportunity_id: DSO8eya69KAMK6pQ3ez4
+2025-08-27 13:03:40 [INFO]: Handling opportunity.created event
+2025-08-27 13:03:40 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:03:40 [INFO]: Field mapping:
+2025-08-27 13:03:40 [INFO]: Creating opportunity DSO8eya69KAMK6pQ3ez4 in database
+2025-08-27 13:03:40 [INFO]: Opportunity DSO8eya69KAMK6pQ3ez4 created successfully in database
+2025-08-27 13:03:40 [INFO]: Pipeline data synced successfully
+2025-08-27 13:03:40 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:03:46 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:03:46 [INFO]: Request method:
+2025-08-27 13:03:46 [INFO]: Request URL:
+2025-08-27 13:03:46 [INFO]: Request headers:
+2025-08-27 13:03:46 [INFO]: Raw request body (string):
+2025-08-27 13:03:46 [INFO]: Raw request body (typeof):
+2025-08-27 13:03:46 [INFO]: Raw request body (stringified):
+2025-08-27 13:03:46 [INFO]: Request query:
+2025-08-27 13:03:46 [INFO]: Content-Type:
+2025-08-27 13:03:46 [INFO]: User-Agent:
+2025-08-27 13:03:46 [INFO]: ========================
+2025-08-27 13:03:46 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:03:46 [INFO]: Raw webhook data:
+2025-08-27 13:03:46 [INFO]: Data type:
+2025-08-27 13:03:46 [INFO]: Data keys:
+2025-08-27 13:03:46 [INFO]: Data values:
+2025-08-27 13:03:46 [INFO]: ================================
+2025-08-27 13:03:46 [INFO]: Processing webhook data:
+2025-08-27 13:03:46 [INFO]: Actual data being processed:
+2025-08-27 13:03:46 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 13:03:46 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 13:03:46 [INFO]: Extracted opportunity_id: DSO8eya69KAMK6pQ3ez4
+2025-08-27 13:03:46 [INFO]: Handling opportunity.updated event
+2025-08-27 13:03:46 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:03:46 [INFO]: Field mapping:
+2025-08-27 13:03:46 [INFO]: Updating opportunity DSO8eya69KAMK6pQ3ez4 in database
+2025-08-27 13:03:46 [INFO]: Opportunity DSO8eya69KAMK6pQ3ez4 updated successfully in database
+2025-08-27 13:03:46 [INFO]: Pipeline data synced successfully
+2025-08-27 13:03:46 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:04:04 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:04:04 [INFO]: Request method:
+2025-08-27 13:04:04 [INFO]: Request URL:
+2025-08-27 13:04:04 [INFO]: Request headers:
+2025-08-27 13:04:04 [INFO]: Raw request body (string):
+2025-08-27 13:04:04 [INFO]: Raw request body (typeof):
+2025-08-27 13:04:04 [INFO]: Raw request body (stringified):
+2025-08-27 13:04:04 [INFO]: Request query:
+2025-08-27 13:04:04 [INFO]: Content-Type:
+2025-08-27 13:04:04 [INFO]: User-Agent:
+2025-08-27 13:04:04 [INFO]: ========================
+2025-08-27 13:04:04 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:04:04 [INFO]: Raw webhook data:
+2025-08-27 13:04:04 [INFO]: Data type:
+2025-08-27 13:04:04 [INFO]: Data keys:
+2025-08-27 13:04:04 [INFO]: Data values:
+2025-08-27 13:04:04 [INFO]: ================================
+2025-08-27 13:04:04 [INFO]: Processing webhook data:
+2025-08-27 13:04:04 [INFO]: Actual data being processed:
+2025-08-27 13:04:04 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 13:04:04 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 13:04:04 [INFO]: Extracted opportunity_id: F3PAcrP9swqmh50aSClR
+2025-08-27 13:04:04 [INFO]: Handling opportunity.created event
+2025-08-27 13:04:04 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:04:04 [INFO]: Field mapping:
+2025-08-27 13:04:04 [INFO]: Creating opportunity F3PAcrP9swqmh50aSClR in database
+2025-08-27 13:04:04 [INFO]: Opportunity F3PAcrP9swqmh50aSClR created successfully in database
+2025-08-27 13:04:04 [INFO]: Pipeline data synced successfully
+2025-08-27 13:04:04 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:04:11 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:04:11 [INFO]: Request method:
+2025-08-27 13:04:11 [INFO]: Request URL:
+2025-08-27 13:04:11 [INFO]: Request headers:
+2025-08-27 13:04:11 [INFO]: Raw request body (string):
+2025-08-27 13:04:11 [INFO]: Raw request body (typeof):
+2025-08-27 13:04:11 [INFO]: Raw request body (stringified):
+2025-08-27 13:04:11 [INFO]: Request query:
+2025-08-27 13:04:11 [INFO]: Content-Type:
+2025-08-27 13:04:11 [INFO]: User-Agent:
+2025-08-27 13:04:11 [INFO]: ========================
+2025-08-27 13:04:11 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:04:11 [INFO]: Raw webhook data:
+2025-08-27 13:04:11 [INFO]: Data type:
+2025-08-27 13:04:11 [INFO]: Data keys:
+2025-08-27 13:04:11 [INFO]: Data values:
+2025-08-27 13:04:11 [INFO]: ================================
+2025-08-27 13:04:11 [INFO]: Processing webhook data:
+2025-08-27 13:04:11 [INFO]: Actual data being processed:
+2025-08-27 13:04:11 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 13:04:11 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 13:04:11 [INFO]: Extracted opportunity_id: LChKJfkKwslAfM437Doc
+2025-08-27 13:04:11 [INFO]: Handling opportunity.created event
+2025-08-27 13:04:11 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:04:11 [INFO]: Field mapping:
+2025-08-27 13:04:11 [INFO]: Creating opportunity LChKJfkKwslAfM437Doc in database
+2025-08-27 13:04:11 [INFO]: Opportunity LChKJfkKwslAfM437Doc created successfully in database
+2025-08-27 13:04:11 [INFO]: Pipeline data synced successfully
+2025-08-27 13:04:11 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:04:15 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:04:15 [INFO]: Request method:
+2025-08-27 13:04:15 [INFO]: Request URL:
+2025-08-27 13:04:15 [INFO]: Request headers:
+2025-08-27 13:04:15 [INFO]: Raw request body (string):
+2025-08-27 13:04:15 [INFO]: Raw request body (typeof):
+2025-08-27 13:04:15 [INFO]: Raw request body (stringified):
+2025-08-27 13:04:15 [INFO]: Request query:
+2025-08-27 13:04:15 [INFO]: Content-Type:
+2025-08-27 13:04:15 [INFO]: User-Agent:
+2025-08-27 13:04:15 [INFO]: ========================
+2025-08-27 13:04:15 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:04:15 [INFO]: Raw webhook data:
+2025-08-27 13:04:15 [INFO]: Data type:
+2025-08-27 13:04:15 [INFO]: Data keys:
+2025-08-27 13:04:15 [INFO]: Data values:
+2025-08-27 13:04:15 [INFO]: ================================
+2025-08-27 13:04:15 [INFO]: Processing webhook data:
+2025-08-27 13:04:15 [INFO]: Actual data being processed:
+2025-08-27 13:04:15 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 13:04:15 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 13:04:15 [INFO]: Extracted opportunity_id: HgKVDUJSJwAaJLP8xzAs
+2025-08-27 13:04:15 [INFO]: Handling opportunity.created event
+2025-08-27 13:04:15 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:04:15 [INFO]: Field mapping:
+2025-08-27 13:04:15 [INFO]: Creating opportunity HgKVDUJSJwAaJLP8xzAs in database
+2025-08-27 13:04:15 [INFO]: Opportunity HgKVDUJSJwAaJLP8xzAs created successfully in database
+2025-08-27 13:04:15 [INFO]: Pipeline data synced successfully
+2025-08-27 13:04:15 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:04:16 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:04:16 [INFO]: Request method:
+2025-08-27 13:04:16 [INFO]: Request URL:
+2025-08-27 13:04:16 [INFO]: Request headers:
+2025-08-27 13:04:16 [INFO]: Raw request body (string):
+2025-08-27 13:04:16 [INFO]: Raw request body (typeof):
+2025-08-27 13:04:16 [INFO]: Raw request body (stringified):
+2025-08-27 13:04:16 [INFO]: Request query:
+2025-08-27 13:04:16 [INFO]: Content-Type:
+2025-08-27 13:04:16 [INFO]: User-Agent:
+2025-08-27 13:04:16 [INFO]: ========================
+2025-08-27 13:04:16 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:04:16 [INFO]: Raw webhook data:
+2025-08-27 13:04:16 [INFO]: Data type:
+2025-08-27 13:04:16 [INFO]: Data keys:
+2025-08-27 13:04:16 [INFO]: Data values:
+2025-08-27 13:04:16 [INFO]: ================================
+2025-08-27 13:04:16 [INFO]: Processing webhook data:
+2025-08-27 13:04:16 [INFO]: Actual data being processed:
+2025-08-27 13:04:16 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 13:04:16 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 13:04:16 [INFO]: Extracted opportunity_id: F3PAcrP9swqmh50aSClR
+2025-08-27 13:04:16 [INFO]: Handling opportunity.updated event
+2025-08-27 13:04:16 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:04:16 [INFO]: Field mapping:
+2025-08-27 13:04:16 [INFO]: Updating opportunity F3PAcrP9swqmh50aSClR in database
+2025-08-27 13:04:16 [INFO]: Opportunity F3PAcrP9swqmh50aSClR updated successfully in database
+2025-08-27 13:04:16 [INFO]: Pipeline data synced successfully
+2025-08-27 13:04:16 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:04:21 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:04:21 [INFO]: Request method:
+2025-08-27 13:04:21 [INFO]: Request URL:
+2025-08-27 13:04:21 [INFO]: Request headers:
+2025-08-27 13:04:21 [INFO]: Raw request body (string):
+2025-08-27 13:04:21 [INFO]: Raw request body (typeof):
+2025-08-27 13:04:21 [INFO]: Raw request body (stringified):
+2025-08-27 13:04:21 [INFO]: Request query:
+2025-08-27 13:04:21 [INFO]: Content-Type:
+2025-08-27 13:04:21 [INFO]: User-Agent:
+2025-08-27 13:04:21 [INFO]: ========================
+2025-08-27 13:04:21 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:04:21 [INFO]: Raw webhook data:
+2025-08-27 13:04:21 [INFO]: Data type:
+2025-08-27 13:04:21 [INFO]: Data keys:
+2025-08-27 13:04:21 [INFO]: Data values:
+2025-08-27 13:04:21 [INFO]: ================================
+2025-08-27 13:04:21 [INFO]: Processing webhook data:
+2025-08-27 13:04:21 [INFO]: Actual data being processed:
+2025-08-27 13:04:21 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:04:21 [INFO]: Request method:
+2025-08-27 13:04:21 [INFO]: Request URL:
+2025-08-27 13:04:21 [INFO]: Request headers:
+2025-08-27 13:04:21 [INFO]: Raw request body (string):
+2025-08-27 13:04:21 [INFO]: Raw request body (typeof):
+2025-08-27 13:04:21 [INFO]: Raw request body (stringified):
+2025-08-27 13:04:21 [INFO]: Request query:
+2025-08-27 13:04:21 [INFO]: Content-Type:
+2025-08-27 13:04:21 [INFO]: User-Agent:
+2025-08-27 13:04:21 [INFO]: ========================
+2025-08-27 13:04:21 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:04:21 [INFO]: Raw webhook data:
+2025-08-27 13:04:21 [INFO]: Data type:
+2025-08-27 13:04:21 [INFO]: Data keys:
+2025-08-27 13:04:21 [INFO]: Data values:
+2025-08-27 13:04:21 [INFO]: ================================
+2025-08-27 13:04:21 [INFO]: Processing webhook data:
+2025-08-27 13:04:21 [INFO]: Actual data being processed:
+2025-08-27 13:04:21 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 13:04:21 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 13:04:21 [INFO]: Extracted opportunity_id: LChKJfkKwslAfM437Doc
+2025-08-27 13:04:21 [INFO]: Handling opportunity.updated event
+2025-08-27 13:04:21 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:04:21 [INFO]: Field mapping:
+2025-08-27 13:04:21 [INFO]: Updating opportunity LChKJfkKwslAfM437Doc in database
+2025-08-27 13:04:21 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 13:04:21 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 13:04:21 [INFO]: Extracted opportunity_id: F3PAcrP9swqmh50aSClR
+2025-08-27 13:04:21 [INFO]: Handling opportunity.updated event
+2025-08-27 13:04:21 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:04:21 [INFO]: Field mapping:
+2025-08-27 13:04:21 [INFO]: Updating opportunity F3PAcrP9swqmh50aSClR in database
+2025-08-27 13:04:22 [INFO]: Opportunity LChKJfkKwslAfM437Doc updated successfully in database
+2025-08-27 13:04:22 [INFO]: Pipeline data synced successfully
+2025-08-27 13:04:22 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:04:22 [INFO]: Opportunity F3PAcrP9swqmh50aSClR updated successfully in database
+2025-08-27 13:04:22 [INFO]: Pipeline data synced successfully
+2025-08-27 13:04:22 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:04:22 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:04:22 [INFO]: Request method:
+2025-08-27 13:04:22 [INFO]: Request URL:
+2025-08-27 13:04:22 [INFO]: Request headers:
+2025-08-27 13:04:22 [INFO]: Raw request body (string):
+2025-08-27 13:04:22 [INFO]: Raw request body (typeof):
+2025-08-27 13:04:22 [INFO]: Raw request body (stringified):
+2025-08-27 13:04:22 [INFO]: Request query:
+2025-08-27 13:04:22 [INFO]: Content-Type:
+2025-08-27 13:04:22 [INFO]: User-Agent:
+2025-08-27 13:04:22 [INFO]: ========================
+2025-08-27 13:04:22 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:04:22 [INFO]: Raw webhook data:
+2025-08-27 13:04:22 [INFO]: Data type:
+2025-08-27 13:04:22 [INFO]: Data keys:
+2025-08-27 13:04:22 [INFO]: Data values:
+2025-08-27 13:04:22 [INFO]: ================================
+2025-08-27 13:04:22 [INFO]: Processing webhook data:
+2025-08-27 13:04:22 [INFO]: Actual data being processed:
+2025-08-27 13:04:23 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 13:04:23 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 13:04:23 [INFO]: Extracted opportunity_id: HgKVDUJSJwAaJLP8xzAs
+2025-08-27 13:04:23 [INFO]: Handling opportunity.updated event
+2025-08-27 13:04:23 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:04:23 [INFO]: Field mapping:
+2025-08-27 13:04:23 [INFO]: Updating opportunity HgKVDUJSJwAaJLP8xzAs in database
+2025-08-27 13:04:23 [INFO]: Opportunity HgKVDUJSJwAaJLP8xzAs updated successfully in database
+2025-08-27 13:04:23 [INFO]: Pipeline data synced successfully
+2025-08-27 13:04:23 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:05:10 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:05:10 [INFO]: Request method:
+2025-08-27 13:05:10 [INFO]: Request URL:
+2025-08-27 13:05:10 [INFO]: Request headers:
+2025-08-27 13:05:10 [INFO]: Raw request body (string):
+2025-08-27 13:05:10 [INFO]: Raw request body (typeof):
+2025-08-27 13:05:10 [INFO]: Raw request body (stringified):
+2025-08-27 13:05:10 [INFO]: Request query:
+2025-08-27 13:05:10 [INFO]: Content-Type:
+2025-08-27 13:05:10 [INFO]: User-Agent:
+2025-08-27 13:05:10 [INFO]: ========================
+2025-08-27 13:05:10 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:05:10 [INFO]: Raw webhook data:
+2025-08-27 13:05:10 [INFO]: Data type:
+2025-08-27 13:05:10 [INFO]: Data keys:
+2025-08-27 13:05:10 [INFO]: Data values:
+2025-08-27 13:05:10 [INFO]: ================================
+2025-08-27 13:05:10 [INFO]: Processing webhook data:
+2025-08-27 13:05:10 [INFO]: Actual data being processed:
+2025-08-27 13:05:11 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:05:11 [INFO]: Request method:
+2025-08-27 13:05:11 [INFO]: Request URL:
+2025-08-27 13:05:11 [INFO]: Request headers:
+2025-08-27 13:05:11 [INFO]: Raw request body (string):
+2025-08-27 13:05:11 [INFO]: Raw request body (typeof):
+2025-08-27 13:05:11 [INFO]: Raw request body (stringified):
+2025-08-27 13:05:11 [INFO]: Request query:
+2025-08-27 13:05:11 [INFO]: Content-Type:
+2025-08-27 13:05:11 [INFO]: User-Agent:
+2025-08-27 13:05:11 [INFO]: ========================
+2025-08-27 13:05:11 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:05:11 [INFO]: Raw webhook data:
+2025-08-27 13:05:11 [INFO]: Data type:
+2025-08-27 13:05:11 [INFO]: Data keys:
+2025-08-27 13:05:11 [INFO]: Data values:
+2025-08-27 13:05:11 [INFO]: ================================
+2025-08-27 13:05:11 [INFO]: Processing webhook data:
+2025-08-27 13:05:11 [INFO]: Actual data being processed:
+2025-08-27 13:05:11 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 13:05:11 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 13:05:11 [INFO]: Extracted opportunity_id: rCl4x3lt8euidTcFh3HY
+2025-08-27 13:05:11 [INFO]: Handling opportunity.created event
+2025-08-27 13:05:11 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:05:11 [INFO]: Field mapping:
+2025-08-27 13:05:11 [INFO]: Creating opportunity rCl4x3lt8euidTcFh3HY in database
+2025-08-27 13:05:11 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 13:05:11 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 13:05:11 [INFO]: Extracted opportunity_id: cnaGZ8CoqdE6YmeI8AJS
+2025-08-27 13:05:11 [INFO]: Handling opportunity.created event
+2025-08-27 13:05:11 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:05:11 [INFO]: Field mapping:
+2025-08-27 13:05:11 [INFO]: Creating opportunity cnaGZ8CoqdE6YmeI8AJS in database
+2025-08-27 13:05:11 [INFO]: Opportunity cnaGZ8CoqdE6YmeI8AJS created successfully in database
+2025-08-27 13:05:11 [INFO]: Pipeline data synced successfully
+2025-08-27 13:05:11 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:05:11 [INFO]: Opportunity rCl4x3lt8euidTcFh3HY created successfully in database
+2025-08-27 13:05:11 [INFO]: Pipeline data synced successfully
+2025-08-27 13:05:11 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:05:15 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:05:15 [INFO]: Request method:
+2025-08-27 13:05:15 [INFO]: Request URL:
+2025-08-27 13:05:15 [INFO]: Request headers:
+2025-08-27 13:05:15 [INFO]: Raw request body (string):
+2025-08-27 13:05:15 [INFO]: Raw request body (typeof):
+2025-08-27 13:05:15 [INFO]: Raw request body (stringified):
+2025-08-27 13:05:15 [INFO]: Request query:
+2025-08-27 13:05:15 [INFO]: Content-Type:
+2025-08-27 13:05:15 [INFO]: User-Agent:
+2025-08-27 13:05:15 [INFO]: ========================
+2025-08-27 13:05:15 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:05:15 [INFO]: Raw webhook data:
+2025-08-27 13:05:15 [INFO]: Data type:
+2025-08-27 13:05:15 [INFO]: Data keys:
+2025-08-27 13:05:15 [INFO]: Data values:
+2025-08-27 13:05:15 [INFO]: ================================
+2025-08-27 13:05:15 [INFO]: Processing webhook data:
+2025-08-27 13:05:15 [INFO]: Actual data being processed:
+2025-08-27 13:05:15 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 13:05:15 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 13:05:15 [INFO]: Extracted opportunity_id: xrVESExSWJCqMV3DWfrL
+2025-08-27 13:05:15 [INFO]: Handling opportunity.created event
+2025-08-27 13:05:15 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:05:15 [INFO]: Field mapping:
+2025-08-27 13:05:15 [INFO]: Creating opportunity xrVESExSWJCqMV3DWfrL in database
+2025-08-27 13:05:15 [INFO]: Opportunity xrVESExSWJCqMV3DWfrL created successfully in database
+2025-08-27 13:05:15 [INFO]: Pipeline data synced successfully
+2025-08-27 13:05:15 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:05:18 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:05:18 [INFO]: Request method:
+2025-08-27 13:05:18 [INFO]: Request URL:
+2025-08-27 13:05:18 [INFO]: Request headers:
+2025-08-27 13:05:18 [INFO]: Raw request body (string):
+2025-08-27 13:05:18 [INFO]: Raw request body (typeof):
+2025-08-27 13:05:18 [INFO]: Raw request body (stringified):
+2025-08-27 13:05:18 [INFO]: Request query:
+2025-08-27 13:05:18 [INFO]: Content-Type:
+2025-08-27 13:05:18 [INFO]: User-Agent:
+2025-08-27 13:05:18 [INFO]: ========================
+2025-08-27 13:05:18 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:05:18 [INFO]: Raw webhook data:
+2025-08-27 13:05:18 [INFO]: Data type:
+2025-08-27 13:05:18 [INFO]: Data keys:
+2025-08-27 13:05:18 [INFO]: Data values:
+2025-08-27 13:05:18 [INFO]: ================================
+2025-08-27 13:05:18 [INFO]: Processing webhook data:
+2025-08-27 13:05:18 [INFO]: Actual data being processed:
+2025-08-27 13:05:18 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 13:05:18 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 13:05:18 [INFO]: Extracted opportunity_id: XCCDdwK4HXRuXD4LS19o
+2025-08-27 13:05:18 [INFO]: Handling opportunity.created event
+2025-08-27 13:05:18 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:05:18 [INFO]: Field mapping:
+2025-08-27 13:05:18 [INFO]: Creating opportunity XCCDdwK4HXRuXD4LS19o in database
+2025-08-27 13:05:18 [INFO]: Opportunity XCCDdwK4HXRuXD4LS19o created successfully in database
+2025-08-27 13:05:18 [INFO]: Pipeline data synced successfully
+2025-08-27 13:05:18 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:05:23 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:05:23 [INFO]: Request method:
+2025-08-27 13:05:23 [INFO]: Request URL:
+2025-08-27 13:05:23 [INFO]: Request headers:
+2025-08-27 13:05:23 [INFO]: Raw request body (string):
+2025-08-27 13:05:23 [INFO]: Raw request body (typeof):
+2025-08-27 13:05:23 [INFO]: Raw request body (stringified):
+2025-08-27 13:05:23 [INFO]: Request query:
+2025-08-27 13:05:23 [INFO]: Content-Type:
+2025-08-27 13:05:23 [INFO]: User-Agent:
+2025-08-27 13:05:23 [INFO]: ========================
+2025-08-27 13:05:23 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:05:23 [INFO]: Raw webhook data:
+2025-08-27 13:05:23 [INFO]: Data type:
+2025-08-27 13:05:23 [INFO]: Data keys:
+2025-08-27 13:05:23 [INFO]: Data values:
+2025-08-27 13:05:23 [INFO]: ================================
+2025-08-27 13:05:23 [INFO]: Processing webhook data:
+2025-08-27 13:05:23 [INFO]: Actual data being processed:
+2025-08-27 13:05:23 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 13:05:23 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 13:05:23 [INFO]: Extracted opportunity_id: rCl4x3lt8euidTcFh3HY
+2025-08-27 13:05:23 [INFO]: Handling opportunity.updated event
+2025-08-27 13:05:23 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:05:23 [INFO]: Field mapping:
+2025-08-27 13:05:23 [INFO]: Updating opportunity rCl4x3lt8euidTcFh3HY in database
+2025-08-27 13:05:23 [INFO]: Opportunity rCl4x3lt8euidTcFh3HY updated successfully in database
+2025-08-27 13:05:23 [INFO]: Pipeline data synced successfully
+2025-08-27 13:05:23 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:05:27 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:05:27 [INFO]: Request method:
+2025-08-27 13:05:27 [INFO]: Request URL:
+2025-08-27 13:05:27 [INFO]: Request headers:
+2025-08-27 13:05:27 [INFO]: Raw request body (string):
+2025-08-27 13:05:27 [INFO]: Raw request body (typeof):
+2025-08-27 13:05:27 [INFO]: Raw request body (stringified):
+2025-08-27 13:05:27 [INFO]: Request query:
+2025-08-27 13:05:27 [INFO]: Content-Type:
+2025-08-27 13:05:27 [INFO]: User-Agent:
+2025-08-27 13:05:27 [INFO]: ========================
+2025-08-27 13:05:27 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:05:27 [INFO]: Raw webhook data:
+2025-08-27 13:05:27 [INFO]: Data type:
+2025-08-27 13:05:27 [INFO]: Data keys:
+2025-08-27 13:05:27 [INFO]: Data values:
+2025-08-27 13:05:27 [INFO]: ================================
+2025-08-27 13:05:27 [INFO]: Processing webhook data:
+2025-08-27 13:05:27 [INFO]: Actual data being processed:
+2025-08-27 13:05:27 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 13:05:27 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 13:05:27 [INFO]: Extracted opportunity_id: xrVESExSWJCqMV3DWfrL
+2025-08-27 13:05:27 [INFO]: Handling opportunity.updated event
+2025-08-27 13:05:27 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:05:27 [INFO]: Field mapping:
+2025-08-27 13:05:27 [INFO]: Updating opportunity xrVESExSWJCqMV3DWfrL in database
+2025-08-27 13:05:27 [INFO]: Opportunity xrVESExSWJCqMV3DWfrL updated successfully in database
+2025-08-27 13:05:27 [INFO]: Pipeline data synced successfully
+2025-08-27 13:05:27 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:05:28 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:05:28 [INFO]: Request method:
+2025-08-27 13:05:28 [INFO]: Request URL:
+2025-08-27 13:05:28 [INFO]: Request headers:
+2025-08-27 13:05:28 [INFO]: Raw request body (string):
+2025-08-27 13:05:28 [INFO]: Raw request body (typeof):
+2025-08-27 13:05:28 [INFO]: Raw request body (stringified):
+2025-08-27 13:05:28 [INFO]: Request query:
+2025-08-27 13:05:28 [INFO]: Content-Type:
+2025-08-27 13:05:28 [INFO]: User-Agent:
+2025-08-27 13:05:28 [INFO]: ========================
+2025-08-27 13:05:28 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:05:28 [INFO]: Raw webhook data:
+2025-08-27 13:05:28 [INFO]: Data type:
+2025-08-27 13:05:28 [INFO]: Data keys:
+2025-08-27 13:05:28 [INFO]: Data values:
+2025-08-27 13:05:28 [INFO]: ================================
+2025-08-27 13:05:28 [INFO]: Processing webhook data:
+2025-08-27 13:05:28 [INFO]: Actual data being processed:
+2025-08-27 13:05:28 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 13:05:28 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 13:05:28 [INFO]: Extracted opportunity_id: xrVESExSWJCqMV3DWfrL
+2025-08-27 13:05:28 [INFO]: Handling opportunity.updated event
+2025-08-27 13:05:28 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:05:28 [INFO]: Field mapping:
+2025-08-27 13:05:28 [INFO]: Updating opportunity xrVESExSWJCqMV3DWfrL in database
+2025-08-27 13:05:29 [INFO]: Opportunity xrVESExSWJCqMV3DWfrL updated successfully in database
+2025-08-27 13:05:29 [INFO]: Pipeline data synced successfully
+2025-08-27 13:05:29 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:05:31 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:05:31 [INFO]: Request method:
+2025-08-27 13:05:31 [INFO]: Request URL:
+2025-08-27 13:05:31 [INFO]: Request headers:
+2025-08-27 13:05:31 [INFO]: Raw request body (string):
+2025-08-27 13:05:31 [INFO]: Raw request body (typeof):
+2025-08-27 13:05:31 [INFO]: Raw request body (stringified):
+2025-08-27 13:05:31 [INFO]: Request query:
+2025-08-27 13:05:31 [INFO]: Content-Type:
+2025-08-27 13:05:31 [INFO]: User-Agent:
+2025-08-27 13:05:31 [INFO]: ========================
+2025-08-27 13:05:31 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:05:31 [INFO]: Raw webhook data:
+2025-08-27 13:05:31 [INFO]: Data type:
+2025-08-27 13:05:31 [INFO]: Data keys:
+2025-08-27 13:05:31 [INFO]: Data values:
+2025-08-27 13:05:31 [INFO]: ================================
+2025-08-27 13:05:31 [INFO]: Processing webhook data:
+2025-08-27 13:05:31 [INFO]: Actual data being processed:
+2025-08-27 13:05:31 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 13:05:31 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 13:05:31 [INFO]: Extracted opportunity_id: xrVESExSWJCqMV3DWfrL
+2025-08-27 13:05:31 [INFO]: Handling opportunity.updated event
+2025-08-27 13:05:31 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:05:31 [INFO]: Field mapping:
+2025-08-27 13:05:31 [INFO]: Updating opportunity xrVESExSWJCqMV3DWfrL in database
+2025-08-27 13:05:32 [INFO]: Opportunity xrVESExSWJCqMV3DWfrL updated successfully in database
+2025-08-27 13:05:32 [INFO]: Pipeline data synced successfully
+2025-08-27 13:05:32 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:05:33 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:05:33 [INFO]: Request method:
+2025-08-27 13:05:33 [INFO]: Request URL:
+2025-08-27 13:05:33 [INFO]: Request headers:
+2025-08-27 13:05:33 [INFO]: Raw request body (string):
+2025-08-27 13:05:33 [INFO]: Raw request body (typeof):
+2025-08-27 13:05:33 [INFO]: Raw request body (stringified):
+2025-08-27 13:05:33 [INFO]: Request query:
+2025-08-27 13:05:33 [INFO]: Content-Type:
+2025-08-27 13:05:33 [INFO]: User-Agent:
+2025-08-27 13:05:33 [INFO]: ========================
+2025-08-27 13:05:33 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:05:33 [INFO]: Raw webhook data:
+2025-08-27 13:05:33 [INFO]: Data type:
+2025-08-27 13:05:33 [INFO]: Data keys:
+2025-08-27 13:05:33 [INFO]: Data values:
+2025-08-27 13:05:33 [INFO]: ================================
+2025-08-27 13:05:33 [INFO]: Processing webhook data:
+2025-08-27 13:05:33 [INFO]: Actual data being processed:
+2025-08-27 13:05:33 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 13:05:33 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 13:05:33 [INFO]: Extracted opportunity_id: XCCDdwK4HXRuXD4LS19o
+2025-08-27 13:05:33 [INFO]: Handling opportunity.updated event
+2025-08-27 13:05:33 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:05:33 [INFO]: Field mapping:
+2025-08-27 13:05:33 [INFO]: Updating opportunity XCCDdwK4HXRuXD4LS19o in database
+2025-08-27 13:05:33 [INFO]: Opportunity XCCDdwK4HXRuXD4LS19o updated successfully in database
+2025-08-27 13:05:33 [INFO]: Pipeline data synced successfully
+2025-08-27 13:05:33 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:05:39 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:05:39 [INFO]: Request method:
+2025-08-27 13:05:39 [INFO]: Request URL:
+2025-08-27 13:05:39 [INFO]: Request headers:
+2025-08-27 13:05:39 [INFO]: Raw request body (string):
+2025-08-27 13:05:39 [INFO]: Raw request body (typeof):
+2025-08-27 13:05:39 [INFO]: Raw request body (stringified):
+2025-08-27 13:05:39 [INFO]: Request query:
+2025-08-27 13:05:39 [INFO]: Content-Type:
+2025-08-27 13:05:39 [INFO]: User-Agent:
+2025-08-27 13:05:39 [INFO]: ========================
+2025-08-27 13:05:39 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:05:39 [INFO]: Raw webhook data:
+2025-08-27 13:05:39 [INFO]: Data type:
+2025-08-27 13:05:39 [INFO]: Data keys:
+2025-08-27 13:05:39 [INFO]: Data values:
+2025-08-27 13:05:39 [INFO]: ================================
+2025-08-27 13:05:39 [INFO]: Processing webhook data:
+2025-08-27 13:05:39 [INFO]: Actual data being processed:
+2025-08-27 13:05:39 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 13:05:39 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 13:05:39 [INFO]: Extracted opportunity_id: cnaGZ8CoqdE6YmeI8AJS
+2025-08-27 13:05:39 [INFO]: Handling opportunity.updated event
+2025-08-27 13:05:39 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:05:39 [INFO]: Field mapping:
+2025-08-27 13:05:39 [INFO]: Updating opportunity cnaGZ8CoqdE6YmeI8AJS in database
+2025-08-27 13:05:39 [INFO]: Opportunity cnaGZ8CoqdE6YmeI8AJS updated successfully in database
+2025-08-27 13:05:39 [INFO]: Pipeline data synced successfully
+2025-08-27 13:05:39 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 13:56:23 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 13:56:23 [INFO]: Request method:
+2025-08-27 13:56:23 [INFO]: Request URL:
+2025-08-27 13:56:23 [INFO]: Request headers:
+2025-08-27 13:56:23 [INFO]: Raw request body (string):
+2025-08-27 13:56:23 [INFO]: Raw request body (typeof):
+2025-08-27 13:56:23 [INFO]: Raw request body (stringified):
+2025-08-27 13:56:23 [INFO]: Request query:
+2025-08-27 13:56:23 [INFO]: Content-Type:
+2025-08-27 13:56:23 [INFO]: User-Agent:
+2025-08-27 13:56:23 [INFO]: ========================
+2025-08-27 13:56:23 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 13:56:23 [INFO]: Raw webhook data:
+2025-08-27 13:56:23 [INFO]: Data type:
+2025-08-27 13:56:23 [INFO]: Data keys:
+2025-08-27 13:56:23 [INFO]: Data values:
+2025-08-27 13:56:23 [INFO]: ================================
+2025-08-27 13:56:23 [INFO]: Processing webhook data:
+2025-08-27 13:56:23 [INFO]: Actual data being processed:
+2025-08-27 13:56:24 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 13:56:24 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 13:56:24 [INFO]: Extracted opportunity_id: H7xlATnQOT05JwDPNg1H
+2025-08-27 13:56:24 [INFO]: Handling opportunity.created event
+2025-08-27 13:56:24 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 13:56:24 [INFO]: Field mapping:
+2025-08-27 13:56:24 [INFO]: Creating opportunity H7xlATnQOT05JwDPNg1H in database
+2025-08-27 13:56:24 [INFO]: Opportunity H7xlATnQOT05JwDPNg1H created successfully in database
+2025-08-27 13:56:24 [INFO]: Pipeline data synced successfully
+2025-08-27 13:56:24 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 14:02:08 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 14:02:08 [INFO]: Request method:
+2025-08-27 14:02:08 [INFO]: Request URL:
+2025-08-27 14:02:08 [INFO]: Request headers:
+2025-08-27 14:02:08 [INFO]: Raw request body (string):
+2025-08-27 14:02:08 [INFO]: Raw request body (typeof):
+2025-08-27 14:02:08 [INFO]: Raw request body (stringified):
+2025-08-27 14:02:08 [INFO]: Request query:
+2025-08-27 14:02:08 [INFO]: Content-Type:
+2025-08-27 14:02:08 [INFO]: User-Agent:
+2025-08-27 14:02:08 [INFO]: ========================
+2025-08-27 14:02:08 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 14:02:08 [INFO]: Raw webhook data:
+2025-08-27 14:02:08 [INFO]: Data type:
+2025-08-27 14:02:08 [INFO]: Data keys:
+2025-08-27 14:02:08 [INFO]: Data values:
+2025-08-27 14:02:08 [INFO]: ================================
+2025-08-27 14:02:08 [INFO]: Processing webhook data:
+2025-08-27 14:02:08 [INFO]: Actual data being processed:
+2025-08-27 14:02:09 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 14:02:09 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 14:02:09 [INFO]: Extracted opportunity_id: cZRWPnlkDOD5sSrxMPzs
+2025-08-27 14:02:09 [INFO]: Handling opportunity.created event
+2025-08-27 14:02:09 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 14:02:09 [INFO]: Field mapping:
+2025-08-27 14:02:09 [INFO]: Creating opportunity cZRWPnlkDOD5sSrxMPzs in database
+2025-08-27 14:02:09 [INFO]: Opportunity cZRWPnlkDOD5sSrxMPzs created successfully in database
+2025-08-27 14:02:09 [INFO]: Pipeline data synced successfully
+2025-08-27 14:02:09 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 14:02:30 [INFO]: Server is running on http://localhost:3001
+2025-08-27 14:27:26 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 14:27:26 [INFO]: Request method:
+2025-08-27 14:27:26 [INFO]: Request URL:
+2025-08-27 14:27:26 [INFO]: Request headers:
+2025-08-27 14:27:26 [INFO]: Raw request body (string):
+2025-08-27 14:27:26 [INFO]: Raw request body (typeof):
+2025-08-27 14:27:26 [INFO]: Raw request body (stringified):
+2025-08-27 14:27:26 [INFO]: Request query:
+2025-08-27 14:27:26 [INFO]: Content-Type:
+2025-08-27 14:27:26 [INFO]: User-Agent:
+2025-08-27 14:27:26 [INFO]: ========================
+2025-08-27 14:27:26 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 14:27:26 [INFO]: Raw webhook data:
+2025-08-27 14:27:26 [INFO]: Data type:
+2025-08-27 14:27:26 [INFO]: Data keys:
+2025-08-27 14:27:26 [INFO]: Data values:
+2025-08-27 14:27:26 [INFO]: ================================
+2025-08-27 14:27:26 [INFO]: Processing webhook data:
+2025-08-27 14:27:26 [INFO]: Actual data being processed:
+2025-08-27 14:27:27 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 14:27:27 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 14:27:27 [INFO]: Extracted opportunity_id: NelULh9qMtZ9iUgL4j2C
+2025-08-27 14:27:27 [INFO]: Handling opportunity.created event
+2025-08-27 14:27:27 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 14:27:27 [INFO]: Field mapping:
+2025-08-27 14:27:27 [INFO]: Creating opportunity NelULh9qMtZ9iUgL4j2C in database
+2025-08-27 14:27:27 [INFO]: Opportunity NelULh9qMtZ9iUgL4j2C created successfully in database
+2025-08-27 14:27:27 [INFO]: Pipeline data synced successfully
+2025-08-27 14:27:27 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 14:27:33 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 14:27:33 [INFO]: Request method:
+2025-08-27 14:27:33 [INFO]: Request URL:
+2025-08-27 14:27:33 [INFO]: Request headers:
+2025-08-27 14:27:33 [INFO]: Raw request body (string):
+2025-08-27 14:27:33 [INFO]: Raw request body (typeof):
+2025-08-27 14:27:33 [INFO]: Raw request body (stringified):
+2025-08-27 14:27:33 [INFO]: Request query:
+2025-08-27 14:27:33 [INFO]: Content-Type:
+2025-08-27 14:27:33 [INFO]: User-Agent:
+2025-08-27 14:27:33 [INFO]: ========================
+2025-08-27 14:27:33 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 14:27:33 [INFO]: Raw webhook data:
+2025-08-27 14:27:33 [INFO]: Data type:
+2025-08-27 14:27:33 [INFO]: Data keys:
+2025-08-27 14:27:33 [INFO]: Data values:
+2025-08-27 14:27:33 [INFO]: ================================
+2025-08-27 14:27:33 [INFO]: Processing webhook data:
+2025-08-27 14:27:33 [INFO]: Actual data being processed:
+2025-08-27 14:27:33 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 14:27:33 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 14:27:33 [INFO]: Extracted opportunity_id: NelULh9qMtZ9iUgL4j2C
+2025-08-27 14:27:33 [INFO]: Handling opportunity.updated event
+2025-08-27 14:27:33 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 14:27:33 [INFO]: Field mapping:
+2025-08-27 14:27:33 [INFO]: Updating opportunity NelULh9qMtZ9iUgL4j2C in database
+2025-08-27 14:27:33 [INFO]: Opportunity NelULh9qMtZ9iUgL4j2C updated successfully in database
+2025-08-27 14:27:33 [INFO]: Pipeline data synced successfully
+2025-08-27 14:27:33 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 14:28:02 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 14:28:02 [INFO]: Request method:
+2025-08-27 14:28:02 [INFO]: Request URL:
+2025-08-27 14:28:02 [INFO]: Request headers:
+2025-08-27 14:28:02 [INFO]: Raw request body (string):
+2025-08-27 14:28:02 [INFO]: Raw request body (typeof):
+2025-08-27 14:28:02 [INFO]: Raw request body (stringified):
+2025-08-27 14:28:02 [INFO]: Request query:
+2025-08-27 14:28:02 [INFO]: Content-Type:
+2025-08-27 14:28:02 [INFO]: User-Agent:
+2025-08-27 14:28:02 [INFO]: ========================
+2025-08-27 14:28:02 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 14:28:02 [INFO]: Raw webhook data:
+2025-08-27 14:28:02 [INFO]: Data type:
+2025-08-27 14:28:02 [INFO]: Data keys:
+2025-08-27 14:28:02 [INFO]: Data values:
+2025-08-27 14:28:02 [INFO]: ================================
+2025-08-27 14:28:02 [INFO]: Processing webhook data:
+2025-08-27 14:28:02 [INFO]: Actual data being processed:
+2025-08-27 14:28:03 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 14:28:03 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 14:28:03 [INFO]: Extracted opportunity_id: NelULh9qMtZ9iUgL4j2C
+2025-08-27 14:28:03 [INFO]: Handling opportunity.updated event
+2025-08-27 14:28:03 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 14:28:03 [INFO]: Field mapping:
+2025-08-27 14:28:03 [INFO]: Updating opportunity NelULh9qMtZ9iUgL4j2C in database
+2025-08-27 14:28:03 [INFO]: Opportunity NelULh9qMtZ9iUgL4j2C updated successfully in database
+2025-08-27 14:28:03 [INFO]: Pipeline data synced successfully
+2025-08-27 14:28:03 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 14:28:20 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 14:28:20 [INFO]: Request method:
+2025-08-27 14:28:20 [INFO]: Request URL:
+2025-08-27 14:28:20 [INFO]: Request headers:
+2025-08-27 14:28:20 [INFO]: Raw request body (string):
+2025-08-27 14:28:20 [INFO]: Raw request body (typeof):
+2025-08-27 14:28:20 [INFO]: Raw request body (stringified):
+2025-08-27 14:28:20 [INFO]: Request query:
+2025-08-27 14:28:20 [INFO]: Content-Type:
+2025-08-27 14:28:20 [INFO]: User-Agent:
+2025-08-27 14:28:20 [INFO]: ========================
+2025-08-27 14:28:20 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 14:28:20 [INFO]: Raw webhook data:
+2025-08-27 14:28:20 [INFO]: Data type:
+2025-08-27 14:28:20 [INFO]: Data keys:
+2025-08-27 14:28:20 [INFO]: Data values:
+2025-08-27 14:28:20 [INFO]: ================================
+2025-08-27 14:28:20 [INFO]: Processing webhook data:
+2025-08-27 14:28:20 [INFO]: Actual data being processed:
+2025-08-27 14:28:20 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 14:28:20 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 14:28:20 [INFO]: Extracted opportunity_id: NelULh9qMtZ9iUgL4j2C
+2025-08-27 14:28:20 [INFO]: Handling opportunity.updated event
+2025-08-27 14:28:20 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 14:28:20 [INFO]: Field mapping:
+2025-08-27 14:28:20 [INFO]: Updating opportunity NelULh9qMtZ9iUgL4j2C in database
+2025-08-27 14:28:20 [INFO]: Opportunity NelULh9qMtZ9iUgL4j2C updated successfully in database
+2025-08-27 14:28:20 [INFO]: Pipeline data synced successfully
+2025-08-27 14:28:20 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 14:56:22 [INFO]: Server is running on http://localhost:3001
+2025-08-27 15:04:19 [INFO]: Server is running on http://localhost:3001
+2025-08-27 15:08:34 [INFO]: Server is running on http://localhost:3001
+2025-08-27 15:16:52 [INFO]: Server is running on http://localhost:3001
+2025-08-27 15:17:04 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 15:17:04 [INFO]: Request method:
+2025-08-27 15:17:04 [INFO]: Request URL:
+2025-08-27 15:17:04 [INFO]: Request headers:
+2025-08-27 15:17:04 [INFO]: Raw request body (string):
+2025-08-27 15:17:04 [INFO]: Raw request body (typeof):
+2025-08-27 15:17:04 [INFO]: Raw request body (stringified):
+2025-08-27 15:17:04 [INFO]: Request query:
+2025-08-27 15:17:04 [INFO]: Content-Type:
+2025-08-27 15:17:04 [INFO]: User-Agent:
+2025-08-27 15:17:04 [INFO]: ========================
+2025-08-27 15:17:04 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 15:17:04 [INFO]: Raw webhook data:
+2025-08-27 15:17:04 [INFO]: Data type:
+2025-08-27 15:17:04 [INFO]: Data keys:
+2025-08-27 15:17:04 [INFO]: Data values:
+2025-08-27 15:17:04 [INFO]: ================================
+2025-08-27 15:17:04 [INFO]: Processing webhook data:
+2025-08-27 15:17:04 [INFO]: Actual data being processed:
+2025-08-27 15:17:04 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 15:17:04 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 15:17:04 [INFO]: Extracted opportunity_id: lJ1tXrIkOvs32LKUFt5w
+2025-08-27 15:17:04 [INFO]: Handling opportunity.created event
+2025-08-27 15:17:04 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 15:17:04 [INFO]: Field mapping:
+2025-08-27 15:17:04 [INFO]: Creating opportunity lJ1tXrIkOvs32LKUFt5w in database
+2025-08-27 15:17:05 [INFO]: Opportunity lJ1tXrIkOvs32LKUFt5w created successfully in database
+2025-08-27 15:17:05 [INFO]: Pipeline data synced successfully
+2025-08-27 15:17:05 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 15:19:32 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 15:19:32 [INFO]: Request method:
+2025-08-27 15:19:32 [INFO]: Request URL:
+2025-08-27 15:19:32 [INFO]: Request headers:
+2025-08-27 15:19:32 [INFO]: Raw request body (string):
+2025-08-27 15:19:32 [INFO]: Raw request body (typeof):
+2025-08-27 15:19:32 [INFO]: Raw request body (stringified):
+2025-08-27 15:19:32 [INFO]: Request query:
+2025-08-27 15:19:32 [INFO]: Content-Type:
+2025-08-27 15:19:32 [INFO]: User-Agent:
+2025-08-27 15:19:32 [INFO]: ========================
+2025-08-27 15:19:32 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 15:19:32 [INFO]: Raw webhook data:
+2025-08-27 15:19:32 [INFO]: Data type:
+2025-08-27 15:19:32 [INFO]: Data keys:
+2025-08-27 15:19:32 [INFO]: Data values:
+2025-08-27 15:19:32 [INFO]: ================================
+2025-08-27 15:19:32 [INFO]: Processing webhook data:
+2025-08-27 15:19:32 [INFO]: Actual data being processed:
+2025-08-27 15:19:32 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 15:19:32 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 15:19:32 [INFO]: Extracted opportunity_id: 2NrQOCMYtNGgZbxO8mVd
+2025-08-27 15:19:32 [INFO]: Handling opportunity.created event
+2025-08-27 15:19:32 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 15:19:32 [INFO]: Field mapping:
+2025-08-27 15:19:32 [INFO]: Creating opportunity 2NrQOCMYtNGgZbxO8mVd in database
+2025-08-27 15:19:32 [INFO]: Opportunity 2NrQOCMYtNGgZbxO8mVd created successfully in database
+2025-08-27 15:19:32 [INFO]: Pipeline data synced successfully
+2025-08-27 15:19:32 [INFO]: Sending success response: Webhook processed successfully

@@ -7,6 +7,7 @@ const analyticsMiddleware = require('./middleware/analytics');
 const logger = require('./config/logger');
 const oauthRoutes = require('./routes/oauthRoutes');
 const webhookRoutes = require('./routes/webhookRoutes');
+const tokenRoutes = require('./routes/tokenRoutes');
 
 const app = express();
 const port = 3001;
@@ -28,6 +29,9 @@ app.use('/api', oauthRoutes);
 
 // Use webhook routes for GoHighLevel
 app.use('/api/webhooks', webhookRoutes);
+
+// Use token management routes
+app.use('/api/tokens', tokenRoutes);
 
 // Start the server
 app.listen(port, () => {
