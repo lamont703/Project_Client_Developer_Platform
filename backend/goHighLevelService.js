@@ -45,15 +45,15 @@ async function exchangeCodeForTokens(code) {
 }
 
 // Function to create an opportunity in the pipeline
-async function createOpportunityInPipeline(title) {
+async function createOpportunityInPipeline(jobData) {
     const opportunityData = {
-        pipelineId: "uR2CMkTiwqoUOYuf8oGR",
-        locationId: "QLyYYRoOhCg65lKW9HDX",
-        name: title,
-        pipelineStageId: "94d76438-fa70-4282-a4df-ad5286a6bf76",
+        pipelineId: process.env.GHL_PIPELINE_ID,
+        locationId: process.env.GHL_LOCATION_ID,
+        name: jobData.title,
+        pipelineStageId: process.env.GHL_PIPELINE_STAGE_ID,
         status: "open",
         contactId: "X9BZelkJiMRBoBfQ2exx",
-        monetaryValue: 220,
+        monetaryValue: jobData.salary,
         assignedTo: ""
     };
 

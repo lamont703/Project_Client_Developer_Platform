@@ -7,6 +7,7 @@ const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
+// Save tokens to database
 async function saveTokensToDatabase(locationId, accessToken, refreshToken, expiresIn) {
     const expiresAt = new Date(Date.now() + expiresIn * 1000);
     try {
@@ -42,6 +43,7 @@ function transformJobDataForDatabase(jobData) {
     };
 }
 
+// Insert job draft into job_drafts table
 async function insertJobDraft(jobData) {
     console.log('Inserting job draft into job_drafts table:', jobData);
     
@@ -67,6 +69,7 @@ async function insertJobDraft(jobData) {
     }
 }
 
+// Get all jobs from job_drafts table
 async function getAllJobs() {
     try {
         const { data, error } = await supabase
