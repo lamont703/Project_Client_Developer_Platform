@@ -180,12 +180,15 @@ async function generateProjectAssets(transcript) {
         }
     });
 
-    console.log("This is the User Request Transcript: ", transcript);
+    console.log("\n🔍 === GENERATE PROJECT ASSETS DEBUG ===");
+    console.log("📥 Received transcript:", transcript);
+    console.log("📏 Transcript length:", transcript.length);
+    console.log("📄 Transcript preview (first 200 chars):", transcript.substring(0, 200) + "...");
     
     const prompt = `
     **CRITICAL TASK: Generate a complete, self-contained project package based on the user's request.**
 
-    **USER REQUEST TRANSCRIPT:**
+    **USER'S REQUEST TRANSCRIPT:**
     ---
     ${transcript}
     ---
@@ -237,6 +240,10 @@ async function generateProjectAssets(transcript) {
     - Return the entire project as a single, valid JSON object. Do not include any other text or explanation in your response.
     `;
 
+    console.log("\n📋 Generated prompt length:", prompt.length);
+    console.log("📋 Prompt preview (first 300 chars):", prompt.substring(0, 300) + "...");
+    console.log("🔍 === END PROMPT DEBUG ===\n");
+
     console.log("--- Generating Project Assets... This may take a moment. ---");
     
     try {
@@ -249,7 +256,12 @@ async function generateProjectAssets(transcript) {
         console.log("--- Asset Generation Complete. ---");
         
         const responseText = result.response.text();
-        console.log("Raw AI response length:", responseText.length);
+        console.log("\n🔍 === LLM RESPONSE DEBUG ===");
+        console.log("📏 Raw AI response length:", responseText.length);
+        console.log("📄 Raw AI response preview (first 500 chars):");
+        console.log(responseText.substring(0, 500) + "...");
+        console.log("\n📄 Raw AI response preview (last 500 chars):");
+        console.log("..." + responseText.substring(Math.max(0, responseText.length - 500)));
         
         try {
             // Try to clean the response if it has extra content
@@ -258,7 +270,10 @@ async function generateProjectAssets(transcript) {
             // Look for JSON content between ```json and ``` if present
             const jsonMatch = cleanedResponse.match(/```json\s*(\{[\s\S]*\})\s*```/);
             if (jsonMatch) {
+                console.log("✅ Found JSON wrapped in ```json``` blocks");
                 cleanedResponse = jsonMatch[1];
+            } else {
+                console.log("ℹ️  No ```json``` blocks found, looking for raw JSON");
             }
             
             // Look for JSON content that starts with { and ends with }
@@ -266,13 +281,24 @@ async function generateProjectAssets(transcript) {
             const jsonEnd = cleanedResponse.lastIndexOf('}');
             
             if (jsonStart !== -1 && jsonEnd !== -1 && jsonEnd > jsonStart) {
+                console.log(`✅ Found JSON content from position ${jsonStart} to ${jsonEnd}`);
                 cleanedResponse = cleanedResponse.substring(jsonStart, jsonEnd + 1);
+            } else {
+                console.log("❌ Could not find JSON start/end markers");
             }
             
-            return JSON.parse(cleanedResponse);
+            console.log("📋 Cleaned response length:", cleanedResponse.length);
+            console.log("📋 Cleaned response preview (first 300 chars):", cleanedResponse.substring(0, 300) + "...");
+            
+            const parsedResponse = JSON.parse(cleanedResponse);
+            console.log("✅ JSON parsed successfully!");
+            console.log("📁 Generated files:", Object.keys(parsedResponse));
+            console.log("🔍 === END LLM RESPONSE DEBUG ===\n");
+            
+            return parsedResponse;
         } catch (parseError) {
-            console.error('Failed to parse JSON response:', parseError);
-            console.error('Raw response preview:', responseText.substring(0, 500) + '...');
+            console.error('❌ Failed to parse JSON response:', parseError);
+            console.error('📋 Cleaned response preview:', cleanedResponse.substring(0, 500) + '...');
             console.log('🔄 JSON parsing failed, falling back to simplified wireframe...');
             return null; // Signal to use fallback
         }
@@ -420,31 +446,69 @@ async function generateAndDeployProject(transcript, jobData = null) {
 // Function to create a wire frame for a job
 async function createWireFrame(jobData) {
     try {
-        // Convert job data to a transcript-like format for processing
+        console.log('\n🔍 === WIREFRAME CREATION DEBUG ===');
+        console.log('📥 Received jobData:', JSON.stringify(jobData, null, 2));
+        
+        // Convert job data to a clear, structured transcript for processing
         const transcript = `
-        Create a project for: ${jobData.title}
-        Category: ${jobData.category}
-        Description: ${jobData.description}
-        Target Audience: ${jobData.targetAudience}
-        Key Features: ${jobData.keyFeatures}
-        Technology Stack: ${jobData.technologyStack}
-        Budget: ${jobData.budget}
-        Timeline: ${jobData.timeline}
-        Success Criteria: ${jobData.successCriteria}
-        Potential Challenges: ${jobData.potentialChallenges}
+**PROJECT REQUEST**
+
+**Project Title:** ${jobData.title}
+**Category:** ${jobData.category}
+
+**Project Description:**
+${jobData.description}
+
+**Target Audience:**
+${jobData.targetAudience}
+
+**Key Features:**
+${Array.isArray(jobData.keyFeatures) ? jobData.keyFeatures.map(feature => `• ${feature}`).join('\n') : `• ${jobData.keyFeatures}`}
+
+**Technology Stack:**
+${Array.isArray(jobData.technologyStack) ? jobData.technologyStack.map(tech => `• ${tech}`).join('\n') : `• ${jobData.technologyStack}`}
+
+**Budget:** ${jobData.budget}
+**Timeline:** ${jobData.timeline}
+
+**Success Criteria:**
+${Array.isArray(jobData.successCriteria) ? jobData.successCriteria.map(criteria => `• ${criteria}`).join('\n') : `• ${jobData.successCriteria}`}
+
+**Potential Challenges:**
+${Array.isArray(jobData.potentialChallenges) ? jobData.potentialChallenges.map(challenge => `• ${challenge}`).join('\n') : `• ${jobData.potentialChallenges}`}
+
+**END PROJECT REQUEST**
         `;
 
-        console.log('Creating wireframe for job:', jobData.title);
+        console.log('\n📝 Generated transcript:');
+        console.log('--- TRANSCRIPT START ---');
+        console.log(transcript);
+        console.log('--- TRANSCRIPT END ---');
+        
+        console.log('\n📊 Transcript analysis:');
+        console.log('- Title length:', jobData.title?.length || 0);
+        console.log('- Description length:', jobData.description?.length || 0);
+        console.log('- Has category:', !!jobData.category);
+        console.log('- Has targetAudience:', !!jobData.targetAudience);
+        console.log('- Has keyFeatures:', !!jobData.keyFeatures);
+        console.log('- Has technologyStack:', !!jobData.technologyStack);
+        console.log('- Has budget:', !!jobData.budget);
+        console.log('- Has timeline:', !!jobData.timeline);
+        console.log('- Has successCriteria:', !!jobData.successCriteria);
+        console.log('- Has potentialChallenges:', !!jobData.potentialChallenges);
+        
+        console.log('\n🚀 Calling generateAndDeployProject...');
         const result = await generateAndDeployProject(transcript, jobData);
-        console.log('Wireframe created successfully:', result);
+        console.log('\n✅ Wireframe created successfully:', result);
         
         if (result.fallback_used) {
             console.log('ℹ️  Note: Simplified wireframe was used due to API limitations. Full AI-generated wireframes will be available when quota is restored.');
         }
         
+        console.log('🔍 === END DEBUG ===\n');
         return result;
     } catch (error) {
-        console.error('Error creating wireframe:', error);
+        console.error('❌ Error creating wireframe:', error);
         throw error;
     }
 }

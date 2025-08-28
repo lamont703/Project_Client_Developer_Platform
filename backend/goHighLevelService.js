@@ -131,7 +131,7 @@ async function exchangeCodeForTokens(code) {
 // Function to create an opportunity in the pipeline
 async function createOpportunityInPipeline(jobData) {
     // First, let's get the pipeline stage name
-    let pipelineStageName = "New Lead"; // Default name
+    let pipelineStageName = "Discovery Call"; // Default name
     
     try {
         const token = await getValidAccessToken();
@@ -148,6 +148,7 @@ async function createOpportunityInPipeline(jobData) {
         
         if (stageResponse.data && stageResponse.data.name) {
             pipelineStageName = stageResponse.data.name;
+            console.log('Pipeline stage name:', pipelineStageName);
         }
     } catch (error) {
         console.log('Could not fetch pipeline stage name, using default:', error.message);
@@ -158,7 +159,6 @@ async function createOpportunityInPipeline(jobData) {
         locationId: process.env.GHL_LOCATION_ID,
         name: jobData.title || jobData.name,
         pipelineStageId: process.env.GHL_PIPELINE_STAGE_ID,
-        pipelineStageName: pipelineStageName, // Include the stage name
         status: "open",
         contactId: "X9BZelkJiMRBoBfQ2exx", // You might want to make this dynamic
         monetaryValue: jobData.salary || jobData.monetary_value || 0,

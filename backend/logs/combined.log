@@ -2122,3 +2122,98 @@
 2025-08-28 01:01:54 [INFO]: Found 17 total opportunities, 16 are open
 2025-08-28 01:01:54 [INFO]: Fetching all opportunities from database
 2025-08-28 01:01:55 [INFO]: Found 17 total opportunities, 16 are open
+2025-08-28 02:33:07 [INFO]: Server is running on http://localhost:3001
+2025-08-28 02:44:59 [INFO]: Fetching all opportunities from database
+2025-08-28 02:45:00 [INFO]: Found 17 total opportunities, 16 are open
+2025-08-28 02:45:00 [INFO]: Fetching all opportunities from database
+2025-08-28 02:45:00 [INFO]: Found 17 total opportunities, 16 are open
+2025-08-28 03:02:32 [INFO]: Server is running on http://localhost:3001
+2025-08-28 03:10:32 [INFO]: Server is running on http://localhost:3001
+2025-08-28 03:13:10 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-28 03:13:10 [INFO]: Request method:
+2025-08-28 03:13:10 [INFO]: Request URL:
+2025-08-28 03:13:10 [INFO]: Request headers:
+2025-08-28 03:13:10 [INFO]: Raw request body (string):
+2025-08-28 03:13:10 [INFO]: Raw request body (typeof):
+2025-08-28 03:13:10 [INFO]: Raw request body (stringified):
+2025-08-28 03:13:10 [INFO]: Request query:
+2025-08-28 03:13:10 [INFO]: Content-Type:
+2025-08-28 03:13:10 [INFO]: User-Agent:
+2025-08-28 03:13:10 [INFO]: ========================
+2025-08-28 03:13:10 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-28 03:13:10 [INFO]: Raw webhook data:
+2025-08-28 03:13:10 [INFO]: Data type:
+2025-08-28 03:13:10 [INFO]: Data keys:
+2025-08-28 03:13:10 [INFO]: Data values:
+2025-08-28 03:13:10 [INFO]: ================================
+2025-08-28 03:13:10 [INFO]: Processing webhook data:
+2025-08-28 03:13:10 [INFO]: Actual data being processed:
+2025-08-28 03:13:10 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-28 03:13:10 [INFO]: Extracted event_type: opportunity.created
+2025-08-28 03:13:10 [INFO]: Extracted opportunity_id: XEgotHLWeARzxLAp7qVa
+2025-08-28 03:13:10 [INFO]: Handling opportunity.created event
+2025-08-28 03:13:10 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-28 03:13:10 [INFO]: Field mapping:
+2025-08-28 03:13:10 [INFO]: Creating opportunity XEgotHLWeARzxLAp7qVa in database
+2025-08-28 03:13:11 [INFO]: Opportunity XEgotHLWeARzxLAp7qVa created successfully in database
+2025-08-28 03:13:11 [INFO]: Pipeline data synced successfully
+2025-08-28 03:13:11 [INFO]: Sending success response: Webhook processed successfully
+2025-08-28 03:16:05 [INFO]: Server is running on http://localhost:3001
+2025-08-28 03:16:13 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-28 03:16:13 [INFO]: Request method:
+2025-08-28 03:16:13 [INFO]: Request URL:
+2025-08-28 03:16:13 [INFO]: Request headers:
+2025-08-28 03:16:13 [INFO]: Raw request body (string):
+2025-08-28 03:16:13 [INFO]: Raw request body (typeof):
+2025-08-28 03:16:13 [INFO]: Raw request body (stringified):
+2025-08-28 03:16:13 [INFO]: Request query:
+2025-08-28 03:16:13 [INFO]: Content-Type:
+2025-08-28 03:16:13 [INFO]: User-Agent:
+2025-08-28 03:16:13 [INFO]: ========================
+2025-08-28 03:16:13 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-28 03:16:13 [INFO]: Raw webhook data:
+2025-08-28 03:16:13 [INFO]: Data type:
+2025-08-28 03:16:13 [INFO]: Data keys:
+2025-08-28 03:16:13 [INFO]: Data values:
+2025-08-28 03:16:13 [INFO]: ================================
+2025-08-28 03:16:13 [INFO]: Processing webhook data:
+2025-08-28 03:16:13 [INFO]: Actual data being processed:
+2025-08-28 03:16:13 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-28 03:16:13 [INFO]: Extracted event_type: opportunity.created
+2025-08-28 03:16:13 [INFO]: Extracted opportunity_id: MD88vA0mGTkZIP6RwftS
+2025-08-28 03:16:13 [INFO]: Handling opportunity.created event
+2025-08-28 03:16:13 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-28 03:16:13 [INFO]: Field mapping:
+2025-08-28 03:16:13 [INFO]: Creating opportunity MD88vA0mGTkZIP6RwftS in database
+2025-08-28 03:16:13 [INFO]: Opportunity MD88vA0mGTkZIP6RwftS created successfully in database
+2025-08-28 03:16:13 [INFO]: Pipeline data synced successfully
+2025-08-28 03:16:13 [INFO]: Sending success response: Webhook processed successfully
+2025-08-28 03:16:16 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-28 03:16:16 [INFO]: Request method:
+2025-08-28 03:16:16 [INFO]: Request URL:
+2025-08-28 03:16:16 [INFO]: Request headers:
+2025-08-28 03:16:16 [INFO]: Raw request body (string):
+2025-08-28 03:16:16 [INFO]: Raw request body (typeof):
+2025-08-28 03:16:16 [INFO]: Raw request body (stringified):
+2025-08-28 03:16:16 [INFO]: Request query:
+2025-08-28 03:16:16 [INFO]: Content-Type:
+2025-08-28 03:16:16 [INFO]: User-Agent:
+2025-08-28 03:16:16 [INFO]: ========================
+2025-08-28 03:16:16 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-28 03:16:16 [INFO]: Raw webhook data:
+2025-08-28 03:16:16 [INFO]: Data type:
+2025-08-28 03:16:16 [INFO]: Data keys:
+2025-08-28 03:16:16 [INFO]: Data values:
+2025-08-28 03:16:16 [INFO]: ================================
+2025-08-28 03:16:16 [INFO]: Processing webhook data:
+2025-08-28 03:16:16 [INFO]: Actual data being processed:
+2025-08-28 03:16:16 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-28 03:16:16 [INFO]: Extracted event_type: opportunity.updated
+2025-08-28 03:16:16 [INFO]: Extracted opportunity_id: MD88vA0mGTkZIP6RwftS
+2025-08-28 03:16:16 [INFO]: Handling opportunity.updated event
+2025-08-28 03:16:16 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-28 03:16:16 [INFO]: Field mapping:
+2025-08-28 03:16:16 [INFO]: Updating opportunity MD88vA0mGTkZIP6RwftS in database
+2025-08-28 03:16:16 [INFO]: Opportunity MD88vA0mGTkZIP6RwftS updated successfully in database
+2025-08-28 03:16:16 [INFO]: Pipeline data synced successfully
+2025-08-28 03:16:16 [INFO]: Sending success response: Webhook processed successfully
