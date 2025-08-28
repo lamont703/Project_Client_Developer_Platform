@@ -310,28 +310,62 @@
         grid-template-columns: 1fr;
         gap: 20px;
         padding: 0 5px;
+        width: 100%;
     }
     
     .job-card {
         margin: 0 auto;
+        width: 100%;
         max-width: 100%;
+        min-height: 400px;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
     }
     
     .job-header {
         padding: 20px;
+        flex-shrink: 0;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .job-header h2 {
         font-size: 1.3rem;
+        min-height: 2.6rem;
+        display: flex;
+        align-items: center;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        -webkit-hyphens: auto;
+        hyphens: auto;
     }
     
     .job-details {
         padding: 20px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .job-field {
         margin-bottom: 14px;
         padding: 10px 0;
+        min-height: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .job-field p {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-width: 100%;
     }
     
     .job-footer {
@@ -339,6 +373,9 @@
         gap: 15px;
         align-items: stretch;
         padding: 20px;
+        flex-shrink: 0;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .apply-button {
@@ -346,6 +383,8 @@
         text-align: center;
         padding: 15px 20px;
         font-size: 0.9rem;
+        height: 50px;
+        box-sizing: border-box;
     }
     
     .job-date {
@@ -367,20 +406,41 @@
     .jobs-grid {
         gap: 15px;
         margin-top: 1.5rem;
+        width: 100%;
+    }
+    
+    .job-card {
+        min-height: 380px;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .job-header,
     .job-details {
         padding: 16px;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .job-header h2 {
         font-size: 1.2rem;
+        min-height: 2.4rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        -webkit-hyphens: auto;
+        hyphens: auto;
     }
     
     .job-category {
         font-size: 0.8rem;
         padding: 6px 12px;
+    }
+    
+    .job-field {
+        min-height: 55px;
+        margin-bottom: 12px;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .job-field strong {
@@ -389,10 +449,21 @@
     
     .job-field p {
         font-size: 0.9rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-width: 100%;
     }
     
     .job-footer {
         padding: 16px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .apply-button {
+        height: 45px;
+        padding: 12px 18px;
+        box-sizing: border-box;
     }
 }
 

@@ -264,12 +264,19 @@ function testWebhook(webhookData) {
 async function getAllOpportunitiesController(req, res) {
     try {
         logger.info('Fetching all opportunities from database');
-        const opportunities = await getAllOpportunities();
+        const allOpportunities = await getAllOpportunities();
+        
+        // Filter to only return opportunities with "open" status
+        const openOpportunities = allOpportunities.filter(opp => opp.status === 'open');
+        
+        logger.info(`Found ${allOpportunities.length} total opportunities, ${openOpportunities.length} are open`);
         
         const result = {
             success: true,
-            opportunities: opportunities,
-            count: opportunities.length,
+            opportunities: openOpportunities,
+            count: openOpportunities.length,
+            total_count: allOpportunities.length,
+            filtered_by: 'open_status',
             timestamp: new Date().toISOString()
         };
         

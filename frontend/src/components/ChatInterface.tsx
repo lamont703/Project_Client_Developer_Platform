@@ -135,6 +135,38 @@ I'm excited to help you bring this project to life! Let's proceed to create your
     return (
         <div className="chat-interface">
             <h1>🤖 AI Project Assistant</h1>
+            
+            {/* Hero CTA Section */}
+            <div className="hero-cta">
+                <div className="hero-content">
+                    <h2>🚀 Turn Your Project Idea Into Reality</h2>
+                    <p className="hero-subtitle">
+                        Share your project vision with our AI and get a <strong>FREE prototype</strong> delivered to your inbox!
+                    </p>
+                    <div className="hero-benefits">
+                        <div className="benefit-item">
+                            <span className="benefit-icon">✨</span>
+                            <span>AI-powered project analysis</span>
+                        </div>
+                        <div className="benefit-item">
+                            <span className="benefit-icon">🎯</span>
+                            <span>Professional wireframe prototype</span>
+                        </div>
+                        <div className="benefit-item">
+                            <span className="benefit-icon">📧</span>
+                            <span>Delivered to your email</span>
+                        </div>
+                        <div className="benefit-item">
+                            <span className="benefit-icon">💯</span>
+                            <span>100% FREE - No strings attached</span>
+                        </div>
+                    </div>
+                    <p className="hero-cta-text">
+                        <strong>Start by describing your project idea below</strong> 👇
+                    </p>
+                </div>
+            </div>
+            
             <div className="chat-window" ref={chatWindowRef}>
                 {messages.map((msg, index) => (
                     <div key={index} className={`chat-message ${msg.sender.toLowerCase()}`}>

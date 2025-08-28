@@ -2055,3 +2055,70 @@
 2025-08-27 23:52:28 [INFO]: Server is running on http://localhost:3001
 2025-08-27 23:52:33 [INFO]: Fetching all opportunities from database
 2025-08-27 23:52:34 [INFO]: Fetching all opportunities from database
+2025-08-28 00:51:08 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-28 00:51:08 [INFO]: Request method:
+2025-08-28 00:51:08 [INFO]: Request URL:
+2025-08-28 00:51:08 [INFO]: Request headers:
+2025-08-28 00:51:08 [INFO]: Raw request body (string):
+2025-08-28 00:51:08 [INFO]: Raw request body (typeof):
+2025-08-28 00:51:08 [INFO]: Raw request body (stringified):
+2025-08-28 00:51:08 [INFO]: Request query:
+2025-08-28 00:51:08 [INFO]: Content-Type:
+2025-08-28 00:51:08 [INFO]: User-Agent:
+2025-08-28 00:51:08 [INFO]: ========================
+2025-08-28 00:51:08 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-28 00:51:08 [INFO]: Raw webhook data:
+2025-08-28 00:51:08 [INFO]: Data type:
+2025-08-28 00:51:08 [INFO]: Data keys:
+2025-08-28 00:51:08 [INFO]: Data values:
+2025-08-28 00:51:08 [INFO]: ================================
+2025-08-28 00:51:08 [INFO]: Processing webhook data:
+2025-08-28 00:51:08 [INFO]: Actual data being processed:
+2025-08-28 00:51:09 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-28 00:51:09 [INFO]: Extracted event_type: opportunity.updated
+2025-08-28 00:51:09 [INFO]: Extracted opportunity_id: zguU9ttFWOo6UBQbNuSn
+2025-08-28 00:51:09 [INFO]: Handling opportunity.updated event
+2025-08-28 00:51:09 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-28 00:51:09 [INFO]: Field mapping:
+2025-08-28 00:51:09 [INFO]: Updating opportunity zguU9ttFWOo6UBQbNuSn in database
+2025-08-28 00:51:09 [INFO]: Opportunity zguU9ttFWOo6UBQbNuSn updated successfully in database
+2025-08-28 00:51:09 [INFO]: Pipeline data synced successfully
+2025-08-28 00:51:09 [INFO]: Sending success response: Webhook processed successfully
+2025-08-28 00:51:58 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-28 00:51:58 [INFO]: Request method:
+2025-08-28 00:51:58 [INFO]: Request URL:
+2025-08-28 00:51:58 [INFO]: Request headers:
+2025-08-28 00:51:58 [INFO]: Raw request body (string):
+2025-08-28 00:51:58 [INFO]: Raw request body (typeof):
+2025-08-28 00:51:58 [INFO]: Raw request body (stringified):
+2025-08-28 00:51:58 [INFO]: Request query:
+2025-08-28 00:51:58 [INFO]: Content-Type:
+2025-08-28 00:51:58 [INFO]: User-Agent:
+2025-08-28 00:51:58 [INFO]: ========================
+2025-08-28 00:51:58 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-28 00:51:58 [INFO]: Raw webhook data:
+2025-08-28 00:51:58 [INFO]: Data type:
+2025-08-28 00:51:58 [INFO]: Data keys:
+2025-08-28 00:51:58 [INFO]: Data values:
+2025-08-28 00:51:58 [INFO]: ================================
+2025-08-28 00:51:58 [INFO]: Processing webhook data:
+2025-08-28 00:51:58 [INFO]: Actual data being processed:
+2025-08-28 00:51:59 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-28 00:51:59 [INFO]: Extracted event_type: opportunity.updated
+2025-08-28 00:51:59 [INFO]: Extracted opportunity_id: rCl4x3lt8euidTcFh3HY
+2025-08-28 00:51:59 [INFO]: Handling opportunity.updated event
+2025-08-28 00:51:59 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-28 00:51:59 [INFO]: Field mapping:
+2025-08-28 00:51:59 [INFO]: Updating opportunity rCl4x3lt8euidTcFh3HY in database
+2025-08-28 00:51:59 [INFO]: Opportunity rCl4x3lt8euidTcFh3HY updated successfully in database
+2025-08-28 00:51:59 [INFO]: Pipeline data synced successfully
+2025-08-28 00:51:59 [INFO]: Sending success response: Webhook processed successfully
+2025-08-28 00:55:18 [INFO]: Fetching all opportunities from database
+2025-08-28 00:55:19 [INFO]: Fetching all opportunities from database
+2025-08-28 01:01:24 [INFO]: Fetching all opportunities from database
+2025-08-28 01:01:25 [INFO]: Fetching all opportunities from database
+2025-08-28 01:01:48 [INFO]: Server is running on http://localhost:3001
+2025-08-28 01:01:54 [INFO]: Fetching all opportunities from database
+2025-08-28 01:01:54 [INFO]: Found 17 total opportunities, 16 are open
+2025-08-28 01:01:54 [INFO]: Fetching all opportunities from database
+2025-08-28 01:01:55 [INFO]: Found 17 total opportunities, 16 are open
