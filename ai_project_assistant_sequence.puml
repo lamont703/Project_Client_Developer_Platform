@@ -5,9 +5,13 @@ participant SE as "Slot Engine\n(state machine)"
 participant GEN as "Generators\n(title/desc/skills/milestones/budget)"
 database LS as "Local Storage\n(assistantState, jobDraft)"
 participant PJ as "Post Job Wizard\n(/prototype/post-job.html)"
-participant API as "Backend API\n(auth/jobs) [optional]"
-control ANA as "Analytics\n(client-side)"
-participant GHL as "GoHighLevel\nOpportunity Pipeline"
+participant API as "Backend Server\n(Express.js)"
+participant ROUTES as "Routes\n(/api/jobs)"
+participant CONTROLLER as "Controllers\n(jobController)"
+participant DB as "Database\n(Supabase)"
+control ANA as "Analytics\n(middleware)"
+participant GHL as "GoHighLevel\nService"
+participant WIREFRAME as "WireFrame\nService"
 participant GH as "GitHub\nPages"
 participant DEV as "Developer Team\nEmail"
 
@@ -83,7 +87,33 @@ U  ->> PJ : Review & Publish
 
 opt Authenticated user
     PJ ->> API : POST /jobs (jobDraft)
-    API -->> PJ: 201 Created {jobId}
+    
+    ' Backend Server Flow
+    API ->> ANA : analytics middleware\n(client-side tracking)
+    ANA -->> API : analytics processed
+    
+    API ->> ROUTES : route to /api/jobs
+    ROUTES ->> CONTROLLER : jobController.createJob()
+    
+    ' Database Operations
+    CONTROLLER ->> DB : insertJobDraft(jobData)
+    DB -->> CONTROLLER : jobId created
+    
+    ' External Services
+    CONTROLLER ->> GHL : createOpportunityInPipeline(jobData)
+    GHL -->> CONTROLLER : opportunity created
+    
+    CONTROLLER ->> WIREFRAME : generateWireframe(jobData)
+    WIREFRAME -->> CONTROLLER : wireframe generated
+    
+    ' Store opportunity in database
+    CONTROLLER ->> DB : insertOpportunity(opportunityData)
+    DB -->> CONTROLLER : opportunity stored
+    
+    CONTROLLER -->> ROUTES : success response
+    ROUTES -->> API : 201 Created {jobId}
+    API -->> PJ : 201 Created {jobId}
+    
     PJ ->> ANA : post_published
 else Not authenticated (prototype)
     PJ -->> U : Show success toast (mock)
@@ -104,12 +134,35 @@ SE ->> LS : persist(assistantState)
 ' Post job on site
 SE ->> PJ : createJobPost(slots)
 PJ ->> API : POST /jobs (jobDraft)
-API -->> PJ: 201 Created {jobId}
-PJ ->> ANA : post_published
 
-' Update GoHighLevel pipeline
-PJ ->> GHL : updateOpportunity(jobId)
-GHL -->> PJ : Opportunity updated
+' Backend Server Flow (same as authenticated user path)
+API ->> ANA : analytics middleware\n(client-side tracking)
+ANA -->> API : analytics processed
+
+API ->> ROUTES : route to /api/jobs
+ROUTES ->> CONTROLLER : jobController.createJob()
+
+' Database Operations
+CONTROLLER ->> DB : insertJobDraft(jobData)
+DB -->> CONTROLLER : jobId created
+
+' External Services
+CONTROLLER ->> GHL : createOpportunityInPipeline(jobData)
+GHL -->> CONTROLLER : opportunity created
+
+CONTROLLER ->> WIREFRAME : generateWireframe(jobData)
+WIREFRAME -->> CONTROLLER : wireframe generated
+
+' Store opportunity in database
+CONTROLLER ->> DB : insertOpportunity(opportunityData)
+DB -->> CONTROLLER : opportunity stored
+
+CONTROLLER -->> ROUTES : success response
+ROUTES -->> API : 201 Created {jobId}
+API -->> PJ : 201 Created {jobId}
+
+' Post-publish flow
+PJ ->> ANA : post_published
 
 ' Trigger build and send to GitHub
 PJ ->> GH : triggerBuild(jobId)

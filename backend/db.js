@@ -105,6 +105,7 @@ async function insertOpportunity(opportunityData) {
                 contact_id: opportunityData.contact_id,
                 pipeline_id: opportunityData.pipeline_id,
                 pipeline_stage_id: opportunityData.pipeline_stage_id,
+                pipeline_stage_name: opportunityData.pipeline_stage_name,
                 assigned_to: opportunityData.assigned_to,
                 created_at: opportunityData.created_at,
                 updated_at: opportunityData.updated_at
@@ -135,6 +136,7 @@ async function updateOpportunity(opportunityId, updateData) {
                 contact_id: updateData.contact_id,
                 pipeline_id: updateData.pipeline_id,
                 pipeline_stage_id: updateData.pipeline_stage_id,
+                pipeline_stage_name: updateData.pipeline_stage_name,
                 assigned_to: updateData.assigned_to,
                 updated_at: updateData.updated_at
             })
@@ -181,6 +183,7 @@ async function updateOpportunityStage(opportunityId, stageData) {
             .from('ghl_opportunities')
             .update({
                 pipeline_stage_id: stageData.pipeline_stage_id,
+                pipeline_stage_name: stageData.pipeline_stage_name,
                 status: stageData.status,
                 updated_at: stageData.updated_at
             })
@@ -202,18 +205,29 @@ async function updateOpportunityStage(opportunityId, stageData) {
 // Get opportunity by ID
 async function getOpportunityById(opportunityId) {
     try {
+        console.log('Fetching opportunity with ID:', opportunityId);
+        
+        // Use a simple query approach
         const { data, error } = await supabase
             .from('ghl_opportunities')
             .select('*')
-            .eq('opportunity_id', opportunityId)
-            .single();
+            .eq('id', opportunityId);
+
+        console.log('Supabase response:', { data, error });
 
         if (error) {
             console.error('Error fetching opportunity:', error);
             throw error;
         }
 
-        return data;
+        // Check if we got data
+        if (!data || data.length === 0) {
+            console.log('No opportunity found with ID:', opportunityId);
+            return null;
+        }
+
+        console.log('Found opportunity:', data[0]);
+        return data[0];
     } catch (error) {
         console.error('Error during opportunity fetch:', error);
         throw error;

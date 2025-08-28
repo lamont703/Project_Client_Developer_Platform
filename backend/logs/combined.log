@@ -1948,3 +1948,110 @@
 2025-08-27 15:34:33 [INFO]: Fetching all opportunities from database
 2025-08-27 15:34:56 [INFO]: Fetching all opportunities from database
 2025-08-27 15:34:56 [INFO]: Fetching all opportunities from database
+2025-08-27 15:37:33 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 15:37:33 [INFO]: Request method:
+2025-08-27 15:37:33 [INFO]: Request URL:
+2025-08-27 15:37:33 [INFO]: Request headers:
+2025-08-27 15:37:33 [INFO]: Raw request body (string):
+2025-08-27 15:37:33 [INFO]: Raw request body (typeof):
+2025-08-27 15:37:33 [INFO]: Raw request body (stringified):
+2025-08-27 15:37:33 [INFO]: Request query:
+2025-08-27 15:37:33 [INFO]: Content-Type:
+2025-08-27 15:37:33 [INFO]: User-Agent:
+2025-08-27 15:37:33 [INFO]: ========================
+2025-08-27 15:37:33 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 15:37:33 [INFO]: Raw webhook data:
+2025-08-27 15:37:33 [INFO]: Data type:
+2025-08-27 15:37:33 [INFO]: Data keys:
+2025-08-27 15:37:33 [INFO]: Data values:
+2025-08-27 15:37:33 [INFO]: ================================
+2025-08-27 15:37:33 [INFO]: Processing webhook data:
+2025-08-27 15:37:33 [INFO]: Actual data being processed:
+2025-08-27 15:37:33 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-27 15:37:33 [INFO]: Extracted event_type: opportunity.created
+2025-08-27 15:37:33 [INFO]: Extracted opportunity_id: zguU9ttFWOo6UBQbNuSn
+2025-08-27 15:37:33 [INFO]: Handling opportunity.created event
+2025-08-27 15:37:33 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 15:37:33 [INFO]: Field mapping:
+2025-08-27 15:37:33 [INFO]: Creating opportunity zguU9ttFWOo6UBQbNuSn in database
+2025-08-27 15:37:33 [INFO]: Opportunity zguU9ttFWOo6UBQbNuSn created successfully in database
+2025-08-27 15:37:33 [INFO]: Pipeline data synced successfully
+2025-08-27 15:37:33 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 15:38:19 [INFO]: Fetching all opportunities from database
+2025-08-27 15:38:20 [INFO]: Fetching all opportunities from database
+2025-08-27 15:43:21 [INFO]: Server is running on http://localhost:3001
+2025-08-27 15:43:29 [INFO]: Fetching all opportunities from database
+2025-08-27 15:43:30 [INFO]: Fetching all opportunities from database
+2025-08-27 15:43:58 [INFO]: Fetching all opportunities from database
+2025-08-27 15:45:05 [INFO]: Server is running on http://localhost:3001
+2025-08-27 15:45:12 [INFO]: Fetching all opportunities from database
+2025-08-27 15:45:13 [INFO]: Fetching all opportunities from database
+2025-08-27 15:45:26 [INFO]: Fetching all opportunities from database
+2025-08-27 15:45:32 [INFO]: Fetching all opportunities from database
+2025-08-27 15:45:58 [INFO]: Fetching all opportunities from database
+2025-08-27 15:45:58 [INFO]: Fetching all opportunities from database
+2025-08-27 15:47:04 [INFO]: Fetching all opportunities from database
+2025-08-27 15:47:05 [INFO]: Fetching all opportunities from database
+2025-08-27 15:48:45 [INFO]: Fetching all opportunities from database
+2025-08-27 15:49:49 [INFO]: Fetching all opportunities from database
+2025-08-27 15:49:49 [INFO]: Fetching all opportunities from database
+2025-08-27 16:27:10 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-27 16:27:10 [INFO]: Request method:
+2025-08-27 16:27:10 [INFO]: Request URL:
+2025-08-27 16:27:10 [INFO]: Request headers:
+2025-08-27 16:27:10 [INFO]: Raw request body (string):
+2025-08-27 16:27:10 [INFO]: Raw request body (typeof):
+2025-08-27 16:27:10 [INFO]: Raw request body (stringified):
+2025-08-27 16:27:10 [INFO]: Request query:
+2025-08-27 16:27:10 [INFO]: Content-Type:
+2025-08-27 16:27:10 [INFO]: User-Agent:
+2025-08-27 16:27:10 [INFO]: ========================
+2025-08-27 16:27:10 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-27 16:27:10 [INFO]: Raw webhook data:
+2025-08-27 16:27:10 [INFO]: Data type:
+2025-08-27 16:27:10 [INFO]: Data keys:
+2025-08-27 16:27:10 [INFO]: Data values:
+2025-08-27 16:27:10 [INFO]: ================================
+2025-08-27 16:27:10 [INFO]: Processing webhook data:
+2025-08-27 16:27:10 [INFO]: Actual data being processed:
+2025-08-27 16:27:11 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-27 16:27:11 [INFO]: Extracted event_type: opportunity.updated
+2025-08-27 16:27:11 [INFO]: Extracted opportunity_id: xrVESExSWJCqMV3DWfrL
+2025-08-27 16:27:11 [INFO]: Handling opportunity.updated event
+2025-08-27 16:27:11 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-27 16:27:11 [INFO]: Field mapping:
+2025-08-27 16:27:11 [INFO]: Updating opportunity xrVESExSWJCqMV3DWfrL in database
+2025-08-27 16:27:11 [INFO]: Opportunity xrVESExSWJCqMV3DWfrL updated successfully in database
+2025-08-27 16:27:11 [INFO]: Pipeline data synced successfully
+2025-08-27 16:27:11 [INFO]: Sending success response: Webhook processed successfully
+2025-08-27 16:27:35 [INFO]: Fetching all opportunities from database
+2025-08-27 16:27:35 [INFO]: Fetching all opportunities from database
+2025-08-27 16:28:11 [INFO]: Fetching all opportunities from database
+2025-08-27 16:28:12 [INFO]: Fetching all opportunities from database
+2025-08-27 16:29:15 [INFO]: Fetching all opportunities from database
+2025-08-27 16:29:15 [INFO]: Fetching all opportunities from database
+2025-08-27 23:23:41 [INFO]: Fetching all opportunities from database
+2025-08-27 23:23:54 [ERROR]: Error fetching opportunity: Cannot coerce the result to a single JSON object
+2025-08-27 23:24:33 [ERROR]: Error fetching opportunity: Cannot coerce the result to a single JSON object
+2025-08-27 23:24:50 [ERROR]: Error fetching opportunity: Cannot coerce the result to a single JSON object
+2025-08-27 23:25:09 [ERROR]: Error fetching opportunity: Cannot coerce the result to a single JSON object
+2025-08-27 23:25:52 [ERROR]: Error fetching opportunity: Cannot coerce the result to a single JSON object
+2025-08-27 23:27:03 [ERROR]: Error fetching opportunity: Cannot coerce the result to a single JSON object
+2025-08-27 23:28:09 [INFO]: Server is running on http://localhost:3001
+2025-08-27 23:28:18 [INFO]: Fetching opportunity with ID: 10
+2025-08-27 23:28:18 [INFO]: Found 17 total opportunities
+2025-08-27 23:28:18 [INFO]: Opportunity found:
+2025-08-27 23:28:30 [INFO]: Fetching all opportunities from database
+2025-08-27 23:34:26 [INFO]: Fetching all opportunities from database
+2025-08-27 23:34:27 [INFO]: Fetching all opportunities from database
+2025-08-27 23:39:19 [INFO]: Fetching all opportunities from database
+2025-08-27 23:39:27 [INFO]: Fetching opportunity with ID: 10
+2025-08-27 23:39:27 [INFO]: Found 17 total opportunities
+2025-08-27 23:39:27 [INFO]: Opportunity found:
+2025-08-27 23:39:52 [INFO]: Fetching all opportunities from database
+2025-08-27 23:39:52 [INFO]: Fetching all opportunities from database
+2025-08-27 23:46:46 [INFO]: Fetching all opportunities from database
+2025-08-27 23:46:47 [INFO]: Fetching all opportunities from database
+2025-08-27 23:52:28 [INFO]: Server is running on http://localhost:3001
+2025-08-27 23:52:33 [INFO]: Fetching all opportunities from database
+2025-08-27 23:52:34 [INFO]: Fetching all opportunities from database

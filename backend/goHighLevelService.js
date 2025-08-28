@@ -130,11 +130,35 @@ async function exchangeCodeForTokens(code) {
 
 // Function to create an opportunity in the pipeline
 async function createOpportunityInPipeline(jobData) {
+    // First, let's get the pipeline stage name
+    let pipelineStageName = "New Lead"; // Default name
+    
+    try {
+        const token = await getValidAccessToken();
+        
+        // Fetch pipeline stage details to get the name
+        const stageResponse = await axios.get(`${BASE_URL}/pipelines/${process.env.GHL_PIPELINE_ID}/stages/${process.env.GHL_PIPELINE_STAGE_ID}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Version': '2021-07-28',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        
+        if (stageResponse.data && stageResponse.data.name) {
+            pipelineStageName = stageResponse.data.name;
+        }
+    } catch (error) {
+        console.log('Could not fetch pipeline stage name, using default:', error.message);
+    }
+
     const opportunityData = {
         pipelineId: process.env.GHL_PIPELINE_ID,
         locationId: process.env.GHL_LOCATION_ID,
         name: jobData.title || jobData.name,
         pipelineStageId: process.env.GHL_PIPELINE_STAGE_ID,
+        pipelineStageName: pipelineStageName, // Include the stage name
         status: "open",
         contactId: "X9BZelkJiMRBoBfQ2exx", // You might want to make this dynamic
         monetaryValue: jobData.salary || jobData.monetary_value || 0,

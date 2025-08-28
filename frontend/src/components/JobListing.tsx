@@ -10,6 +10,7 @@ interface Opportunity {
     contact_id?: string;
     pipeline_id?: string;
     pipeline_stage_id?: string;
+    pipeline_stage_name?: string;
     assigned_to?: string;
     created_at: string;
     updated_at: string;
@@ -32,6 +33,8 @@ const OpportunityListing: React.FC = () => {
             }
             const data = await response.json();
             if (data.success) {
+                console.log('Opportunities fetched:', data.opportunities);
+                console.log('First opportunity pipeline stage name:', data.opportunities[0]?.pipeline_stage_name);
                 setOpportunities(data.opportunities);
             } else {
                 throw new Error(data.error || 'Failed to fetch opportunities');
@@ -190,7 +193,9 @@ const OpportunityListing: React.FC = () => {
                     </div>
                     
                     <div className="jobs-grid">
-                        {opportunities.map((opportunity) => (
+                        {opportunities.map((opportunity) => {
+                            console.log('Rendering opportunity:', opportunity.name, 'Stage name:', opportunity.pipeline_stage_name);
+                            return (
                             <div key={opportunity.id} className="job-card">
                                 <div className="job-header">
                                     <h2>{opportunity.name || 'Untitled Opportunity'}</h2>
@@ -209,15 +214,41 @@ const OpportunityListing: React.FC = () => {
                                         >
                                             {opportunity.status || 'Unknown Status'}
                                         </span>
-                                        {opportunity.pipeline_stage_id && (
-                                            <span className="job-category">
-                                                Stage: {opportunity.pipeline_stage_id}
-                                            </span>
-                                        )}
+                                        {/* Debug: Always show the stage name for testing */}
+                                        <span style={{
+                                            backgroundColor: '#8b5cf6',
+                                            color: 'white',
+                                            padding: '4px 12px',
+                                            borderRadius: '12px',
+                                            fontSize: '12px',
+                                            fontWeight: '600',
+                                            textTransform: 'uppercase',
+                                            border: '2px solid red' // Debug border to make it visible
+                                        }}>
+                                            {opportunity.pipeline_stage_name || 'No Stage'}
+                                        </span>
                                     </div>
                                 </div>
                                 
                                 <div className="job-details">
+                                    {/* Debug: Show pipeline stage name prominently */}
+                                    <div className="job-field" style={{ 
+                                        backgroundColor: 'rgba(139, 92, 246, 0.1)', 
+                                        padding: '10px', 
+                                        borderRadius: '8px',
+                                        border: '1px solid #8b5cf6'
+                                    }}>
+                                        <strong>Pipeline Stage</strong>
+                                        <p style={{ 
+                                            fontSize: '16px', 
+                                            fontWeight: '600',
+                                            color: '#8b5cf6',
+                                            margin: '5px 0'
+                                        }}>
+                                            {opportunity.pipeline_stage_name || 'No Stage Name'}
+                                        </p>
+                                    </div>
+                                    
                                     <div className="job-field">
                                         <strong>Opportunity ID</strong>
                                         <p style={{ fontFamily: 'monospace', fontSize: '14px' }}>
@@ -279,7 +310,8 @@ const OpportunityListing: React.FC = () => {
                                     </button>
                                 </div>
                             </div>
-                        ))}
+                        );
+                        })}
                     </div>
                 </>
             )}

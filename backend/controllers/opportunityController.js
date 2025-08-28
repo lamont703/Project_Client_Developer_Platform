@@ -20,6 +20,7 @@ function mapGoHighLevelFields(webhookData) {
         contact_id: webhookData.contact_id,
         pipeline_id: webhookData.pipeline_id,
         pipeline_stage_id: webhookData.pipleline_stage || webhookData.pipeline_stage_id,
+        pipeline_stage_name: webhookData.pipeline_stage_name || webhookData.stage_name || webhookData.pipleline_stage_name,
         assigned_to: webhookData.assigned_to || webhookData.assignedTo,
         created_at: webhookData.date_created || webhookData.created_at || new Date().toISOString(),
         updated_at: webhookData.updated_at || new Date().toISOString()
@@ -259,6 +260,74 @@ function testWebhook(webhookData) {
     };
 }
 
+// Get all opportunities from the database
+async function getAllOpportunitiesController(req, res) {
+    try {
+        logger.info('Fetching all opportunities from database');
+        const opportunities = await getAllOpportunities();
+        
+        const result = {
+            success: true,
+            opportunities: opportunities,
+            count: opportunities.length,
+            timestamp: new Date().toISOString()
+        };
+        
+        res.json(result);
+    } catch (error) {
+        logger.error('Error fetching opportunities:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Failed to fetch opportunities',
+            message: error.message,
+            timestamp: new Date().toISOString()
+        });
+    }
+}
+
+// Get opportunity by ID from the database
+async function getOpportunityByIdController(req, res) {
+    try {
+        const opportunityId = req.params.id;
+        logger.info(`Fetching opportunity with ID: ${opportunityId}`);
+        
+        // Use the working getAllOpportunities function and filter
+        const { getAllOpportunities } = require('../db');
+        const allOpportunities = await getAllOpportunities();
+        
+        logger.info(`Found ${allOpportunities.length} total opportunities`);
+        
+        // Find the opportunity with the matching ID
+        const opportunity = allOpportunities.find(opp => opp.id == opportunityId);
+        
+        logger.info(`Opportunity found:`, opportunity ? 'Yes' : 'No');
+        
+        if (!opportunity) {
+            return res.status(404).json({
+                success: false,
+                error: 'Opportunity not found',
+                timestamp: new Date().toISOString()
+            });
+        }
+        
+        const result = {
+            success: true,
+            opportunity: opportunity,
+            timestamp: new Date().toISOString()
+        };
+        
+        res.json(result);
+    } catch (error) {
+        logger.error('Error fetching opportunity:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Failed to fetch opportunity',
+            message: error.message,
+            timestamp: new Date().toISOString()
+        });
+    }
+}
+
 
 
 module.exports = {
@@ -270,5 +339,6 @@ module.exports = {
     syncPipelineData,
     getWebhookHealth,
     testWebhook,
-    getAllOpportunities
+    getAllOpportunitiesController,
+    getOpportunityByIdController
 }; 

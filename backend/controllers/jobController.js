@@ -25,8 +25,29 @@ exports.createJob = async (req, res) => {
 
     // Create opportunity in GoHighLevel pipeline
     try {
-        await createOpportunityInPipeline(jobData);
+        const opportunityResult = await createOpportunityInPipeline(jobData);
         console.log('Opportunity created successfully in GoHighLevel pipeline');
+        
+        // Store the opportunity data in our database for display
+        if (opportunityResult) {
+            try {
+                const { insertOpportunity } = require('../db');
+                await insertOpportunity({
+                    opportunity_id: opportunityResult.id || `job-${Date.now()}`,
+                    name: jobData.title,
+                    status: 'open',
+                    monetary_value: jobData.salary || 0,
+                    pipeline_id: process.env.GHL_PIPELINE_ID,
+                    pipeline_stage_id: process.env.GHL_PIPELINE_STAGE_ID,
+                    pipeline_stage_name: opportunityResult.pipelineStageName || 'New Lead',
+                    created_at: new Date().toISOString(),
+                    updated_at: new Date().toISOString()
+                });
+                console.log('Opportunity data stored in database for display');
+            } catch (dbError) {
+                console.error('Error storing opportunity in database:', dbError);
+            }
+        }
     } catch (error) {
         console.error('Failed to create opportunity in GoHighLevel pipeline:', error);
     }

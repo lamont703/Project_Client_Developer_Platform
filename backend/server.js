@@ -22,20 +22,20 @@ app.use(express.json());
 // Use analytics middleware
 app.use(analyticsMiddleware);
 
-// Use job routes
-app.use('/api/jobs', jobRoutes);
-
-// Use OAuth routes
+// Use OAuth routes.
 app.use('/api', oauthRoutes);
 
-// Use webhook routes for GoHighLevel
+// Use job routes. This is being requested from our Post Job Wizard component. This route saves jobs to the database and then creates the opportunity in GoHighLevel and sends it to GitHub Repo and Pages. Once the project is added to the opportunity pipeline, the webhook is triggered and the opportunity is updated in the database under ghl_opportunities.
+app.use('/api/jobs', jobRoutes);
+
+// Use opportunity routes. This is being requested from our Job Listing page component. This route gets the opportunities from the database and sends them to the frontend.
+app.use('/api/opportunities', opportunityRoutes);
+
+// Use webhook routes for GoHighLevel. This is being requested directly in our GoHighLevel account automation.
 app.use('/api/webhooks', webhookRoutes);
 
-// Use token management routes
+// Use token management routes. This is used to get the access token for the GoHighLevel API. It does not have any frontend requests.
 app.use('/api/tokens', tokenRoutes);
-
-// Use opportunity routes
-app.use('/api/opportunities', opportunityRoutes);
 
 // Start the server
 app.listen(port, () => {
