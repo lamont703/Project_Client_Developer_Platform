@@ -194,7 +194,7 @@ async function generateProjectAssets(transcript) {
     ---
 
     **PRIMARY GOAL:**
-    Produce a complete, static, and interactive project deliverable based on the user's request. The entire output MUST be a single, valid JSON object where keys are the full file paths (e.g., "docs/overview.md", "prototype/index.html") and values are the complete file content.
+    Produce a complete, static, and interactive project that is a mobile friendly and responsive deliverable based on the user's request. The entire output MUST be a single, valid JSON object where keys are the full file paths (e.g., "docs/overview.md", "prototype/index.html") and values are the complete file content.
 
     **PROJECT STRUCTURE & REQUIREMENTS:**
 
@@ -212,6 +212,7 @@ async function generateProjectAssets(transcript) {
             - **"Wireframes"**: Links to \`wireframes/index.html\`.
             - **"Interactive Prototype"**: Links to \`prototype/index.html\`.
         - **IMPORTANT:** In the footer of this page, add two links: "View Documentation" (to \`docs/overview.md\`) and "View Wireframe" (to \`wireframes/index.html\`).
+        - **IMPORTANT:** The hub page should be designed beautifully and visually appealing.
 
     3.  **Documentation (\`docs/*.md\`):**
         - Generate concise, actionable markdown documentation based on the user's request.
@@ -219,14 +220,14 @@ async function generateProjectAssets(transcript) {
         - Use tables, lists, and clear examples.
 
     4.  **Wireframes (\`wireframes/*.html\`):**
-        - Produce low-fidelity, grayscale HTML wireframes. Use simple CSS for layout (boxes, lines, labels).
+        - Produce low-fidelity, grayscale HTML wireframes. Use CSS frameworks for beautiful layout (boxes, lines, labels).
         - Create an \`index.html\` in this directory that links to all other wireframe pages.
         - Each wireframe should have a header and a "notes" column explaining the logic.
         - These are for layout and flow, not for final design.
 
     5.  **Interactive Prototype (\`prototype/\`):**
         - Create a clickable, data-driven, and mobile-friendly prototype using vanilla HTML, CSS, and JavaScript.
-        - **NO external libraries or frameworks.**
+        - **Feel free to use libraries or frameworks that will make the prototype more interactive and engaging and beautiful.**
         - The \`prototype/index.html\` is the entry point.
         - \`prototype/assets/styles.css\`: All CSS for the prototype.
         - \`prototype/assets/app.js\`: All JavaScript for interactivity.

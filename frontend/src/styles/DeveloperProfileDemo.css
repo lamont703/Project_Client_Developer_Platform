@@ -1,0 +1,56 @@
+/* Developer Profile Demo Styles */
+.developer-profile-demo {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.developers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(900px, 1fr));
+    gap: 30px;
+    justify-items: center;
+}
+
+.developer-card {
+    width: 100%;
+    max-width: 900px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .developers-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .developer-card {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .developer-profile-demo {
+        padding: 15px;
+    }
+    
+    .developers-grid {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .developer-profile-demo {
+        padding: 10px;
+    }
+    
+    .developers-grid {
+        gap: 15px;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    /* Dark mode styles handled by parent components */
+} 

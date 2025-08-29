@@ -2217,3 +2217,227 @@
 2025-08-28 03:16:16 [INFO]: Opportunity MD88vA0mGTkZIP6RwftS updated successfully in database
 2025-08-28 03:16:16 [INFO]: Pipeline data synced successfully
 2025-08-28 03:16:16 [INFO]: Sending success response: Webhook processed successfully
+2025-08-28 03:17:43 [INFO]: Fetching all opportunities from database
+2025-08-28 03:17:43 [INFO]: Found 20 total opportunities, 19 are open
+2025-08-28 03:17:43 [INFO]: Fetching all opportunities from database
+2025-08-28 03:17:43 [INFO]: Found 20 total opportunities, 19 are open
+2025-08-28 03:18:41 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-28 03:18:41 [INFO]: Request method:
+2025-08-28 03:18:41 [INFO]: Request URL:
+2025-08-28 03:18:41 [INFO]: Request headers:
+2025-08-28 03:18:41 [INFO]: Raw request body (string):
+2025-08-28 03:18:41 [INFO]: Raw request body (typeof):
+2025-08-28 03:18:41 [INFO]: Raw request body (stringified):
+2025-08-28 03:18:41 [INFO]: Request query:
+2025-08-28 03:18:41 [INFO]: Content-Type:
+2025-08-28 03:18:41 [INFO]: User-Agent:
+2025-08-28 03:18:41 [INFO]: ========================
+2025-08-28 03:18:41 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-28 03:18:41 [INFO]: Raw webhook data:
+2025-08-28 03:18:41 [INFO]: Data type:
+2025-08-28 03:18:41 [INFO]: Data keys:
+2025-08-28 03:18:41 [INFO]: Data values:
+2025-08-28 03:18:41 [INFO]: ================================
+2025-08-28 03:18:41 [INFO]: Processing webhook data:
+2025-08-28 03:18:41 [INFO]: Actual data being processed:
+2025-08-28 03:18:41 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-28 03:18:41 [INFO]: Extracted event_type: opportunity.updated
+2025-08-28 03:18:41 [INFO]: Extracted opportunity_id: XEgotHLWeARzxLAp7qVa
+2025-08-28 03:18:41 [INFO]: Handling opportunity.updated event
+2025-08-28 03:18:41 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-28 03:18:41 [INFO]: Field mapping:
+2025-08-28 03:18:41 [INFO]: Updating opportunity XEgotHLWeARzxLAp7qVa in database
+2025-08-28 03:18:42 [INFO]: Opportunity XEgotHLWeARzxLAp7qVa updated successfully in database
+2025-08-28 03:18:42 [INFO]: Pipeline data synced successfully
+2025-08-28 03:18:42 [INFO]: Sending success response: Webhook processed successfully
+2025-08-28 03:19:13 [INFO]: Fetching all opportunities from database
+2025-08-28 03:19:13 [INFO]: Found 20 total opportunities, 18 are open
+2025-08-28 03:19:13 [INFO]: Fetching all opportunities from database
+2025-08-28 03:19:13 [INFO]: Found 20 total opportunities, 18 are open
+2025-08-28 03:20:06 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-28 03:20:06 [INFO]: Request method:
+2025-08-28 03:20:06 [INFO]: Request URL:
+2025-08-28 03:20:06 [INFO]: Request headers:
+2025-08-28 03:20:06 [INFO]: Raw request body (string):
+2025-08-28 03:20:06 [INFO]: Raw request body (typeof):
+2025-08-28 03:20:06 [INFO]: Raw request body (stringified):
+2025-08-28 03:20:06 [INFO]: Request query:
+2025-08-28 03:20:06 [INFO]: Content-Type:
+2025-08-28 03:20:06 [INFO]: User-Agent:
+2025-08-28 03:20:06 [INFO]: ========================
+2025-08-28 03:20:06 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-28 03:20:06 [INFO]: Raw webhook data:
+2025-08-28 03:20:06 [INFO]: Data type:
+2025-08-28 03:20:06 [INFO]: Data keys:
+2025-08-28 03:20:06 [INFO]: Data values:
+2025-08-28 03:20:06 [INFO]: ================================
+2025-08-28 03:20:06 [INFO]: Processing webhook data:
+2025-08-28 03:20:06 [INFO]: Actual data being processed:
+2025-08-28 03:20:06 [INFO]: Inferred event_type as 'opportunity.updated' (existing opportunity with changes)
+2025-08-28 03:20:06 [INFO]: Extracted event_type: opportunity.updated
+2025-08-28 03:20:06 [INFO]: Extracted opportunity_id: MD88vA0mGTkZIP6RwftS
+2025-08-28 03:20:06 [INFO]: Handling opportunity.updated event
+2025-08-28 03:20:06 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-28 03:20:06 [INFO]: Field mapping:
+2025-08-28 03:20:06 [INFO]: Updating opportunity MD88vA0mGTkZIP6RwftS in database
+2025-08-28 03:20:07 [INFO]: Opportunity MD88vA0mGTkZIP6RwftS updated successfully in database
+2025-08-28 03:20:07 [INFO]: Pipeline data synced successfully
+2025-08-28 03:20:07 [INFO]: Sending success response: Webhook processed successfully
+2025-08-28 03:20:19 [INFO]: Fetching all opportunities from database
+2025-08-28 03:20:19 [INFO]: Found 20 total opportunities, 17 are open
+2025-08-28 03:20:19 [INFO]: Fetching all opportunities from database
+2025-08-28 03:20:19 [INFO]: Found 20 total opportunities, 17 are open
+2025-08-28 03:21:30 [INFO]: Fetching all opportunities from database
+2025-08-28 03:21:30 [INFO]: Found 16 total opportunities, 16 are open
+2025-08-28 03:21:30 [INFO]: Fetching all opportunities from database
+2025-08-28 03:21:30 [INFO]: Found 16 total opportunities, 16 are open
+2025-08-28 12:01:46 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-28 12:01:46 [INFO]: Request method:
+2025-08-28 12:01:46 [INFO]: Request URL:
+2025-08-28 12:01:46 [INFO]: Request headers:
+2025-08-28 12:01:46 [INFO]: Raw request body (string):
+2025-08-28 12:01:46 [INFO]: Raw request body (typeof):
+2025-08-28 12:01:46 [INFO]: Raw request body (stringified):
+2025-08-28 12:01:46 [INFO]: Request query:
+2025-08-28 12:01:46 [INFO]: Content-Type:
+2025-08-28 12:01:46 [INFO]: User-Agent:
+2025-08-28 12:01:46 [INFO]: ========================
+2025-08-28 12:01:46 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-28 12:01:46 [INFO]: Raw webhook data:
+2025-08-28 12:01:46 [INFO]: Data type:
+2025-08-28 12:01:46 [INFO]: Data keys:
+2025-08-28 12:01:46 [INFO]: Data values:
+2025-08-28 12:01:46 [INFO]: ================================
+2025-08-28 12:01:46 [INFO]: Processing webhook data:
+2025-08-28 12:01:46 [INFO]: Actual data being processed:
+2025-08-28 12:01:47 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-28 12:01:47 [INFO]: Extracted event_type: opportunity.created
+2025-08-28 12:01:47 [INFO]: Extracted opportunity_id: SOzK58u7af2bywamYkOS
+2025-08-28 12:01:47 [INFO]: Handling opportunity.created event
+2025-08-28 12:01:47 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-28 12:01:47 [INFO]: Field mapping:
+2025-08-28 12:01:47 [INFO]: Creating opportunity SOzK58u7af2bywamYkOS in database
+2025-08-28 12:01:47 [INFO]: Opportunity SOzK58u7af2bywamYkOS created successfully in database
+2025-08-28 12:01:47 [INFO]: Pipeline data synced successfully
+2025-08-28 12:01:47 [INFO]: Sending success response: Webhook processed successfully
+2025-08-28 12:02:58 [INFO]: Fetching all opportunities from database
+2025-08-28 12:02:59 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 12:02:59 [INFO]: Fetching all opportunities from database
+2025-08-28 12:02:59 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 12:06:45 [INFO]: Fetching all opportunities from database
+2025-08-28 12:06:45 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 12:06:45 [INFO]: Fetching all opportunities from database
+2025-08-28 12:06:45 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 15:53:03 [INFO]: Server is running on http://localhost:3001
+2025-08-28 15:53:13 [INFO]: Fetching all opportunities from database
+2025-08-28 15:53:13 [INFO]: Fetching all opportunities from database
+2025-08-28 15:53:14 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 15:53:14 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 15:53:41 [INFO]: Fetching all opportunities from database
+2025-08-28 15:53:42 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 15:53:42 [INFO]: Fetching all opportunities from database
+2025-08-28 15:53:42 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:14:30 [INFO]: Fetching all opportunities from database
+2025-08-28 18:14:30 [INFO]: Fetching all opportunities from database
+2025-08-28 18:14:30 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:14:30 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:14:31 [INFO]: Fetching all opportunities from database
+2025-08-28 18:14:31 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:14:31 [INFO]: Fetching all opportunities from database
+2025-08-28 18:14:31 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:14:33 [INFO]: Fetching all opportunities from database
+2025-08-28 18:14:33 [INFO]: Fetching all opportunities from database
+2025-08-28 18:14:33 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:14:33 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:14:36 [INFO]: Fetching all opportunities from database
+2025-08-28 18:14:36 [INFO]: Fetching all opportunities from database
+2025-08-28 18:14:36 [INFO]: Fetching all opportunities from database
+2025-08-28 18:14:36 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:14:36 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:14:36 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:14:36 [INFO]: Fetching all opportunities from database
+2025-08-28 18:14:37 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:14:39 [INFO]: Fetching all opportunities from database
+2025-08-28 18:14:39 [INFO]: Fetching all opportunities from database
+2025-08-28 18:14:39 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:14:39 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:14:40 [INFO]: Fetching all opportunities from database
+2025-08-28 18:14:40 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:14:40 [INFO]: Fetching all opportunities from database
+2025-08-28 18:14:40 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:14:43 [INFO]: Fetching all opportunities from database
+2025-08-28 18:14:43 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:14:43 [INFO]: Fetching all opportunities from database
+2025-08-28 18:14:43 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:14:49 [INFO]: Fetching all opportunities from database
+2025-08-28 18:14:49 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:14:49 [INFO]: Fetching all opportunities from database
+2025-08-28 18:14:49 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:16:44 [INFO]: Fetching all opportunities from database
+2025-08-28 18:16:44 [INFO]: Fetching all opportunities from database
+2025-08-28 18:16:44 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:16:44 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:16:45 [INFO]: Fetching all opportunities from database
+2025-08-28 18:16:46 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:16:46 [INFO]: Fetching all opportunities from database
+2025-08-28 18:16:46 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:16:46 [INFO]: Fetching all opportunities from database
+2025-08-28 18:16:46 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:16:46 [INFO]: Fetching all opportunities from database
+2025-08-28 18:16:46 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:17:02 [INFO]: Fetching all opportunities from database
+2025-08-28 18:17:02 [INFO]: Fetching all opportunities from database
+2025-08-28 18:17:02 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:17:02 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:17:03 [INFO]: Fetching all opportunities from database
+2025-08-28 18:17:03 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:17:03 [INFO]: Fetching all opportunities from database
+2025-08-28 18:17:04 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:17:05 [INFO]: Fetching all opportunities from database
+2025-08-28 18:17:05 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:17:05 [INFO]: Fetching all opportunities from database
+2025-08-28 18:17:05 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:17:14 [INFO]: Fetching all opportunities from database
+2025-08-28 18:17:14 [INFO]: Fetching all opportunities from database
+2025-08-28 18:17:14 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:17:14 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:17:16 [INFO]: Fetching all opportunities from database
+2025-08-28 18:17:16 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:17:16 [INFO]: Fetching all opportunities from database
+2025-08-28 18:17:16 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:17:17 [INFO]: Fetching all opportunities from database
+2025-08-28 18:17:17 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 18:17:17 [INFO]: Fetching all opportunities from database
+2025-08-28 18:17:17 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 19:49:08 [INFO]: Fetching all opportunities from database
+2025-08-28 19:49:10 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 19:49:10 [INFO]: Fetching all opportunities from database
+2025-08-28 19:49:10 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 19:51:31 [INFO]: Fetching all opportunities from database
+2025-08-28 19:51:31 [INFO]: Fetching all opportunities from database
+2025-08-28 19:51:31 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 19:51:31 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 19:51:33 [INFO]: Fetching all opportunities from database
+2025-08-28 19:51:33 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 19:51:33 [INFO]: Fetching all opportunities from database
+2025-08-28 19:51:33 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 19:54:57 [INFO]: Fetching all opportunities from database
+2025-08-28 19:54:58 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 19:54:58 [INFO]: Fetching all opportunities from database
+2025-08-28 19:54:58 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 21:56:14 [INFO]: Fetching all opportunities from database
+2025-08-28 21:56:15 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 21:56:15 [INFO]: Fetching all opportunities from database
+2025-08-28 21:56:15 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 22:09:34 [INFO]: Fetching all opportunities from database
+2025-08-28 22:09:34 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 22:09:34 [INFO]: Fetching all opportunities from database
+2025-08-28 22:09:35 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 22:44:03 [INFO]: Fetching all opportunities from database
+2025-08-28 22:44:03 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-28 22:44:03 [INFO]: Fetching all opportunities from database
+2025-08-28 22:44:03 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-29 09:26:34 [INFO]: Fetching all opportunities from database
+2025-08-29 09:26:35 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-29 09:26:35 [INFO]: Fetching all opportunities from database
+2025-08-29 09:26:35 [INFO]: Found 18 total opportunities, 18 are open

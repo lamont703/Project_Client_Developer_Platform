@@ -13,14 +13,13 @@ code {
 }
 
 .App {
-  text-align: center;
-  padding: 20px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
 }
 
-h1 {
-  color: #333;
-}
-
-p {
-  color: #666;
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .App {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  }
 }
