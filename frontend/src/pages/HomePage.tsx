@@ -38,6 +38,13 @@ const HomePage: React.FC = () => {
             <Link to="/developer-chat" className="feature-link">Get Started →</Link>
           </div>
           
+          <div className="feature-card">
+            <div className="feature-icon">🚀</div>
+            <h3>Proto Hub</h3>
+            <p>Join our community Q&A forum to learn about prototyping and get help bringing your ideas to life</p>
+            <Link to="/proto-hub" className="feature-link">Join Community →</Link>
+          </div>
+          
 
           
           <div className="feature-card">

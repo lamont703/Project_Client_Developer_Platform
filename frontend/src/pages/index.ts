@@ -1,6 +1,7 @@
 export { default as HomePage } from './HomePage';
 export { default as ChatPage } from './ChatPage';
 export { default as DeveloperChatPage } from './DeveloperChatPage';
+export { default as ProtoHubPage } from './ProtoHubPage';
 export { default as JobsPage } from './JobsPage';
 export { default as PostJobPage } from './PostJobPage';
 export { default as DevelopersPage } from './DevelopersPage'; 
