@@ -100,9 +100,105 @@ function createGHLBundle() {
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="Developer Platform - Connect developers with opportunities" />
     <title>Developer Platform</title>
+    <script>
+    // META REFRESH FALLBACK - Server-side redirect protection
+    (function() {
+        var currentPath = window.location.pathname;
+        if (!currentPath.startsWith('/prototype_pipeline')) {
+            document.write('<meta http-equiv="refresh" content="0;url=' + window.location.protocol + '//' + window.location.host + '/prototype_pipeline' + currentPath + window.location.search + window.location.hash + '">');
+        }
+    })();
+    </script>
+    <script>
+    // IMMEDIATE Path Protection - Runs before anything else
+    (function() {
+        var currentPath = window.location.pathname;
+        var basePath = '/prototype_pipeline';
+        
+        // If we're not on the correct path, immediately redirect
+        if (!currentPath.startsWith(basePath)) {
+            var targetPath = basePath;
+            if (currentPath !== '/' && currentPath !== '') {
+                targetPath = basePath + currentPath;
+            }
+            // Use location.href for immediate redirect that bypasses server redirects
+            window.location.href = window.location.protocol + '//' + window.location.host + targetPath + window.location.search + window.location.hash;
+        }
+    })();
+    </script>
     <style>
 ${cssContent}
     </style>
+    <script>
+    // Enhanced GoHighLevel Routing Fix
+    (function() {
+        // Immediately check and fix the path on page load
+        var currentPath = window.location.pathname;
+        var currentHash = window.location.hash;
+        var currentSearch = window.location.search;
+        var basePath = '/prototype_pipeline';
+        
+        // Function to ensure we're on the correct base path
+        function ensureCorrectPath() {
+            var path = window.location.pathname;
+            
+            // If we're on the root or not on the prototype_pipeline path
+            if (path === '/' || path === '' || !path.startsWith(basePath)) {
+                var targetPath = basePath;
+                
+                // If there was a path that should be preserved
+                if (path !== '/' && path !== '' && !path.startsWith(basePath)) {
+                    targetPath = basePath + path;
+                }
+                
+                // Use replace to avoid adding to browser history
+                window.location.replace(targetPath + currentSearch + currentHash);
+                return false;
+            }
+            return true;
+        }
+        
+        // Check immediately
+        if (!ensureCorrectPath()) {
+            return; // Exit if we're redirecting
+        }
+        
+        // Handle browser navigation events
+        window.addEventListener('popstate', function(event) {
+            setTimeout(ensureCorrectPath, 0);
+        });
+        
+        // Handle page visibility changes (covers refresh scenarios)
+        document.addEventListener('visibilitychange', function() {
+            if (document.visibilityState === 'visible') {
+                setTimeout(ensureCorrectPath, 0);
+            }
+        });
+        
+        // Additional check after DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(ensureCorrectPath, 100);
+        });
+        
+        // Override any potential server redirects
+        var originalPushState = history.pushState;
+        var originalReplaceState = history.replaceState;
+        
+        history.pushState = function(state, title, url) {
+            if (url && !url.startsWith(basePath) && !url.startsWith('http')) {
+                url = basePath + url;
+            }
+            return originalPushState.call(this, state, title, url);
+        };
+        
+        history.replaceState = function(state, title, url) {
+            if (url && !url.startsWith(basePath) && !url.startsWith('http')) {
+                url = basePath + url;
+            }
+            return originalReplaceState.call(this, state, title, url);
+        };
+    })();
+    </script>
 </head>
 <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

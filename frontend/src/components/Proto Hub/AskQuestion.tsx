@@ -70,7 +70,8 @@ const AskQuestion: React.FC<AskQuestionProps> = ({ onClose, onSubmit }) => {
     const handleKeyPress = (e: React.KeyboardEvent) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
-            if (e.target === document.querySelector('.tag-input')) {
+            const tagInput = document.querySelector('.tag-input');
+            if (tagInput && e.target === tagInput) {
                 addTag();
             }
         }

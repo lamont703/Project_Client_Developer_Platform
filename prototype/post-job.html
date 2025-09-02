@@ -291,12 +291,15 @@
                 });
             }
 
-            document.querySelector('.btn-secondary').addEventListener('click', () => {
-                if (!stepper.isFirstStep()) {
-                    stepper.previous();
-                    updateStepVisibility();
-                }
-            });
+            const backButton = document.querySelector('.btn-secondary');
+            if (backButton) {
+                backButton.addEventListener('click', () => {
+                    if (!stepper.isFirstStep()) {
+                        stepper.previous();
+                        updateStepVisibility();
+                    }
+                });
+            }
         });
     </script>
 </body>
