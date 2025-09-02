@@ -2445,3 +2445,63 @@
 2025-08-29 16:24:56 [INFO]: Fetching all opportunities from database
 2025-08-29 16:24:57 [INFO]: Found 18 total opportunities, 18 are open
 2025-08-29 16:24:57 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-31 11:15:41 [INFO]: Fetching all opportunities from database
+2025-08-31 11:15:43 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-31 11:15:43 [INFO]: Fetching all opportunities from database
+2025-08-31 11:15:44 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-31 19:25:40 [INFO]: Fetching all opportunities from database
+2025-08-31 19:25:41 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-31 19:25:41 [INFO]: Fetching all opportunities from database
+2025-08-31 19:25:41 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-31 19:25:57 [INFO]: Server is running on http://localhost:3001
+2025-08-31 19:26:03 [INFO]: Fetching all opportunities from database
+2025-08-31 19:26:04 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-31 19:26:04 [INFO]: Fetching all opportunities from database
+2025-08-31 19:26:04 [INFO]: Found 18 total opportunities, 18 are open
+2025-08-31 20:31:48 [INFO]: === WEBHOOK RECEIVED ===
+2025-08-31 20:31:48 [INFO]: Request method:
+2025-08-31 20:31:48 [INFO]: Request URL:
+2025-08-31 20:31:48 [INFO]: Request headers:
+2025-08-31 20:31:48 [INFO]: Raw request body (string):
+2025-08-31 20:31:48 [INFO]: Raw request body (typeof):
+2025-08-31 20:31:48 [INFO]: Raw request body (stringified):
+2025-08-31 20:31:48 [INFO]: Request query:
+2025-08-31 20:31:48 [INFO]: Content-Type:
+2025-08-31 20:31:48 [INFO]: User-Agent:
+2025-08-31 20:31:48 [INFO]: ========================
+2025-08-31 20:31:48 [INFO]: === WEBHOOK DATA STRUCTURE ===
+2025-08-31 20:31:48 [INFO]: Raw webhook data:
+2025-08-31 20:31:48 [INFO]: Data type:
+2025-08-31 20:31:48 [INFO]: Data keys:
+2025-08-31 20:31:48 [INFO]: Data values:
+2025-08-31 20:31:48 [INFO]: ================================
+2025-08-31 20:31:48 [INFO]: Processing webhook data:
+2025-08-31 20:31:48 [INFO]: Actual data being processed:
+2025-08-31 20:31:50 [INFO]: Inferred event_type as 'opportunity.created' (new opportunity)
+2025-08-31 20:31:50 [INFO]: Extracted event_type: opportunity.created
+2025-08-31 20:31:50 [INFO]: Extracted opportunity_id: 4yCduWpvl45MLV52ppB2
+2025-08-31 20:31:50 [INFO]: Handling opportunity.created event
+2025-08-31 20:31:50 [INFO]: Mapping GoHighLevel webhook fields to database fields
+2025-08-31 20:31:50 [INFO]: Field mapping:
+2025-08-31 20:31:50 [INFO]: Creating opportunity 4yCduWpvl45MLV52ppB2 in database
+2025-08-31 20:31:50 [INFO]: Opportunity 4yCduWpvl45MLV52ppB2 created successfully in database
+2025-08-31 20:31:50 [INFO]: Pipeline data synced successfully
+2025-08-31 20:31:50 [INFO]: Sending success response: Webhook processed successfully
+2025-08-31 20:32:03 [INFO]: Fetching all opportunities from database
+2025-08-31 20:32:03 [INFO]: Found 19 total opportunities, 19 are open
+2025-08-31 20:32:03 [INFO]: Fetching all opportunities from database
+2025-08-31 20:32:04 [INFO]: Found 19 total opportunities, 19 are open
+2025-08-31 20:44:03 [INFO]: Fetching all opportunities from database
+2025-08-31 20:44:04 [INFO]: Found 19 total opportunities, 19 are open
+2025-08-31 20:44:04 [INFO]: Fetching all opportunities from database
+2025-08-31 20:44:04 [INFO]: Found 19 total opportunities, 19 are open
+2025-08-31 22:59:58 [INFO]: Fetching all opportunities from database
+2025-08-31 22:59:59 [INFO]: Found 21 total opportunities, 21 are open
+2025-08-31 23:00:44 [INFO]: Fetching all opportunities from database
+2025-08-31 23:00:44 [INFO]: Found 21 total opportunities, 21 are open
+2025-08-31 23:04:43 [INFO]: Fetching all opportunities from database
+2025-08-31 23:04:44 [INFO]: Found 21 total opportunities, 21 are open
+2025-08-31 23:04:44 [INFO]: Fetching all opportunities from database
+2025-08-31 23:04:44 [INFO]: Found 21 total opportunities, 21 are open
+2025-08-31 23:04:47 [INFO]: Fetching all opportunities from database
+2025-08-31 23:04:47 [INFO]: Found 21 total opportunities, 21 are open

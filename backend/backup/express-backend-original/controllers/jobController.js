@@ -1,0 +1,82 @@
+// jobController.js
+
+const { createOpportunityInPipeline } = require('../goHighLevelService');
+const { insertJobDraft, getAllJobs } = require('../db');
+const { createWireFrame } = require('../wireFrameService');
+
+// In-memory job data storage
+let jobs = [];
+
+// Controller to handle job creation
+exports.createJob = async (req, res) => {
+    const jobData = req.body;
+    jobs.push(jobData);
+    console.log('Received job data:', jobData);
+    res.status(201).json({ message: 'Job created successfully', jobData });
+
+    // Insert job data into Supabase
+    try {
+        console.log('Attempting to insert job draft into Supabase...');
+        const data = await insertJobDraft(jobData);
+        console.log('Job draft saved to Supabase:', data);
+    } catch (error) {
+        console.error('Error saving job draft to Supabase:', error);
+    }
+
+    // Create opportunity in GoHighLevel pipeline
+    try {
+        const opportunityResult = await createOpportunityInPipeline(jobData);
+        console.log('Opportunity created successfully in GoHighLevel pipeline');
+        
+        // Store the opportunity data in our database for display
+        if (opportunityResult) {
+            try {
+                const { insertOpportunity } = require('../db');
+                await insertOpportunity({
+                    opportunity_id: opportunityResult.id || `job-${Date.now()}`,
+                    name: jobData.title,
+                    status: 'open',
+                    monetary_value: jobData.salary || 0,
+                    pipeline_id: process.env.GHL_PIPELINE_ID,
+                    pipeline_stage_id: process.env.GHL_PIPELINE_STAGE_ID,
+                    pipeline_stage_name: opportunityResult.pipelineStageName || 'New Lead',
+                    created_at: new Date().toISOString(),
+                    updated_at: new Date().toISOString()
+                });
+                console.log('Opportunity data stored in database for display');
+            } catch (dbError) {
+                console.error('Error storing opportunity in database:', dbError);
+            }
+        }
+    } catch (error) {
+        console.error('Failed to create opportunity in GoHighLevel pipeline:', error);
+    }
+
+    // Generate wireframe and prototype for the job
+    try {
+        console.log('Initiating wireframe generation for job:', jobData.title);
+        const wireframeResult = await createWireFrame(jobData);
+        console.log('Wireframe generation completed successfully!');
+        console.log('Repository URL:', wireframeResult.repo_url);
+        console.log('Live Site URL:', wireframeResult.pages_url);
+        
+        // Optionally, you could save the wireframe URLs back to the database
+        // This would allow you to associate the generated wireframes with the job
+        
+    } catch (error) {
+        console.error('Failed to generate wireframe for job:', error.message);
+        // Note: We don't throw the error here to avoid disrupting the main job creation flow
+    }
+};
+
+// Controller to handle fetching all jobs
+exports.getAllJobs = async (req, res) => {
+    try {
+        console.log('Fetching all jobs from database...');
+        const jobs = await getAllJobs();
+        res.status(200).json(jobs);
+    } catch (error) {
+        console.error('Error fetching jobs:', error);
+        res.status(500).json({ error: 'Failed to fetch jobs' });
+    }
+}; 

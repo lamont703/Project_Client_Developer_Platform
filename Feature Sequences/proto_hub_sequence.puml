@@ -1,0 +1,243 @@
+@startuml
+actor U as "User <<Community Member>>"
+participant PH as "ProtoHub\n(React Component)"
+participant PS as "PrototypeShowcase\n(React Component)"
+participant AQ as "AskQuestion\n(Modal Component)"
+participant AP as "AddPrototype\n(Modal Component)"
+participant QS as "QuestionSystem\n(Utility Class)"
+participant PSS as "PrototypeShowcase\n(Utility Class)"
+participant AI as "AICommunityMember\n(Utility Class)"
+participant ANA as "Analytics\n(Utility Class)"
+database LS as "Local Storage\n(userState, drafts)"
+participant API as "Backend Server\n(Express.js)"
+participant ROUTES as "Routes\n(/api/questions, /api/prototypes)"
+participant CONTROLLER as "Controllers\n(questionController, prototypeController)"
+participant DB as "Database\n(Supabase)"
+participant GH as "GitHub\nPages"
+participant VAL as "URL Validator\n(service)"
+
+' Session start
+U ->> PH : Open Proto Hub
+PH ->> ANA : trackEvent('proto_hub_opened')
+PH ->> QS : initQuestionSystem()
+QS ->> LS : loadCachedQuestions()
+QS -->> PH : questions list
+PH ->> U : Display questions grid/list
+
+' Question browsing flow
+U ->> PH : Browse questions
+PH ->> QS : loadQuestions()
+QS ->> LS : getCachedQuestions()
+QS -->> PH : questions list
+PH ->> U : Display questions grid/list
+
+' Search and filtering
+U ->> PH : Search questions / Apply filters
+PH ->> QS : filterQuestions(searchTerm, tags, sortBy)
+QS ->> LS : updateFilters(state)
+QS -->> PH : filtered results
+PH ->> U : Update question display
+
+' Question detail view
+U ->> PH : Click on question
+PH ->> QS : loadQuestionDetail(questionId)
+QS ->> LS : getQuestionData(questionId)
+QS -->> PH : question details + answers
+PH ->> U : Show question detail view
+
+' Answer interaction
+U ->> PH : Like answer / View answer
+PH ->> QS : handleAnswerInteraction(action, answerId)
+QS ->> LS : updateAnswerStats()
+QS -->> PH : updated stats
+PH ->> ANA : trackEvent('answer_interaction', {action})
+
+' Ask new question flow
+U ->> PH : Click "Ask Question"
+PH ->> AQ : openAskQuestionModal()
+AQ -->> U : Show question form
+
+' Question submission
+U ->> AQ : Fill question form\n(title, content, tags)
+AQ ->> VAL : validateQuestionData(formData)
+VAL -->> AQ : validation result
+
+alt Validation passed
+    AQ ->> LS : saveQuestionDraft(formData)
+    AQ ->> API : POST /api/questions (questionData)
+    
+    ' Backend Server Flow
+    API ->> ANA : analytics middleware\n(question_submitted)
+    ANA -->> API : analytics processed
+    
+    API ->> ROUTES : route to /api/questions
+    ROUTES ->> CONTROLLER : questionController.createQuestion()
+    
+    ' Database Operations
+    CONTROLLER ->> DB : insertQuestion(questionData)
+    DB -->> CONTROLLER : questionId created
+    
+    ' AI Community Member Response
+    CONTROLLER ->> AI : generateAIResponse(questionData)
+    AI -->> CONTROLLER : aiResponse generated
+    
+    CONTROLLER ->> DB : insertAnswer(aiResponse)
+    DB -->> CONTROLLER : answerId created
+    
+    CONTROLLER -->> ROUTES : success response
+    ROUTES -->> API : 201 Created {questionId, answerId}
+    API -->> AQ : 201 Created {questionId, answerId}
+    
+    AQ ->> ANA : trackEvent('question_published')
+    AQ -->> U : Show success message
+    AQ ->> PH : closeModal()
+    PH ->> QS : refreshQuestions()
+    QS -->> PH : updated questions list
+    PH ->> U : Display new question
+else Validation failed
+    AQ -->> U : Show validation errors
+end
+
+' Prototype showcase flow
+U ->> PH : Click "View Prototypes"
+PH ->> PS : openPrototypeShowcase()
+PS ->> PSS : initPrototypeShowcase()
+PSS ->> LS : loadCachedPrototypes()
+PSS -->> PS : prototypes list
+PS -->> U : Show prototype gallery
+
+' Prototype browsing
+U ->> PS : Browse prototypes
+PS ->> PSS : loadPrototypes()
+PSS ->> LS : getCachedPrototypes()
+PSS -->> PS : prototypes list
+PS ->> U : Display prototype grid/list
+
+' Prototype filtering
+U ->> PS : Filter by category / Search
+PS ->> PSS : filterPrototypes(searchTerm, tags, sortBy)
+PSS ->> LS : updatePrototypeFilters()
+PSS -->> PS : filtered results
+PS ->> U : Filtered prototype results
+
+' Prototype interaction
+U ->> PS : Like prototype / View prototype
+PS ->> PSS : handlePrototypeInteraction(action, prototypeId)
+PSS ->> LS : updatePrototypeStats()
+PSS -->> PS : updated stats
+PS ->> ANA : trackEvent('prototype_interaction', {action})
+
+' View live prototype
+U ->> PS : Click "View Prototype"
+PS ->> VAL : validateGitHubPagesUrl(url)
+VAL -->> PS : validation result
+
+alt Valid URL
+    PS ->> GH : openInNewTab(githubPagesUrl)
+    GH -->> U : Load prototype in new tab
+    PS ->> ANA : trackEvent('prototype_viewed', {prototypeId})
+else Invalid URL
+    PS -->> U : Show error message
+end
+
+' Add new prototype flow
+U ->> PS : Click "Share Your Prototype"
+PS ->> AP : openAddPrototypeModal()
+AP -->> U : Show prototype submission form
+
+' Prototype submission
+U ->> AP : Fill prototype form\n(title, description, githubPagesUrl, githubRepoUrl, technologies, tags, status)
+AP ->> VAL : validatePrototypeData(formData)
+VAL -->> AP : validation result
+
+alt Validation passed
+    AP ->> LS : savePrototypeDraft(formData)
+    AP ->> API : POST /api/prototypes (prototypeData)
+    
+    ' Backend Server Flow
+    API ->> ANA : analytics middleware\n(prototype_submitted)
+    ANA -->> API : analytics processed
+    
+    API ->> ROUTES : route to /api/prototypes
+    ROUTES ->> CONTROLLER : prototypeController.createPrototype()
+    
+    ' Database Operations
+    CONTROLLER ->> DB : insertPrototype(prototypeData)
+    DB -->> CONTROLLER : prototypeId created
+    
+    ' URL Validation Service
+    CONTROLLER ->> VAL : validateGitHubPagesUrl(githubPagesUrl)
+    VAL -->> CONTROLLER : url validation result
+    
+    alt URL is valid
+        CONTROLLER ->> DB : updatePrototypeStatus(prototypeId, "live")
+        DB -->> CONTROLLER : status updated
+    else URL is invalid
+        CONTROLLER ->> DB : updatePrototypeStatus(prototypeId, "development")
+        DB -->> CONTROLLER : status updated
+    end
+    
+    CONTROLLER -->> ROUTES : success response
+    ROUTES -->> API : 201 Created {prototypeId}
+    API -->> AP : 201 Created {prototypeId}
+    
+    AP ->> ANA : trackEvent('prototype_published')
+    AP -->> U : Show success message
+    AP ->> PS : closeModal()
+    PS ->> PSS : refreshPrototypes()
+    PSS -->> PS : updated prototypes list
+    PS ->> U : Display new prototype
+else Validation failed
+    AP -->> U : Show validation errors
+end
+
+' AI Community Member interactions
+loop AI Community Engagement
+    AI ->> QS : monitorNewQuestions()
+    QS -->> AI : new question detected
+    
+    AI ->> AI : analyzeQuestion(questionData)
+    AI ->> AI : generateHelpfulResponse()
+    AI ->> CONTROLLER : postAIResponse(questionId, response)
+    CONTROLLER ->> DB : insertAnswer(aiResponse)
+    DB -->> CONTROLLER : answerId created
+    
+    AI ->> ANA : trackEvent('ai_response_posted')
+end
+
+' Community moderation flow
+opt Moderation needed
+    U ->> PH : Report inappropriate content
+    PH ->> API : POST /api/reports (reportData)
+    
+    API ->> ANA : analytics middleware\n(content_reported)
+    ANA -->> API : analytics processed
+    
+    API ->> ROUTES : route to /api/reports
+    ROUTES ->> CONTROLLER : moderationController.createReport()
+    
+    CONTROLLER ->> DB : insertReport(reportData)
+    DB -->> CONTROLLER : reportId created
+    
+    CONTROLLER -->> ROUTES : success response
+    ROUTES -->> API : 201 Created {reportId}
+    API -->> PH : 201 Created {reportId}
+    
+    PH -->> U : Show confirmation message
+end
+
+' User profile interactions
+U ->> PH : Update profile / View reputation
+PH ->> LS : getUserProfile()
+LS -->> PH : profile data
+PH ->> U : Display profile information
+
+' Session persistence
+PH ->> LS : saveUserState(currentState)
+LS -->> PH : state saved
+
+' Analytics tracking
+PH ->> ANA : trackUserJourney(actions)
+ANA -->> PH : analytics processed
+
+@enduml 

@@ -1,19 +1,33 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import JobListing from '../components/JobListing';
+import { JobListing } from '../components';
 import '../styles/PageLayout.css';
 
-const JobsPage: React.FC = () => {
+interface JobsPageProps {
+  navigateToHome: () => void;
+}
+
+const JobsPage: React.FC<JobsPageProps> = ({ navigateToHome }) => {
+  const handleBackToHome = () => {
+    // Scroll to top immediately
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    // Navigate to home using the full URL
+    navigateToHome();
+  };
+
   return (
     <div className="page-layout">
       <div className="page-header">
         <div className="page-navigation">
-          <Link to="/" className="nav-link">
+          <button
+            onClick={handleBackToHome}
+            className="nav-link"
+            style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+          >
             ← Back to Home
-          </Link>
+          </button>
         </div>
-        <h1>💼 Job Listings</h1>
-        <p>Browse available opportunities and find your next project</p>
+        <h1>💼 Pipeline Projects</h1>
+        <p>Find the perfect opportunity from our extensive job board</p>
       </div>
       
       <div className="page-content">

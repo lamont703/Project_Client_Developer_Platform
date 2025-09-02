@@ -14,6 +14,8 @@
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -200,7 +202,9 @@
     
     .nav-container {
         padding: 0 15px;
-        height: 60px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        height: 80px;
     }
     
     .nav-logo {
@@ -211,6 +215,9 @@
 @media (max-width: 480px) {
     .nav-container {
         padding: 0 10px;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        height: 90px;
     }
     
     .nav-logo {

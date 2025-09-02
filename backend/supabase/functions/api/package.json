@@ -1,0 +1,17 @@
+{
+  "name": "api-edge-function",
+  "version": "1.0.0",
+  "description": "Supabase Edge Function API for GoHighLevel integration",
+  "main": "index.ts",
+  "scripts": {
+    "dev": "supabase functions serve api --env-file .env.local",
+    "deploy": "supabase functions deploy api",
+    "logs": "supabase functions logs api"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.38.0"
+  },
+  "devDependencies": {
+    "supabase": "^1.123.0"
+  }
+} 

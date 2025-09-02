@@ -1,8 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../styles/HomePage.css';
 
-const HomePage: React.FC = () => {
+interface HomePageProps {
+  navigateToHome?: () => void;
+}
+
+const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
+  const navigate = useNavigate();
+
+  const handleNavigation = (route: string) => {
+    // Scroll to top immediately before navigation
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    navigate(route);
+  };
+
   return (
     <div className="home-page">
       <div className="hero-section">
@@ -12,12 +24,18 @@ const HomePage: React.FC = () => {
         </p>
         
         <div className="hero-cta">
-          <Link to="/chat" className="cta-button primary">
+          <button 
+            onClick={() => handleNavigation('/chat')} 
+            className="cta-button primary"
+          >
             🤖 Start AI Assistant
-          </Link>
-          <Link to="/jobs" className="cta-button secondary">
+          </button>
+          <button 
+            onClick={() => handleNavigation('/jobs')} 
+            className="cta-button secondary"
+          >
             💼 Browse Jobs
-          </Link>
+          </button>
         </div>
       </div>
 
@@ -28,37 +46,60 @@ const HomePage: React.FC = () => {
             <div className="feature-icon">🤖</div>
             <h3>AI Project Assistant</h3>
             <p>Get instant project analysis and wireframe prototypes with our AI-powered assistant</p>
-            <Link to="/chat" className="feature-link">Try Now →</Link>
+            <button 
+              onClick={() => handleNavigation('/chat')} 
+              className="feature-link"
+            >
+              Try Now →
+            </button>
           </div>
           
           <div className="feature-card">
             <div className="feature-icon">👨‍💻</div>
             <h3>AI Developer Assistant</h3>
             <p>Get personalized help creating professional profiles and crafting winning job applications</p>
-            <Link to="/developer-chat" className="feature-link">Get Started →</Link>
+            <button 
+              onClick={() => handleNavigation('/developer-chat')} 
+              className="feature-link"
+            >
+              Get Started →
+            </button>
           </div>
           
           <div className="feature-card">
             <div className="feature-icon">🚀</div>
             <h3>Proto Hub</h3>
             <p>Join our community Q&A forum to learn about prototyping and get help bringing your ideas to life</p>
-            <Link to="/proto-hub" className="feature-link">Join Community →</Link>
+            <button 
+              onClick={() => handleNavigation('/proto-hub')} 
+              className="feature-link"
+            >
+              Join Community →
+            </button>
           </div>
-          
-
           
           <div className="feature-card">
             <div className="feature-icon">👥</div>
             <h3>Developer Directory</h3>
             <p>Browse our curated list of talented developers ready for your projects</p>
-            <Link to="/developers" className="feature-link">Browse →</Link>
+            <button 
+              onClick={() => handleNavigation('/developers')} 
+              className="feature-link"
+            >
+              Browse →
+            </button>
           </div>
           
           <div className="feature-card">
             <div className="feature-icon">🔍</div>
             <h3>Job Listings</h3>
             <p>Find the perfect opportunity from our extensive job board</p>
-            <Link to="/jobs" className="feature-link">View Jobs →</Link>
+            <button 
+              onClick={() => handleNavigation('/jobs')} 
+              className="feature-link"
+            >
+              View Jobs →
+            </button>
           </div>
         </div>
       </div>

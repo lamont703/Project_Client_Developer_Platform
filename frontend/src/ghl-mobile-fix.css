@@ -1,0 +1,224 @@
+/* CSS Isolation Container - Firewall against GHL interference */
+.app-isolation-container {
+  /* Reset all GHL interference */
+  all: initial !important;
+  
+  /* Restore essential properties */
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  
+  /* Reset font and text properties that 'all: initial' removes */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif !important;
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+  color: #000 !important;
+  background: transparent !important;
+  
+  /* Ensure full viewport coverage */
+  min-height: 100vh !important;
+  overflow-x: hidden !important;
+}
+
+/* Ensure all child elements inherit proper styling */
+.app-isolation-container * {
+  box-sizing: border-box !important;
+}
+
+/* Override GHL's grid system specifically within our app */
+.app-isolation-container .c-row,
+.app-isolation-container [class*="c-row"],
+.app-isolation-container .c-wrapper,
+.app-isolation-container [class*="c-wrapper"] {
+  padding: 0 !important;
+  margin: 0 !important;
+  width: auto !important;
+  display: block !important;
+}
+
+/* Mobile-specific GHL overrides */
+@media screen and (max-width: 768px) {
+  .app-isolation-container .c-row,
+  .app-isolation-container [class*="c-row"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+/* Extra small mobile - be even more specific */
+@media screen and (max-width: 480px) {
+  .app-isolation-container .c-row,
+  .app-isolation-container [class*="c-row"],
+  .app-isolation-container .row-align-center {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+/* GHL Mobile Fix - Targeted CSS Reset for GoHighLevel Environment */
+
+/* Only target our specific app elements, not all elements */
+#root, .App, div[id="root"] {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Ensure our app container has full coverage */
+html, body {
+  width: 100% !important;
+  height: 100% !important;
+  overflow-x: hidden !important;
+  -webkit-text-size-adjust: 100% !important;
+  -moz-text-size-adjust: 100% !important;
+  text-size-adjust: 100% !important;
+}
+
+#root, .App {
+  width: 100% !important;
+  min-height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative !important;
+  overflow-x: hidden !important;
+}
+
+/* Mobile-specific fixes - target only our components */
+@media screen and (max-width: 768px) {
+  /* Only reset our app containers */
+  #root, .App, div[id="root"] {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow-x: hidden !important;
+    position: relative !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-sizing: border-box !important;
+  }
+  
+  #root, .App {
+    min-height: 100vh !important;
+  }
+  
+  /* Fix for our app container specifically */
+  div[id="root"],
+  .App {
+    margin-top: 0 !important;
+    margin-left: 0 !important;
+    padding-top: 0 !important;
+    padding-left: 0 !important;
+  }
+  
+  /* Only target our specific component classes */
+  .navigation, .nav-container,
+  .hero-section, .features-section, .stats-section,
+  .page-header, .page-content, .page-navigation,
+  .chat-window, .chat-input, .hub-header, .hub-content,
+  .questions-list, .showcase-header, .showcase-content,
+  .prototypes-grid, .wizard-steps, .wizard-navigation,
+  .job-listing-container, .jobs-grid, .job-card,
+  .developer-profile, .profile-header, .profile-section {
+    margin-left: 0 !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Ensure our sections have proper padding without interfering with GHL */
+  .hero-section, .features-section, .stats-section,
+  .page-content, .questions-list, .showcase-content,
+  .wizard-steps, .chat-window {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* Extra small mobile devices - target only our components */
+@media screen and (max-width: 480px) {
+  #root, .App, div[id="root"] {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    overflow-x: hidden !important;
+    position: relative !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Specific padding for our content sections only */
+  .hero-section, .features-section, .stats-section,
+  .page-content, .questions-list, .showcase-content,
+  .wizard-steps, .job-details, .profile-section {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    margin-left: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* Override any inline styles on our root container only */
+div[id="root"][style*="margin"],
+div[id="root"][style*="padding"] {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+}
+
+/* Ensure our navigation doesn't create left margins */
+.navigation, .nav-container {
+  margin-left: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Force our app body and html to start at left edge */
+@media screen and (max-width: 768px) {
+  #root {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    position: relative !important;
+    left: 0 !important;
+    transform: translateX(0) !important;
+  }
+}
+
+/* Global viewport meta enforcement for embedded context */
+@-webkit-viewport {
+  width: device-width;
+  initial-scale: 1.0;
+  maximum-scale: 1.0;
+  user-scalable: no;
+}
+
+@-moz-viewport {
+  width: device-width;
+  initial-scale: 1.0;
+  maximum-scale: 1.0;
+  user-scalable: no;
+}
+
+@-ms-viewport {
+  width: device-width;
+  initial-scale: 1.0;
+  maximum-scale: 1.0;
+  user-scalable: no;
+}
+
+@viewport {
+  width: device-width;
+  initial-scale: 1.0;
+  maximum-scale: 1.0;
+  user-scalable: no;
+} 

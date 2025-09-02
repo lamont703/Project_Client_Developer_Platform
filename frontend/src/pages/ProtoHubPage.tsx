@@ -1,19 +1,33 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import ProtoHub from '../components/ProtoHub';
+import { ProtoHub } from '../components';
 import '../styles/PageLayout.css';
 
-const ProtoHubPage: React.FC = () => {
+interface ProtoHubPageProps {
+  navigateToHome: () => void;
+}
+
+const ProtoHubPage: React.FC<ProtoHubPageProps> = ({ navigateToHome }) => {
+  const handleBackToHome = () => {
+    // Scroll to top immediately
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    // Navigate to home using the full URL
+    navigateToHome();
+  };
+
   return (
     <div className="page-layout">
       <div className="page-header">
         <div className="page-navigation">
-          <Link to="/" className="nav-link">
+          <button
+            onClick={handleBackToHome}
+            className="nav-link"
+            style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+          >
             ← Back to Home
-          </Link>
+          </button>
         </div>
         <h1>🚀 Proto Hub</h1>
-        <p>Community Q&A for prototyping and bringing software ideas to life</p>
+        <p>Join our community Q&A forum to learn about prototyping and get help bringing your ideas to life</p>
       </div>
       
       <div className="page-content">
