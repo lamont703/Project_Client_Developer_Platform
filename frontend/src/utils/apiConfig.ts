@@ -54,6 +54,9 @@ export class ApiService {
         };
       }
 
+      console.log('🔍 DEBUG: makeRequest called with URL:', url);
+      console.log('🔍 DEBUG: makeRequest options:', options);
+
       const response = await fetch(url, {
         headers: {
           'Content-Type': 'application/json',
@@ -69,13 +72,20 @@ export class ApiService {
         ...options
       });
 
+      console.log('🔍 DEBUG: Response status:', response.status);
+      console.log('🔍 DEBUG: Response headers:', Object.fromEntries(response.headers.entries()));
+
       if (!response.ok) {
+        const errorText = await response.text();
+        console.error('🔍 DEBUG: Response not ok. Status:', response.status, 'Text:', errorText);
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       const data = await response.json();
+      console.log('🔍 DEBUG: Response data:', data);
       return data;
     } catch (error) {
+      console.error('🔍 DEBUG: makeRequest error:', error);
       console.error('API request failed:', error);
       // Return mock data instead of throwing error
       return {
@@ -173,9 +183,25 @@ export class ApiService {
   }
 
   static async recordAnswerView(questionId: string, answerId: string): Promise<any> {
-    return this.makeRequest(API_CONFIG.getUrl(`${API_CONFIG.ENDPOINTS.QUESTIONS}/${questionId}/answers/${answerId}/view`), {
+    console.log('🔍 DEBUG: ApiService.recordAnswerView called with:', { questionId, answerId });
+    const url = API_CONFIG.getUrl(`${API_CONFIG.ENDPOINTS.QUESTIONS}/${questionId}/answers/${answerId}/view`);
+    console.log('🔍 DEBUG: Making request to URL:', url);
+    const result = await this.makeRequest(url, {
       method: 'POST'
     });
+    console.log('🔍 DEBUG: recordAnswerView result:', result);
+    return result;
+  }
+
+  static async recordQuestionView(questionId: string): Promise<any> {
+    console.log('🔍 DEBUG: ApiService.recordQuestionView called with:', { questionId });
+    const url = API_CONFIG.getUrl(`${API_CONFIG.ENDPOINTS.QUESTIONS}/${questionId}/view`);
+    console.log('🔍 DEBUG: Making request to URL:', url);
+    const result = await this.makeRequest(url, {
+      method: 'POST'
+    });
+    console.log('🔍 DEBUG: recordQuestionView result:', result);
+    return result;
   }
 
   static async getQuestionAnswers(questionId: string): Promise<any> {

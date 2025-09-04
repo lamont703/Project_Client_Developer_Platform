@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import '../../styles/PrototypeShowcase.css';
 import AddPrototype from './AddPrototype';
 import ApiService from '../../utils/apiConfig';
+import { Analytics } from '../../utils/analytics';
 
 interface Prototype {
     id: string;
@@ -155,32 +156,60 @@ const PrototypeShowcase: React.FC = () => {
 
     const handleLike = async (prototypeId: string) => {
         try {
+            const prototype = prototypes.find(p => p.id === prototypeId);
+            const previousLikes = prototype?.likes || 0;
+            
             const response = await ApiService.likePrototype(prototypeId, 'like');
             if (response.success) {
                 // Update the prototype with new like count
+                const newLikes = response.likes || previousLikes;
                 setPrototypes(prototypes.map(p => 
-                    p.id === prototypeId ? { ...p, likes: response.likes || p.likes } : p
+                    p.id === prototypeId ? { ...p, likes: newLikes } : p
                 ));
+                
+                // Track prototype like
+                Analytics.getInstance().trackPrototypeLiked(prototypeId, previousLikes, newLikes);
             } else {
                 console.error('Failed to like prototype:', response.error);
                 // Fallback to local state update
+                const newLikes = previousLikes + 1;
                 setPrototypes(prototypes.map(p => 
-                    p.id === prototypeId ? { ...p, likes: p.likes + 1 } : p
+                    p.id === prototypeId ? { ...p, likes: newLikes } : p
                 ));
+                
+                // Track prototype like (fallback)
+                Analytics.getInstance().trackPrototypeLiked(prototypeId, previousLikes, newLikes);
             }
         } catch (error) {
             console.error('Error liking prototype:', error);
             // Fallback to local state update
+            const prototype = prototypes.find(p => p.id === prototypeId);
+            const previousLikes = prototype?.likes || 0;
+            const newLikes = previousLikes + 1;
             setPrototypes(prototypes.map(p => 
-                p.id === prototypeId ? { ...p, likes: p.likes + 1 } : p
+                p.id === prototypeId ? { ...p, likes: newLikes } : p
             ));
+            
+            // Track prototype like (fallback)
+            Analytics.getInstance().trackPrototypeLiked(prototypeId, previousLikes, newLikes);
         }
     };
 
     const handleView = (prototypeId: string) => {
+        const prototype = prototypes.find(p => p.id === prototypeId);
         setPrototypes(prototypes.map(p => 
             p.id === prototypeId ? { ...p, views: p.views + 1 } : p
         ));
+        
+        // Track prototype view
+        if (prototype) {
+            Analytics.getInstance().trackPrototypeViewed(prototypeId, prototype.title, {
+                prototype_author: prototype.author.name,
+                prototype_tags: prototype.tags,
+                prototype_technologies: prototype.technologies,
+                prototype_likes: prototype.likes
+            });
+        }
     };
 
     const formatDate = (dateString: string) => {

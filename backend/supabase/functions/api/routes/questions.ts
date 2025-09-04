@@ -70,11 +70,11 @@ export async function handleQuestionsRoute(req: Request, path: string): Promise<
       return await questionController.voteOnAnswer(req, path, questionId!, answerId!, voteData)
     }
 
-    // POST /api/questions/:id/answers/:answerId/view - Record answer view
-    if (method === 'POST' && path.match(/^\/api\/questions\/[^\/]+\/answers\/[^\/]+\/view$/)) {
+    // POST /api/questions/:id/view - Record question view
+    if (method === 'POST' && path.match(/^\/api\/questions\/[^\/]+\/view$/)) {
       const questionId = path.split('/')[3]
-      const answerId = path.split('/')[5]
-      return await questionController.recordAnswerView(req, path, questionId!, answerId!)
+      console.log('🔍 DEBUG: Question view tracking route triggered:', { method, path, questionId })
+      return await questionController.recordQuestionView(req, path, questionId!)
     }
 
     // Method not allowed

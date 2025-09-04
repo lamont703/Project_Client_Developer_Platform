@@ -272,10 +272,31 @@ export const questionController = {
         offset: parseInt(offset)
       })
       
+      // Transform snake_case to camelCase for frontend compatibility
+      const transformedAnswers = answers.map((answer: any) => ({
+        id: answer.id,
+        questionId: answer.question_id,
+        content: answer.content,
+        authorId: answer.author_id,
+        votes: answer.votes,
+        views: answer.views,
+        isAccepted: answer.is_accepted,
+        isAI: answer.is_ai,
+        createdAt: answer.created_at,
+        updatedAt: answer.updated_at,
+        author: answer.author ? {
+          id: answer.author_id,
+          name: answer.author.name,
+          avatar: answer.author.avatar,
+          reputation: answer.author.reputation,
+          isAI: answer.author.is_ai
+        } : null
+      }))
+      
       return createCorsResponse({
         success: true,
-        answers,
-        count: answers.length,
+        answers: transformedAnswers,
+        count: transformedAnswers.length,
         timestamp: new Date().toISOString()
       })
     } catch (error) {
@@ -335,9 +356,30 @@ export const questionController = {
         answerId: answer.id
       })
       
+      // Transform snake_case to camelCase for frontend compatibility
+      const transformedAnswer = {
+        id: answer.id,
+        questionId: answer.question_id,
+        content: answer.content,
+        authorId: answer.author_id,
+        votes: answer.votes,
+        views: answer.views,
+        isAccepted: answer.is_accepted,
+        isAI: answer.is_ai,
+        createdAt: answer.created_at,
+        updatedAt: answer.updated_at,
+        author: answer.author ? {
+          id: answer.author_id,
+          name: answer.author.name,
+          avatar: answer.author.avatar,
+          reputation: answer.author.reputation,
+          isAI: answer.author.is_ai
+        } : null
+      }
+      
       return createCorsResponse({
         success: true,
-        answer,
+        answer: transformedAnswer,
         message: 'Answer added successfully',
         timestamp: new Date().toISOString()
       }, 201)
@@ -390,15 +432,18 @@ export const questionController = {
     }
   },
 
-  // Record answer view
-  async recordAnswerView(req: Request, path: string, questionId: string, answerId: string): Promise<Response> {
+  // Record question view
+  async recordQuestionView(req: Request, path: string, questionId: string): Promise<Response> {
+    console.log('🔍 DEBUG: recordQuestionView controller called:', { questionId })
     try {
-      await databaseService.incrementAnswerViews(answerId)
+      console.log('🔍 DEBUG: Calling databaseService.incrementQuestionViews for questionId:', questionId)
+      await databaseService.incrementQuestionViews(questionId)
+      console.log('🔍 DEBUG: Question views incremented successfully')
       
-      analytics.trackEvent('answer_viewed', { 
-        questionId,
-        answerId
+      analytics.trackEvent('question_viewed', { 
+        questionId
       })
+      console.log('🔍 DEBUG: Analytics event tracked')
       
       return createCorsResponse({
         success: true,
@@ -406,7 +451,8 @@ export const questionController = {
         timestamp: new Date().toISOString()
       })
     } catch (error) {
-      logger.error('Error recording answer view:', error)
+      console.error('🔍 DEBUG: Error recording question view:', error)
+      logger.error('Error recording question view:', error)
       return createCorsResponse({
         success: false,
         error: 'Failed to record view',

@@ -469,36 +469,45 @@ export const databaseService = {
     }
   },
 
-  async incrementAnswerViews(answerId: string) {
+  async incrementQuestionViews(questionId: string) {
+    console.log('🔍 DEBUG: incrementQuestionViews called for questionId:', questionId)
     try {
       // First get the current views count
+      console.log('🔍 DEBUG: Fetching current views count for questionId:', questionId)
       const { data: currentData, error: fetchError } = await supabase
-        .from('answers')
+        .from('questions')
         .select('views')
-        .eq('id', answerId)
+        .eq('id', questionId)
         .single()
 
       if (fetchError) {
+        console.error('🔍 DEBUG: Error fetching current views:', fetchError)
         throw fetchError
       }
 
       const currentViews = currentData?.views || 0
       const newViews = currentViews + 1
+      console.log('🔍 DEBUG: Current views:', currentViews, 'New views:', newViews)
 
       // Update with the new count
+      console.log('🔍 DEBUG: Updating views in database')
       const { data, error } = await supabase
-        .from('answers')
+        .from('questions')
         .update({ views: newViews })
-        .eq('id', answerId)
+        .eq('id', questionId)
         .select('views')
 
       if (error) {
+        console.error('🔍 DEBUG: Error updating views:', error)
         throw error
       }
 
-      return { views: data?.[0]?.views || 0 }
+      const updatedViews = data?.[0]?.views || 0
+      console.log('🔍 DEBUG: Views updated successfully. New count:', updatedViews)
+      return { views: updatedViews }
     } catch (error) {
-      console.error('Error incrementing answer views:', error)
+      console.error('🔍 DEBUG: Error in incrementQuestionViews:', error)
+      console.error('Error incrementing question views:', error)
       throw error
     }
   },

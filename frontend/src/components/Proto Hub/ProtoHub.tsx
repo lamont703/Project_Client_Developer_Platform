@@ -3,6 +3,7 @@ import '../../styles/ProtoHub.css';
 import AskQuestion from './AskQuestion';
 import PrototypeShowcase from './PrototypeShowcase';
 import ApiService from '../../utils/apiConfig';
+import { Analytics } from '../../utils/analytics';
 
 interface User {
     id: string;
@@ -31,7 +32,6 @@ interface Answer {
     content: string;
     author: User;
     votes: number;
-    views: number;
     isAccepted: boolean;
     createdAt: string;
 }
@@ -117,7 +117,6 @@ const ProtoHub: React.FC = () => {
             content: 'For mobile app prototyping, I highly recommend Figma for design and InVision for interactive prototypes. Figma is great for creating the visual design, and InVision lets you add clickable interactions without any coding. Another excellent option is Adobe XD, which combines both design and prototyping in one tool.',
             author: { id: '6', name: 'ProtoBot', avatar: '🤖', reputation: 1250, isAI: true },
             votes: 12,
-            views: 45,
             isAccepted: true,
             createdAt: '2024-01-15T11:00:00Z'
         },
@@ -126,7 +125,6 @@ const ProtoHub: React.FC = () => {
             content: 'I\'d also add Framer to the list. It\'s particularly good for more complex interactions and animations. The learning curve is a bit steeper, but the results are impressive.',
             author: { id: '7', name: 'David Kim', avatar: '👨‍💻', reputation: 420, isAI: false },
             votes: 8,
-            views: 32,
             isAccepted: false,
             createdAt: '2024-01-15T11:30:00Z'
         }
@@ -151,6 +149,9 @@ const ProtoHub: React.FC = () => {
         };
 
         fetchQuestions();
+        
+        // Track ProtoHub opened
+        Analytics.getInstance().trackProtoHubOpened();
     }, []);
 
     const filteredQuestions = questions.filter(question => {
@@ -172,28 +173,48 @@ const ProtoHub: React.FC = () => {
     const handleQuestionClick = (question: Question) => {
         setSelectedQuestion(question);
         loadAnswersForQuestion(question.id);
+        
+        // Track question view
+        Analytics.getInstance().trackQuestionViewed(question.id, question.title, {
+            question_author: question.author.name,
+            question_tags: question.tags,
+            question_votes: question.votes,
+            question_answers: question.answers
+        });
     };
 
     const loadAnswersForQuestion = async (questionId: string) => {
+        console.log('🔍 DEBUG: loadAnswersForQuestion called with questionId:', questionId);
         try {
             const response = await ApiService.getQuestionAnswers(questionId);
+            console.log('🔍 DEBUG: API response received:', response);
             if (response.success) {
                 setAnswers(response.answers || []);
-                // Record views for each answer
+                console.log('🔍 DEBUG: Setting answers:', response.answers?.length || 0, 'answers');
+                // Record view for the question
+                console.log('🔍 DEBUG: Recording view for question:', questionId);
+                ApiService.recordQuestionView(questionId).then(result => {
+                    console.log('🔍 DEBUG: Question view recorded successfully:', result);
+                }).catch(error => {
+                    console.error('🔍 DEBUG: Error recording question view:', error);
+                });
+                
+                // Track answers viewed
                 if (response.answers && response.answers.length > 0) {
                     response.answers.forEach((answer: Answer) => {
-                        ApiService.recordAnswerView(questionId, answer.id).catch(error => {
-                            console.error('Error recording answer view:', error);
+                        Analytics.getInstance().trackAnswerViewed(questionId, answer.id, {
+                            answer_author: answer.author.name,
+                            answer_votes: answer.votes
                         });
                     });
                 }
             } else {
-                console.error('Failed to fetch answers:', response.error);
+                console.error('🔍 DEBUG: Failed to fetch answers:', response.error);
                 // Fallback to sample answers
                 setAnswers(sampleAnswers);
             }
         } catch (error) {
-            console.error('Error fetching answers:', error);
+            console.error('🔍 DEBUG: Error fetching answers:', error);
             // Fallback to sample answers
             setAnswers(sampleAnswers);
         }
@@ -201,31 +222,48 @@ const ProtoHub: React.FC = () => {
 
     const handleVote = async (questionId: string, direction: 'up' | 'down') => {
         try {
+            const question = questions.find(q => q.id === questionId);
+            const previousVotes = question?.votes || 0;
+            
             const response = await ApiService.voteOnQuestion(questionId, direction);
             if (response.success) {
                 // Update the question with new vote count
+                const newVotes = response.votes || previousVotes;
                 setQuestions(questions.map(q => 
                     q.id === questionId 
-                        ? { ...q, votes: response.votes || q.votes }
+                        ? { ...q, votes: newVotes }
                         : q
                 ));
+                
+                // Track question vote
+                Analytics.getInstance().trackQuestionVoted(questionId, direction, previousVotes, newVotes);
             } else {
                 console.error('Failed to vote on question:', response.error);
                 // Fallback to local state update
+                const newVotes = previousVotes + (direction === 'up' ? 1 : -1);
                 setQuestions(questions.map(q => 
                     q.id === questionId 
-                        ? { ...q, votes: q.votes + (direction === 'up' ? 1 : -1) }
+                        ? { ...q, votes: newVotes }
                         : q
                 ));
+                
+                // Track question vote (fallback)
+                Analytics.getInstance().trackQuestionVoted(questionId, direction, previousVotes, newVotes);
             }
         } catch (error) {
             console.error('Error voting on question:', error);
             // Fallback to local state update
+            const question = questions.find(q => q.id === questionId);
+            const previousVotes = question?.votes || 0;
+            const newVotes = previousVotes + (direction === 'up' ? 1 : -1);
             setQuestions(questions.map(q => 
                 q.id === questionId 
-                    ? { ...q, votes: q.votes + (direction === 'up' ? 1 : -1) }
+                    ? { ...q, votes: newVotes }
                     : q
             ));
+            
+            // Track question vote (fallback)
+            Analytics.getInstance().trackQuestionVoted(questionId, direction, previousVotes, newVotes);
         }
     };
 
@@ -233,31 +271,48 @@ const ProtoHub: React.FC = () => {
         if (!selectedQuestion) return;
         
         try {
+            const answer = answers.find(a => a.id === answerId);
+            const previousVotes = answer?.votes || 0;
+            
             const response = await ApiService.voteOnAnswer(selectedQuestion.id, answerId, direction);
             if (response.success) {
                 // Update the answer with new vote count
+                const newVotes = response.votes || previousVotes;
                 setAnswers(answers.map(a => 
                     a.id === answerId 
-                        ? { ...a, votes: response.votes || a.votes }
+                        ? { ...a, votes: newVotes }
                         : a
                 ));
+                
+                // Track answer vote
+                Analytics.getInstance().trackAnswerVoted(selectedQuestion.id, answerId, direction, previousVotes, newVotes);
             } else {
                 console.error('Failed to vote on answer:', response.error);
                 // Fallback to local state update
+                const newVotes = previousVotes + (direction === 'up' ? 1 : -1);
                 setAnswers(answers.map(a => 
                     a.id === answerId 
-                        ? { ...a, votes: a.votes + (direction === 'up' ? 1 : -1) }
+                        ? { ...a, votes: newVotes }
                         : a
                 ));
+                
+                // Track answer vote (fallback)
+                Analytics.getInstance().trackAnswerVoted(selectedQuestion.id, answerId, direction, previousVotes, newVotes);
             }
         } catch (error) {
             console.error('Error voting on answer:', error);
             // Fallback to local state update
+            const answer = answers.find(a => a.id === answerId);
+            const previousVotes = answer?.votes || 0;
+            const newVotes = previousVotes + (direction === 'up' ? 1 : -1);
             setAnswers(answers.map(a => 
                 a.id === answerId 
-                    ? { ...a, votes: a.votes + (direction === 'up' ? 1 : -1) }
+                    ? { ...a, votes: newVotes }
                     : a
             ));
+            
+            // Track answer vote (fallback)
+            Analytics.getInstance().trackAnswerVoted(selectedQuestion.id, answerId, direction, previousVotes, newVotes);
         }
     };
 
@@ -295,6 +350,14 @@ const ProtoHub: React.FC = () => {
                         ? { ...q, answers: q.answers + 1 }
                         : q
                 ));
+                
+                // Track answer creation
+                Analytics.getInstance().trackAnswerCreated(
+                    selectedQuestion.id, 
+                    response.answer.id, 
+                    answerInput.trim().length,
+                    false // isAI
+                );
             } else {
                 console.error('Failed to submit answer:', response.error);
                 // Show specific error message if available
@@ -309,7 +372,6 @@ const ProtoHub: React.FC = () => {
                     content: answerInput.trim(),
                     author: currentUser,
                     votes: 0,
-                    views: 0,
                     isAccepted: false,
                     createdAt: new Date().toISOString()
                 };
@@ -331,7 +393,6 @@ const ProtoHub: React.FC = () => {
                 content: answerInput.trim(),
                 author: currentUser,
                 votes: 0,
-                views: 0,
                 isAccepted: false,
                 createdAt: new Date().toISOString()
             };
@@ -361,6 +422,17 @@ const ProtoHub: React.FC = () => {
                 // Add the new question to the list
                 setQuestions([response.question, ...questions]);
                 setShowAskQuestion(false);
+                
+                // Track question creation
+                Analytics.getInstance().trackQuestionCreated(
+                    response.question.id,
+                    response.question.title,
+                    response.question.tags,
+                    {
+                        question_content_length: questionData.content.length,
+                        question_author: currentUser.name
+                    }
+                );
             } else {
                 console.error('Failed to create question:', response.error);
                 // Fallback to local state update
@@ -379,6 +451,18 @@ const ProtoHub: React.FC = () => {
                 };
                 setQuestions([newQuestion, ...questions]);
                 setShowAskQuestion(false);
+                
+                // Track question creation (fallback)
+                Analytics.getInstance().trackQuestionCreated(
+                    newQuestion.id,
+                    newQuestion.title,
+                    newQuestion.tags,
+                    {
+                        question_content_length: questionData.content.length,
+                        question_author: currentUser.name,
+                        fallback: true
+                    }
+                );
             }
         } catch (error) {
             console.error('Error creating question:', error);
@@ -398,6 +482,18 @@ const ProtoHub: React.FC = () => {
             };
             setQuestions([newQuestion, ...questions]);
             setShowAskQuestion(false);
+            
+            // Track question creation (fallback)
+            Analytics.getInstance().trackQuestionCreated(
+                newQuestion.id,
+                newQuestion.title,
+                newQuestion.tags,
+                {
+                    question_content_length: questionData.content.length,
+                    question_author: currentUser.name,
+                    fallback: true
+                }
+            );
         }
     };
 
@@ -599,7 +695,6 @@ const ProtoHub: React.FC = () => {
                                 </div>
                                 <div className="answer-stats">
                                     <span className="answer-date">{formatDate(answer.createdAt)}</span>
-                                    <span className="answer-views">👁 {answer.views} views</span>
                                 </div>
                             </div>
                         </div>
@@ -643,7 +738,10 @@ const ProtoHub: React.FC = () => {
                 <div className="hub-actions">
                     <button 
                         className="showcase-btn"
-                        onClick={() => setShowPrototypeShowcase(true)}
+                        onClick={() => {
+                            setShowPrototypeShowcase(true);
+                            Analytics.getInstance().trackPrototypeGalleryOpened();
+                        }}
                     >
                         🎨 View Prototypes
                     </button>

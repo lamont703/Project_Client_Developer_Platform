@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../../styles/AddPrototype.css';
+import { Analytics } from '../../utils/analytics';
 
 interface AddPrototypeProps {
     onClose: () => void;
@@ -99,6 +100,11 @@ const AddPrototype: React.FC<AddPrototypeProps> = ({ onClose, onSubmit }) => {
         setIsSubmitting(true);
         
         try {
+            // Track form started
+            Analytics.getInstance().trackFormStarted('prototype');
+            
+            const startTime = Date.now();
+            
             await onSubmit({
                 title: title.trim(),
                 description: description.trim(),
@@ -108,6 +114,10 @@ const AddPrototype: React.FC<AddPrototypeProps> = ({ onClose, onSubmit }) => {
                 technologies,
                 status
             });
+            
+            // Track form completed
+            const timeSpent = Date.now() - startTime;
+            Analytics.getInstance().trackFormCompleted('prototype', true, timeSpent);
             
             // Reset form
             setTitle('');
@@ -120,6 +130,13 @@ const AddPrototype: React.FC<AddPrototypeProps> = ({ onClose, onSubmit }) => {
             onClose();
         } catch (error) {
             console.error('Error submitting prototype:', error);
+            
+            // Track form error
+            Analytics.getInstance().trackError('form_submission_error', error instanceof Error ? error.message : 'Unknown error', {
+                form_type: 'prototype',
+                form_data: { title: title.trim(), tags, technologies, status }
+            });
+            
             alert('Failed to submit prototype. Please try again.');
         } finally {
             setIsSubmitting(false);

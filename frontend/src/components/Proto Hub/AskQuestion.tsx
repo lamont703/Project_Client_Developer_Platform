@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../../styles/AskQuestion.css';
+import { Analytics } from '../../utils/analytics';
 
 interface AskQuestionProps {
     onClose: () => void;
@@ -85,11 +86,20 @@ const AskQuestion: React.FC<AskQuestionProps> = ({ onClose, onSubmit }) => {
         setIsSubmitting(true);
         
         try {
+            // Track form started
+            Analytics.getInstance().trackFormStarted('question');
+            
+            const startTime = Date.now();
+            
             await onSubmit({
                 title: title.trim(),
                 content: content.trim(),
                 tags
             });
+            
+            // Track form completed
+            const timeSpent = Date.now() - startTime;
+            Analytics.getInstance().trackFormCompleted('question', true, timeSpent);
             
             // Reset form
             setTitle('');
@@ -98,6 +108,13 @@ const AskQuestion: React.FC<AskQuestionProps> = ({ onClose, onSubmit }) => {
             onClose();
         } catch (error) {
             console.error('Error submitting question:', error);
+            
+            // Track form error
+            Analytics.getInstance().trackError('form_submission_error', error instanceof Error ? error.message : 'Unknown error', {
+                form_type: 'question',
+                form_data: { title: title.trim(), content_length: content.trim().length, tags }
+            });
+            
             alert('Failed to submit question. Please try again.');
         } finally {
             setIsSubmitting(false);
