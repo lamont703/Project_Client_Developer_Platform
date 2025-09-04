@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Analytics Debug</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .status {
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🔍 Google Analytics Debug Tool</h1>
+        <p>This tool helps diagnose Google Analytics tracking issues.</p>
+
+        <div id="status"></div>
+
+        <div>
+            <h3>🧪 Manual Tests</h3>
+            <button onclick="testGtag()">Test gtag Function</button>
+            <button onclick="testDataLayer()">Test Data Layer</button>
+            <button onclick="sendTestEvent()">Send Test Event</button>
+            <button onclick="checkNetwork()">Check Network Requests</button>
+        </div>
+
+        <div>
+            <h3>📊 Debug Information</h3>
+            <button onclick="showDebugInfo()">Show Debug Info</button>
+            <button onclick="clearResults()">Clear Results</button>
+        </div>
+
+        <div id="results"></div>
+    </div>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BS2Y73PXX8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        // Enhanced Google Analytics configuration
+        gtag('config', 'G-BS2Y73PXX8', {
+            page_title: 'GA Debug Tool',
+            page_location: window.location.href,
+            send_page_view: true,
+            anonymize_ip: true,
+            allow_google_signals: true,
+            allow_ad_personalization_signals: true,
+            debug_mode: true
+        });
+
+        console.log('🔍 Google Analytics Debug Mode Enabled');
+        console.log('Tracking ID: G-BS2Y73PXX8');
+        console.log('DataLayer:', window.dataLayer);
+    </script>
+
+    <script>
+        function addResult(message, type = 'info') {
+            const resultsDiv = document.getElementById('results');
+            const resultDiv = document.createElement('div');
+            resultDiv.className = `status ${type}`;
+            resultDiv.innerHTML = `<strong>${new Date().toLocaleTimeString()}:</strong> ${message}`;
+            resultsDiv.appendChild(resultDiv);
+        }
+
+        function updateStatus() {
+            const statusDiv = document.getElementById('status');
+            const checks = {
+                gtag: typeof window.gtag === 'function',
+                dataLayer: Array.isArray(window.dataLayer),
+                trackingId: 'G-BS2Y73PXX8',
+                url: window.location.href
+            };
+
+            const allGood = checks.gtag && checks.dataLayer;
+
+            statusDiv.innerHTML = `
+                <div class="status ${allGood ? 'success' : 'error'}">
+                    <h3>${allGood ? '✅' : '❌'} Google Analytics Status</h3>
+                    <p><strong>gtag function:</strong> ${checks.gtag ? '✅ Available' : '❌ Not Available'}</p>
+                    <p><strong>dataLayer:</strong> ${checks.dataLayer ? '✅ Available' : '❌ Not Available'}</p>
+                    <p><strong>Tracking ID:</strong> ${checks.trackingId}</p>
+                    <p><strong>Current URL:</strong> ${checks.url}</p>
+                </div>
+            `;
+        }
+
+        function testGtag() {
+            if (typeof window.gtag === 'function') {
+                addResult('✅ gtag function is available and working', 'success');
+                window.gtag('event', 'debug_test', {
+                    event_category: 'debug',
+                    event_label: 'gtag_function_test'
+                });
+                addResult('📤 Sent test event via gtag', 'success');
+            } else {
+                addResult('❌ gtag function is not available', 'error');
+            }
+        }
+
+        function testDataLayer() {
+            if (Array.isArray(window.dataLayer)) {
+                addResult(`✅ dataLayer is available with ${window.dataLayer.length} items`, 'success');
+                addResult(`📊 DataLayer content: ${JSON.stringify(window.dataLayer, null, 2)}`, 'info');
+            } else {
+                addResult('❌ dataLayer is not available', 'error');
+            }
+        }
+
+        function sendTestEvent() {
+            if (typeof window.gtag === 'function') {
+                window.gtag('event', 'manual_test_event', {
+                    event_category: 'debug',
+                    event_label: 'manual_test',
+                    value: 1,
+                    custom_parameter: 'test_value',
+                    timestamp: new Date().toISOString()
+                });
+                addResult('📤 Sent manual test event to Google Analytics', 'success');
+                addResult('🔍 Check Google Analytics Real-Time reports for this event', 'info');
+            } else {
+                addResult('❌ Cannot send test event - gtag not available', 'error');
+            }
+        }
+
+        function checkNetwork() {
+            addResult('🔍 Checking for Google Analytics network requests...', 'info');
+
+            // Check if we can detect GA requests
+            const observer = new PerformanceObserver((list) => {
+                for (const entry of list.getEntries()) {
+                    if (entry.name.includes('google-analytics') || entry.name.includes('googletagmanager')) {
+                        addResult(`🌐 Detected GA request: ${entry.name}`, 'success');
+                    }
+                }
+            });
+
+            observer.observe({ entryTypes: ['resource'] });
+
+            // Send a test event to trigger network request
+            if (typeof window.gtag === 'function') {
+                window.gtag('event', 'network_test', {
+                    event_category: 'debug',
+                    event_label: 'network_check'
+                });
+                addResult('📤 Sent network test event', 'info');
+            }
+        }
+
+        function showDebugInfo() {
+            addResult('=== DEBUG INFORMATION ===', 'info');
+            addResult(`URL: ${window.location.href}`, 'info');
+            addResult(`User Agent: ${navigator.userAgent}`, 'info');
+            addResult(`Timestamp: ${new Date().toISOString()}`, 'info');
+
+            if (window.dataLayer) {
+                addResult(`DataLayer Length: ${window.dataLayer.length}`, 'info');
+                addResult(`DataLayer Content: ${JSON.stringify(window.dataLayer, null, 2)}`, 'info');
+            }
+
+            if (typeof window.gtag === 'function') {
+                addResult('✅ gtag function is available', 'success');
+            } else {
+                addResult('❌ gtag function is NOT available', 'error');
+            }
+        }
+
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            updateStatus();
+            addResult('🔍 Google Analytics debug tool loaded', 'success');
+
+            // Auto-check status every 3 seconds
+            setInterval(updateStatus, 3000);
+        });
+    </script>
+</body>
+
+</html>

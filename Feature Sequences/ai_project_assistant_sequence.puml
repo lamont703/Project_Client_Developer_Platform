@@ -15,160 +15,171 @@ participant WIREFRAME as "WireFrame\nService"
 participant GH as "GitHub\nPages"
 participant DEV as "Developer Team\nEmail"
 
-' Session start
-U ->> FE : Open AI Project Assistant
-FE ->> ANA : assistant_started
-FE ->> SE  : initSession()
+' Developer tracking initialization
+note over U, FE : Developer shares URL with user\n/ai-assistant?ref=lamont_evans&source=email
+
+' Session start with developer attribution
+U ->> FE : Open AI Project Assistant\n(URL contains ?ref=lamont_evans&source=email)
+FE ->> FE : extractDeveloperRef(URL)\nstore in session
+FE ->> ANA : assistant_started\n{developerRef: "lamont_evans", source: "email"}
+FE ->> SE  : initSession(developerRef)
 SE -->> FE : ready()
 
-' Initial idea
+' Initial idea with developer tracking
 U ->> FE : "I need an AI chatbot for my store…"
-FE ->> SE : handleUserMessage(text)
-SE ->> LS : persist(assistantState)
+FE ->> SE : handleUserMessage(text, developerRef)
+SE ->> LS : persist(assistantState, developerRef)
 SE ->> SE : extract intents/keywords (rule-based)
-SE ->> SE : updateSlots({projectType, goal?})
+SE ->> SE : updateSlots({projectType, goal?, developerRef})
 
 alt Missing core slots
     SE -->> FE : ask follow-up\n(chips: Platforms, Integrations, Budget)
     FE ->> U   : Prompt user for details
+    FE ->> ANA : slot_prompted\n{developerRef: "lamont_evans"}
 else Template is applicable
     SE -->> FE : suggestTemplate("AI Chatbot for E‑commerce")
     FE ->> U   : Show quick-reply chips
+    FE ->> ANA : template_suggested\n{developerRef: "lamont_evans"}
 end
 
-' Iterative slot filling
+' Iterative slot filling with tracking
 loop Conversational slot filling
     U  ->> FE : Reply (chips/text/voice)
-    FE ->> SE : handleUserMessage(payload)
+    FE ->> SE : handleUserMessage(payload, developerRef)
     SE ->> SE : validate & fill slots\n(timeline, deliverables, techStack, budgetModel…)
-    SE ->> LS : persist(assistantState)
-    FE ->> ANA: slot_filled(slotName)
+    SE ->> LS : persist(assistantState, developerRef)
+    FE ->> ANA: slot_filled(slotName, developerRef)
 end
 
-' Optional voice path
+' Optional voice path with tracking
 opt Voice available
     U  ->> FE : Dictate idea (Web Speech API)
-    FE ->> SE : transcript → handleUserMessage
+    FE ->> SE : transcript → handleUserMessage(developerRef)
+    FE ->> ANA : voice_input_used\n{developerRef: "lamont_evans"}
 end
 
-' Draft generation threshold
+' Draft generation threshold with developer attribution
 SE ->> SE : isComplete? (≥ threshold)
 alt Threshold met
-    SE ->> GEN : generateTitle(slots)
-    SE ->> GEN : generateDescription(slots)
-    SE ->> GEN : generateSkills(slots)
-    SE ->> GEN : suggestMilestones(slots)
-    SE ->> GEN : estimateBudgetTimeline(slots)
+    SE ->> GEN : generateTitle(slots, developerRef)
+    SE ->> GEN : generateDescription(slots, developerRef)
+    SE ->> GEN : generateSkills(slots, developerRef)
+    SE ->> GEN : suggestMilestones(slots, developerRef)
+    SE ->> GEN : estimateBudgetTimeline(slots, developerRef)
     GEN -->> SE: draft package
-    SE ->> LS  : save(jobDraft)
-    FE ->> ANA : draft_generated
+    SE ->> LS  : save(jobDraft, developerRef)
+    FE ->> ANA : draft_generated\n{developerRef: "lamont_evans"}
     SE -->> FE : present Draft\n(title/desc/skills/milestones/budget/timeline/score)
 else More info needed
     SE -->> FE : prompt for gaps (e.g., success criteria)
+    FE ->> ANA : draft_incomplete\n{developerRef: "lamont_evans"}
 end
 
-' Review & refine
+' Review & refine with tracking
 U  ->> FE : Edit / Regenerate section(s)
-FE ->> GEN: regenerate(section, slots)
+FE ->> GEN: regenerate(section, slots, developerRef)
 GEN-->> FE : updated section
-FE ->> LS : update(jobDraft)
-FE ->> ANA: section_regenerated
+FE ->> LS : update(jobDraft, developerRef)
+FE ->> ANA: section_regenerated\n{developerRef: "lamont_evans"}
 
-' Export to Post Job wizard
+' Export to Post Job wizard with developer attribution
 U  ->> FE : Export to posting
-FE ->> LS : set(jobDraft)
-FE ->> ANA: draft_exported
-FE ->> PJ : navigate(/post-job.html#draft)
+FE ->> LS : set(jobDraft, developerRef)
+FE ->> ANA: draft_exported\n{developerRef: "lamont_evans"}
+FE ->> PJ : navigate(/post-job.html#draft?ref=lamont_evans)
 
-' Wizard import & publish
-PJ ->> LS : read(jobDraft)
+' Wizard import & publish with developer tracking
+PJ ->> LS : read(jobDraft, developerRef)
 PJ -->> U : Pre-filled wizard steps\n(Basics → Details → Budget → Review)
 U  ->> PJ : Review & Publish
 
 opt Authenticated user
-    PJ ->> API : POST /jobs (jobDraft)
+    PJ ->> API : POST /jobs (jobDraft, developerRef)
     
-    ' Backend Server Flow
-    API ->> ANA : analytics middleware\n(client-side tracking)
+    ' Backend Server Flow with developer tracking
+    API ->> ANA : analytics middleware\n(client-side tracking, developerRef)
     ANA -->> API : analytics processed
     
     API ->> ROUTES : route to /api/jobs
-    ROUTES ->> CONTROLLER : jobController.createJob()
+    ROUTES ->> CONTROLLER : jobController.createJob(jobData, developerRef)
     
-    ' Database Operations
-    CONTROLLER ->> DB : insertJobDraft(jobData)
+    ' Database Operations with developer attribution
+    CONTROLLER ->> DB : insertJobDraft(jobData, developerRef)
     DB -->> CONTROLLER : jobId created
     
-    ' External Services
-    CONTROLLER ->> GHL : createOpportunityInPipeline(jobData)
+    ' External Services with developer tracking
+    CONTROLLER ->> GHL : createOpportunityInPipeline(jobData, developerRef)
     GHL -->> CONTROLLER : opportunity created
     
-    CONTROLLER ->> WIREFRAME : generateWireframe(jobData)
+    CONTROLLER ->> WIREFRAME : generateWireframe(jobData, developerRef)
     WIREFRAME -->> CONTROLLER : wireframe generated
     
-    ' Store opportunity in database
-    CONTROLLER ->> DB : insertOpportunity(opportunityData)
+    ' Store opportunity in database with developer attribution
+    CONTROLLER ->> DB : insertOpportunity(opportunityData, developerRef)
     DB -->> CONTROLLER : opportunity stored
     
     CONTROLLER -->> ROUTES : success response
     ROUTES -->> API : 201 Created {jobId}
     API -->> PJ : 201 Created {jobId}
     
-    PJ ->> ANA : post_published
+    PJ ->> ANA : post_published\n{developerRef: "lamont_evans", jobId}
 else Not authenticated (prototype)
     PJ -->> U : Show success toast (mock)
-    PJ ->> ANA : post_published (mock)
+    PJ ->> ANA : post_published (mock)\n{developerRef: "lamont_evans"}
 end
 
-' Public project status (integration hook)
+' Public project status (integration hook) with developer tracking
 opt Public Status feature installed
-    PJ ->> API : Initialize Job.publicStatus = "posted"
+    PJ ->> API : Initialize Job.publicStatus = "posted"\n{developerRef: "lamont_evans"}
     API -->> PJ: ok
 end
 
-' Capture project details
+' Capture project details with developer attribution
 U ->> FE : Provide project details
-FE ->> SE : handleUserMessage(text)
-SE ->> LS : persist(assistantState)
+FE ->> SE : handleUserMessage(text, developerRef)
+SE ->> LS : persist(assistantState, developerRef)
 
-' Post job on site
-SE ->> PJ : createJobPost(slots)
-PJ ->> API : POST /jobs (jobDraft)
+' Post job on site with developer tracking
+SE ->> PJ : createJobPost(slots, developerRef)
+PJ ->> API : POST /jobs (jobDraft, developerRef)
 
-' Backend Server Flow (same as authenticated user path)
-API ->> ANA : analytics middleware\n(client-side tracking)
+' Backend Server Flow (same as authenticated user path) with developer tracking
+API ->> ANA : analytics middleware\n(client-side tracking, developerRef)
 ANA -->> API : analytics processed
 
 API ->> ROUTES : route to /api/jobs
-ROUTES ->> CONTROLLER : jobController.createJob()
+ROUTES ->> CONTROLLER : jobController.createJob(jobData, developerRef)
 
-' Database Operations
-CONTROLLER ->> DB : insertJobDraft(jobData)
+' Database Operations with developer attribution
+CONTROLLER ->> DB : insertJobDraft(jobData, developerRef)
 DB -->> CONTROLLER : jobId created
 
-' External Services
-CONTROLLER ->> GHL : createOpportunityInPipeline(jobData)
+' External Services with developer tracking
+CONTROLLER ->> GHL : createOpportunityInPipeline(jobData, developerRef)
 GHL -->> CONTROLLER : opportunity created
 
-CONTROLLER ->> WIREFRAME : generateWireframe(jobData)
+CONTROLLER ->> WIREFRAME : generateWireframe(jobData, developerRef)
 WIREFRAME -->> CONTROLLER : wireframe generated
 
-' Store opportunity in database
-CONTROLLER ->> DB : insertOpportunity(opportunityData)
+' Store opportunity in database with developer attribution
+CONTROLLER ->> DB : insertOpportunity(opportunityData, developerRef)
 DB -->> CONTROLLER : opportunity stored
 
 CONTROLLER -->> ROUTES : success response
 ROUTES -->> API : 201 Created {jobId}
 API -->> PJ : 201 Created {jobId}
 
-' Post-publish flow
-PJ ->> ANA : post_published
+' Post-publish flow with developer tracking
+PJ ->> ANA : post_published\n{developerRef: "lamont_evans", jobId}
 
-' Trigger build and send to GitHub
-PJ ->> GH : triggerBuild(jobId)
+' Trigger build and send to GitHub with developer attribution
+PJ ->> GH : triggerBuild(jobId, developerRef)
 GH -->> PJ : Build completed
 
-' Email output to developer team
-PJ ->> DEV : sendEmail(jobId, buildOutput)
+' Email output to developer team with attribution
+PJ ->> DEV : sendEmail(jobId, buildOutput, developerRef)
 DEV -->> PJ : Email sent
+
+' Developer attribution summary
+note over ANA : All analytics events now include:\n- developerRef: "lamont_evans"\n- source: "email"\n- sessionId: "unique_session"\n- attributionChain: "lamont_evans → user → conversion"
 @enduml 

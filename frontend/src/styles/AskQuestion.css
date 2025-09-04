@@ -352,11 +352,31 @@
 @media (max-width: 768px) {
     .ask-question-overlay {
         padding: 10px;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        z-index: 9999 !important;
+        background: rgba(0, 0, 0, 0.7) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        backdrop-filter: blur(10px) !important;
     }
     
     .ask-question-modal {
-        max-width: 100%;
-        max-height: 95vh;
+        max-width: 100% !important;
+        max-height: 95vh !important;
+        width: calc(100% - 20px) !important;
+        margin: 0 auto !important;
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
     }
     
     .modal-header {
@@ -416,11 +436,27 @@
 
 @media (max-width: 480px) {
     .ask-question-overlay {
-        padding: 5px;
+        padding: 5px !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        z-index: 9999 !important;
     }
     
     .ask-question-modal {
-        border-radius: 15px;
+        border-radius: 15px !important;
+        width: calc(100% - 10px) !important;
+        max-height: 98vh !important;
+        margin: 0 auto !important;
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important;
     }
     
     .modal-header {

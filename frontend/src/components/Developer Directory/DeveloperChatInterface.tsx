@@ -3,12 +3,6 @@ import '../../styles/DeveloperChatInterface.css';
 import DeveloperProfileWizard from './DeveloperProfileWizard';
 import { JobApplicationWizard } from '../Pipeline Projects';
 
-declare global {
-    interface Window {
-        gtag?: (...args: any[]) => void;
-    }
-}
-
 type AssistantMode = 'profile' | 'application' | 'choosing';
 
 const DeveloperChatInterface: React.FC = () => {

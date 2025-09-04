@@ -3,15 +3,13 @@ import '../../styles/ChatInterface.css';
 import SlotEngine from '../../utils/slotEngine';
 import { Generators } from '../../utils/generators';
 import { PostJobWizard } from '../Pipeline Projects';
-
-declare global {
-    interface Window {
-        gtag?: (...args: any[]) => void;
-    }
-}
+import DeveloperTracker from '../../utils/developerTracker';
+import { Analytics } from '../../utils/analytics';
 
 const ChatInterface: React.FC = () => {
     const slotEngine = useRef(new SlotEngine());
+    const developerTracker = useRef(DeveloperTracker.getInstance());
+    const analytics = useRef(Analytics.getInstance());
     const [messages, setMessages] = useState<{ sender: string, text: string }[]>([
         { sender: 'AI', text: slotEngine.current.getCurrentQuestion() }
     ]);
@@ -21,6 +19,14 @@ const ChatInterface: React.FC = () => {
     const chatWindowRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        // Extract developer reference from URL and initialize tracking
+        const developerRef = developerTracker.current.extractDeveloperRefFromURL();
+        
+        // Initialize slot engine with developer reference
+        if (developerRef) {
+            slotEngine.current.initSession(developerRef.developerId);
+        }
+
         // Load assistant state from localStorage
         const savedState = localStorage.getItem('assistantState');
         if (savedState) {
@@ -29,13 +35,13 @@ const ChatInterface: React.FC = () => {
             slotEngine.current.setCurrentSlotIndex(currentSlotIndex);
         }
 
-        // Send Google Analytics event for assistant start
-        if (window.gtag) {
-            window.gtag('event', 'assistant_started', {
-                event_category: 'AI Project Assistant',
-                event_label: 'User started AI Project Assistant'
-            });
-        }
+        // Send Google Analytics event for assistant start with developer attribution
+        analytics.current.trackAIAssistantEvent('started', {
+            hasDeveloperReferral: developerRef !== null,
+            developerRef: developerRef?.developerId,
+            developerName: developerRef?.developerName,
+            source: developerRef?.source
+        });
     }, []);
 
     useEffect(() => {
@@ -67,6 +73,13 @@ const ChatInterface: React.FC = () => {
             const newMessages = [...messages, { sender: 'User', text: input }];
             setMessages(newMessages);
 
+            // Track slot filling with developer attribution
+            const currentSlotName = slotEngine.current.getCurrentSlotName();
+            analytics.current.trackSlotEvent('filled', currentSlotName, {
+                inputLength: input.length,
+                slotIndex: slotEngine.current.getCurrentSlotIndex()
+            });
+
             // Fill the current slot with user input
             console.log('Filling slot:', slotEngine.current.getCurrentQuestion(), 'with input:', input);
             slotEngine.current.fillSlot(input);
@@ -81,6 +94,12 @@ const ChatInterface: React.FC = () => {
                 if (!slotEngine.current.isComplete()) {
                     const aiResponse = { sender: 'AI', text: slotEngine.current.getCurrentQuestion() };
                     setMessages([...newMessages, aiResponse]);
+                    
+                    // Track slot prompt with developer attribution
+                    const nextSlotName = slotEngine.current.getCurrentSlotName();
+                    analytics.current.trackSlotEvent('prompted', nextSlotName, {
+                        slotIndex: slotEngine.current.getCurrentSlotIndex()
+                    });
                 } else {
                     const projectData = slotEngine.current.getSlotData();
                     const summary = Generators.generateSummary(projectData);
@@ -93,12 +112,27 @@ I'm excited to help you bring this project to life! Let's proceed to create your
                     setMessages([...newMessages, aiResponse]);
                     console.log('Collected Project Data:', projectData);
 
-                    // Save job draft to localStorage
-                    localStorage.setItem('jobDraft', JSON.stringify(projectData));
+                    // Track draft generation with developer attribution
+                    analytics.current.trackDraftEvent('generated', {
+                        projectTitle: projectData.title,
+                        projectCategory: projectData.category,
+                        totalSlots: slotEngine.current.getCurrentSlotIndex()
+                    });
+
+                    // Save job draft to localStorage with developer reference
+                    const developerRef = developerTracker.current.getDeveloperRef();
+                    const jobDraftWithRef = {
+                        ...projectData,
+                        developerRef: developerRef?.developerId,
+                        developerName: developerRef?.developerName,
+                        source: developerRef?.source,
+                        sessionId: developerRef?.sessionId
+                    };
+                    localStorage.setItem('jobDraft', JSON.stringify(jobDraftWithRef));
 
                     // Show Post Job Wizard after a short delay
                     setTimeout(() => {
-                    setShowWizard(true);
+                        setShowWizard(true);
                     }, 2000);
                 }
             }, Math.random() * 1000 + 1500); // Random delay between 1.5-2.5 seconds for more natural feel

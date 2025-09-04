@@ -1,9 +1,11 @@
 import { AnalyticsEvent } from './protoHubTypes';
+import DeveloperTracker from './developerTracker';
 
 export class Analytics {
     private static instance: Analytics;
     private events: AnalyticsEvent[] = [];
     private isEnabled: boolean = true;
+    private developerTracker: DeveloperTracker;
 
     static getInstance(): Analytics {
         if (!Analytics.instance) {
@@ -12,10 +14,55 @@ export class Analytics {
         return Analytics.instance;
     }
 
+    constructor() {
+        this.developerTracker = DeveloperTracker.getInstance();
+    }
+
     // Initialize analytics
     initAnalytics(): void {
         this.loadFromLocalStorage();
         this.trackEvent('analytics_initialized');
+    }
+
+    // Track AI Project Assistant events with developer attribution
+    trackAIAssistantEvent(event: string, metadata?: Record<string, any>): void {
+        const attributionData = this.developerTracker.getAttributionData();
+        this.trackEvent(`ai_assistant_${event}`, {
+            event_category: 'ai_project_assistant',
+            ...attributionData,
+            ...metadata
+        });
+    }
+
+    // Track slot filling events with developer attribution
+    trackSlotEvent(event: string, slotName?: string, metadata?: Record<string, any>): void {
+        const attributionData = this.developerTracker.getAttributionData();
+        this.trackEvent(`slot_${event}`, {
+            event_category: 'slot_engine',
+            slot_name: slotName,
+            ...attributionData,
+            ...metadata
+        });
+    }
+
+    // Track draft generation events with developer attribution
+    trackDraftEvent(event: string, metadata?: Record<string, any>): void {
+        const attributionData = this.developerTracker.getAttributionData();
+        this.trackEvent(`draft_${event}`, {
+            event_category: 'draft_generation',
+            ...attributionData,
+            ...metadata
+        });
+    }
+
+    // Track job posting events with developer attribution
+    trackJobPostingEvent(event: string, metadata?: Record<string, any>): void {
+        const attributionData = this.developerTracker.getAttributionData();
+        this.trackEvent(`job_posting_${event}`, {
+            event_category: 'job_posting',
+            ...attributionData,
+            ...metadata
+        });
     }
 
     // Track user journey
@@ -187,11 +234,25 @@ export class Analytics {
     // Send to Google Analytics
     private sendToGoogleAnalytics(event: string, metadata?: Record<string, any>): void {
         if (typeof window !== 'undefined' && (window as any).gtag) {
-            (window as any).gtag('event', event, {
-                event_category: 'proto_hub',
-                event_label: 'community_platform',
-                ...metadata
-            });
+            try {
+                (window as any).gtag('event', event, {
+                    event_category: 'proto_hub',
+                    event_label: 'community_platform',
+                    ...metadata
+                });
+                
+                // Debug logging for development
+                if (process.env.NODE_ENV === 'development' || window.location.hostname === 'localhost') {
+                    console.log('📊 GA Event Sent:', event, metadata);
+                }
+            } catch (error) {
+                console.error('Error sending to Google Analytics:', error);
+            }
+        } else {
+            // Debug logging when gtag is not available
+            if (process.env.NODE_ENV === 'development' || window.location.hostname === 'localhost') {
+                console.warn('⚠️ Google Analytics (gtag) not available for event:', event);
+            }
         }
     }
 

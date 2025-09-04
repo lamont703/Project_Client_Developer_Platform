@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import '../../styles/PrototypeShowcase.css';
 import AddPrototype from './AddPrototype';
+import ApiService from '../../utils/apiConfig';
 
 interface Prototype {
     id: string;
     title: string;
     description: string;
-    githubPagesUrl: string;
-    githubRepoUrl?: string;
+    github_pages_url: string;
+    github_repo_url?: string;
     author: {
         id: string;
         name: string;
@@ -38,8 +39,8 @@ const PrototypeShowcase: React.FC = () => {
             id: '1',
             title: 'E-commerce Mobile App Prototype',
             description: 'A fully functional mobile e-commerce app built with React Native. Features include product browsing, cart management, and checkout process.',
-            githubPagesUrl: 'https://username.github.io/ecommerce-prototype',
-            githubRepoUrl: 'https://github.com/username/ecommerce-prototype',
+            github_pages_url: 'https://username.github.io/ecommerce-prototype',
+            github_repo_url: 'https://github.com/username/ecommerce-prototype',
             author: {
                 id: '1',
                 name: 'Sarah Chen',
@@ -58,8 +59,8 @@ const PrototypeShowcase: React.FC = () => {
             id: '2',
             title: 'SaaS Dashboard Prototype',
             description: 'A comprehensive dashboard for a SaaS platform with analytics, user management, and billing features.',
-            githubPagesUrl: 'https://username.github.io/saas-dashboard',
-            githubRepoUrl: 'https://github.com/username/saas-dashboard',
+            github_pages_url: 'https://username.github.io/saas-dashboard',
+            github_repo_url: 'https://github.com/username/saas-dashboard',
             author: {
                 id: '2',
                 name: 'Alex Thompson',
@@ -78,7 +79,7 @@ const PrototypeShowcase: React.FC = () => {
             id: '3',
             title: 'Real-time Chat Application',
             description: 'A real-time chat application with WebSocket integration, user authentication, and message history.',
-            githubPagesUrl: 'https://username.github.io/chat-app',
+            github_pages_url: 'https://username.github.io/chat-app',
             author: {
                 id: '3',
                 name: 'ProtoBot',
@@ -97,8 +98,8 @@ const PrototypeShowcase: React.FC = () => {
             id: '4',
             title: 'Task Management Tool',
             description: 'A collaborative task management tool with drag-and-drop functionality and team collaboration features.',
-            githubPagesUrl: 'https://username.github.io/task-manager',
-            githubRepoUrl: 'https://github.com/username/task-manager',
+            github_pages_url: 'https://username.github.io/task-manager',
+            github_repo_url: 'https://github.com/username/task-manager',
             author: {
                 id: '4',
                 name: 'Maria Rodriguez',
@@ -116,8 +117,25 @@ const PrototypeShowcase: React.FC = () => {
     ], []);
 
     useEffect(() => {
-        setPrototypes(samplePrototypes);
-    }, [samplePrototypes]);
+        const fetchPrototypes = async () => {
+            try {
+                const response = await ApiService.getPrototypes();
+                if (response.success) {
+                    setPrototypes(response.prototypes || []);
+                } else {
+                    console.error('Failed to fetch prototypes:', response.error);
+                    // Fallback to sample data if API fails
+                    setPrototypes(samplePrototypes);
+                }
+            } catch (error) {
+                console.error('Error fetching prototypes:', error);
+                // Fallback to sample data if API fails
+                setPrototypes(samplePrototypes);
+            }
+        };
+
+        fetchPrototypes();
+    }, []);
 
     const filteredPrototypes = prototypes.filter(prototype => {
         const matchesSearch = prototype.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -135,10 +153,28 @@ const PrototypeShowcase: React.FC = () => {
         }
     });
 
-    const handleLike = (prototypeId: string) => {
-        setPrototypes(prototypes.map(p => 
-            p.id === prototypeId ? { ...p, likes: p.likes + 1 } : p
-        ));
+    const handleLike = async (prototypeId: string) => {
+        try {
+            const response = await ApiService.likePrototype(prototypeId, 'like');
+            if (response.success) {
+                // Update the prototype with new like count
+                setPrototypes(prototypes.map(p => 
+                    p.id === prototypeId ? { ...p, likes: response.likes || p.likes } : p
+                ));
+            } else {
+                console.error('Failed to like prototype:', response.error);
+                // Fallback to local state update
+                setPrototypes(prototypes.map(p => 
+                    p.id === prototypeId ? { ...p, likes: p.likes + 1 } : p
+                ));
+            }
+        } catch (error) {
+            console.error('Error liking prototype:', error);
+            // Fallback to local state update
+            setPrototypes(prototypes.map(p => 
+                p.id === prototypeId ? { ...p, likes: p.likes + 1 } : p
+            ));
+        }
     };
 
     const handleView = (prototypeId: string) => {
@@ -195,7 +231,7 @@ const PrototypeShowcase: React.FC = () => {
                         
                         <div className="prototype-links">
                             <a 
-                                href={prototype.githubPagesUrl} 
+                                href={prototype.github_pages_url} 
                                 target="_blank" 
                                 rel="noopener noreferrer"
                                 className="view-prototype-btn"
@@ -203,9 +239,9 @@ const PrototypeShowcase: React.FC = () => {
                             >
                                 🚀 View Prototype
                             </a>
-                            {prototype.githubRepoUrl && (
+                            {prototype.github_repo_url && (
                                 <a 
-                                    href={prototype.githubRepoUrl} 
+                                    href={prototype.github_repo_url} 
                                     target="_blank" 
                                     rel="noopener noreferrer"
                                     className="view-repo-btn"
@@ -281,7 +317,7 @@ const PrototypeShowcase: React.FC = () => {
                     
                     <div className="prototype-list-links">
                         <a 
-                            href={prototype.githubPagesUrl} 
+                            href={prototype.github_pages_url} 
                             target="_blank" 
                             rel="noopener noreferrer"
                             className="view-prototype-btn"
@@ -289,9 +325,9 @@ const PrototypeShowcase: React.FC = () => {
                         >
                             🚀 View Prototype
                         </a>
-                        {prototype.githubRepoUrl && (
+                        {prototype.github_repo_url && (
                             <a 
-                                href={prototype.githubRepoUrl} 
+                                href={prototype.github_repo_url} 
                                 target="_blank" 
                                 rel="noopener noreferrer"
                                 className="view-repo-btn"
@@ -329,29 +365,73 @@ const PrototypeShowcase: React.FC = () => {
         technologies: string[];
         status: 'live' | 'development' | 'archived';
     }) => {
-        const newPrototype: Prototype = {
-            id: Date.now().toString(),
-            title: prototypeData.title,
-            description: prototypeData.description,
-            githubPagesUrl: prototypeData.githubPagesUrl,
-            githubRepoUrl: prototypeData.githubRepoUrl,
-            author: {
-                id: '1',
-                name: 'Community Member',
-                avatar: '👤',
-                reputation: 150
-            },
-            tags: prototypeData.tags,
-            technologies: prototypeData.technologies,
-            likes: 0,
-            views: 0,
-            createdAt: new Date().toISOString(),
-            isFeatured: false,
-            status: prototypeData.status
-        };
-        
-        setPrototypes([newPrototype, ...prototypes]);
-        setShowAddPrototype(false);
+        try {
+            const response = await ApiService.createPrototype({
+                title: prototypeData.title,
+                description: prototypeData.description,
+                githubPagesUrl: prototypeData.githubPagesUrl,
+                githubRepoUrl: prototypeData.githubRepoUrl,
+                tags: prototypeData.tags,
+                technologies: prototypeData.technologies,
+                status: prototypeData.status
+            });
+
+            if (response.success) {
+                // Add the new prototype to the list
+                setPrototypes([response.prototype, ...prototypes]);
+                setShowAddPrototype(false);
+            } else {
+                console.error('Failed to create prototype:', response.error);
+                // Fallback to local state update
+                const newPrototype: Prototype = {
+                    id: Date.now().toString(),
+                    title: prototypeData.title,
+                    description: prototypeData.description,
+                    github_pages_url: prototypeData.githubPagesUrl,
+                    github_repo_url: prototypeData.githubRepoUrl,
+                    author: {
+                        id: '1',
+                        name: 'Community Member',
+                        avatar: '👤',
+                        reputation: 150
+                    },
+                    tags: prototypeData.tags,
+                    technologies: prototypeData.technologies,
+                    likes: 0,
+                    views: 0,
+                    createdAt: new Date().toISOString(),
+                    isFeatured: false,
+                    status: prototypeData.status
+                };
+                setPrototypes([newPrototype, ...prototypes]);
+                setShowAddPrototype(false);
+            }
+        } catch (error) {
+            console.error('Error creating prototype:', error);
+            // Fallback to local state update
+            const newPrototype: Prototype = {
+                id: Date.now().toString(),
+                title: prototypeData.title,
+                description: prototypeData.description,
+                github_pages_url: prototypeData.githubPagesUrl,
+                github_repo_url: prototypeData.githubRepoUrl,
+                author: {
+                    id: '1',
+                    name: 'Community Member',
+                    avatar: '👤',
+                    reputation: 150
+                },
+                tags: prototypeData.tags,
+                technologies: prototypeData.technologies,
+                likes: 0,
+                views: 0,
+                createdAt: new Date().toISOString(),
+                isFeatured: false,
+                status: prototypeData.status
+            };
+            setPrototypes([newPrototype, ...prototypes]);
+            setShowAddPrototype(false);
+        }
     };
 
     return (

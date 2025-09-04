@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../styles/AskQuestion.css';
 
 interface AskQuestionProps {
@@ -16,6 +16,43 @@ const AskQuestion: React.FC<AskQuestionProps> = ({ onClose, onSubmit }) => {
     const [tags, setTags] = useState<string[]>([]);
     const [tempTag, setTempTag] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
+
+    // Fix modal positioning for GoHighLevel mobile environment
+    useEffect(() => {
+        const fixModalPosition = () => {
+            const overlay = document.querySelector('.ask-question-overlay') as HTMLElement;
+            const modal = document.querySelector('.ask-question-modal') as HTMLElement;
+            
+            if (overlay && modal) {
+                // Force proper positioning
+                overlay.style.position = 'fixed';
+                overlay.style.top = '0';
+                overlay.style.left = '0';
+                overlay.style.right = '0';
+                overlay.style.bottom = '0';
+                overlay.style.display = 'flex';
+                overlay.style.alignItems = 'center';
+                overlay.style.justifyContent = 'center';
+                overlay.style.zIndex = '9999';
+                
+                // Ensure modal is centered
+                modal.style.position = 'relative';
+                modal.style.top = '0';
+                modal.style.left = '0';
+                modal.style.transform = 'none';
+                modal.style.margin = '0 auto';
+                
+                // Scroll to top of modal if needed
+                modal.scrollTop = 0;
+            }
+        };
+
+        // Apply fix immediately and after a short delay
+        fixModalPosition();
+        const timer = setTimeout(fixModalPosition, 100);
+        
+        return () => clearTimeout(timer);
+    }, []);
 
     const predefinedTags = [
         'mobile', 'web', 'prototyping', 'tools', 'saas', 'validation', 
@@ -70,7 +107,9 @@ const AskQuestion: React.FC<AskQuestionProps> = ({ onClose, onSubmit }) => {
     const handleKeyPress = (e: React.KeyboardEvent) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
-            const tagInput = document.querySelector('.tag-input');
+            
+            // Add null check for DOM query
+            const tagInput = document.querySelector('.tag-input') as HTMLInputElement | null;
             if (tagInput && e.target === tagInput) {
                 addTag();
             }

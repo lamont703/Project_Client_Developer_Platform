@@ -129,8 +129,10 @@ const AddPrototype: React.FC<AddPrototypeProps> = ({ onClose, onSubmit }) => {
     const handleKeyPress = (e: React.KeyboardEvent) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
-            const tagInput = document.querySelector('.tag-input');
-            const techInput = document.querySelector('.tech-input');
+            
+            // Add null checks for DOM queries
+            const tagInput = document.querySelector('.tag-input') as HTMLInputElement | null;
+            const techInput = document.querySelector('.tech-input') as HTMLInputElement | null;
             
             if (tagInput && e.target === tagInput) {
                 addTag();

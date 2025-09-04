@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .success {
+            border-color: #4caf50;
+            background-color: #f1f8e9;
+        }
+
+        .error {
+            border-color: #f44336;
+            background-color: #ffebee;
+        }
+
+        .info {
+            border-color: #2196f3;
+            background-color: #e3f2fd;
+        }
+
+        button {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background: #1976d2;
+        }
+
+        pre {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+
+        .config-info {
+            background: #e8f5e8;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🔍 API Test Page</h1>
+        <p>This page helps diagnose API connectivity issues.</p>
+
+        <div class="test-section info">
+            <h3>📋 Current Configuration</h3>
+            <div id="config-info" class="config-info">
+                Loading configuration...
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>🏥 Health Check</h3>
+            <p>Test if the API server is responding</p>
+            <button onclick="testHealth()">Test Health Endpoint</button>
+            <div id="health-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>💼 Job Creation Test</h3>
+            <p>Test if we can create a job via API</p>
+            <button onclick="testJobCreation()">Test Job Creation</button>
+            <div id="job-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>🔧 Manual API Test</h3>
+            <p>Test API endpoints manually</p>
+            <button onclick="testProductionAPI()">Test Production API</button>
+            <button onclick="testLocalAPI()">Test Local API</button>
+            <div id="manual-result"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Import the API tester
+        import { ApiTester } from './src/utils/apiTest.js';
+
+        // Make it available globally
+        window.ApiTester = ApiTester;
+
+        // Show current configuration
+        function showConfig() {
+            const configDiv = document.getElementById('config-info');
+            configDiv.innerHTML = `
+                <strong>Environment:</strong> ${window.API_CONFIG?.ENVIRONMENT || 'Unknown'}<br>
+                <strong>Base URL:</strong> ${window.API_CONFIG?.getBaseUrl() || 'Unknown'}<br>
+                <strong>Jobs Endpoint:</strong> ${window.API_CONFIG?.getUrl('/jobs') || 'Unknown'}<br>
+                <strong>Supabase URL:</strong> ${window.API_CONFIG?.SUPABASE_URL || 'Unknown'}<br>
+                <strong>Supabase Key:</strong> ${window.API_CONFIG?.SUPABASE_ANON_KEY ? 'Set' : 'Not Set'}
+            `;
+        }
+
+        // Test health endpoint
+        window.testHealth = async function () {
+            const resultDiv = document.getElementById('health-result');
+            resultDiv.innerHTML = '<p>Testing...</p>';
+
+            try {
+                const result = await ApiTester.testApiHealth();
+                if (result.success) {
+                    resultDiv.innerHTML = `
+                        <div class="success">
+                            <h4>✅ Health Check Passed</h4>
+                            <pre>${JSON.stringify(result.details, null, 2)}</pre>
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="error">
+                            <h4>❌ Health Check Failed</h4>
+                            <pre>${JSON.stringify(result.details, null, 2)}</pre>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        <h4>❌ Test Error</h4>
+                        <pre>${error.message}</pre>
+                    </div>
+                `;
+            }
+        };
+
+        // Test job creation
+        window.testJobCreation = async function () {
+            const resultDiv = document.getElementById('job-result');
+            resultDiv.innerHTML = '<p>Testing...</p>';
+
+            const mockJobData = {
+                title: "Test Job",
+                description: "This is a test job",
+                category: "Web Development",
+                budget: "$5000-10000",
+                timeline: "2-3 months",
+                developerRef: "test_dev",
+                source: "test"
+            };
+
+            try {
+                const result = await ApiTester.testJobCreation(mockJobData);
+                if (result.success) {
+                    resultDiv.innerHTML = `
+                        <div class="success">
+                            <h4>✅ Job Creation Test Passed</h4>
+                            <pre>${JSON.stringify(result.details, null, 2)}</pre>
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="error">
+                            <h4>❌ Job Creation Test Failed</h4>
+                            <pre>${JSON.stringify(result.details, null, 2)}</pre>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        <h4>❌ Test Error</h4>
+                        <pre>${error.message}</pre>
+                    </div>
+                `;
+            }
+        };
+
+        // Manual API tests
+        window.testProductionAPI = async function () {
+            const resultDiv = document.getElementById('manual-result');
+            resultDiv.innerHTML = '<p>Testing Production API...</p>';
+
+            try {
+                const response = await fetch('https://qhlzjrcidehlpmiimmfm.supabase.co/functions/v1/api/health', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
+                });
+
+                const data = await response.text();
+                resultDiv.innerHTML = `
+                    <div class="${response.ok ? 'success' : 'error'}">
+                        <h4>${response.ok ? '✅' : '❌'} Production API Test</h4>
+                        <p><strong>Status:</strong> ${response.status} ${response.statusText}</p>
+                        <pre>${data}</pre>
+                    </div>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        <h4>❌ Production API Error</h4>
+                        <pre>${error.message}</pre>
+                    </div>
+                `;
+            }
+        };
+
+        window.testLocalAPI = async function () {
+            const resultDiv = document.getElementById('manual-result');
+            resultDiv.innerHTML = '<p>Testing Local API...</p>';
+
+            try {
+                const response = await fetch('http://localhost:3001/api/health', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
+                });
+
+                const data = await response.text();
+                resultDiv.innerHTML = `
+                    <div class="${response.ok ? 'success' : 'error'}">
+                        <h4>${response.ok ? '✅' : '❌'} Local API Test</h4>
+                        <p><strong>Status:</strong> ${response.status} ${response.statusText}</p>
+                        <pre>${data}</pre>
+                    </div>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        <h4>❌ Local API Error</h4>
+                        <pre>${error.message}</pre>
+                    </div>
+                `;
+            }
+        };
+
+        // Initialize
+        showConfig();
+    </script>
+</body>
+
+</html>

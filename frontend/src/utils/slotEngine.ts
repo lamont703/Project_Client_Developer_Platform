@@ -1,3 +1,5 @@
+import DeveloperTracker from './developerTracker';
+
 export interface ProjectSchema {
     title: string;
     description: string;
@@ -9,6 +11,7 @@ export interface ProjectSchema {
     timeline: string;
     successCriteria: string;
     potentialChallenges: string;
+    developerRef?: string; // Add developer reference to project schema
 }
 
 interface Slot {
@@ -20,8 +23,10 @@ interface Slot {
 class SlotEngine {
     private slots: Slot[];
     private currentSlotIndex: number;
+    private developerTracker: DeveloperTracker;
 
     constructor() {
+        this.developerTracker = DeveloperTracker.getInstance();
         this.slots = [
             { name: 'title', value: '', question: 'What is the title of your project?' },
             { name: 'description', value: '', question: 'Can you describe the project responsibilities and requirements?' },
@@ -35,6 +40,14 @@ class SlotEngine {
             { name: 'potentialChallenges', value: '', question: 'What potential challenges or risks do you foresee?' }
         ];
         this.currentSlotIndex = 0;
+    }
+
+    // Initialize session with developer reference
+    initSession(developerRef?: string): void {
+        if (developerRef) {
+            // Store developer reference for later use
+            localStorage.setItem('current_developer_ref', developerRef);
+        }
     }
 
     getCurrentQuestion(): string {
@@ -62,10 +75,18 @@ class SlotEngine {
     }
 
     getSlotData(): ProjectSchema {
-        return this.slots.reduce((acc, slot) => {
+        const slotData = this.slots.reduce((acc, slot) => {
             acc[slot.name as keyof ProjectSchema] = slot.value;
             return acc;
         }, {} as ProjectSchema);
+
+        // Add developer reference if available
+        const developerRef = this.developerTracker.getDeveloperRef();
+        if (developerRef) {
+            slotData.developerRef = developerRef.developerId;
+        }
+
+        return slotData;
     }
 
     getCurrentSlotIndex(): number {
@@ -74,6 +95,14 @@ class SlotEngine {
 
     setCurrentSlotIndex(index: number): void {
         this.currentSlotIndex = index;
+    }
+
+    // Get current slot name for analytics
+    getCurrentSlotName(): string {
+        if (this.currentSlotIndex < this.slots.length) {
+            return this.slots[this.currentSlotIndex].name;
+        }
+        return 'complete';
     }
 }
 

@@ -38,7 +38,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
       filename: 'ghl-bundle.html',
-      inject: 'body',
+      inject: 'head',
       minify: {
         removeComments: true,
         collapseWhitespace: true,

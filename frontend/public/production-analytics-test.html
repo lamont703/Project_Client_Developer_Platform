@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Production Analytics Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .success {
+            border-color: #4caf50;
+            background-color: #f1f8e9;
+        }
+
+        .error {
+            border-color: #f44336;
+            background-color: #ffebee;
+        }
+
+        .info {
+            border-color: #2196f3;
+            background-color: #e3f2fd;
+        }
+
+        button {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background: #1976d2;
+        }
+
+        pre {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+
+        .loading {
+            background: #fff3cd;
+            color: #856404;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🔍 Production Analytics Test</h1>
+        <p>Testing Google Analytics tracking on the production site.</p>
+
+        <div class="test-section info">
+            <h3>📋 Production URLs</h3>
+            <p><strong>Main Site:</strong> <a href="https://xrwebsites.io/prototype_pipeline"
+                    target="_blank">https://xrwebsites.io/prototype_pipeline</a></p>
+            <p><strong>AI Assistant:</strong> <a
+                    href="https://xrwebsites.io/prototype_pipeline/chat?ref=lamont_evans&source=email"
+                    target="_blank">https://xrwebsites.io/prototype_pipeline/chat?ref=lamont_evans&source=email</a></p>
+            <p><strong>Post Job:</strong> <a href="https://xrwebsites.io/prototype_pipeline/post-job"
+                    target="_blank">https://xrwebsites.io/prototype_pipeline/post-job</a></p>
+        </div>
+
+        <div class="test-section">
+            <h3>🔍 Current Page Analytics Check</h3>
+            <p>Check if Google Analytics is loaded on this page</p>
+            <button onclick="checkCurrentPageAnalytics()">Check Current Page</button>
+            <div id="current-page-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>🌐 Production Site Test</h3>
+            <p>Test analytics on the production site (opens in new tab)</p>
+            <button onclick="openProductionSite()">Open Production Site</button>
+            <button onclick="openProductionWithRef()">Open with Developer Ref</button>
+            <div id="production-test-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>📊 Manual Event Test</h3>
+            <p>Send test events to Google Analytics</p>
+            <button onclick="sendTestEvent()">Send Test Event</button>
+            <button onclick="sendDeveloperAttributionEvent()">Send Developer Attribution Event</button>
+            <div id="manual-event-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>🔧 Console Commands</h3>
+            <p>Run these in the browser console on the production site:</p>
+            <pre id="console-commands">
+// Check if gtag is loaded
+console.log('gtag available:', typeof window.gtag !== 'undefined');
+
+// Check dataLayer
+console.log('dataLayer:', window.dataLayer);
+
+// Send test event
+window.gtag('event', 'test_event', {
+    event_category: 'test',
+    event_label: 'production_test',
+    value: 1
+});
+
+// Check for developer attribution
+console.log('URL params:', new URLSearchParams(window.location.search));
+console.log('ref param:', new URLSearchParams(window.location.search).get('ref'));
+console.log('source param:', new URLSearchParams(window.location.search).get('source'));
+            </pre>
+        </div>
+    </div>
+
+    <script>
+        // Check current page analytics
+        function checkCurrentPageAnalytics() {
+            const resultDiv = document.getElementById('current-page-result');
+            resultDiv.innerHTML = '<div class="status loading">Checking...</div>';
+
+            const checks = {
+                gtag: typeof window.gtag !== 'undefined',
+                dataLayer: typeof window.dataLayer !== 'undefined',
+                trackingId: 'G-BS2Y73PXX8',
+                url: window.location.href
+            };
+
+            const allGood = checks.gtag && checks.dataLayer;
+
+            resultDiv.innerHTML = `
+                <div class="${allGood ? 'success' : 'error'}">
+                    <h4>${allGood ? '✅' : '❌'} Analytics Status</h4>
+                    <p><strong>gtag loaded:</strong> ${checks.gtag ? '✅' : '❌'}</p>
+                    <p><strong>dataLayer available:</strong> ${checks.dataLayer ? '✅' : '❌'}</p>
+                    <p><strong>Tracking ID:</strong> ${checks.trackingId}</p>
+                    <p><strong>Current URL:</strong> ${checks.url}</p>
+                    ${checks.dataLayer ? `<p><strong>dataLayer content:</strong></p><pre>${JSON.stringify(window.dataLayer, null, 2)}</pre>` : ''}
+                </div>
+            `;
+        }
+
+        // Open production site
+        function openProductionSite() {
+            const url = 'https://xrwebsites.io/prototype_pipeline';
+            window.open(url, '_blank');
+            document.getElementById('production-test-result').innerHTML = `
+                <div class="info">
+                    <p>✅ Opened production site in new tab</p>
+                    <p>Check the browser console for analytics status</p>
+                </div>
+            `;
+        }
+
+        // Open production site with developer reference
+        function openProductionWithRef() {
+            const url = 'https://xrwebsites.io/prototype_pipeline/chat?ref=lamont_evans&source=email';
+            window.open(url, '_blank');
+            document.getElementById('production-test-result').innerHTML = `
+                <div class="info">
+                    <p>✅ Opened production site with developer ref in new tab</p>
+                    <p>This should trigger developer attribution tracking</p>
+                </div>
+            `;
+        }
+
+        // Send test event
+        function sendTestEvent() {
+            const resultDiv = document.getElementById('manual-event-result');
+
+            if (typeof window.gtag === 'undefined') {
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        <h4>❌ gtag not available</h4>
+                        <p>Google Analytics is not loaded on this page</p>
+                    </div>
+                `;
+                return;
+            }
+
+            try {
+                window.gtag('event', 'production_test_event', {
+                    event_category: 'test',
+                    event_label: 'manual_test',
+                    value: 1,
+                    timestamp: new Date().toISOString()
+                });
+
+                resultDiv.innerHTML = `
+                    <div class="success">
+                        <h4>✅ Test Event Sent</h4>
+                        <p>Event: production_test_event</p>
+                        <p>Check Google Analytics Real-Time reports</p>
+                    </div>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        <h4>❌ Event Failed</h4>
+                        <p>Error: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Send developer attribution event
+        function sendDeveloperAttributionEvent() {
+            const resultDiv = document.getElementById('manual-event-result');
+
+            if (typeof window.gtag === 'undefined') {
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        <h4>❌ gtag not available</h4>
+                        <p>Google Analytics is not loaded on this page</p>
+                    </div>
+                `;
+                return;
+            }
+
+            try {
+                window.gtag('event', 'ai_assistant_started', {
+                    event_category: 'ai_project_assistant',
+                    event_label: 'production_test',
+                    developerRef: 'lamont_evans',
+                    developerName: 'Lamont Evans',
+                    source: 'email',
+                    sessionId: 'test_session_' + Date.now(),
+                    attributionChain: 'lamont_evans → user → conversion',
+                    timestamp: new Date().toISOString()
+                });
+
+                resultDiv.innerHTML = `
+                    <div class="success">
+                        <h4>✅ Developer Attribution Event Sent</h4>
+                        <p>Event: ai_assistant_started</p>
+                        <p>Developer: lamont_evans</p>
+                        <p>Source: email</p>
+                        <p>Check Google Analytics Real-Time reports</p>
+                    </div>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        <h4>❌ Event Failed</h4>
+                        <p>Error: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Auto-check on page load
+        window.addEventListener('load', function () {
+            setTimeout(checkCurrentPageAnalytics, 1000);
+        });
+    </script>
+</body>
+
+</html>

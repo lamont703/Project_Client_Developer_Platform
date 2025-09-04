@@ -41,9 +41,35 @@ function createGHLBundle() {
     process.exit(1);
   }
   
+  // Extract Google Analytics scripts from original index.html
+  const originalIndexPath = path.join(__dirname, 'public', 'index.html');
+  const originalHtmlContent = readFileContent(originalIndexPath);
+  
+  // Extract Google Analytics script
+  const gtagScriptMatch = originalHtmlContent.match(/<!-- Google tag \(gtag\.js\) -->[\s\S]*?<\/script>[\s\S]*?<\/script>/);
+  const gtagScript = gtagScriptMatch ? gtagScriptMatch[0] : '';
+  
+  if (!gtagScript) {
+    console.warn('⚠️ Google Analytics script not found in original index.html');
+  } else {
+    console.log('✅ Google Analytics script extracted');
+    console.log('Script length:', gtagScript.length);
+    console.log('Script preview:', gtagScript.substring(0, 200) + '...');
+  }
+  
   // Read GHL-specific mobile fix CSS
   const ghlMobileFixPath = path.join(__dirname, 'src', 'ghl-mobile-fix.css');
   const ghlMobileFix = readFileContent(ghlMobileFixPath);
+  
+  // Read DOM protection script
+  const domProtectionPath = path.join(__dirname, 'public', 'dom-protection.js');
+  const domProtectionScript = readFileContent(domProtectionPath);
+  
+  if (!domProtectionScript) {
+    console.warn('⚠️ DOM protection script not found');
+  } else {
+    console.log('✅ DOM protection script loaded');
+  }
   
   // Find all CSS files in the build directory
   const cssFiles = [];
@@ -100,105 +126,82 @@ function createGHLBundle() {
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="Developer Platform - Connect developers with opportunities" />
     <title>Developer Platform</title>
+    
+    <!-- Fallback redirect for HashRouter -->
     <script>
-    // META REFRESH FALLBACK - Server-side redirect protection
+    // Immediate redirect for server routes before React loads
     (function() {
-        var currentPath = window.location.pathname;
-        if (!currentPath.startsWith('/prototype_pipeline')) {
-            document.write('<meta http-equiv="refresh" content="0;url=' + window.location.protocol + '//' + window.location.host + '/prototype_pipeline' + currentPath + window.location.search + window.location.hash + '">');
+        var path = window.location.pathname;
+        var hash = window.location.hash;
+        var search = window.location.search;
+        
+        // Only redirect if we're on a server route (not root) and no hash
+        if (path !== '/' && path !== '/index.html' && !hash) {
+            var newPath = path.replace(/^\//, '');
+            var newUrl = window.location.origin + '/#' + newPath + search;
+            window.location.replace(newUrl);
         }
     })();
     </script>
+    
+    ${gtagScript}
+    
     <script>
-    // IMMEDIATE Path Protection - Runs before anything else
+    // DOM Protection Script - Load First
+    ${domProtectionScript || 'console.log("DOM protection script not available");'}
+    </script>
+    
+    <script>
+    // Server-Side Redirect Handler for HashRouter
     (function() {
-        var currentPath = window.location.pathname;
-        var basePath = '/prototype_pipeline';
+        console.log('🔄 Server-Side Redirect Handler Loaded');
         
-        // If we're not on the correct path, immediately redirect
-        if (!currentPath.startsWith(basePath)) {
-            var targetPath = basePath;
-            if (currentPath !== '/' && currentPath !== '') {
-                targetPath = basePath + currentPath;
-            }
-            // Use location.href for immediate redirect that bypasses server redirects
-            window.location.href = window.location.protocol + '//' + window.location.host + targetPath + window.location.search + window.location.hash;
+        // Check if we're on a direct route that should be handled by HashRouter
+        const currentPath = window.location.pathname;
+        const currentHash = window.location.hash;
+        
+        // Only redirect if we're not on the root path and don't have a hash
+        if (currentPath !== '/' && currentPath !== '/index.html' && !currentHash) {
+            console.log('🔄 Redirecting from server route to HashRouter:', currentPath);
+            
+            // Convert the server path to a hash route
+            const hashRoute = currentPath.replace(/^\//, '');
+            const newUrl = window.location.origin + '/#' + hashRoute + window.location.search;
+            
+            // Use replace to avoid adding to browser history
+            window.location.replace(newUrl);
+            return;
         }
+        
+        // If we have a hash but it's not properly formatted, fix it
+        if (currentHash && !currentHash.startsWith('#/')) {
+            console.log('🔄 Fixing hash format:', currentHash);
+            const fixedHash = currentHash.replace(/^#/, '#/');
+            const newUrl = window.location.origin + window.location.pathname + fixedHash + window.location.search;
+            window.location.replace(newUrl);
+            return;
+        }
+        
+        console.log('✅ HashRouter path is correct');
+    })();
+    </script>
+    
+    <script>
+    // GoHighLevel HashRouter Support - Simplified
+    (function() {
+        // HashRouter handles all routing via URL hash
+        // No server-side routing issues since everything is after the #
+        console.log('HashRouter SPA loaded successfully for GoHighLevel');
+        
+        // Log current URL for debugging
+        console.log('Current URL:', window.location.href);
+        console.log('Hash:', window.location.hash);
+        console.log('Search params:', window.location.search);
     })();
     </script>
     <style>
 ${cssContent}
     </style>
-    <script>
-    // Enhanced GoHighLevel Routing Fix
-    (function() {
-        // Immediately check and fix the path on page load
-        var currentPath = window.location.pathname;
-        var currentHash = window.location.hash;
-        var currentSearch = window.location.search;
-        var basePath = '/prototype_pipeline';
-        
-        // Function to ensure we're on the correct base path
-        function ensureCorrectPath() {
-            var path = window.location.pathname;
-            
-            // If we're on the root or not on the prototype_pipeline path
-            if (path === '/' || path === '' || !path.startsWith(basePath)) {
-                var targetPath = basePath;
-                
-                // If there was a path that should be preserved
-                if (path !== '/' && path !== '' && !path.startsWith(basePath)) {
-                    targetPath = basePath + path;
-                }
-                
-                // Use replace to avoid adding to browser history
-                window.location.replace(targetPath + currentSearch + currentHash);
-                return false;
-            }
-            return true;
-        }
-        
-        // Check immediately
-        if (!ensureCorrectPath()) {
-            return; // Exit if we're redirecting
-        }
-        
-        // Handle browser navigation events
-        window.addEventListener('popstate', function(event) {
-            setTimeout(ensureCorrectPath, 0);
-        });
-        
-        // Handle page visibility changes (covers refresh scenarios)
-        document.addEventListener('visibilitychange', function() {
-            if (document.visibilityState === 'visible') {
-                setTimeout(ensureCorrectPath, 0);
-            }
-        });
-        
-        // Additional check after DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(ensureCorrectPath, 100);
-        });
-        
-        // Override any potential server redirects
-        var originalPushState = history.pushState;
-        var originalReplaceState = history.replaceState;
-        
-        history.pushState = function(state, title, url) {
-            if (url && !url.startsWith(basePath) && !url.startsWith('http')) {
-                url = basePath + url;
-            }
-            return originalPushState.call(this, state, title, url);
-        };
-        
-        history.replaceState = function(state, title, url) {
-            if (url && !url.startsWith(basePath) && !url.startsWith('http')) {
-                url = basePath + url;
-            }
-            return originalReplaceState.call(this, state, title, url);
-        };
-    })();
-    </script>
 </head>
 <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -253,6 +256,10 @@ async function main() {
     console.log('1. Copy the content of ghl-bundle.html');
     console.log('2. Paste it into your GoHighLevel web builder HTML editor');
     console.log('3. Or use the embed code for external hosting');
+    console.log('\n🔗 New HashRouter URLs:');
+    console.log('- Chat: https://xrwebsites.io/#/chat?ref=lamont_evans&source=email');
+    console.log('- Jobs: https://xrwebsites.io/#/jobs');
+    console.log('- Post Job: https://xrwebsites.io/#/post-job');
   } catch (error) {
     console.error('❌ Bundle creation failed:', error.message);
     process.exit(1);

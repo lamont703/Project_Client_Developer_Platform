@@ -6,8 +6,14 @@ import { handleOpportunitiesRoute } from "./routes/opportunities.ts"
 import { handleWebhooksRoute } from "./routes/webhooks.ts"
 import { handleOAuthRoute } from "./routes/oauth.ts"
 import { handleTokensRoute } from "./routes/tokens.ts"
+import { handleQuestionsRoute } from "./routes/questions.ts"
+import { handlePrototypesRoute } from "./routes/prototypes.ts"
+import { handleUsersRoute } from "./routes/users.ts"
+import { handleReportsRoute } from "./routes/reports.ts"
+import { handleAnalyticsRoute } from "./routes/analytics.ts"
 import { goHighLevelService } from "./services/goHighLevelService.ts"
 import { analyticsMiddleware } from "./middleware/analytics.ts"
+import { databaseService } from "./services/databaseService.ts"
 
 // Main Edge Function handler
 serve(async (req: Request) => {
@@ -57,6 +63,45 @@ serve(async (req: Request) => {
           status: 200
         }
       )
+    }
+
+    // Test databaseService endpoint
+    if (path === '/api/debug/database') {
+      try {
+        const questions = await databaseService.getQuestions({ limit: 5 })
+        const response = {
+          success: true,
+          message: 'Database service test',
+          questions_count: questions.length,
+          questions: questions,
+          timestamp: new Date().toISOString()
+        }
+
+        analytics.trackRequest(200, Date.now() - analytics.startTime)
+        
+        return new Response(
+          JSON.stringify(response),
+          {
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+            status: 200
+          }
+        )
+      } catch (error) {
+        analytics.trackRequest(500, Date.now() - analytics.startTime)
+        
+        return new Response(
+          JSON.stringify({
+            success: false,
+            error: 'Database service error',
+            message: error.message,
+            timestamp: new Date().toISOString()
+          }),
+          {
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+            status: 500
+          }
+        )
+      }
     }
 
     // Test GoHighLevel service endpoint
@@ -124,6 +169,37 @@ serve(async (req: Request) => {
 
     if (path.startsWith('/api/tokens')) {
       const result = await handleTokensRoute(req, path)
+      analytics.trackRequest(result.status, Date.now() - analytics.startTime)
+      return result
+    }
+
+    // ProtoHub routes
+    if (path.startsWith('/api/questions')) {
+      const result = await handleQuestionsRoute(req, path)
+      analytics.trackRequest(result.status, Date.now() - analytics.startTime)
+      return result
+    }
+
+    if (path.startsWith('/api/prototypes')) {
+      const result = await handlePrototypesRoute(req, path)
+      analytics.trackRequest(result.status, Date.now() - analytics.startTime)
+      return result
+    }
+
+    if (path.startsWith('/api/users')) {
+      const result = await handleUsersRoute(req, path)
+      analytics.trackRequest(result.status, Date.now() - analytics.startTime)
+      return result
+    }
+
+    if (path.startsWith('/api/reports')) {
+      const result = await handleReportsRoute(req, path)
+      analytics.trackRequest(result.status, Date.now() - analytics.startTime)
+      return result
+    }
+
+    if (path.startsWith('/api/analytics')) {
+      const result = await handleAnalyticsRoute(req, path)
       analytics.trackRequest(result.status, Date.now() - analytics.startTime)
       return result
     }

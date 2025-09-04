@@ -458,6 +458,18 @@
     gap: 15px;
 }
 
+.answer-stats {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.answer-views {
+    color: #718096;
+    font-size: 13px;
+    font-weight: 500;
+}
+
 .answer-author {
     display: flex;
     align-items: center;
@@ -529,6 +541,29 @@
 .submit-answer-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.submit-answer-btn:disabled {
+    background: #cbd5e0;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.answer-input-info {
+    margin-top: 8px;
+    text-align: right;
+}
+
+.char-count {
+    font-size: 12px;
+    color: #718096;
+    font-weight: 500;
+}
+
+.char-count.error {
+    color: #e53e3e;
+    font-weight: 600;
 }
 
 /* Responsive Design */

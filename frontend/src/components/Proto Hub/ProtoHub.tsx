@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import '../../styles/ProtoHub.css';
 import AskQuestion from './AskQuestion';
 import PrototypeShowcase from './PrototypeShowcase';
+import ApiService from '../../utils/apiConfig';
 
 interface User {
     id: string;
@@ -30,6 +31,7 @@ interface Answer {
     content: string;
     author: User;
     votes: number;
+    views: number;
     isAccepted: boolean;
     createdAt: string;
 }
@@ -50,6 +52,8 @@ const ProtoHub: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedTag, setSelectedTag] = useState<string>('all');
     const [sortBy, setSortBy] = useState<'newest' | 'votes' | 'views'>('newest');
+    const [answerInput, setAnswerInput] = useState('');
+    const [isSubmittingAnswer, setIsSubmittingAnswer] = useState(false);
 
     // Sample data memoized to prevent infinite re-renders
     const sampleQuestions = useMemo(() => [
@@ -113,6 +117,7 @@ const ProtoHub: React.FC = () => {
             content: 'For mobile app prototyping, I highly recommend Figma for design and InVision for interactive prototypes. Figma is great for creating the visual design, and InVision lets you add clickable interactions without any coding. Another excellent option is Adobe XD, which combines both design and prototyping in one tool.',
             author: { id: '6', name: 'ProtoBot', avatar: '🤖', reputation: 1250, isAI: true },
             votes: 12,
+            views: 45,
             isAccepted: true,
             createdAt: '2024-01-15T11:00:00Z'
         },
@@ -121,15 +126,32 @@ const ProtoHub: React.FC = () => {
             content: 'I\'d also add Framer to the list. It\'s particularly good for more complex interactions and animations. The learning curve is a bit steeper, but the results are impressive.',
             author: { id: '7', name: 'David Kim', avatar: '👨‍💻', reputation: 420, isAI: false },
             votes: 8,
+            views: 32,
             isAccepted: false,
             createdAt: '2024-01-15T11:30:00Z'
         }
     ], []);
 
     useEffect(() => {
-        setQuestions(sampleQuestions);
-        setAnswers(sampleAnswers);
-    }, [sampleQuestions, sampleAnswers]);
+        const fetchQuestions = async () => {
+            try {
+                const response = await ApiService.getQuestions();
+                if (response.success) {
+                    setQuestions(response.questions || []);
+                } else {
+                    console.error('Failed to fetch questions:', response.error);
+                    // Fallback to sample data if API fails
+                    setQuestions(sampleQuestions);
+                }
+            } catch (error) {
+                console.error('Error fetching questions:', error);
+                // Fallback to sample data if API fails
+                setQuestions(sampleQuestions);
+            }
+        };
+
+        fetchQuestions();
+    }, []);
 
     const filteredQuestions = questions.filter(question => {
         const matchesSearch = question.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -149,41 +171,234 @@ const ProtoHub: React.FC = () => {
 
     const handleQuestionClick = (question: Question) => {
         setSelectedQuestion(question);
+        loadAnswersForQuestion(question.id);
     };
 
-    const handleVote = (questionId: string, direction: 'up' | 'down') => {
-        setQuestions(questions.map(q => 
-            q.id === questionId 
-                ? { ...q, votes: q.votes + (direction === 'up' ? 1 : -1) }
-                : q
-        ));
+    const loadAnswersForQuestion = async (questionId: string) => {
+        try {
+            const response = await ApiService.getQuestionAnswers(questionId);
+            if (response.success) {
+                setAnswers(response.answers || []);
+                // Record views for each answer
+                if (response.answers && response.answers.length > 0) {
+                    response.answers.forEach((answer: Answer) => {
+                        ApiService.recordAnswerView(questionId, answer.id).catch(error => {
+                            console.error('Error recording answer view:', error);
+                        });
+                    });
+                }
+            } else {
+                console.error('Failed to fetch answers:', response.error);
+                // Fallback to sample answers
+                setAnswers(sampleAnswers);
+            }
+        } catch (error) {
+            console.error('Error fetching answers:', error);
+            // Fallback to sample answers
+            setAnswers(sampleAnswers);
+        }
     };
 
-    const handleAnswerVote = (answerId: string, direction: 'up' | 'down') => {
-        setAnswers(answers.map(a => 
-            a.id === answerId 
-                ? { ...a, votes: a.votes + (direction === 'up' ? 1 : -1) }
-                : a
-        ));
+    const handleVote = async (questionId: string, direction: 'up' | 'down') => {
+        try {
+            const response = await ApiService.voteOnQuestion(questionId, direction);
+            if (response.success) {
+                // Update the question with new vote count
+                setQuestions(questions.map(q => 
+                    q.id === questionId 
+                        ? { ...q, votes: response.votes || q.votes }
+                        : q
+                ));
+            } else {
+                console.error('Failed to vote on question:', response.error);
+                // Fallback to local state update
+                setQuestions(questions.map(q => 
+                    q.id === questionId 
+                        ? { ...q, votes: q.votes + (direction === 'up' ? 1 : -1) }
+                        : q
+                ));
+            }
+        } catch (error) {
+            console.error('Error voting on question:', error);
+            // Fallback to local state update
+            setQuestions(questions.map(q => 
+                q.id === questionId 
+                    ? { ...q, votes: q.votes + (direction === 'up' ? 1 : -1) }
+                    : q
+            ));
+        }
+    };
+
+    const handleAnswerVote = async (answerId: string, direction: 'up' | 'down') => {
+        if (!selectedQuestion) return;
+        
+        try {
+            const response = await ApiService.voteOnAnswer(selectedQuestion.id, answerId, direction);
+            if (response.success) {
+                // Update the answer with new vote count
+                setAnswers(answers.map(a => 
+                    a.id === answerId 
+                        ? { ...a, votes: response.votes || a.votes }
+                        : a
+                ));
+            } else {
+                console.error('Failed to vote on answer:', response.error);
+                // Fallback to local state update
+                setAnswers(answers.map(a => 
+                    a.id === answerId 
+                        ? { ...a, votes: a.votes + (direction === 'up' ? 1 : -1) }
+                        : a
+                ));
+            }
+        } catch (error) {
+            console.error('Error voting on answer:', error);
+            // Fallback to local state update
+            setAnswers(answers.map(a => 
+                a.id === answerId 
+                    ? { ...a, votes: a.votes + (direction === 'up' ? 1 : -1) }
+                    : a
+            ));
+        }
+    };
+
+    const handleSubmitAnswer = async () => {
+        if (!answerInput.trim() || !selectedQuestion) {
+            return;
+        }
+
+        // Client-side validation
+        if (answerInput.trim().length < 10) {
+            alert('Answer content must be at least 10 characters long');
+            return;
+        }
+
+        if (answerInput.trim().length > 10000) {
+            alert('Answer content must be less than 10000 characters');
+            return;
+        }
+
+        setIsSubmittingAnswer(true);
+        
+        try {
+            const response = await ApiService.addAnswer(selectedQuestion.id, {
+                content: answerInput.trim()
+            });
+
+            if (response.success) {
+                // Add the new answer to the list
+                setAnswers([response.answer, ...answers]);
+                setAnswerInput('');
+                
+                // Update the question's answer count
+                setQuestions(questions.map(q => 
+                    q.id === selectedQuestion.id 
+                        ? { ...q, answers: q.answers + 1 }
+                        : q
+                ));
+            } else {
+                console.error('Failed to submit answer:', response.error);
+                // Show specific error message if available
+                if (response.errors && response.errors.length > 0) {
+                    alert(`Validation failed: ${response.errors.join(', ')}`);
+                } else {
+                    alert('Failed to submit answer. Please try again.');
+                }
+                // Fallback to local state update
+                const newAnswer: Answer = {
+                    id: Date.now().toString(),
+                    content: answerInput.trim(),
+                    author: currentUser,
+                    votes: 0,
+                    views: 0,
+                    isAccepted: false,
+                    createdAt: new Date().toISOString()
+                };
+                setAnswers([newAnswer, ...answers]);
+                setAnswerInput('');
+                
+                // Update the question's answer count
+                setQuestions(questions.map(q => 
+                    q.id === selectedQuestion.id 
+                        ? { ...q, answers: q.answers + 1 }
+                        : q
+                ));
+            }
+        } catch (error) {
+            console.error('Error submitting answer:', error);
+            // Fallback to local state update
+            const newAnswer: Answer = {
+                id: Date.now().toString(),
+                content: answerInput.trim(),
+                author: currentUser,
+                votes: 0,
+                views: 0,
+                isAccepted: false,
+                createdAt: new Date().toISOString()
+            };
+            setAnswers([newAnswer, ...answers]);
+            setAnswerInput('');
+            
+            // Update the question's answer count
+            setQuestions(questions.map(q => 
+                q.id === selectedQuestion.id 
+                    ? { ...q, answers: q.answers + 1 }
+                    : q
+            ));
+        } finally {
+            setIsSubmittingAnswer(false);
+        }
     };
 
     const handleAskQuestion = async (questionData: { title: string; content: string; tags: string[] }) => {
-        const newQuestion: Question = {
-            id: Date.now().toString(),
-            title: questionData.title,
-            content: questionData.content,
-            author: currentUser,
-            tags: questionData.tags,
-            votes: 0,
-            answers: 0,
-            views: 0,
-            createdAt: new Date().toISOString(),
-            isAnswered: false,
-            isFeatured: false
-        };
-        
-        setQuestions([newQuestion, ...questions]);
-        setShowAskQuestion(false);
+        try {
+            const response = await ApiService.createQuestion({
+                title: questionData.title,
+                content: questionData.content,
+                tags: questionData.tags
+            });
+
+            if (response.success) {
+                // Add the new question to the list
+                setQuestions([response.question, ...questions]);
+                setShowAskQuestion(false);
+            } else {
+                console.error('Failed to create question:', response.error);
+                // Fallback to local state update
+                const newQuestion: Question = {
+                    id: Date.now().toString(),
+                    title: questionData.title,
+                    content: questionData.content,
+                    author: currentUser,
+                    tags: questionData.tags,
+                    votes: 0,
+                    answers: 0,
+                    views: 0,
+                    createdAt: new Date().toISOString(),
+                    isAnswered: false,
+                    isFeatured: false
+                };
+                setQuestions([newQuestion, ...questions]);
+                setShowAskQuestion(false);
+            }
+        } catch (error) {
+            console.error('Error creating question:', error);
+            // Fallback to local state update
+            const newQuestion: Question = {
+                id: Date.now().toString(),
+                title: questionData.title,
+                content: questionData.content,
+                author: currentUser,
+                tags: questionData.tags,
+                votes: 0,
+                answers: 0,
+                views: 0,
+                createdAt: new Date().toISOString(),
+                isAnswered: false,
+                isFeatured: false
+            };
+            setQuestions([newQuestion, ...questions]);
+            setShowAskQuestion(false);
+        }
     };
 
     const formatDate = (dateString: string) => {
@@ -303,7 +518,11 @@ const ProtoHub: React.FC = () => {
         <div className="question-detail">
             <button 
                 className="back-btn"
-                onClick={() => setSelectedQuestion(null)}
+                onClick={() => {
+                    setSelectedQuestion(null);
+                    setAnswers([]);
+                    setAnswerInput('');
+                }}
             >
                 ← Back to Questions
             </button>
@@ -378,7 +597,10 @@ const ProtoHub: React.FC = () => {
                                     <span className="author-name">{answer.author.name}</span>
                                     <span className="author-reputation">{answer.author.reputation} reputation</span>
                                 </div>
-                                <span className="answer-date">{formatDate(answer.createdAt)}</span>
+                                <div className="answer-stats">
+                                    <span className="answer-date">{formatDate(answer.createdAt)}</span>
+                                    <span className="answer-views">👁 {answer.views} views</span>
+                                </div>
                             </div>
                         </div>
                         
@@ -392,8 +614,22 @@ const ProtoHub: React.FC = () => {
                         placeholder="Write your answer here..."
                         className="answer-input"
                         rows={6}
+                        value={answerInput}
+                        onChange={(e) => setAnswerInput(e.target.value)}
+                        disabled={isSubmittingAnswer}
                     />
-                    <button className="submit-answer-btn">Post Answer</button>
+                    <div className="answer-input-info">
+                        <span className={`char-count ${answerInput.trim().length < 10 ? 'error' : ''}`}>
+                            {answerInput.length}/10000 characters (minimum 10)
+                        </span>
+                    </div>
+                    <button 
+                        className="submit-answer-btn"
+                        onClick={handleSubmitAnswer}
+                        disabled={isSubmittingAnswer || !answerInput.trim() || answerInput.trim().length < 10}
+                    >
+                        {isSubmittingAnswer ? 'Posting...' : 'Post Answer'}
+                    </button>
                 </div>
             </div>
         </div>

@@ -18,7 +18,7 @@ const Navigation: React.FC<NavigationProps> = ({ navigateToHome }) => {
     { path: '/chat', label: '🤖 AI Assistant', icon: '🤖' },
     { path: '/developer-chat', label: '👨‍💻 Dev Assistant', icon: '👨‍💻' },
     { path: '/proto-hub', label: '🚀 Proto Hub', icon: '🚀' },
-    { path: '/jobs', label: '💼 Jobs', icon: '💼' },
+    { path: '/jobs', label: '💼 Project Listings', icon: '💼' },
     { path: '/developers', label: '👥 Developers', icon: '👥' }
   ];
 

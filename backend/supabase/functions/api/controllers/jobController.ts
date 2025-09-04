@@ -21,15 +21,46 @@ export const jobController = {
         }, 400)
       }
 
-      // Step 1: Create wireframe
+      // Extract developer attribution data
+      const developerRef = jobData.developerRef
+      const developerName = jobData.developerName
+      const source = jobData.source
+      const sessionId = jobData.sessionId
+
+      // Log developer attribution
+      if (developerRef) {
+        logger.info('Job created with developer attribution:', {
+          developerRef,
+          developerName,
+          source,
+          sessionId,
+          projectTitle: jobData.title
+        })
+      }
+
+      // Step 1: Create wireframe with developer attribution
       logger.info('Step 1: Generating wireframe...')
-      const wireframeResult = await wireFrameService.createWireFrame(jobData)
+      const wireframeDataWithRef = {
+        ...jobData,
+        developerRef,
+        developerName,
+        source,
+        sessionId
+      }
+      const wireframeResult = await wireFrameService.createWireFrame(wireframeDataWithRef)
       
-      // Step 2: Create opportunity in GoHighLevel
+      // Step 2: Create opportunity in GoHighLevel with developer attribution
       logger.info('Step 2: Creating opportunity in GoHighLevel...')
-      const opportunityResult = await goHighLevelService.createOpportunityInPipeline(jobData)
+      const opportunityDataWithRef = {
+        ...jobData,
+        developerRef,
+        developerName,
+        source,
+        sessionId
+      }
+      const opportunityResult = await goHighLevelService.createOpportunityInPipeline(opportunityDataWithRef)
       
-      // Step 3: Save to database
+      // Step 3: Save to database with developer attribution
       logger.info('Step 3: Saving to database...')
       const dbOpportunity = await databaseService.insertOpportunity({
         opportunity_id: opportunityResult.id || `job-${Date.now()}`,
@@ -40,8 +71,25 @@ export const jobController = {
         pipeline_id: Deno.env.get('GHL_PIPELINE_ID'),
         pipeline_stage_id: Deno.env.get('GHL_PIPELINE_STAGE_ID'),
         assigned_to: null,
+        developer_ref: developerRef,
+        developer_name: developerName,
+        source: source,
+        session_id: sessionId,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()
+      })
+
+      // Track successful job creation with developer attribution
+      analytics.trackEvent('job_created', {
+        event_category: 'job_posting',
+        projectTitle: jobData.title,
+        projectCategory: jobData.category,
+        developerRef,
+        developerName,
+        source,
+        sessionId,
+        jobId: opportunityResult.id,
+        wireframeUrl: wireframeResult.repo_url
       })
 
       const response = {
@@ -51,6 +99,12 @@ export const jobController = {
         wireframe: wireframeResult,
         opportunity: opportunityResult,
         database_record: dbOpportunity,
+        developer_attribution: {
+          developerRef,
+          developerName,
+          source,
+          sessionId
+        },
         timestamp: new Date().toISOString()
       }
 
@@ -60,6 +114,20 @@ export const jobController = {
       return createCorsResponse(response, 200)
     } catch (error) {
       logger.error('Error in job controller:', error)
+      
+      // Track job creation error with developer attribution
+      const jobData = await parseRequestBody(req)
+      if (jobData?.developerRef) {
+        analytics.trackEvent('job_creation_error', {
+          event_category: 'job_posting',
+          error: error.message,
+          projectTitle: jobData.title,
+          developerRef: jobData.developerRef,
+          developerName: jobData.developerName,
+          source: jobData.source,
+          sessionId: jobData.sessionId
+        })
+      }
       
       const duration = Date.now() - startTime
       analytics.trackRequest(method, path, 500, duration)
