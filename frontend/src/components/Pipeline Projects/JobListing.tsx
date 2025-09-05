@@ -54,8 +54,8 @@ const OpportunityListing: React.FC = () => {
         alert(`🚀 Applied to "${opportunity?.name}"! This feature will be implemented soon.`);
         
         // Send Google Analytics event for opportunity application
-        if (window.gtag) {
-            window.gtag('event', 'opportunity_application', {
+        if ((window as any).gtag) {
+            (window as any).gtag('event', 'opportunity_application', {
                 event_category: 'Opportunity Listing',
                 event_label: `Applied to opportunity ${opportunityId}`
             });

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProtoHub Analytics Production Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .status {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .log {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🔍 ProtoHub Analytics Production Test</h1>
+        <p>This page tests Google Analytics functionality in the production environment.</p>
+
+        <div id="status"></div>
+
+        <h3>Test Controls</h3>
+        <button onclick="testGtag()">Test gtag Function</button>
+        <button onclick="testDataLayer()">Test DataLayer</button>
+        <button onclick="testAnalytics()">Test Analytics Service</button>
+        <button onclick="testProtoHubEvents()">Test ProtoHub Events</button>
+        <button onclick="clearLog()">Clear Log</button>
+
+        <h3>Console Log</h3>
+        <div id="log" class="log"></div>
+    </div>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BS2Y73PXX8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        // Enhanced Google Analytics configuration
+        gtag('config', 'G-BS2Y73PXX8', {
+            page_title: 'ProtoHub Analytics Test',
+            page_location: window.location.href,
+            send_page_view: true,
+            anonymize_ip: true,
+            allow_google_signals: true,
+            allow_ad_personalization_signals: true
+        });
+
+        // Ensure gtag is available globally
+        window.gtag = gtag;
+
+        // Log function
+        function log(message) {
+            const logDiv = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            logDiv.textContent += `[${timestamp}] ${message}\n`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log(message);
+        }
+
+        // Status update function
+        function updateStatus(message, type = 'info') {
+            const statusDiv = document.getElementById('status');
+            statusDiv.innerHTML = `<div class="status ${type}">${message}</div>`;
+        }
+
+        // Test gtag function
+        function testGtag() {
+            log('🧪 Testing gtag function...');
+
+            if (typeof window.gtag === 'function') {
+                log('✅ gtag function is available');
+
+                try {
+                    window.gtag('event', 'production_test_event', {
+                        event_category: 'test',
+                        event_label: 'gtag_function_test',
+                        value: 1,
+                        timestamp: new Date().toISOString()
+                    });
+                    log('✅ Test event sent via gtag');
+                    updateStatus('✅ gtag function working correctly', 'success');
+                } catch (error) {
+                    log(`❌ Error sending gtag event: ${error.message}`);
+                    updateStatus('❌ gtag function error', 'error');
+                }
+            } else {
+                log('❌ gtag function is NOT available');
+                updateStatus('❌ gtag function not available', 'error');
+            }
+        }
+
+        // Test dataLayer
+        function testDataLayer() {
+            log('🧪 Testing dataLayer...');
+
+            if (Array.isArray(window.dataLayer)) {
+                log('✅ dataLayer is available');
+                log(`📊 DataLayer length: ${window.dataLayer.length}`);
+                log(`📊 DataLayer content: ${JSON.stringify(window.dataLayer, null, 2)}`);
+                updateStatus('✅ dataLayer working correctly', 'success');
+            } else {
+                log('❌ dataLayer is NOT available');
+                updateStatus('❌ dataLayer not available', 'error');
+            }
+        }
+
+        // Test analytics service
+        function testAnalytics() {
+            log('🧪 Testing Analytics Service...');
+
+            // Simulate the analytics service
+            const analytics = {
+                trackEvent: function (event, metadata) {
+                    log(`📊 Analytics Event: ${event}`);
+                    log(`📊 Metadata: ${JSON.stringify(metadata, null, 2)}`);
+
+                    // Try to send via gtag
+                    if (typeof window.gtag === 'function') {
+                        try {
+                            window.gtag('event', event, {
+                                event_category: 'proto_hub',
+                                event_label: 'community_platform',
+                                ...metadata
+                            });
+                            log('✅ Event sent via gtag');
+                        } catch (error) {
+                            log(`❌ Error sending via gtag: ${error.message}`);
+                        }
+                    } else {
+                        log('⚠️ gtag not available, trying dataLayer');
+                        if (window.dataLayer) {
+                            window.dataLayer.push({
+                                event: event,
+                                event_category: 'proto_hub',
+                                event_label: 'community_platform',
+                                ...metadata
+                            });
+                            log('✅ Event sent via dataLayer');
+                        } else {
+                            log('❌ Neither gtag nor dataLayer available');
+                        }
+                    }
+                }
+            };
+
+            // Test various events
+            analytics.trackEvent('test_question_viewed', {
+                question_id: 'test-123',
+                question_title: 'Test Question',
+                question_author: 'Test User'
+            });
+
+            analytics.trackEvent('test_answer_created', {
+                question_id: 'test-123',
+                answer_id: 'answer-456',
+                answer_length: 150
+            });
+
+            updateStatus('✅ Analytics service test completed', 'success');
+        }
+
+        // Test ProtoHub specific events
+        function testProtoHubEvents() {
+            log('🧪 Testing ProtoHub Events...');
+
+            const events = [
+                {
+                    name: 'proto_hub_opened',
+                    metadata: { timestamp: new Date().toISOString() }
+                },
+                {
+                    name: 'question_viewed',
+                    metadata: {
+                        question_id: 'prod-test-123',
+                        question_title: 'Production Test Question',
+                        question_author: 'Test User',
+                        question_tags: ['test', 'production'],
+                        question_votes: 5,
+                        question_answers: 3
+                    }
+                },
+                {
+                    name: 'answer_created',
+                    metadata: {
+                        question_id: 'prod-test-123',
+                        answer_id: 'prod-answer-456',
+                        answer_length: 200,
+                        is_ai: false
+                    }
+                },
+                {
+                    name: 'prototype_viewed',
+                    metadata: {
+                        prototype_id: 'prod-prototype-789',
+                        prototype_title: 'Production Test Prototype',
+                        prototype_author: 'Test Developer',
+                        prototype_tags: ['react', 'typescript'],
+                        prototype_technologies: ['React', 'TypeScript'],
+                        prototype_likes: 10
+                    }
+                }
+            ];
+
+            events.forEach((event, index) => {
+                setTimeout(() => {
+                    log(`📊 Sending ProtoHub event ${index + 1}: ${event.name}`);
+
+                    if (typeof window.gtag === 'function') {
+                        try {
+                            window.gtag('event', event.name, {
+                                event_category: 'proto_hub',
+                                event_label: 'community_platform',
+                                ...event.metadata
+                            });
+                            log(`✅ Event ${index + 1} sent successfully`);
+                        } catch (error) {
+                            log(`❌ Error sending event ${index + 1}: ${error.message}`);
+                        }
+                    } else {
+                        log(`⚠️ gtag not available for event ${index + 1}`);
+                    }
+                }, index * 1000); // Send events 1 second apart
+            });
+
+            updateStatus('✅ ProtoHub events test initiated', 'success');
+        }
+
+        // Clear log
+        function clearLog() {
+            document.getElementById('log').textContent = '';
+        }
+
+        // Initialize page
+        window.addEventListener('load', function () {
+            log('🚀 Page loaded, initializing analytics test...');
+            log(`🌍 Environment: ${window.location.hostname}`);
+            log(`🔗 URL: ${window.location.href}`);
+            log(`📊 Tracking ID: G-BS2Y73PXX8`);
+
+            // Check initial status
+            setTimeout(() => {
+                log('🔍 Checking initial Google Analytics status...');
+                log(`gtag available: ${typeof window.gtag === 'function'}`);
+                log(`dataLayer available: ${Array.isArray(window.dataLayer)}`);
+                log(`dataLayer length: ${window.dataLayer ? window.dataLayer.length : 0}`);
+
+                if (typeof window.gtag === 'function' && window.dataLayer) {
+                    updateStatus('✅ Google Analytics loaded successfully', 'success');
+                } else {
+                    updateStatus('⚠️ Google Analytics may not be fully loaded', 'warning');
+                }
+            }, 2000);
+        });
+
+        // Log all console messages
+        const originalLog = console.log;
+        const originalWarn = console.warn;
+        const originalError = console.error;
+
+        console.log = function (...args) {
+            log(`📝 LOG: ${args.join(' ')}`);
+            originalLog.apply(console, args);
+        };
+
+        console.warn = function (...args) {
+            log(`⚠️ WARN: ${args.join(' ')}`);
+            originalWarn.apply(console, args);
+        };
+
+        console.error = function (...args) {
+            log(`❌ ERROR: ${args.join(' ')}`);
+            originalError.apply(console, args);
+        };
+    </script>
+</body>
+
+</html>

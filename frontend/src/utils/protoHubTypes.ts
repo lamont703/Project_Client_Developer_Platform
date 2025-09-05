@@ -125,17 +125,6 @@ export interface ValidationResult {
     warnings: string[];
 }
 
-export interface AnalyticsEvent {
-    event: string;
-    userId?: string;
-    questionId?: string;
-    prototypeId?: string;
-    answerId?: string;
-    action?: string;
-    metadata?: Record<string, any>;
-    timestamp: string;
-}
-
 export interface AIResponse {
     questionId: string;
     content: string;

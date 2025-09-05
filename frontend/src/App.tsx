@@ -243,8 +243,8 @@ function App() {
       // Debug logging for development
       if (process.env.NODE_ENV === 'development' || window.location.hostname === 'localhost') {
         console.log('📊 Analytics initialized successfully');
-        console.log('🔍 gtag available:', typeof window.gtag === 'function');
-        console.log('📊 dataLayer available:', Array.isArray(window.dataLayer));
+        console.log('🔍 gtag available:', typeof (window as any).gtag === 'function');
+        console.log('📊 dataLayer available:', Array.isArray((window as any).dataLayer));
       }
     } catch (error) {
       console.error('Error initializing analytics:', error);

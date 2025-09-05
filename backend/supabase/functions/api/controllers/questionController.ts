@@ -100,14 +100,46 @@ export const questionController = {
 
       // Generate AI response if enabled
       if (questionData.generateAIResponse !== false) {
-        const aiResponse = await aiCommunityMemberService.generateResponse(question)
-        if (aiResponse) {
-          await databaseService.createAnswer({
-            question_id: question.id,
-            content: aiResponse.content,
-            author_id: aiResponse.authorId,
-            is_ai: true
-          })
+        try {
+          // Create conversation context for better AI responses
+          const context = {
+            questionId: question.id,
+            questionContent: question.content,
+            questionAuthor: user.id,
+            previousResponses: [],
+            communityTrends: [], // TODO: Implement getCommunityTrends in databaseService
+            userInterests: user.interests || [],
+            conversationHistory: []
+          }
+          
+          const aiResponse = await aiCommunityMemberService.generateResponse(question, context)
+          if (aiResponse) {
+            // Create answer with enhanced AI response data
+            await databaseService.createAnswer({
+              question_id: question.id,
+              content: aiResponse.content,
+              author_id: aiResponse.authorId,
+              is_ai: true,
+              metadata: {
+                persona: aiResponse.persona?.name,
+                confidence: aiResponse.confidence,
+                emotionalTone: aiResponse.emotionalTone,
+                followUpQuestions: aiResponse.followUpQuestions
+              }
+            })
+            
+            // Update learning memory
+            await aiCommunityMemberService.updateLearningMemory(user.id, {
+              questionId: question.id,
+              interaction: 'question_answered',
+              timestamp: new Date()
+            })
+            
+            logger.info(`AI Community Member ${aiResponse.persona?.name} responded to question ${question.id}`)
+          }
+        } catch (aiError) {
+          logger.error('AI response generation failed:', aiError)
+          // Continue without AI response - don't fail the question creation
         }
       }
 
@@ -456,6 +488,104 @@ export const questionController = {
       return createCorsResponse({
         success: false,
         error: 'Failed to record view',
+        message: error.message
+      }, 500)
+    }
+  },
+
+  // Generate proactive AI engagement
+  async generateProactiveEngagement(req: Request, path: string): Promise<Response> {
+    try {
+      const engagement = await aiCommunityMemberService.generateProactiveEngagement()
+      
+      if (!engagement) {
+        return createCorsResponse({
+          success: false,
+          error: 'Failed to generate proactive engagement'
+        }, 500)
+      }
+
+      // Create a question from the AI engagement
+      const question = await databaseService.createQuestion({
+        title: engagement.content.substring(0, 100) + '...',
+        content: engagement.content,
+        tags: ['ai-engagement', 'community'],
+        author_id: await aiCommunityMemberService.getAIUserId(),
+        is_ai_generated: true
+      })
+
+      analytics.trackEvent('ai_proactive_engagement', { 
+        questionId: question.id,
+        persona: engagement.persona?.name,
+        engagementType: engagement.reasoning
+      })
+      
+      return createCorsResponse({
+        success: true,
+        question,
+        engagement,
+        message: 'Proactive AI engagement created',
+        timestamp: new Date().toISOString()
+      }, 201)
+    } catch (error) {
+      logger.error('Error generating proactive engagement:', error)
+      return createCorsResponse({
+        success: false,
+        error: 'Failed to generate proactive engagement',
+        message: error.message
+      }, 500)
+    }
+  },
+
+  // Get AI community member personas
+  async getAIPersonas(req: Request, path: string): Promise<Response> {
+    try {
+      const personas = [
+        {
+          id: 'proto-bot-alex',
+          name: 'Alex Chen',
+          username: 'alex_prototype',
+          background: 'Former startup founder turned prototyping enthusiast',
+          expertise: ['React', 'Figma', 'User Research', 'MVP Development'],
+          experienceLevel: 'advanced'
+        },
+        {
+          id: 'proto-bot-maya',
+          name: 'Maya Rodriguez',
+          username: 'maya_designs',
+          background: 'UI/UX designer who discovered prototyping as a way to validate designs',
+          expertise: ['Design Systems', 'Figma', 'Adobe XD', 'User Testing'],
+          experienceLevel: 'intermediate'
+        },
+        {
+          id: 'proto-bot-jordan',
+          name: 'Jordan Kim',
+          username: 'jordan_builds',
+          background: 'Full-stack developer who uses prototyping to communicate ideas',
+          expertise: ['JavaScript', 'React', 'Node.js', 'Database Design'],
+          experienceLevel: 'advanced'
+        },
+        {
+          id: 'proto-bot-sam',
+          name: 'Sam Taylor',
+          username: 'sam_explores',
+          background: 'Product manager who learned prototyping to understand user needs',
+          expertise: ['Product Strategy', 'User Research', 'Analytics', 'Stakeholder Management'],
+          experienceLevel: 'intermediate'
+        }
+      ]
+      
+      return createCorsResponse({
+        success: true,
+        personas,
+        count: personas.length,
+        timestamp: new Date().toISOString()
+      })
+    } catch (error) {
+      logger.error('Error getting AI personas:', error)
+      return createCorsResponse({
+        success: false,
+        error: 'Failed to retrieve AI personas',
         message: error.message
       }, 500)
     }

@@ -11,6 +11,7 @@ import { handlePrototypesRoute } from "./routes/prototypes.ts"
 import { handleUsersRoute } from "./routes/users.ts"
 import { handleReportsRoute } from "./routes/reports.ts"
 import { handleAnalyticsRoute } from "./routes/analytics.ts"
+import { handleMonitoringRoute } from "./routes/monitoring.ts"
 import { goHighLevelService } from "./services/goHighLevelService.ts"
 import { analyticsMiddleware } from "./middleware/analytics.ts"
 import { databaseService } from "./services/databaseService.ts"
@@ -194,6 +195,12 @@ serve(async (req: Request) => {
 
     if (path.startsWith('/api/reports')) {
       const result = await handleReportsRoute(req, path)
+      analytics.trackRequest(result.status, Date.now() - analytics.startTime)
+      return result
+    }
+
+    if (path.startsWith('/api/monitoring')) {
+      const result = await handleMonitoringRoute(req, path)
       analytics.trackRequest(result.status, Date.now() - analytics.startTime)
       return result
     }

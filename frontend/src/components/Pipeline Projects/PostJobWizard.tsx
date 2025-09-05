@@ -156,8 +156,8 @@ const PostJobWizard: React.FC = () => {
                     });
 
                     // Send Google Analytics event for post published
-                    if (window.gtag) {
-                        window.gtag('event', 'post_published', {
+                    if ((window as any).gtag) {
+                        (window as any).gtag('event', 'post_published', {
                             event_category: 'Post Job Wizard',
                             event_label: 'User published job post',
                             developerRef: jobDraft.developerRef,
@@ -183,8 +183,8 @@ const PostJobWizard: React.FC = () => {
                     });
 
                     // Send Google Analytics event for post published (mock)
-                    if (window.gtag) {
-                        window.gtag('event', 'post_published', {
+                    if ((window as any).gtag) {
+                        (window as any).gtag('event', 'post_published', {
                             event_category: 'Post Job Wizard',
                             event_label: 'User published job post (mock)',
                             developerRef: jobDraft.developerRef,

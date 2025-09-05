@@ -36,8 +36,8 @@ Which would you like to work on today?`
         }
 
         // Send Google Analytics event for developer assistant start
-        if (window.gtag) {
-            window.gtag('event', 'developer_assistant_started', {
+        if ((window as any).gtag) {
+            (window as any).gtag('event', 'developer_assistant_started', {
                 event_category: 'AI Developer Assistant',
                 event_label: 'Developer started AI Developer Assistant'
             });

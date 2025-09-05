@@ -18,7 +18,7 @@
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
-    // Enhanced Google Analytics configuration
+    // Enhanced Google Analytics configuration with mobile optimizations
     gtag('config', 'G-BS2Y73PXX8', {
       page_title: 'Developer Platform',
       page_location: window.location.href,
@@ -26,19 +26,148 @@
       anonymize_ip: true,
       allow_google_signals: true,
       allow_ad_personalization_signals: true,
+      // Mobile-specific optimizations
+      transport_type: 'beacon', // Use beacon API for better mobile performance
+      use_amp_client_id: false, // Disable AMP client ID for better compatibility
+      // Enhanced mobile tracking
       custom_map: {
         'developer_ref': 'developer_reference',
         'developer_name': 'developer_name',
-        'source': 'traffic_source'
+        'source': 'traffic_source',
+        'device_type': 'device_type',
+        'connection_type': 'connection_type',
+        'browser_type': 'browser_type',
+        'os_version': 'os_version'
       }
     });
 
-    // Debug logging for development
-    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-      console.log('🔍 Google Analytics Debug Mode');
-      console.log('Tracking ID:', 'G-BS2Y73PXX8');
-      console.log('DataLayer:', window.dataLayer);
+    // Ensure gtag is available globally
+    window.gtag = gtag;
+
+    // Mobile analytics setup function
+    function setupMobileAnalytics() {
+      // Detect mobile devices
+      const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+      const isAndroid = /Android/.test(navigator.userAgent);
+      const isSafari = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
+      const isChrome = /Chrome/.test(navigator.userAgent);
+
+      // Detect connection type
+      const connectionType = navigator.connection ? navigator.connection.effectiveType : 'unknown';
+      const isSlowConnection = connectionType === 'slow-2g' || connectionType === '2g' || connectionType === '3g';
+
+      // Detect OS version
+      let osVersion = 'unknown';
+      if (isIOS) {
+        const match = navigator.userAgent.match(/OS (\d+)_(\d+)_?(\d+)?/);
+        if (match) {
+          osVersion = `${match[1]}.${match[2]}${match[3] ? '.' + match[3] : ''}`;
+        }
+      } else if (isAndroid) {
+        const match = navigator.userAgent.match(/Android (\d+\.\d+)/);
+        if (match) {
+          osVersion = match[1];
+        }
+      }
+
+      // Set device-specific parameters
+      if (isMobile) {
+        gtag('config', 'G-BS2Y73PXX8', {
+          custom_map: {
+            'device_type': isIOS ? 'ios' : isAndroid ? 'android' : 'mobile',
+            'browser_type': isSafari ? 'safari' : isChrome ? 'chrome' : 'other',
+            'connection_type': connectionType,
+            'os_version': osVersion,
+            'is_slow_connection': isSlowConnection
+          }
+        });
+
+        console.log('📱 Mobile device detected:', {
+          platform: isIOS ? 'iOS' : isAndroid ? 'Android' : 'Mobile',
+          browser: isSafari ? 'Safari' : isChrome ? 'Chrome' : 'Other',
+          connection: connectionType,
+          osVersion: osVersion,
+          slowConnection: isSlowConnection
+        });
+      }
+
+      // Handle Safari ITP (Intelligent Tracking Prevention)
+      if (isIOS && isSafari) {
+        console.log('🛡️ Safari ITP detected, using enhanced tracking');
+
+        // Use localStorage fallback for Safari ITP
+        if (!window.dataLayer) {
+          window.dataLayer = [];
+        }
+
+        // Add Safari-specific event
+        gtag('event', 'safari_itp_detected', {
+          event_category: 'system',
+          event_label: 'safari_itp',
+          device_type: 'ios',
+          browser_type: 'safari',
+          os_version: osVersion
+        });
+      }
+
+      // Handle Android Chrome optimizations
+      if (isAndroid && isChrome) {
+        console.log('🤖 Android Chrome detected, applying optimizations');
+
+        // Add Android-specific event
+        gtag('event', 'android_chrome_detected', {
+          event_category: 'system',
+          event_label: 'android_chrome',
+          device_type: 'android',
+          browser_type: 'chrome',
+          os_version: osVersion
+        });
+      }
+
+      // Handle slow connections
+      if (isSlowConnection) {
+        console.log('🐌 Slow connection detected, using optimized tracking');
+
+        // Reduce analytics frequency for slow connections
+        window.mobileAnalyticsConfig = {
+          slowConnection: true,
+          reducedFrequency: true,
+          batchEvents: true
+        };
+      }
     }
+
+    // Debug logging for all environments
+    console.log('🔍 Google Analytics Initialized');
+    console.log('Tracking ID:', 'G-BS2Y73PXX8');
+    console.log('DataLayer:', window.dataLayer);
+    console.log('gtag function:', typeof window.gtag);
+    console.log('Environment:', window.location.hostname);
+    console.log('User Agent:', navigator.userAgent);
+
+    // Setup mobile analytics after a short delay
+    setTimeout(setupMobileAnalytics, 500);
+
+    // Test event to verify GA is working
+    setTimeout(() => {
+      if (typeof window.gtag === 'function') {
+        const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const deviceType = /iPad|iPhone|iPod/.test(navigator.userAgent) ? 'ios' :
+          /Android/.test(navigator.userAgent) ? 'android' : 'other';
+
+        window.gtag('event', 'page_loaded', {
+          event_category: 'system',
+          event_label: 'page_initialization',
+          timestamp: new Date().toISOString(),
+          device_type: isMobile ? deviceType : 'desktop',
+          is_mobile: isMobile
+        });
+        console.log('✅ Google Analytics test event sent');
+      } else {
+        console.warn('⚠️ Google Analytics not available for test event');
+      }
+    }, 1000);
   </script>
 </head>
 
