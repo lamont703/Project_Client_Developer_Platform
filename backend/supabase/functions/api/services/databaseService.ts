@@ -148,19 +148,94 @@ export const databaseService = {
   // ===== PROTOHUB DATABASE METHODS =====
 
   // Get current user from auth
-  async getCurrentUser() {
+  async getCurrentUser(req?: Request) {
     try {
-      // This would typically get the user from the JWT token
-      // For now, return a mock user for testing
+      // Extract JWT token from request headers
+      const authHeader = req?.headers.get('Authorization')
+      const testUserHeader = req?.headers.get('X-Test-User')
+      
+      // For testing: allow switching users via X-Test-User header
+      if (testUserHeader === 'ai-user') {
+        return {
+          id: '550e8400-e29b-41d4-a716-446655440003',
+          name: 'ProtoBot',
+          email: 'protobot@protohub.com',
+          isAdmin: false
+        }
+      }
+      
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        // For testing purposes, return a default user if no auth header
+        console.warn('No Authorization header found, using default user')
+        return {
+          id: '550e8400-e29b-41d4-a716-446655440001',
+          name: 'Sarah Chen',
+          email: 'sarah@protohub.com',
+          isAdmin: false
+        }
+      }
+
+      const token = authHeader.replace('Bearer ', '')
+      
+      // Create a new Supabase client with the user's JWT token
+      const supabaseWithAuth = createClient(
+        Deno.env.get('SUPABASE_URL')!,
+        Deno.env.get('SUPABASE_ANON_KEY')!,
+        {
+          global: {
+            headers: {
+              Authorization: authHeader
+            }
+          }
+        }
+      )
+
+      // Get the user from the JWT token
+      const { data: { user }, error } = await supabaseWithAuth.auth.getUser(token)
+      
+      if (error || !user) {
+        console.error('Error getting user from JWT:', error)
+        // Fallback to default user for testing
+        return {
+          id: '550e8400-e29b-41d4-a716-446655440001',
+          name: 'Sarah Chen',
+          email: 'sarah@protohub.com',
+          isAdmin: false
+        }
+      }
+
+      // Get additional user details from the users table
+      const { data: userData, error: userError } = await supabaseWithAuth
+        .from('users')
+        .select('*')
+        .eq('id', user.id)
+        .single()
+
+      if (userError || !userData) {
+        // Return basic user info from JWT if no database record
+        return {
+          id: user.id,
+          name: user.user_metadata?.name || user.email?.split('@')[0] || 'User',
+          email: user.email || '',
+          isAdmin: false
+        }
+      }
+
       return {
-        id: '550e8400-e29b-41d4-a716-446655440001',
-        name: 'Test User',
-        email: 'test@example.com',
-        isAdmin: false
+        id: userData.id,
+        name: userData.name,
+        email: userData.email,
+        isAdmin: userData.is_admin || false
       }
     } catch (error) {
       console.error('Error getting current user:', error)
-      return null
+      // Fallback to default user for testing
+      return {
+        id: '550e8400-e29b-41d4-a716-446655440001',
+        name: 'Sarah Chen',
+        email: 'sarah@protohub.com',
+        isAdmin: false
+      }
     }
   },
 

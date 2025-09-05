@@ -87,6 +87,11 @@ export async function handleQuestionsRoute(req: Request, path: string): Promise<
       return await questionController.recordQuestionView(req, path, questionId!)
     }
 
+    // POST /api/questions/migrate - Run database migration (TEMPORARY)
+    if (method === 'POST' && path === '/api/questions/migrate') {
+      return await questionController.runMigration(req, path)
+    }
+
     // Method not allowed
     return createCorsResponse({
       success: false,

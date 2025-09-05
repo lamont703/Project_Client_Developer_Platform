@@ -140,7 +140,11 @@ const AskQuestion: React.FC<AskQuestionProps> = ({ onClose, onSubmit }) => {
                     <h2>🚀 Ask a Question</h2>
                     <button className="close-btn" onClick={onClose}>×</button>
                 </div>
-                
+                            {tags.length === 0 && (
+                                <div className="tag-warning">
+                                    <span className="warning-text">⚠️ Please select at least one tag to categorize your question</span>
+                                </div>
+                            )}                
                 <div className="modal-content">
                     <div className="form-group">
                         <label htmlFor="question-title">Question Title</label>
@@ -153,8 +157,16 @@ const AskQuestion: React.FC<AskQuestionProps> = ({ onClose, onSubmit }) => {
                             maxLength={200}
                         />
                         <div className="char-count">{title.length}/200</div>
-                    </div>
-                    
+                            {tags.length === 0 && (
+                                <div className="tag-warning">
+                                    <span className="warning-text">⚠️ Please select at least one tag to categorize your question</span>
+                                </div>
+                            )}                    </div>
+                            {tags.length === 0 && (
+                                <div className="tag-warning">
+                                    <span className="warning-text">⚠️ Please select at least one tag to categorize your question</span>
+                                </div>
+                            )}                    
                     <div className="form-group">
                         <label htmlFor="question-content">Question Details</label>
                         <textarea
@@ -166,8 +178,16 @@ const AskQuestion: React.FC<AskQuestionProps> = ({ onClose, onSubmit }) => {
                             maxLength={2000}
                         />
                         <div className="char-count">{content.length}/2000</div>
-                    </div>
-                    
+                            {tags.length === 0 && (
+                                <div className="tag-warning">
+                                    <span className="warning-text">⚠️ Please select at least one tag to categorize your question</span>
+                                </div>
+                            )}                    </div>
+                            {tags.length === 0 && (
+                                <div className="tag-warning">
+                                    <span className="warning-text">⚠️ Please select at least one tag to categorize your question</span>
+                                </div>
+                            )}                    
                     <div className="form-group">
                         <label>Tags</label>
                         <div className="tags-input-section">
@@ -189,7 +209,11 @@ const AskQuestion: React.FC<AskQuestionProps> = ({ onClose, onSubmit }) => {
                                     +
                                 </button>
                             </div>
-                            
+                            {tags.length === 0 && (
+                                <div className="tag-warning">
+                                    <span className="warning-text">⚠️ Please select at least one tag to categorize your question</span>
+                                </div>
+                            )}                            
                             <div className="predefined-tags">
                                 <span className="tags-label">Popular tags:</span>
                                 {predefinedTags.map(tag => (
@@ -204,7 +228,11 @@ const AskQuestion: React.FC<AskQuestionProps> = ({ onClose, onSubmit }) => {
                                     </button>
                                 ))}
                             </div>
-                            
+                            {tags.length === 0 && (
+                                <div className="tag-warning">
+                                    <span className="warning-text">⚠️ Please select at least one tag to categorize your question</span>
+                                </div>
+                            )}                            
                             <div className="selected-tags">
                                 {tags.map(tag => (
                                     <span key={tag} className="selected-tag">
@@ -218,15 +246,21 @@ const AskQuestion: React.FC<AskQuestionProps> = ({ onClose, onSubmit }) => {
                                     </span>
                                 ))}
                             </div>
-                            
                             {tags.length === 0 && (
                                 <div className="tag-warning">
                                     <span className="warning-text">⚠️ Please select at least one tag to categorize your question</span>
                                 </div>
-                            )}
-                        </div>
-                    </div>
-                    
+                            )}                        </div>
+                            {tags.length === 0 && (
+                                <div className="tag-warning">
+                                    <span className="warning-text">⚠️ Please select at least one tag to categorize your question</span>
+                                </div>
+                            )}                    </div>
+                            {tags.length === 0 && (
+                                <div className="tag-warning">
+                                    <span className="warning-text">⚠️ Please select at least one tag to categorize your question</span>
+                                </div>
+                            )}                    
                     <div className="form-tips">
                         <h4>💡 Tips for a great question:</h4>
                         <ul>
@@ -236,8 +270,16 @@ const AskQuestion: React.FC<AskQuestionProps> = ({ onClose, onSubmit }) => {
                             <li>Use clear, descriptive tags to help others find your question</li>
                         </ul>
                     </div>
-                </div>
-                
+                            {tags.length === 0 && (
+                                <div className="tag-warning">
+                                    <span className="warning-text">⚠️ Please select at least one tag to categorize your question</span>
+                                </div>
+                            )}                </div>
+                            {tags.length === 0 && (
+                                <div className="tag-warning">
+                                    <span className="warning-text">⚠️ Please select at least one tag to categorize your question</span>
+                                </div>
+                            )}                
                 <div className="modal-footer">
                     <button 
                         className="cancel-btn" 
@@ -254,9 +296,21 @@ const AskQuestion: React.FC<AskQuestionProps> = ({ onClose, onSubmit }) => {
                         {isSubmitting ? 'Posting...' : 'Post Question'}
                     </button>
                 </div>
-            </div>
-        </div>
-    );
+                            {tags.length === 0 && (
+                                <div className="tag-warning">
+                                    <span className="warning-text">⚠️ Please select at least one tag to categorize your question</span>
+                                </div>
+                            )}            </div>
+                            {tags.length === 0 && (
+                                <div className="tag-warning">
+                                    <span className="warning-text">⚠️ Please select at least one tag to categorize your question</span>
+                                </div>
+                            )}        </div>
+                            {tags.length === 0 && (
+                                <div className="tag-warning">
+                                    <span className="warning-text">⚠️ Please select at least one tag to categorize your question</span>
+                                </div>
+                            )}    );
 };
 
-export default AskQuestion;
+export default AskQuestion; 

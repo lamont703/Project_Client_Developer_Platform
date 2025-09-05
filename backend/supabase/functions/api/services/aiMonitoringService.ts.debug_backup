@@ -413,7 +413,14 @@ class AIMonitoringService {
           question_id: question.id,
           content: aiResponse.content,
           author_id: aiResponse.authorId,
-          is_ai: true
+          is_ai: true,
+          metadata: {
+            persona: aiResponse.persona?.name,
+            confidence: aiResponse.confidence,
+            emotionalTone: aiResponse.emotionalTone,
+            followUpQuestions: aiResponse.followUpQuestions,
+            engagementType: 'unanswered_question'
+          }
         }
 
         logger.info(`📊 Answer data: ${JSON.stringify(answerData, null, 2)}`)
