@@ -67,13 +67,13 @@ export const questionsService = {
           author:users(name, avatar, reputation, is_ai)
         `)
         .eq('id', questionId)
-        .single()
+        .maybeSingle()
 
       if (error) {
         throw error
       }
 
-      return data
+      return data // Will be null if no question found
     } catch (error) {
       console.error('Error fetching question by ID:', error)
       throw error

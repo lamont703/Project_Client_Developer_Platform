@@ -65,10 +65,21 @@ const AICommunityMemberPage: React.FC<AICommunityMemberPageProps> = ({ navigateT
   };
 
   const testEndpoints = {
+    // AI Community Member specific endpoints (from sequence diagram)
+    getAIStats: () => makeApiRequest('/ai-community-member/stats', 'GET'),
+    getAIPersonas: () => makeApiRequest('/ai-community-member/personas', 'GET'),
+    getTrendingTopics: () => makeApiRequest('/ai-community-member/trending-topics', 'GET'),
+    generateAIResponse: () => makeApiRequest('/ai-community-member/generate-response', 'POST', {
+      questionId: '550e8400-e29b-41d4-a716-446655440001', // Valid UUID format
+      context: 'test-context'
+    }),
+    generateProactiveEngagement: () => makeApiRequest('/ai-community-member/proactive-engagement', 'POST'),
+    startAIMonitoring: () => makeApiRequest('/ai-community-member/monitor', 'POST'),
+    
     // Monitoring endpoints
     forceEngagement: () => makeApiRequest('/monitoring/force-engagement', 'POST'),
     forceAnalysis: () => makeApiRequest('/monitoring/force-analysis', 'POST'),
-    getStats: () => makeApiRequest('/monitoring/stats', 'GET'),
+    getMonitoringStats: () => makeApiRequest('/monitoring/stats', 'GET'),
     getHistory: () => makeApiRequest('/monitoring/history', 'GET'),
     startMonitoring: () => makeApiRequest('/monitoring/start', 'POST'),
     stopMonitoring: () => makeApiRequest('/monitoring/stop', 'POST'),
@@ -84,8 +95,8 @@ const AICommunityMemberPage: React.FC<AICommunityMemberPageProps> = ({ navigateT
       content: 'This is a test question created by the AI Community Member Control Center testing interface.',
       tags: ['test', 'ai-community', 'monitoring', 'control-center']
     }),
-    getAIPersonas: () => makeApiRequest('/questions/ai-personas', 'GET'),
-    generateProactiveEngagement: () => makeApiRequest('/questions/ai-engagement', 'POST', {
+    getQuestionsAIPersonas: () => makeApiRequest('/questions/ai-personas', 'GET'),
+    generateQuestionsEngagement: () => makeApiRequest('/questions/ai-engagement', 'POST', {
       questionId: 'test-question-id',
       persona: 'proto-bot-alex'
     }),
@@ -104,7 +115,17 @@ const AICommunityMemberPage: React.FC<AICommunityMemberPageProps> = ({ navigateT
     getCurrentUser: () => makeApiRequest('/users/me', 'GET'),
     
     // Analytics endpoints
-    getAnalytics: () => makeApiRequest('/analytics', 'GET'),
+    getAnalyticsSummary: () => makeApiRequest('/analytics/summary', 'GET'),
+    getAnalyticsEvents: () => makeApiRequest('/analytics/events', 'GET'),
+    getUserAnalytics: () => makeApiRequest('/analytics/user/test-user-id', 'GET'),
+    getPopularContent: () => makeApiRequest('/analytics/popular', 'GET'),
+    
+    // Debug endpoints
+    debugEnv: () => makeApiRequest('/debug/env', 'GET'),
+    debugDatabase: () => makeApiRequest('/debug/database', 'GET'),
+    debugGHLStatus: () => makeApiRequest('/debug/ghl-status', 'GET'),
+    debugTrendingTopics: () => makeApiRequest('/debug/trending-topics', 'GET'),
+    debugAIStats: () => makeApiRequest('/debug/ai-community-member/stats', 'GET'),
     
     // Reports endpoints
     getReports: () => makeApiRequest('/reports', 'GET'),
@@ -184,6 +205,55 @@ const AICommunityMemberPage: React.FC<AICommunityMemberPageProps> = ({ navigateT
         </p>
         
         <div className="endpoint-groups">
+          {/* AI Community Member Endpoints */}
+          <div className="endpoint-group">
+            <h3>🤖 AI Community Member</h3>
+            <div className="endpoint-buttons">
+              <button 
+                onClick={testEndpoints.getAIStats}
+                disabled={isLoading}
+                className="test-button primary"
+              >
+                📊 Get AI Stats
+              </button>
+              <button 
+                onClick={testEndpoints.getAIPersonas}
+                disabled={isLoading}
+                className="test-button"
+              >
+                👥 Get AI Personas
+              </button>
+              <button 
+                onClick={testEndpoints.getTrendingTopics}
+                disabled={isLoading}
+                className="test-button"
+              >
+                📈 Get Trending Topics
+              </button>
+              <button 
+                onClick={testEndpoints.generateAIResponse}
+                disabled={isLoading}
+                className="test-button"
+              >
+                💬 Generate AI Response
+              </button>
+              <button 
+                onClick={testEndpoints.generateProactiveEngagement}
+                disabled={isLoading}
+                className="test-button"
+              >
+                🚀 Generate Proactive Engagement
+              </button>
+              <button 
+                onClick={testEndpoints.startAIMonitoring}
+                disabled={isLoading}
+                className="test-button success"
+              >
+                ▶️ Start AI Monitoring
+              </button>
+            </div>
+          </div>
+
           {/* Monitoring Endpoints */}
           <div className="endpoint-group">
             <h3>📊 Monitoring Service</h3>
@@ -203,11 +273,11 @@ const AICommunityMemberPage: React.FC<AICommunityMemberPageProps> = ({ navigateT
                 📈 Force Analysis
               </button>
               <button 
-                onClick={testEndpoints.getStats}
+                onClick={testEndpoints.getMonitoringStats}
                 disabled={isLoading}
                 className="test-button"
               >
-                📊 Get Stats
+                📊 Get Monitoring Stats
               </button>
               <button 
                 onClick={testEndpoints.getHistory}
@@ -259,18 +329,102 @@ const AICommunityMemberPage: React.FC<AICommunityMemberPageProps> = ({ navigateT
                 ➕ Create Question
               </button>
               <button 
-                onClick={testEndpoints.getAIPersonas}
+                onClick={testEndpoints.getQuestionsAIPersonas}
                 disabled={isLoading}
                 className="test-button"
               >
-                🤖 Get AI Personas
+                🤖 Get Questions AI Personas
               </button>
               <button 
-                onClick={testEndpoints.generateProactiveEngagement}
+                onClick={testEndpoints.generateQuestionsEngagement}
                 disabled={isLoading}
                 className="test-button"
               >
-                💬 Generate Engagement
+                💬 Generate Questions Engagement
+              </button>
+            </div>
+          </div>
+
+          {/* Analytics Endpoints */}
+          <div className="endpoint-group">
+            <h3>📊 Analytics</h3>
+            <div className="endpoint-buttons">
+              <button 
+                onClick={testEndpoints.getAnalyticsSummary}
+                disabled={isLoading}
+                className="test-button"
+              >
+                📊 Get Analytics Summary
+              </button>
+              <button 
+                onClick={testEndpoints.getAnalyticsEvents}
+                disabled={isLoading}
+                className="test-button"
+              >
+                📈 Get Analytics Events
+              </button>
+              <button 
+                onClick={testEndpoints.getUserAnalytics}
+                disabled={isLoading}
+                className="test-button"
+              >
+                👤 Get User Analytics
+              </button>
+              <button 
+                onClick={testEndpoints.getPopularContent}
+                disabled={isLoading}
+                className="test-button"
+              >
+                🔥 Get Popular Content
+              </button>
+            </div>
+          </div>
+
+          {/* Debug Endpoints */}
+          <div className="endpoint-group">
+            <h3>🔧 Debug & System</h3>
+            <div className="endpoint-buttons">
+              <button 
+                onClick={testEndpoints.debugEnv}
+                disabled={isLoading}
+                className="test-button"
+              >
+                🌍 Debug Environment
+              </button>
+              <button 
+                onClick={testEndpoints.debugDatabase}
+                disabled={isLoading}
+                className="test-button"
+              >
+                🗄️ Debug Database
+              </button>
+              <button 
+                onClick={testEndpoints.debugGHLStatus}
+                disabled={isLoading}
+                className="test-button"
+              >
+                🔗 Debug GHL Status
+              </button>
+              <button 
+                onClick={testEndpoints.debugTrendingTopics}
+                disabled={isLoading}
+                className="test-button"
+              >
+                📈 Debug Trending Topics
+              </button>
+              <button 
+                onClick={testEndpoints.debugAIStats}
+                disabled={isLoading}
+                className="test-button"
+              >
+                🤖 Debug AI Stats
+              </button>
+              <button 
+                onClick={testEndpoints.healthCheck}
+                disabled={isLoading}
+                className="test-button"
+              >
+                ❤️ Health Check
               </button>
             </div>
           </div>
@@ -296,9 +450,9 @@ const AICommunityMemberPage: React.FC<AICommunityMemberPageProps> = ({ navigateT
             </div>
           </div>
 
-          {/* Users & Analytics */}
+          {/* Users & Reports */}
           <div className="endpoint-group">
-            <h3>👥 Users & Analytics</h3>
+            <h3>👥 Users & Reports</h3>
             <div className="endpoint-buttons">
               <button 
                 onClick={testEndpoints.getUsers}
@@ -315,20 +469,6 @@ const AICommunityMemberPage: React.FC<AICommunityMemberPageProps> = ({ navigateT
                 👤 Get Current User
               </button>
               <button 
-                onClick={testEndpoints.getAnalytics}
-                disabled={isLoading}
-                className="test-button"
-              >
-                📊 Get Analytics
-              </button>
-            </div>
-          </div>
-
-          {/* Reports & System */}
-          <div className="endpoint-group">
-            <h3>📋 Reports & System</h3>
-            <div className="endpoint-buttons">
-              <button 
                 onClick={testEndpoints.getReports}
                 disabled={isLoading}
                 className="test-button"
@@ -341,13 +481,6 @@ const AICommunityMemberPage: React.FC<AICommunityMemberPageProps> = ({ navigateT
                 className="test-button"
               >
                 ⏳ Pending Reports
-              </button>
-              <button 
-                onClick={testEndpoints.healthCheck}
-                disabled={isLoading}
-                className="test-button"
-              >
-                ❤️ Health Check
               </button>
             </div>
           </div>

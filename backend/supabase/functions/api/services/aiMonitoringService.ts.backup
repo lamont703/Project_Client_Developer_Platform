@@ -593,21 +593,13 @@ class AIMonitoringService {
     // Public methods for monitoring and control
   async getStats(): Promise<MonitoringStats> {
     try {
-      logger.info("📊 Getting stats from database...")
-      const dbStats = await monitoringStatsService.getStats()
       const trendingTopics = await trendingTopicsService.getTrendingTopicsForStats()
-      
       return {
-        totalEngagements: dbStats.total_engagements || 0,
-        successfulEngagements: dbStats.successful_engagements || 0,
-        failedEngagements: dbStats.failed_engagements || 0,
-        activePersonas: dbStats.active_personas || 0,
-        lastEngagement: dbStats.last_engagement ? new Date(dbStats.last_engagement) : new Date(0),
-        communityHealth: dbStats.community_health || 0,
+        ...this.stats,
         trendingTopics: trendingTopics
       }
     } catch (error) {
-      logger.error("Error getting stats from database:", error)
+      logger.error("Error getting stats:", error)
       return { ...this.stats }
     }
   }
@@ -747,26 +739,6 @@ class AIMonitoringService {
     return tags
   }
 
-  // Save current stats to database
-  private async saveStatsToDatabase(): Promise<void> {
-    try {
-      logger.info('💾 Saving stats to database...')
-      
-      await monitoringStatsService.updateStats({
-        total_engagements: this.stats.totalEngagements,
-        successful_engagements: this.stats.successfulEngagements,
-        failed_engagements: this.stats.failedEngagements,
-        active_personas: this.stats.activePersonas,
-        last_engagement: this.stats.lastEngagement,
-        community_health: this.stats.communityHealth
-      })
-      
-      logger.info('✅ Stats saved to database successfully')
-    } catch (error) {
-      logger.error('💥 Error saving stats to database:', error)
-      throw error
-    }
-  }
   async forceAnalysis(): Promise<void> {
     logger.info('📊 Forcing immediate community analysis...')
     await this.analyzeCommunityTrends()

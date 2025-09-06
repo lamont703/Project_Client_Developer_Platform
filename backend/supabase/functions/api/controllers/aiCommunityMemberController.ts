@@ -219,6 +219,22 @@ export const aiCommunityMemberController = {
         )
       }
 
+      // Validate UUID format
+      const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+      if (!uuidRegex.test(questionId)) {
+        return new Response(
+          JSON.stringify({
+            success: false,
+            error: 'Question ID must be a valid UUID',
+            timestamp: new Date().toISOString()
+          }),
+          {
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+            status: 400
+          }
+        )
+      }
+
       const question = await questionsService.getQuestionById(questionId)
       if (!question) {
         return new Response(
@@ -257,7 +273,7 @@ export const aiCommunityMemberController = {
           }),
           {
             headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-            status: 200
+            status: 500
           }
         )
       } else {
