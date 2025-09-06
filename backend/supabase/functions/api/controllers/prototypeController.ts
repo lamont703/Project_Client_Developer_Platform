@@ -1,8 +1,9 @@
 import { createCorsResponse } from '../utils/cors.ts'
 import { logger, analytics } from '../utils/logger.ts'
-import { databaseService } from '../services/databaseService.ts'
 import { validationService } from '../services/validationService.ts'
 import { urlValidationService } from '../services/urlValidationService.ts'
+import { usersService } from '../services/database/usersService.ts'
+import { prototypesService } from '../services/database/prototypesService.ts'
 
 export const prototypeController = {
   // Get all prototypes with optional filtering
@@ -10,7 +11,7 @@ export const prototypeController = {
     try {
       const { searchTerm, tag, technology, status, sortBy, limit = '20', offset = '0' } = queryParams
       
-      const prototypes = await databaseService.getPrototypes({
+      const prototypes = await prototypesService.getPrototypes({
         searchTerm,
         tag,
         technology,
@@ -41,7 +42,7 @@ export const prototypeController = {
   // Get specific prototype
   async getPrototypeById(req: Request, path: string, prototypeId: string): Promise<Response> {
     try {
-      const prototype = await databaseService.getPrototypeById(prototypeId)
+      const prototype = await prototypesService.getPrototypeById(prototypeId)
       if (!prototype) {
         return createCorsResponse({
           success: false,
@@ -50,7 +51,7 @@ export const prototypeController = {
       }
 
       // Increment view count
-      await databaseService.incrementPrototypeViews(prototypeId)
+      await prototypesService.incrementPrototypeViews(prototypeId)
       
       analytics.trackEvent('prototype_viewed', { prototypeId })
       
@@ -83,7 +84,7 @@ export const prototypeController = {
       }
 
       // Get current user from auth
-      const user = await databaseService.getCurrentUser()
+      const user = await usersService.getCurrentUser()
       if (!user) {
         return createCorsResponse({
           success: false,
@@ -108,7 +109,7 @@ export const prototypeController = {
       }
 
       // Create prototype
-      const prototype = await databaseService.createPrototype(dbPrototypeData)
+      const prototype = await prototypesService.createPrototype(dbPrototypeData)
 
       analytics.trackEvent('prototype_created', { 
         prototypeId: prototype.id,
@@ -137,7 +138,7 @@ export const prototypeController = {
   async updatePrototype(req: Request, path: string, prototypeId: string, updateData: any): Promise<Response> {
     try {
       // Get current user from auth
-      const user = await databaseService.getCurrentUser()
+      const user = await usersService.getCurrentUser()
       if (!user) {
         return createCorsResponse({
           success: false,
@@ -146,7 +147,7 @@ export const prototypeController = {
       }
 
       // Check if user owns the prototype
-      const prototype = await databaseService.getPrototypeById(prototypeId)
+      const prototype = await prototypesService.getPrototypeById(prototypeId)
       if (!prototype || prototype.author_id !== user.id) {
         return createCorsResponse({
           success: false,
@@ -181,7 +182,7 @@ export const prototypeController = {
       if (updateData.technologies) dbUpdateData.technologies = updateData.technologies
       if (updateData.status) dbUpdateData.status = updateData.status
 
-      const updatedPrototype = await databaseService.updatePrototype(prototypeId, dbUpdateData)
+      const updatedPrototype = await prototypesService.updatePrototype(prototypeId, dbUpdateData)
       
       analytics.trackEvent('prototype_updated', { 
         prototypeId,
@@ -209,7 +210,7 @@ export const prototypeController = {
   async deletePrototype(req: Request, path: string, prototypeId: string): Promise<Response> {
     try {
       // Get current user from auth
-      const user = await databaseService.getCurrentUser()
+      const user = await usersService.getCurrentUser()
       if (!user) {
         return createCorsResponse({
           success: false,
@@ -218,7 +219,7 @@ export const prototypeController = {
       }
 
       // Check if user owns the prototype
-      const prototype = await databaseService.getPrototypeById(prototypeId)
+      const prototype = await prototypesService.getPrototypeById(prototypeId)
       if (!prototype || prototype.author_id !== user.id) {
         return createCorsResponse({
           success: false,
@@ -226,7 +227,7 @@ export const prototypeController = {
         }, 403)
       }
 
-      await databaseService.deletePrototype(prototypeId)
+      await prototypesService.deletePrototype(prototypeId)
       
       analytics.trackEvent('prototype_deleted', { prototypeId })
       
@@ -251,7 +252,7 @@ export const prototypeController = {
       const { action } = likeData // 'like' or 'unlike'
       
       // Get current user from auth
-      const user = await databaseService.getCurrentUser()
+      const user = await usersService.getCurrentUser()
       if (!user) {
         return createCorsResponse({
           success: false,
@@ -259,7 +260,7 @@ export const prototypeController = {
         }, 401)
       }
 
-      const result = await databaseService.likePrototype(prototypeId, user.id, action)
+      const result = await prototypesService.likePrototype(prototypeId, user.id, action)
       
       analytics.trackEvent('prototype_liked', { 
         prototypeId, 
@@ -286,7 +287,7 @@ export const prototypeController = {
   // Record prototype view
   async recordPrototypeView(req: Request, path: string, prototypeId: string): Promise<Response> {
     try {
-      await databaseService.incrementPrototypeViews(prototypeId)
+      await prototypesService.incrementPrototypeViews(prototypeId)
       
       analytics.trackEvent('prototype_viewed', { prototypeId })
       
@@ -314,9 +315,9 @@ export const prototypeController = {
       
       // Update prototype status based on validation
       if (validation.isValid) {
-        await databaseService.updatePrototype(prototypeId, { status: 'live' })
+        await prototypesService.updatePrototype(prototypeId, { status: 'live' })
       } else {
-        await databaseService.updatePrototype(prototypeId, { status: 'development' })
+        await prototypesService.updatePrototype(prototypeId, { status: 'development' })
       }
       
       analytics.trackEvent('prototype_url_validated', { 

@@ -61,6 +61,13 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
             <button className="feature-link">Get Support →</button>
           </div>
           
+          <div className="feature-card" onClick={() => handleNavigation('/ai-community-member')}>
+            <div className="feature-icon">🤖👥</div>
+            <h3>AI Community Member Control Center</h3>
+            <p>Test and monitor AI Community Member Control Center endpoints and monitoring service</p>
+            <button className="feature-link">Test Endpoints →</button>
+          </div>
+          
           <div className="feature-card" onClick={() => handleNavigation('/proto-hub')}>
             <div className="feature-icon">🚀</div>
             <h3>Proto Hub</h3>
@@ -110,4 +117,4 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
   );
 };
 
-export default HomePage; 
+export default HomePage;

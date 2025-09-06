@@ -31,7 +31,9 @@ export const API_CONFIG = {
     PROTOTYPES: '/prototypes',
     USERS: '/users',
     REPORTS: '/reports',
-    ANALYTICS: '/analytics'
+    ANALYTICS: '/analytics',
+    // AI Community Member endpoints
+    MONITORING: '/monitoring'
   },
   
   // Get full URL for an endpoint

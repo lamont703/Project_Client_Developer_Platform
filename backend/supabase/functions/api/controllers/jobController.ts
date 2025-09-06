@@ -2,7 +2,7 @@ import { createCorsResponse, parseRequestBody } from '../utils/cors.ts'
 import { logger, analytics } from '../utils/logger.ts'
 import { wireFrameService } from '../services/wireFrameService.ts'
 import { goHighLevelService } from '../services/goHighLevelService.ts'
-import { databaseService } from '../services/databaseService.ts'
+import { opportunitiesService } from '../services/database/opportunitiesService.ts'
 
 export const jobController = {
   // Create a new job and generate wireframe
@@ -62,7 +62,7 @@ export const jobController = {
       
       // Step 3: Save to database with developer attribution
       logger.info('Step 3: Saving to database...')
-      const dbOpportunity = await databaseService.insertOpportunity({
+      const dbOpportunity = await opportunitiesService.insertOpportunity({
         opportunity_id: opportunityResult.id || `job-${Date.now()}`,
         name: jobData.title,
         status: 'open',

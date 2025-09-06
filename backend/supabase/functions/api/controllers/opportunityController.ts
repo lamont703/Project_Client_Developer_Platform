@@ -1,6 +1,6 @@
 import { createCorsResponse } from '../utils/cors.ts'
 import { logger, analytics } from '../utils/logger.ts'
-import { databaseService } from '../services/databaseService.ts'
+import { opportunitiesService } from '../services/database/opportunitiesService.ts'
 
 export const opportunityController = {
   // Get all opportunities from database
@@ -10,7 +10,7 @@ export const opportunityController = {
 
     try {
       logger.info('Fetching all opportunities from database')
-      const allOpportunities = await databaseService.getAllOpportunities()
+      const allOpportunities = await opportunitiesService.getAllOpportunities()
       
       // Filter to only return opportunities with "open" status
       const openOpportunities = allOpportunities.filter((opp: any) => opp.status === 'open')
@@ -53,7 +53,7 @@ export const opportunityController = {
     try {
       logger.info(`Fetching opportunity with ID: ${id}`)
       
-      const opportunity = await databaseService.getOpportunityById(id)
+      const opportunity = await opportunitiesService.getOpportunityById(id)
       
       if (!opportunity) {
         return createCorsResponse({
@@ -103,7 +103,7 @@ export const opportunityController = {
 
       logger.info(`Updating opportunity ${id} in database`)
       
-      const updatedOpportunity = await databaseService.updateOpportunity(id, updateData)
+      const updatedOpportunity = await opportunitiesService.updateOpportunity(id, updateData)
       
       if (!updatedOpportunity) {
         return createCorsResponse({
@@ -146,7 +146,7 @@ export const opportunityController = {
     try {
       logger.info(`Deleting opportunity ${id} from database`)
       
-      await databaseService.deleteOpportunity(id)
+      await opportunitiesService.deleteOpportunity(id)
 
       const response = {
         success: true,

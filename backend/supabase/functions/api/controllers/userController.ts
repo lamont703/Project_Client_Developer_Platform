@@ -1,7 +1,7 @@
 import { createCorsResponse } from '../utils/cors.ts'
 import { logger, analytics } from '../utils/logger.ts'
-import { databaseService } from '../services/databaseService.ts'
 import { validationService } from '../services/validationService.ts'
+import { usersService } from '../services/database/usersService.ts'
 
 export const userController = {
   // Get all users with optional filtering
@@ -9,7 +9,7 @@ export const userController = {
     try {
       const { searchTerm, sortBy, limit = '50', offset = '0' } = queryParams
       
-      const users = await databaseService.getUsers({
+      const users = await usersService.getUsers({
         searchTerm,
         sortBy: sortBy as 'reputation' | 'newest' | 'name',
         limit: parseInt(limit),
@@ -37,7 +37,7 @@ export const userController = {
   // Get specific user profile
   async getUserById(req: Request, path: string, userId: string): Promise<Response> {
     try {
-      const user = await databaseService.getUserById(userId)
+      const user = await usersService.getUserById(userId)
       if (!user) {
         return createCorsResponse({
           success: false,
@@ -46,7 +46,7 @@ export const userController = {
       }
 
       // Get user stats
-      const stats = await databaseService.getUserStats(userId)
+      const stats = await usersService.getUserStats(userId)
       
       analytics.trackEvent('user_profile_viewed', { userId })
       
@@ -68,7 +68,7 @@ export const userController = {
   // Get current user profile
   async getCurrentUser(req: Request, path: string): Promise<Response> {
     try {
-      const user = await databaseService.getCurrentUser()
+      const user = await usersService.getCurrentUser()
       if (!user) {
         return createCorsResponse({
           success: false,
@@ -77,7 +77,7 @@ export const userController = {
       }
 
       // Get user stats
-      const stats = await databaseService.getUserStats(user.id)
+      const stats = await usersService.getUserStats(user.id)
       
       return createCorsResponse({
         success: true,
@@ -108,7 +108,7 @@ export const userController = {
       }
 
       // Check if user already exists
-      const existingUser = await databaseService.getUserByEmail(userData.email)
+      const existingUser = await usersService.getUserByEmail(userData.email)
       if (existingUser) {
         return createCorsResponse({
           success: false,
@@ -117,7 +117,7 @@ export const userController = {
       }
 
       // Create user
-      const user = await databaseService.createUser(userData)
+      const user = await usersService.createUser(userData)
 
       analytics.trackEvent('user_created', { userId: user.id })
       
@@ -141,7 +141,7 @@ export const userController = {
   async updateUser(req: Request, path: string, userId: string, updateData: any): Promise<Response> {
     try {
       // Get current user from auth
-      const currentUser = await databaseService.getCurrentUser()
+      const currentUser = await usersService.getCurrentUser()
       if (!currentUser) {
         return createCorsResponse({
           success: false,
@@ -167,7 +167,7 @@ export const userController = {
         }, 400)
       }
 
-      const updatedUser = await databaseService.updateUser(userId, updateData)
+      const updatedUser = await usersService.updateUser(userId, updateData)
       
       analytics.trackEvent('user_updated', { userId })
       
@@ -191,7 +191,7 @@ export const userController = {
   async deleteUser(req: Request, path: string, userId: string): Promise<Response> {
     try {
       // Get current user from auth
-      const currentUser = await databaseService.getCurrentUser()
+      const currentUser = await usersService.getCurrentUser()
       if (!currentUser) {
         return createCorsResponse({
           success: false,
@@ -207,7 +207,7 @@ export const userController = {
         }, 403)
       }
 
-      await databaseService.deleteUser(userId)
+      await usersService.deleteUser(userId)
       
       analytics.trackEvent('user_deleted', { userId })
       
@@ -313,7 +313,7 @@ export const userController = {
       const { points, reason } = reputationData
       
       // Get current user from auth
-      const currentUser = await databaseService.getCurrentUser()
+      const currentUser = await usersService.getCurrentUser()
       if (!currentUser) {
         return createCorsResponse({
           success: false,
@@ -329,7 +329,7 @@ export const userController = {
         }, 403)
       }
 
-      const result = await databaseService.updateUserReputation(userId, points, reason)
+      const result = await usersService.updateUserReputation(userId, points, reason)
       
       analytics.trackEvent('user_reputation_updated', { 
         userId,

@@ -1,3 +1,5 @@
+import { answersService } from '../services/database/answersService.ts'
+import { aiServices } from '../services/database/aiServices.ts'
       // Generate AI response if enabled
       if (questionData.generateAIResponse !== false) {
         try {
@@ -7,7 +9,7 @@
             questionContent: question.content,
             questionAuthor: user.id,
             previousResponses: [],
-            communityTrends: await databaseService.getCommunityTrends(),
+            communityTrends: await aiServices.getCommunityTrends(),
             userInterests: user.interests || [],
             conversationHistory: []
           }
@@ -15,7 +17,7 @@
           const aiResponse = await aiCommunityMemberService.generateResponse(question, context)
           if (aiResponse) {
             // Create answer with enhanced AI response data
-            await databaseService.createAnswer({
+            await answersService.createAnswer({
               question_id: question.id,
               content: aiResponse.content,
               author_id: aiResponse.authorId,

@@ -1,14 +1,15 @@
 import { createCorsResponse } from '../utils/cors.ts'
 import { logger, analytics } from '../utils/logger.ts'
-import { databaseService } from '../services/databaseService.ts'
 import { validationService } from '../services/validationService.ts'
+import { usersService } from '../services/database/usersService.ts'
+import { reportsService } from '../services/database/reportsService.ts'
 
 export const reportController = {
   // Get all reports (admin only)
   async getAllReports(req: Request, path: string, queryParams: Record<string, string>): Promise<Response> {
     try {
       // Check admin permissions
-      const user = await databaseService.getCurrentUser()
+      const user = await usersService.getCurrentUser()
       if (!user || !user.isAdmin) {
         return createCorsResponse({
           success: false,
@@ -18,7 +19,7 @@ export const reportController = {
 
       const { status, contentType, limit = '50', offset = '0' } = queryParams
       
-      const reports = await databaseService.getReports({
+      const reports = await reportsService.getReports({
         status: status as 'pending' | 'resolved' | 'dismissed',
         contentType: contentType as 'question' | 'answer' | 'prototype' | 'user',
         limit: parseInt(limit),
@@ -46,7 +47,7 @@ export const reportController = {
   // Get specific report
   async getReportById(req: Request, path: string, reportId: string): Promise<Response> {
     try {
-      const report = await databaseService.getReportById(reportId)
+      const report = await reportsService.getReportById(reportId)
       if (!report) {
         return createCorsResponse({
           success: false,
@@ -55,7 +56,7 @@ export const reportController = {
       }
 
       // Check if user can view this report
-      const user = await databaseService.getCurrentUser()
+      const user = await usersService.getCurrentUser()
       if (!user || (user.id !== report.reporterId && !user.isAdmin)) {
         return createCorsResponse({
           success: false,
@@ -92,7 +93,7 @@ export const reportController = {
       }
 
       // Get current user from auth
-      const user = await databaseService.getCurrentUser()
+      const user = await usersService.getCurrentUser()
       if (!user) {
         return createCorsResponse({
           success: false,
@@ -101,7 +102,7 @@ export const reportController = {
       }
 
       // Check if content exists
-      const contentExists = await databaseService.checkContentExists(
+      const contentExists = await reportsService.checkContentExists(
         reportData.contentType,
         reportData.contentId
       )
@@ -113,7 +114,7 @@ export const reportController = {
       }
 
       // Check if user already reported this content
-      const existingReport = await databaseService.getReportByUserAndContent(
+      const existingReport = await reportsService.getReportByUserAndContent(
         user.id,
         reportData.contentType,
         reportData.contentId
@@ -126,7 +127,7 @@ export const reportController = {
       }
 
       // Create report
-      const report = await databaseService.createReport({
+      const report = await reportsService.createReport({
         ...reportData,
         reporterId: user.id
       })
@@ -157,7 +158,7 @@ export const reportController = {
   async updateReport(req: Request, path: string, reportId: string, updateData: any): Promise<Response> {
     try {
       // Check admin permissions
-      const user = await databaseService.getCurrentUser()
+      const user = await usersService.getCurrentUser()
       if (!user || !user.isAdmin) {
         return createCorsResponse({
           success: false,
@@ -175,7 +176,7 @@ export const reportController = {
         }, 400)
       }
 
-      const updatedReport = await databaseService.updateReport(reportId, {
+      const updatedReport = await reportsService.updateReport(reportId, {
         ...updateData,
         moderatorId: user.id
       })
@@ -205,7 +206,7 @@ export const reportController = {
   async deleteReport(req: Request, path: string, reportId: string): Promise<Response> {
     try {
       // Check admin permissions
-      const user = await databaseService.getCurrentUser()
+      const user = await usersService.getCurrentUser()
       if (!user || !user.isAdmin) {
         return createCorsResponse({
           success: false,
@@ -213,7 +214,7 @@ export const reportController = {
         }, 403)
       }
 
-      await databaseService.deleteReport(reportId)
+      await reportsService.deleteReport(reportId)
       
       analytics.trackEvent('report_deleted', { reportId })
       
@@ -236,7 +237,7 @@ export const reportController = {
   async getPendingReports(req: Request, path: string, queryParams: Record<string, string>): Promise<Response> {
     try {
       // Check admin permissions
-      const user = await databaseService.getCurrentUser()
+      const user = await usersService.getCurrentUser()
       if (!user || !user.isAdmin) {
         return createCorsResponse({
           success: false,
@@ -246,7 +247,7 @@ export const reportController = {
 
       const { limit = '20', offset = '0' } = queryParams
       
-      const reports = await databaseService.getPendingReports({
+      const reports = await reportsService.getPendingReports({
         limit: parseInt(limit),
         offset: parseInt(offset)
       })
@@ -273,7 +274,7 @@ export const reportController = {
       const { action, reason } = resolveData // 'dismiss', 'remove_content', 'warn_user', 'ban_user'
       
       // Check admin permissions
-      const user = await databaseService.getCurrentUser()
+      const user = await usersService.getCurrentUser()
       if (!user || !user.isAdmin) {
         return createCorsResponse({
           success: false,
@@ -281,7 +282,7 @@ export const reportController = {
         }, 403)
       }
 
-      const result = await databaseService.resolveReport(reportId, {
+      const result = await reportsService.resolveReport(reportId, {
         action,
         reason,
         moderatorId: user.id

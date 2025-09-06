@@ -2,7 +2,10 @@
 // Handles background monitoring, proactive engagement, and community analysis
 
 import { aiCommunityMemberService } from "./aiCommunityMemberService.ts"
-import { databaseService } from "./databaseService.ts"
+import { trendingTopicsService } from "./trendingTopicsService.ts"
+import { databaseService, supabase } from "./databaseService.ts"
+import { questionsService } from "./database/questionsService.ts"
+import { answersService } from "./database/answersService.ts"
 import { logger } from "../utils/logger.ts"
 
 export interface MonitoringConfig {
@@ -238,7 +241,7 @@ class AIMonitoringService {
   private async findUnansweredQuestions(): Promise<EngagementOpportunity[]> {
     try {
       logger.info('📋 Querying database for unanswered questions...')
-      const questions = await databaseService.getQuestions({ 
+      const questions = await questionsService.getQuestions({ 
         sortBy: 'unanswered',
         limit: 50 
       })
@@ -418,7 +421,7 @@ class AIMonitoringService {
 
         logger.info(`📊 Answer data: ${JSON.stringify(answerData, null, 2)}`)
         
-        const createdAnswer = await databaseService.createAnswer(answerData)
+        const createdAnswer = await answersService.createAnswer(answerData)
         logger.info(`✅ Answer created successfully with ID: ${createdAnswer?.id}`)
 
         return aiResponse
@@ -446,7 +449,7 @@ class AIMonitoringService {
       if (engagement) {
         logger.info('✅ Proactive engagement generated, creating question...')
         // Create a question about the trending topic
-        const question = await databaseService.createQuestion({
+        const question = await questionsService.createQuestion({
           title: `Discussion: ${topic}`,
           content: engagement.content,
           tags: [topic, 'trending', 'discussion'],
@@ -507,22 +510,39 @@ class AIMonitoringService {
     }
   }
 
-  // Analyze community trends
+  // Simple sentiment analysis
+  private analyzeSentiment(text: string): number {
+    if (!text) return 0
+    
+    const positiveWords = ['great', 'awesome', 'excellent', 'amazing', 'love', 'perfect', 'fantastic', 'wonderful']
+    const negativeWords = ['bad', 'terrible', 'awful', 'hate', 'horrible', 'worst', 'disappointing', 'frustrating']
+    
+    const words = text.toLowerCase().split(/s+/)
+    let score = 0
+    
+    words.forEach(word => {
+      if (positiveWords.includes(word)) score += 1
+      if (negativeWords.includes(word)) score -= 1
+    })
+    
+    return score
+  }
+
+    // Analyze community trends
   async analyzeCommunityTrends(): Promise<void> {
     try {
       logger.info('📊 Analyzing community trends...')
-      // Placeholder implementation
-      this.stats.trendingTopics = [
-        { topic: 'prototyping', frequency: 5, sentiment: 'positive', trendingUp: true, relatedQuestions: [] },
-        { topic: 'validation', frequency: 3, sentiment: 'neutral', trendingUp: true, relatedQuestions: [] }
-      ]
-      logger.info(`✅ Community trends updated: ${this.stats.trendingTopics.length} topics`)
+      
+      const trends = await trendingTopicsService.updateTrendingTopics()
+      
+      // Update in-memory stats for immediate use
+      this.stats.trendingTopics = trends
+      
+      logger.info(`✅ Community trends updated: ${trends.length} topics`)
     } catch (error) {
       logger.error('💥 Error analyzing community trends:', error)
     }
-  }
-
-  // Update community health score
+  }  // Update community health score
   async updateCommunityHealth(): Promise<void> {
     try {
       logger.info('❤️ Updating community health score...')
@@ -565,11 +585,19 @@ class AIMonitoringService {
     return 'proto-bot-alex' // Default to Alex
   }
 
-  // Public methods for monitoring and control
-  getStats(): MonitoringStats {
-    return { ...this.stats }
+    // Public methods for monitoring and control
+  async getStats(): Promise<MonitoringStats> {
+    try {
+      const trendingTopics = await trendingTopicsService.getTrendingTopicsForStats()
+      return {
+        ...this.stats,
+        trendingTopics: trendingTopics
+      }
+    } catch (error) {
+      logger.error("Error getting stats:", error)
+      return { ...this.stats }
+    }
   }
-
   getConfig(): MonitoringConfig {
     return { ...this.config }
   }

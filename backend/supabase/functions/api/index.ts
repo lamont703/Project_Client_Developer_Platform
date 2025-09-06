@@ -1,3 +1,4 @@
+// @ts-ignore
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 import { corsHeaders } from "./utils/cors.ts"
 import { logger } from "./utils/logger.ts"
@@ -12,18 +13,19 @@ import { handleUsersRoute } from "./routes/users.ts"
 import { handleReportsRoute } from "./routes/reports.ts"
 import { handleAnalyticsRoute } from "./routes/analytics.ts"
 import { handleMonitoringRoute } from "./routes/monitoring.ts"
-import { goHighLevelService } from "./services/goHighLevelService.ts"
+import { handleAnswersRoute } from "./routes/answers.ts"
+import { handleDebugRoute } from "./routes/debug.ts"
+import { handleAICommunityMemberRoute } from "./routes/aiCommunityMember.ts"
 import { analyticsMiddleware } from "./middleware/analytics.ts"
-import { databaseService } from "./services/databaseService.ts"
 
 // Main Edge Function handler
 serve(async (req: Request) => {
-  // Handle CORS preflight requests
-  if (req.method === 'OPTIONS') {
-    return new Response('ok', { headers: corsHeaders })
-  }
-
   try {
+    // Handle CORS preflight requests
+    if (req.method === 'OPTIONS') {
+      return new Response('ok', { headers: corsHeaders })
+    }
+
     const url = new URL(req.url)
     const path = url.pathname
     const method = req.method
@@ -33,117 +35,21 @@ serve(async (req: Request) => {
 
     logger.info(`Request: ${method} ${path}`)
 
-    // Debug endpoint to check environment variables
-    if (path === '/api/debug/env') {
-      // Get all environment variables
-      const envVars = Deno.env.toObject()
-      const relevantVars = {
-        GITHUB_TOKEN: envVars.GITHUB_TOKEN ? 'SET' : 'NOT_SET',
-        GITHUB_USERNAME: envVars.GITHUB_USERNAME ? 'SET' : 'NOT_SET',
-        GOOGLE_API_KEY: envVars.GOOGLE_API_KEY ? 'SET' : 'NOT_SET',
-        GHL_ACCESS_TOKEN: envVars.GHL_ACCESS_TOKEN ? 'SET' : 'NOT_SET',
-        GHL_REFRESH_TOKEN: envVars.GHL_REFRESH_TOKEN ? 'SET' : 'NOT_SET',
-        GHL_CLIENT_ID: envVars.GHL_CLIENT_ID ? 'SET' : 'NOT_SET',
-        GHL_CLIENT_SECRET: envVars.GHL_CLIENT_SECRET ? 'SET' : 'NOT_SET',
-      }
-      
-      const response = {
-        success: true,
-        message: 'Environment variables check',
-        environment_variables: relevantVars,
-        all_env_vars: Object.keys(envVars).filter(key => !key.startsWith('SUPABASE_')),
-        timestamp: new Date().toISOString()
-      }
-
-      analytics.trackRequest(200, Date.now() - analytics.startTime)
-      
-      return new Response(
-        JSON.stringify(response),
-        {
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-          status: 200
-        }
-      )
+    // Debug routes (highest priority)
+    if (path.startsWith('/api/debug')) {
+      const result = await handleDebugRoute(req, path)
+      analytics.trackRequest(result.status, Date.now() - analytics.startTime)
+      return result
     }
 
-    // Test databaseService endpoint
-    if (path === '/api/debug/database') {
-      try {
-        const questions = await databaseService.getQuestions({ limit: 5 })
-        const response = {
-          success: true,
-          message: 'Database service test',
-          questions_count: questions.length,
-          questions: questions,
-          timestamp: new Date().toISOString()
-        }
-
-        analytics.trackRequest(200, Date.now() - analytics.startTime)
-        
-        return new Response(
-          JSON.stringify(response),
-          {
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-            status: 200
-          }
-        )
-      } catch (error) {
-        analytics.trackRequest(500, Date.now() - analytics.startTime)
-        
-        return new Response(
-          JSON.stringify({
-            success: false,
-            error: 'Database service error',
-            message: error.message,
-            timestamp: new Date().toISOString()
-          }),
-          {
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-            status: 500
-          }
-        )
-      }
+    // AI Community Member routes
+    if (path.startsWith('/api/ai-community-member')) {
+      const result = await handleAICommunityMemberRoute(req, path)
+      analytics.trackRequest(result.status, Date.now() - analytics.startTime)
+      return result
     }
 
-    // Test GoHighLevel service endpoint
-    if (path === '/api/debug/ghl-status') {
-      try {
-        const tokenStatus = goHighLevelService.getTokenStatus()
-        const response = {
-          success: true,
-          message: 'GoHighLevel service status',
-          token_status: tokenStatus,
-          timestamp: new Date().toISOString()
-        }
-
-        analytics.trackRequest(200, Date.now() - analytics.startTime)
-        
-        return new Response(
-          JSON.stringify(response),
-          {
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-            status: 200
-          }
-        )
-      } catch (error) {
-        analytics.trackRequest(500, Date.now() - analytics.startTime)
-        
-        return new Response(
-          JSON.stringify({
-            success: false,
-            error: 'GoHighLevel service error',
-            message: error.message,
-            timestamp: new Date().toISOString()
-          }),
-          {
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-            status: 500
-          }
-        )
-      }
-    }
-
-    // Route requests based on path
+    // Existing routes
     if (path.startsWith('/api/jobs')) {
       const result = await handleJobsRoute(req, path)
       analytics.trackRequest(result.status, Date.now() - analytics.startTime)
@@ -174,13 +80,18 @@ serve(async (req: Request) => {
       return result
     }
 
-    // ProtoHub routes
-    if (path.startsWith('/api/questions')) {
+    if (path.startsWith("/api/questions")) {
       const result = await handleQuestionsRoute(req, path)
       analytics.trackRequest(result.status, Date.now() - analytics.startTime)
       return result
     }
 
+    if (path.startsWith("/api/answers")) {
+      const result = await handleAnswersRoute(req, path)
+      analytics.trackRequest(result.status, Date.now() - analytics.startTime)
+      return result
+    }
+    
     if (path.startsWith('/api/prototypes')) {
       const result = await handlePrototypesRoute(req, path)
       analytics.trackRequest(result.status, Date.now() - analytics.startTime)
@@ -264,4 +175,4 @@ serve(async (req: Request) => {
       }
     )
   }
-}) 
+})

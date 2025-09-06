@@ -1,8 +1,10 @@
 import { createCorsResponse } from '../utils/cors.ts'
 import { logger, analytics } from '../utils/logger.ts'
-import { databaseService } from '../services/databaseService.ts'
 import { aiCommunityMemberService } from '../services/aiCommunityMemberService.ts'
 import { validationService } from '../services/validationService.ts'
+import { questionsService } from '../services/database/questionsService.ts'
+import { answersService } from '../services/database/answersService.ts'
+import { usersService } from '../services/database/usersService.ts'
 
 export const questionController = {
   // Get all questions with optional filtering
@@ -10,7 +12,7 @@ export const questionController = {
     try {
       const { searchTerm, tag, sortBy, limit = '20', offset = '0' } = queryParams
       
-      const questions = await databaseService.getQuestions({
+      const questions = await questionsService.getQuestions({
         searchTerm,
         tag,
         sortBy: sortBy as 'newest' | 'votes' | 'views' | 'unanswered',
@@ -39,7 +41,7 @@ export const questionController = {
   // Get specific question with answers
   async getQuestionById(req: Request, path: string, questionId: string): Promise<Response> {
     try {
-      const question = await databaseService.getQuestionById(questionId)
+      const question = await questionsService.getQuestionById(questionId)
       if (!question) {
         return createCorsResponse({
           success: false,
@@ -47,10 +49,10 @@ export const questionController = {
         }, 404)
       }
 
-      const answers = await databaseService.getAnswersByQuestionId(questionId)
+      const answers = await answersService.getAnswersByQuestionId(questionId)
       
       // Increment view count
-      await databaseService.incrementQuestionViews(questionId)
+      await questionsService.incrementQuestionViews(questionId)
       
       analytics.trackEvent('question_viewed', { questionId })
       
@@ -84,7 +86,7 @@ export const questionController = {
       }
 
       // Get current user from auth
-      const user = await databaseService.getCurrentUser(req)
+      const user = await usersService.getCurrentUser(req)
       if (!user) {
         return createCorsResponse({
           success: false,
@@ -94,7 +96,7 @@ export const questionController = {
 
       // Create question (filter out generateAIResponse since it's not a database field)
       const { generateAIResponse, ...dbQuestionData } = questionData
-      const question = await databaseService.createQuestion({
+      const question = await questionsService.createQuestion({
         ...dbQuestionData,
         author_id: user.id
       })
@@ -109,14 +111,14 @@ export const questionController = {
             questionAuthor: user.id,
             previousResponses: [],
             communityTrends: [], // TODO: Implement getCommunityTrends in databaseService
-            userInterests: user.interests || [],
+            userInterests: [],
             conversationHistory: []
           }
           
           const aiResponse = await aiCommunityMemberService.generateResponse(question, context)
           if (aiResponse) {
             // Create answer with enhanced AI response data
-            await databaseService.createAnswer({
+            await answersService.createAnswer({
               question_id: question.id,
               content: aiResponse.content,
               author_id: aiResponse.authorId,
@@ -169,7 +171,7 @@ export const questionController = {
   async updateQuestion(req: Request, path: string, questionId: string, updateData: any): Promise<Response> {
     try {
       // Get current user from auth
-      const user = await databaseService.getCurrentUser()
+      const user = await usersService.getCurrentUser()
       if (!user) {
         return createCorsResponse({
           success: false,
@@ -178,7 +180,7 @@ export const questionController = {
       }
 
       // Check if user owns the question
-      const question = await databaseService.getQuestionById(questionId)
+      const question = await questionsService.getQuestionById(questionId)
       if (!question || question.author_id !== user.id) {
         return createCorsResponse({
           success: false,
@@ -196,7 +198,7 @@ export const questionController = {
         }, 400)
       }
 
-      const updatedQuestion = await databaseService.updateQuestion(questionId, updateData)
+      const updatedQuestion = await questionsService.updateQuestion(questionId, updateData)
       
       analytics.trackEvent('question_updated', { questionId })
       
@@ -220,7 +222,7 @@ export const questionController = {
   async deleteQuestion(req: Request, path: string, questionId: string): Promise<Response> {
     try {
       // Get current user from auth
-      const user = await databaseService.getCurrentUser()
+      const user = await usersService.getCurrentUser()
       if (!user) {
         return createCorsResponse({
           success: false,
@@ -229,7 +231,7 @@ export const questionController = {
       }
 
       // Check if user owns the question
-      const question = await databaseService.getQuestionById(questionId)
+      const question = await questionsService.getQuestionById(questionId)
       if (!question || question.author_id !== user.id) {
         return createCorsResponse({
           success: false,
@@ -237,7 +239,7 @@ export const questionController = {
         }, 403)
       }
 
-      await databaseService.deleteQuestion(questionId)
+      await questionsService.deleteQuestion(questionId)
       
       analytics.trackEvent('question_deleted', { questionId })
       
@@ -262,7 +264,7 @@ export const questionController = {
       const { direction } = voteData // 'up' or 'down'
       
       // Get current user from auth
-      const user = await databaseService.getCurrentUser()
+      const user = await usersService.getCurrentUser()
       if (!user) {
         return createCorsResponse({
           success: false,
@@ -270,7 +272,7 @@ export const questionController = {
         }, 401)
       }
 
-      const result = await databaseService.voteOnQuestion(questionId, user.id, direction)
+      const result = await questionsService.voteOnQuestion(questionId, user.id, direction)
       
       analytics.trackEvent('question_voted', { 
         questionId, 
@@ -299,7 +301,7 @@ export const questionController = {
     try {
       const { sortBy = 'votes', limit = '50', offset = '0' } = queryParams
       
-      const answers = await databaseService.getAnswersByQuestionId(questionId, {
+      const answers = await answersService.getAnswersByQuestionId(questionId, {
         sortBy: sortBy as 'votes' | 'newest' | 'oldest',
         limit: parseInt(limit),
         offset: parseInt(offset)
@@ -356,7 +358,7 @@ export const questionController = {
       }
 
       // Get current user from auth
-      const user = await databaseService.getCurrentUser(req)
+      const user = await usersService.getCurrentUser(req)
       if (!user) {
         return createCorsResponse({
           success: false,
@@ -365,7 +367,7 @@ export const questionController = {
       }
 
       // Check if question exists
-      const question = await databaseService.getQuestionById(questionId)
+      const question = await questionsService.getQuestionById(questionId)
       if (!question) {
         return createCorsResponse({
           success: false,
@@ -374,7 +376,7 @@ export const questionController = {
       }
 
       // Create answer
-      const answer = await databaseService.createAnswer({
+      const answer = await answersService.createAnswer({
         question_id: questionId,
         content: answerData.content,
         author_id: user.id,
@@ -382,7 +384,7 @@ export const questionController = {
       })
 
       // Update question answer count and status
-      await databaseService.updateQuestionAnswerCount(questionId)
+      await answersService.updateQuestionAnswerCount(questionId)
       
       analytics.trackEvent('answer_created', { 
         questionId,
@@ -432,7 +434,7 @@ export const questionController = {
       const { direction } = voteData // 'up' or 'down'
       
       // Get current user from auth
-      const user = await databaseService.getCurrentUser()
+      const user = await usersService.getCurrentUser()
       if (!user) {
         return createCorsResponse({
           success: false,
@@ -440,7 +442,7 @@ export const questionController = {
         }, 401)
       }
 
-      const result = await databaseService.voteOnAnswer(answerId, user.id, direction)
+      const result = await answersService.voteOnAnswer(answerId, user.id, direction)
       
       analytics.trackEvent('answer_voted', { 
         questionId,
@@ -469,8 +471,8 @@ export const questionController = {
   async recordQuestionView(req: Request, path: string, questionId: string): Promise<Response> {
     console.log('🔍 DEBUG: recordQuestionView controller called:', { questionId })
     try {
-      console.log('🔍 DEBUG: Calling databaseService.incrementQuestionViews for questionId:', questionId)
-      await databaseService.incrementQuestionViews(questionId)
+      console.log('🔍 DEBUG: Calling questionsService.incrementQuestionViews for questionId:', questionId)
+      await questionsService.incrementQuestionViews(questionId)
       console.log('🔍 DEBUG: Question views incremented successfully')
       
       analytics.trackEvent('question_viewed', { 
@@ -507,7 +509,7 @@ export const questionController = {
       }
 
       // Create a question from the AI engagement
-      const question = await databaseService.createQuestion({
+      const question = await questionsService.createQuestion({
         title: engagement.content.substring(0, 100) + '...',
         content: engagement.content,
         tags: ['ai-engagement', 'community'],

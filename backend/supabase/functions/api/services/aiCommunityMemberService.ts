@@ -114,7 +114,7 @@ const GOOGLE_API_KEY = Deno.env.get('GOOGLE_API_KEY')
 export const aiCommunityMemberService = {
   // Get a random persona or select based on context
   getPersona(context?: ConversationContext): AIPersona {
-    if (context?.userInterests?.length > 0) {
+    if (context?.userInterests && context.userInterests.length > 0) {
       // Match persona based on user interests
       const matchingPersonas = AI_PERSONAS.filter(persona => 
         persona.interests.some(interest => 

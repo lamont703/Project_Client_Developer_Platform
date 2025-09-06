@@ -1,0 +1,313 @@
+import React, { useState } from 'react';
+import { API_CONFIG } from '../utils/apiConfig';
+import '../styles/AICommunityMemberPage.css';
+
+interface AICommunityMemberPageProps {
+  navigateToHome?: () => void;
+}
+
+interface TestResult {
+  success: boolean;
+  data?: any;
+  error?: string;
+  timestamp: string;
+}
+
+const AICommunityMemberPage: React.FC<AICommunityMemberPageProps> = ({ navigateToHome }) => {
+  const [testResults, setTestResults] = useState<TestResult[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const addTestResult = (result: TestResult) => {
+    setTestResults(prev => [result, ...prev.slice(0, 9)]); // Keep last 10 results
+  };
+
+  const makeApiRequest = async (endpoint: string, method: string = 'GET', body?: any) => {
+    setIsLoading(true);
+    const startTime = Date.now();
+    
+    try {
+      const url = API_CONFIG.getUrl(endpoint);
+      const options: RequestInit = {
+        method,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${API_CONFIG.SUPABASE_ANON_KEY}`,
+          'apikey': API_CONFIG.SUPABASE_ANON_KEY,
+        },
+      };
+
+      if (body && method !== 'GET') {
+        options.body = JSON.stringify(body);
+      }
+
+      const response = await fetch(url, options);
+      const data = await response.json();
+      const duration = Date.now() - startTime;
+
+      addTestResult({
+        success: response.ok,
+        data: {
+          ...data,
+          status: response.status,
+          duration: `${duration}ms`
+        },
+        timestamp: new Date().toISOString()
+      });
+    } catch (error) {
+      addTestResult({
+        success: false,
+        error: error instanceof Error ? error.message : 'Unknown error',
+        timestamp: new Date().toISOString()
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const testEndpoints = {
+    // Monitoring endpoints
+    forceEngagement: () => makeApiRequest('/monitoring/force-engagement', 'POST'),
+    forceAnalysis: () => makeApiRequest('/monitoring/force-analysis', 'POST'),
+    getStats: () => makeApiRequest('/monitoring/stats', 'GET'),
+    getHistory: () => makeApiRequest('/monitoring/history', 'GET'),
+    startMonitoring: () => makeApiRequest('/monitoring/start', 'POST'),
+    stopMonitoring: () => makeApiRequest('/monitoring/stop', 'POST'),
+    
+    // Questions endpoints
+    getQuestions: () => makeApiRequest('/questions', 'GET'),
+    createQuestion: () => makeApiRequest('/questions', 'POST', {
+      title: 'Test Question - AI Community Member',
+      content: 'This is a test question created by the AI Community Member testing interface.',
+      tags: ['test', 'ai-community', 'monitoring']
+    }),
+    
+    // Health check
+    healthCheck: () => makeApiRequest('/health', 'GET'),
+  };
+
+  return (
+    <div className="ai-community-member-page">
+      <div className="page-header">
+        <h1>🤖 AI Community Member Control Center</h1>
+        <p>Test and monitor the AI Community Member Control Center endpoints</p>
+        {navigateToHome && (
+          <button onClick={navigateToHome} className="back-button">
+            ← Back to Home
+          </button>
+        )}
+      </div>
+
+      {/* Documentation Section */}
+      <div className="documentation-section">
+        <h2>📚 How It Works</h2>
+        <div className="doc-grid">
+          <div className="doc-card">
+            <h3>🎯 Purpose</h3>
+            <p>The AI Community Member system automatically engages with the Proto Hub community by:</p>
+            <ul>
+              <li>Answering unanswered questions from community members</li>
+              <li>Creating proactive discussions about trending topics</li>
+              <li>Providing helpful insights and guidance</li>
+              <li>Maintaining an active, supportive community environment</li>
+            </ul>
+          </div>
+          
+          <div className="doc-card">
+            <h3>🔄 Integration with Proto Hub</h3>
+            <p>The AI Community Member seamlessly integrates with Proto Hub:</p>
+            <ul>
+              <li><strong>Questions System:</strong> Monitors and answers questions in real-time</li>
+              <li><strong>Community Engagement:</strong> Creates discussions and shares insights</li>
+              <li><strong>Persona System:</strong> Uses different AI personas (Alex, Maya, Jordan, Sam)</li>
+              <li><strong>Analytics:</strong> Tracks engagement metrics and community health</li>
+            </ul>
+          </div>
+          
+          <div className="doc-card">
+            <h3>🤖 AI Personas</h3>
+            <p>Four distinct AI personas engage with the community:</p>
+            <ul>
+              <li><strong>Alex:</strong> General prototyping and community engagement</li>
+              <li><strong>Maya:</strong> Design-focused discussions and UI/UX guidance</li>
+              <li><strong>Jordan:</strong> Technical development and coding support</li>
+              <li><strong>Sam:</strong> Product validation and research insights</li>
+            </ul>
+          </div>
+          
+          <div className="doc-card">
+            <h3>⚡ Monitoring Service</h3>
+            <p>The monitoring service runs automatically to:</p>
+            <ul>
+              <li>Scan for unanswered questions every 30 minutes</li>
+              <li>Analyze community trends and topics</li>
+              <li>Generate proactive engagement opportunities</li>
+              <li>Maintain engagement limits (max 5 per hour)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div className="testing-section">
+        <h2>🧪 Endpoint Testing</h2>
+        <p className="testing-description">
+          Use the buttons below to test different AI Community Member endpoints. 
+          Each test will show the response data and execution time.
+        </p>
+        
+        <div className="endpoint-groups">
+          {/* Monitoring Endpoints */}
+          <div className="endpoint-group">
+            <h3>📊 Monitoring Service</h3>
+            <div className="endpoint-buttons">
+              <button 
+                onClick={testEndpoints.forceEngagement}
+                disabled={isLoading}
+                className="test-button primary"
+              >
+                🚀 Force Engagement
+              </button>
+              <button 
+                onClick={testEndpoints.forceAnalysis}
+                disabled={isLoading}
+                className="test-button"
+              >
+                📈 Force Analysis
+              </button>
+              <button 
+                onClick={testEndpoints.getStats}
+                disabled={isLoading}
+                className="test-button"
+              >
+                📊 Get Stats
+              </button>
+              <button 
+                onClick={testEndpoints.getHistory}
+                disabled={isLoading}
+                className="test-button"
+              >
+                📝 Get History
+              </button>
+              <button 
+                onClick={testEndpoints.startMonitoring}
+                disabled={isLoading}
+                className="test-button success"
+              >
+                ▶️ Start Monitoring
+              </button>
+              <button 
+                onClick={testEndpoints.stopMonitoring}
+                disabled={isLoading}
+                className="test-button danger"
+              >
+                ⏹️ Stop Monitoring
+              </button>
+            </div>
+          </div>
+
+          {/* Questions Endpoints */}
+          <div className="endpoint-group">
+            <h3>❓ Questions Management</h3>
+            <div className="endpoint-buttons">
+              <button 
+                onClick={testEndpoints.getQuestions}
+                disabled={isLoading}
+                className="test-button"
+              >
+                📋 Get Questions
+              </button>
+              <button 
+                onClick={testEndpoints.createQuestion}
+                disabled={isLoading}
+                className="test-button"
+              >
+                ➕ Create Question
+              </button>
+            </div>
+          </div>
+
+          {/* System Endpoints */}
+          <div className="endpoint-group">
+            <h3>🔧 System Health</h3>
+            <div className="endpoint-buttons">
+              <button 
+                onClick={testEndpoints.healthCheck}
+                disabled={isLoading}
+                className="test-button"
+              >
+                ❤️ Health Check
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {isLoading && (
+          <div className="loading-indicator">
+            <div className="spinner"></div>
+            <span>Testing endpoint...</span>
+          </div>
+        )}
+      </div>
+
+      {/* Test Results */}
+      <div className="results-section">
+        <h2>📋 Test Results</h2>
+        {testResults.length === 0 ? (
+          <div className="no-results">
+            <p>No tests run yet. Click a button above to test an endpoint.</p>
+          </div>
+        ) : (
+          <div className="results-list">
+            {testResults.map((result, index) => (
+              <div key={index} className={`result-item ${result.success ? 'success' : 'error'}`}>
+                <div className="result-header">
+                  <span className="result-status">
+                    {result.success ? '✅' : '❌'}
+                  </span>
+                  <span className="result-timestamp">
+                    {new Date(result.timestamp).toLocaleTimeString()}
+                  </span>
+                </div>
+                <div className="result-content">
+                  {result.data ? (
+                    <pre className="result-data">
+                      {JSON.stringify(result.data, null, 2)}
+                    </pre>
+                  ) : (
+                    <div className="result-error">
+                      Error: {result.error}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Secure API Configuration Info */}
+      <div className="config-section">
+        <h2>⚙️ System Status</h2>
+        <div className="config-info">
+          <div className="config-item">
+            <strong>Environment:</strong> {API_CONFIG.ENVIRONMENT}
+          </div>
+          <div className="config-item">
+            <strong>API Status:</strong> {API_CONFIG.SUPABASE_ANON_KEY ? '✅ Connected' : '❌ Disconnected'}
+          </div>
+          <div className="config-item">
+            <strong>Monitoring:</strong> Active
+          </div>
+          <div className="config-item">
+            <strong>Last Updated:</strong> {new Date().toLocaleDateString()}
+          </div>
+        </div>
+        <div className="security-note">
+          <p>🔒 <strong>Security Note:</strong> Sensitive configuration details are not displayed for security reasons. 
+          Only essential status information is shown.</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AICommunityMemberPage;

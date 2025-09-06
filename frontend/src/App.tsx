@@ -1,7 +1,7 @@
 import React from 'react';
 import { HashRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { Navigation, ScrollToTop } from './components';
-import { HomePage, ChatPage, JobsPage, PostJobPage, DevelopersPage } from './pages';
+import { HomePage, ChatPage, JobsPage, PostJobPage, DevelopersPage, AICommunityMemberPage } from './pages';
 import DeveloperChatPage from './pages/DeveloperChatPage';
 import ProtoHubPage from './pages/ProtoHubPage';
 import { Analytics } from './utils/analytics';
@@ -226,6 +226,11 @@ function AppContent() {
               <DevelopersPage navigateToHome={navigateToHome} />
             </SafeComponent>
           } />
+          <Route path="/ai-community-member" element={
+            <SafeComponent>
+              <AICommunityMemberPage navigateToHome={navigateToHome} />
+            </SafeComponent>
+          } />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </SafeComponent>
@@ -242,7 +247,7 @@ function App() {
       
       // Debug logging for development
       if (process.env.NODE_ENV === 'development' || window.location.hostname === 'localhost') {
-        console.log('📊 Analytics initialized successfully');
+        console.log('�� Analytics initialized successfully');
         console.log('🔍 gtag available:', typeof (window as any).gtag === 'function');
         console.log('📊 dataLayer available:', Array.isArray((window as any).dataLayer));
       }

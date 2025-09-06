@@ -53,7 +53,7 @@ export const monitoringController = {
   // Get monitoring statistics
   async getMonitoringStats(req: Request, path: string): Promise<Response> {
     try {
-      const stats = aiMonitoringService.getStats()
+      const stats = await aiMonitoringService.getStats()
       const config = aiMonitoringService.getConfig()
       const engagementHistory = aiMonitoringService.getEngagementHistory()
       

@@ -1,6 +1,6 @@
 import { createCorsResponse, parseRequestBody } from '../utils/cors.ts'
 import { logger, analytics } from '../utils/logger.ts'
-import { databaseService } from '../services/databaseService.ts'
+import { opportunitiesService } from '../services/database/opportunitiesService.ts'
 
 // Map GoHighLevel webhook fields to database fields
 function mapGoHighLevelFields(webhookData: any) {
@@ -40,7 +40,7 @@ async function handleOpportunityCreated(webhookData: any) {
     logger.info(`Creating opportunity ${mappedData.opportunity_id} in database`)
     
     // Use database function to insert opportunity
-    const result = await databaseService.insertOpportunity(mappedData)
+    const result = await opportunitiesService.insertOpportunity(mappedData)
     
     logger.info(`Opportunity ${mappedData.opportunity_id} created successfully in database`)
     return result
@@ -59,7 +59,7 @@ async function handleOpportunityUpdated(webhookData: any) {
     logger.info(`Updating opportunity ${opportunity_id} in database`)
     
     // Use database function to update opportunity
-    const result = await databaseService.updateOpportunity(opportunity_id, mappedData)
+    const result = await opportunitiesService.updateOpportunity(opportunity_id, mappedData)
     
     logger.info(`Opportunity ${opportunity_id} updated successfully in database`)
     return result
@@ -78,7 +78,7 @@ async function handleOpportunityDeleted(webhookData: any) {
     logger.info(`Deleting opportunity ${opportunity_id} from database`)
     
     // Use database function to delete opportunity
-    const result = await databaseService.deleteOpportunity(opportunity_id)
+    const result = await opportunitiesService.deleteOpportunity(opportunity_id)
     
     logger.info(`Opportunity ${opportunity_id} deleted successfully from database`)
     return result
@@ -97,7 +97,7 @@ async function handleOpportunityStageChanged(webhookData: any) {
     logger.info(`Changing stage for opportunity ${opportunity_id} to ${pipeline_stage_id}`)
     
     // Use database function to update opportunity stage
-    const result = await databaseService.updateOpportunityStage(opportunity_id, {
+    const result = await opportunitiesService.updateOpportunityStage(opportunity_id, {
       pipeline_stage_id,
       status,
       updated_at
@@ -161,7 +161,7 @@ async function processWebhook(webhookData: any) {
     
     // Check if this looks like a new opportunity
     if (opportunity_id) {
-      const exists = await databaseService.opportunityExists(opportunity_id)
+      const exists = await opportunitiesService.opportunityExists(opportunity_id)
       if (!exists) {
         event_type = 'opportunity.created'
         logger.info(`Inferred event_type as 'opportunity.created' (new opportunity)`)
