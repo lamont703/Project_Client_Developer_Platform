@@ -17,8 +17,7 @@ import { handleAnswersRoute } from "./routes/answers.ts"
 import { handleDebugRoute } from "./routes/debug.ts"
 import { handleAICommunityMemberRoute } from "./routes/aiCommunityMember.ts"
 import { analyticsMiddleware } from "./middleware/analytics.ts"
-
-// Main Edge Function handler
+import { handleTasksRoute } from "./routes/tasks.ts"// Main Edge Function handler
 serve(async (req: Request) => {
   try {
     // Handle CORS preflight requests
@@ -43,11 +42,21 @@ serve(async (req: Request) => {
     }
 
     // AI Community Member routes
+
+    // Task routes
+    if (path.startsWith('/api/tasks')) {
+      const result = await handleTasksRoute(req, path)
+      analytics.trackRequest(result.status, Date.now() - analytics.startTime)
+      return result
+    }
+
     if (path.startsWith('/api/ai-community-member')) {
       const result = await handleAICommunityMemberRoute(req, path)
       analytics.trackRequest(result.status, Date.now() - analytics.startTime)
       return result
     }
+
+
 
     // Existing routes
     if (path.startsWith('/api/jobs')) {

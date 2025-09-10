@@ -20,4 +20,10 @@ export { default as AddPrototype } from './Proto Hub/AddPrototype';
 
 // AI Project Assistant Components
 export { default as ChatInterface } from './AI Project Assistant/ChatInterface';
-export { AskQuestion } from './Proto Hub'; 
+export { AskQuestion } from './Proto Hub';
+
+// Pitch Deck Components
+export { Slide, StatCard, FeatureCard, PitchDeckNavigation } from './Pitch Deck';
+
+// Peer to Peer DeFi Lending Platform Components
+export { DeFiPlatform, LendingPool, BorrowingInterface, LiquidityProvider, DeFiStats } from './Peer to Peer DeFi Lending Platform';

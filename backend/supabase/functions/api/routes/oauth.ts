@@ -11,7 +11,33 @@ export async function handleOAuthRoute(req: Request, path: string): Promise<Resp
     analytics.trackEvent('oauth_request', { method, path })
 
     // GET /api/oauth - Handle OAuth flow
-    if (method === 'GET' && path === '/api/oauth') {
+
+    // POST /api/oauth/exchange - Exchange OAuth code for tokens
+    if (method === "POST" && path === "/api/oauth/exchange") {
+      const body = await parseRequestBody(req)
+      const { code } = body
+      
+      if (!code) {
+        return createCorsResponse({
+          success: false,
+          error: "OAuth code is required"
+        }, 400)
+      }
+      
+      try {
+        const result = await oauthController.exchangeCodeForTokens(code)
+        return createCorsResponse({
+          success: true,
+          tokens: result
+        }, 200)
+      } catch (error) {
+        logger.error("OAuth exchange error:", error)
+        return createCorsResponse({
+          success: false,
+          error: error.message
+        }, 400)
+      }
+    }    if (method === 'GET' && path === '/api/oauth') {
       return await oauthController.handleOAuth(req, path)
     }
 

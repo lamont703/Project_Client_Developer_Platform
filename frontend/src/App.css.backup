@@ -1,0 +1,44 @@
+/* App-level styles */
+.App {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  padding-top: 20px;
+  background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Mobile fixes for embedded environments */
+@media (max-width: 768px) {
+  .App {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    padding-top: 15px;
+    overflow-x: hidden;
+    position: relative;
+  }
+}
+
+/* Additional fixes for desktop */
+@media (min-width: 769px) {
+  .App {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    padding-top: 25px;
+    overflow-x: hidden;
+    position: relative;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .App {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  }
+}

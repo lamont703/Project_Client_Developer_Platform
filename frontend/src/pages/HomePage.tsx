@@ -88,6 +88,20 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
             <p>Connect with skilled developers in our community</p>
             <button className="feature-link">Find Developers →</button>
           </div>
+          
+          <div className="feature-card" onClick={() => handleNavigation('/pitch-deck')}>
+            <div className="feature-icon">📊</div>
+            <h3>Platform Pitch Deck</h3>
+            <p>View our comprehensive investor presentation showcasing the platform's vision, features, and market opportunity</p>
+            <button className="feature-link">View Pitch Deck →</button>
+          </div>
+          
+          <div className="feature-card" onClick={() => handleNavigation('/defi-platform')}>
+            <div className="feature-icon">🏦</div>
+            <h3>Tech Project Funding Platform</h3>
+            <p>Peer-to-peer DeFi lending specifically for Software, AI, Blockchain, and Automation projects</p>
+            <button className="feature-link">Get Funding →</button>
+          </div>
         </div>
       </div>
 

@@ -1,0 +1,252 @@
+@startuml
+actor U as "User <<Client>>"
+participant FE as "Frontend\n(Task Manager UI)"
+participant API as "Backend Server\n(Supabase Edge Functions)"
+participant ROUTES as "Routes\n(/api/tasks)"
+participant CONTROLLER as "Controllers\n(taskController)"
+participant GHL_SERVICE as "GoHighLevel\nService"
+participant TASK_DB as "Task Manager\nDatabase Service"
+database DB as "Database\n(Supabase)"
+control ANA as "Analytics\n(middleware)"
+
+' Task Manager Initialization
+note over U, FE : User accesses Task Manager\n/ghl-task-manager
+
+' Session start
+U ->> FE : Open GHL Task Manager
+FE ->> ANA : task_manager_opened
+FE ->> API : GET /api/tasks/status
+
+' Backend Server Flow
+API ->> ANA : analytics middleware\n(client-side tracking)
+ANA -->> API : analytics processed
+
+API ->> ROUTES : route to /api/tasks/status
+ROUTES ->> CONTROLLER : taskController.getTaskManagerStatus()
+
+' Check GHL connection status
+CONTROLLER ->> GHL_SERVICE : getTokenStatus()
+GHL_SERVICE -->> CONTROLLER : {hasToken, isExpired, expiresAt}
+
+alt Token expired or missing
+    CONTROLLER -->> ROUTES : 401 Unauthorized\n{error: "GHL token expired"}
+    ROUTES -->> API : 401 Unauthorized
+    API -->> FE : Show authentication required
+    FE ->> U : Redirect to GHL OAuth
+else Token valid
+    CONTROLLER -->> ROUTES : 200 OK\n{status: "connected"}
+    ROUTES -->> API : 200 OK
+    API -->> FE : Task manager ready
+end
+
+' Fetch all pipelines
+U ->> FE : Request pipeline list
+FE ->> API : GET /api/tasks/pipelines
+
+API ->> ANA : analytics middleware
+ANA -->> API : analytics processed
+
+API ->> ROUTES : route to /api/tasks/pipelines
+ROUTES ->> CONTROLLER : taskController.getAllPipelines()
+
+CONTROLLER ->> GHL_SERVICE : getAllPipelines()
+GHL_SERVICE ->> GHL_SERVICE : getValidAccessToken()
+GHL_SERVICE -->> GHL_SERVICE : accessToken
+
+GHL_SERVICE ->> GHL_SERVICE : fetch(`${BASE_URL}/opportunities/pipelines`)\n{locationId, headers}
+GHL_SERVICE -->> CONTROLLER : pipelines[]
+
+CONTROLLER -->> ROUTES : 200 OK\n{pipelines: [...]}
+ROUTES -->> API : 200 OK
+API -->> FE : Display pipeline options
+
+' Fetch tasks for specific pipeline
+U ->> FE : Select pipeline and request tasks
+FE ->> API : GET /api/tasks?pipelineId={id}&status=open
+
+API ->> ANA : analytics middleware
+ANA -->> API : analytics processed
+
+API ->> ROUTES : route to /api/tasks
+ROUTES ->> CONTROLLER : taskController.getTasks(pipelineId, status)
+
+CONTROLLER ->> GHL_SERVICE : getOpportunitiesWithTasks(pipelineId, status)
+GHL_SERVICE ->> GHL_SERVICE : getValidAccessToken()
+GHL_SERVICE -->> GHL_SERVICE : accessToken
+
+GHL_SERVICE ->> GHL_SERVICE : fetch(`${BASE_URL}/opportunities/search`)\n{locationId, pipelineId, status, getTasks: true}
+GHL_SERVICE -->> CONTROLLER : opportunities[]
+
+' Process and categorize tasks
+CONTROLLER ->> CONTROLLER : processTasks(opportunities)
+CONTROLLER ->> CONTROLLER : categorizeByAssignee(tasks)
+CONTROLLER ->> CONTROLLER : filterByCompletionStatus(tasks)
+CONTROLLER ->> CONTROLLER : sortByDueDate(tasks)
+
+' Store tasks in database for caching
+CONTROLLER ->> TASK_DB : storeTasksCache(pipelineId, tasks)
+TASK_DB ->> DB : upsert ghl_tasks_cache\n{pipelineId, tasks, timestamp}
+DB -->> TASK_DB : cache stored
+TASK_DB -->> CONTROLLER : cache updated
+
+CONTROLLER -->> ROUTES : 200 OK\n{tasks: [...], categories: {...}}
+ROUTES -->> API : 200 OK
+API -->> FE : Display categorized tasks
+
+' Task filtering and search
+U ->> FE : Filter by assignee or search
+FE ->> API : GET /api/tasks?pipelineId={id}&assignee={name}&search={query}
+
+API ->> ANA : analytics middleware
+ANA -->> API : analytics processed
+
+API ->> ROUTES : route to /api/tasks
+ROUTES ->> CONTROLLER : taskController.getTasks(filters)
+
+alt Cache available and fresh
+    CONTROLLER ->> TASK_DB : getTasksFromCache(pipelineId)
+    TASK_DB ->> DB : SELECT * FROM ghl_tasks_cache\nWHERE pipeline_id = ? AND created_at > ?
+    DB -->> TASK_DB : cached tasks
+    TASK_DB -->> CONTROLLER : tasks from cache
+else Cache expired or missing
+    CONTROLLER ->> GHL_SERVICE : getOpportunitiesWithTasks(pipelineId, status)
+    GHL_SERVICE -->> CONTROLLER : fresh opportunities[]
+    CONTROLLER ->> TASK_DB : storeTasksCache(pipelineId, tasks)
+end
+
+CONTROLLER ->> CONTROLLER : applyFilters(tasks, filters)
+CONTROLLER ->> CONTROLLER : filterByAssignee(tasks, assignee)
+CONTROLLER ->> CONTROLLER : searchTasks(tasks, query)
+
+CONTROLLER -->> ROUTES : 200 OK\n{filteredTasks: [...]}
+ROUTES -->> API : 200 OK
+API -->> FE : Display filtered results
+
+' Task completion status update
+U ->> FE : Mark task as complete/incomplete
+FE ->> API : PUT /api/tasks/{taskId}/status\n{completed: true/false}
+
+API ->> ANA : analytics middleware
+ANA -->> API : analytics processed
+
+API ->> ROUTES : route to /api/tasks/{taskId}/status
+ROUTES ->> CONTROLLER : taskController.updateTaskStatus(taskId, status)
+
+CONTROLLER ->> GHL_SERVICE : updateTaskStatus(taskId, completed)
+GHL_SERVICE ->> GHL_SERVICE : getValidAccessToken()
+GHL_SERVICE -->> GHL_SERVICE : accessToken
+
+GHL_SERVICE ->> GHL_SERVICE : fetch(`${BASE_URL}/tasks/${taskId}`)\nPUT {completed: true/false}
+GHL_SERVICE -->> CONTROLLER : task updated
+
+' Update local cache
+CONTROLLER ->> TASK_DB : updateTaskInCache(taskId, status)
+TASK_DB ->> DB : UPDATE ghl_tasks_cache\nSET tasks = ? WHERE task_id = ?
+DB -->> TASK_DB : cache updated
+TASK_DB -->> CONTROLLER : cache updated
+
+CONTROLLER -->> ROUTES : 200 OK\n{task: {...}}
+ROUTES -->> API : 200 OK
+API -->> FE : Task status updated
+FE ->> U : Show success message
+
+' Task assignment update
+U ->> FE : Assign task to user
+FE ->> API : PUT /api/tasks/{taskId}/assign\n{assignedTo: userId}
+
+API ->> ANA : analytics middleware
+ANA -->> API : analytics processed
+
+API ->> ROUTES : route to /api/tasks/{taskId}/assign
+ROUTES ->> CONTROLLER : taskController.assignTask(taskId, userId)
+
+CONTROLLER ->> GHL_SERVICE : assignTask(taskId, userId)
+GHL_SERVICE ->> GHL_SERVICE : getValidAccessToken()
+GHL_SERVICE -->> GHL_SERVICE : accessToken
+
+GHL_SERVICE ->> GHL_SERVICE : fetch(`${BASE_URL}/tasks/${taskId}`)\nPUT {assignedTo: userId}
+GHL_SERVICE -->> CONTROLLER : task assigned
+
+' Update local cache
+CONTROLLER ->> TASK_DB : updateTaskInCache(taskId, {assignedTo: userId})
+TASK_DB ->> DB : UPDATE ghl_tasks_cache\nSET tasks = ? WHERE task_id = ?
+DB -->> TASK_DB : cache updated
+TASK_DB -->> CONTROLLER : cache updated
+
+CONTROLLER -->> ROUTES : 200 OK\n{task: {...}}
+ROUTES -->> API : 200 OK
+API -->> FE : Task assigned
+FE ->> U : Show assignment confirmation
+
+' Due date update
+U ->> FE : Update task due date
+FE ->> API : PUT /api/tasks/{taskId}/due-date\n{dueDate: "2024-01-15"}
+
+API ->> ANA : analytics middleware
+ANA -->> API : analytics processed
+
+API ->> ROUTES : route to /api/tasks/{taskId}/due-date
+ROUTES ->> CONTROLLER : taskController.updateTaskDueDate(taskId, dueDate)
+
+CONTROLLER ->> GHL_SERVICE : updateTaskDueDate(taskId, dueDate)
+GHL_SERVICE ->> GHL_SERVICE : getValidAccessToken()
+GHL_SERVICE -->> GHL_SERVICE : accessToken
+
+GHL_SERVICE ->> GHL_SERVICE : fetch(`${BASE_URL}/tasks/${taskId}`)\nPUT {dueDate: "2024-01-15"}
+GHL_SERVICE -->> CONTROLLER : due date updated
+
+' Update local cache
+CONTROLLER ->> TASK_DB : updateTaskInCache(taskId, {dueDate})
+TASK_DB ->> DB : UPDATE ghl_tasks_cache\nSET tasks = ? WHERE task_id = ?
+DB -->> TASK_DB : cache updated
+TASK_DB -->> CONTROLLER : cache updated
+
+CONTROLLER -->> ROUTES : 200 OK\n{task: {...}}
+ROUTES -->> API : 200 OK
+API -->> FE : Due date updated
+FE ->> U : Show due date confirmation
+
+' Task analytics and reporting
+U ->> FE : Request task analytics
+FE ->> API : GET /api/tasks/analytics?pipelineId={id}
+
+API ->> ANA : analytics middleware
+ANA -->> API : analytics processed
+
+API ->> ROUTES : route to /api/tasks/analytics
+ROUTES ->> CONTROLLER : taskController.getTaskAnalytics(pipelineId)
+
+CONTROLLER ->> TASK_DB : getTaskAnalytics(pipelineId)
+TASK_DB ->> DB : SELECT * FROM ghl_tasks_cache\nWHERE pipeline_id = ?
+DB -->> TASK_DB : cached tasks
+TASK_DB -->> CONTROLLER : tasks data
+
+CONTROLLER ->> CONTROLLER : calculateAnalytics(tasks)
+CONTROLLER ->> CONTROLLER : groupByAssignee(tasks)
+CONTROLLER ->> CONTROLLER : groupByCompletionStatus(tasks)
+CONTROLLER ->> CONTROLLER : groupByDueDate(tasks)
+
+CONTROLLER -->> ROUTES : 200 OK\n{analytics: {...}}
+ROUTES -->> API : 200 OK
+API -->> FE : Display analytics dashboard
+
+' Error handling
+alt GHL API error
+    GHL_SERVICE -->> CONTROLLER : API error\n{status: 401, message: "Unauthorized"}
+    CONTROLLER ->> GHL_SERVICE : refreshAccessToken()
+    GHL_SERVICE -->> CONTROLLER : new token
+    CONTROLLER ->> GHL_SERVICE : retry original request
+    GHL_SERVICE -->> CONTROLLER : success response
+else Database error
+    TASK_DB -->> CONTROLLER : Database error
+    CONTROLLER -->> ROUTES : 500 Internal Server Error
+    ROUTES -->> API : 500 Error
+    API -->> FE : Show error message
+end
+
+' Cache management
+note over TASK_DB, DB : Cache expires after 5 minutes\nAutomatic cleanup of old cache entries\nCache key: pipelineId + timestamp
+
+' Analytics tracking
+note over ANA : All task operations tracked:\n- task_viewed\n- task_filtered\n- task_completed\n- task_assigned\n- task_due_date_updated\n- analytics_viewed
+@enduml

@@ -4,4 +4,7 @@ export { default as DeveloperChatPage } from './DeveloperChatPage';
 export { default as ProtoHubPage } from './ProtoHubPage';
 export { default as JobsPage } from './JobsPage';
 export { default as PostJobPage } from './PostJobPage';
-export { default as DevelopersPage } from './DevelopersPage'; export { default as AICommunityMemberPage } from "./AICommunityMemberPage";
+export { default as DevelopersPage } from './DevelopersPage';
+export { default as AICommunityMemberPage } from './AICommunityMemberPage';
+export { default as PitchDeckPage } from './PitchDeckPage';
+export { default as DeFiPage } from './DeFiPage';

@@ -18,29 +18,36 @@ const Navigation: React.FC<NavigationProps> = ({ navigateToHome }) => {
     { path: '/chat', label: '🤖 AI Assistant', icon: '🤖' },
     { path: '/developer-chat', label: '👨‍💻 Dev Assistant', icon: '👨‍💻' },
     { path: '/proto-hub', label: '🚀 Proto Hub', icon: '🚀' },
-    { path: '/jobs', label: '💼 Project Listings', icon: '💼' },
-    { path: '/developers', label: '👥 Developers', icon: '👥' }
+    { path: '/jobs', label: '💼 Projects', icon: '💼' },
+    { path: '/developers', label: '👥 Developers', icon: '👥' },
+    { path: '/pitch-deck', label: '📊 Pitch Deck', icon: '📊' },
+    { path: '/defi-platform', label: '🏦 DeFi Platform', icon: '🏦' }
   ];
 
   const handleNavClick = (path: string) => {
     // Scroll to top immediately before navigation
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    
     if (path === '/') {
-      // Use the full URL for home navigation
       navigateToHome();
     } else {
       navigate(path);
     }
+    
     setIsMenuOpen(false);
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
     <nav className="navigation">
       <div className="nav-container">
+        {/* Logo */}
         <button 
           onClick={() => handleNavClick('/')} 
           className="nav-logo"
-          style={{ background: 'none', border: 'none', cursor: 'pointer' }}
         >
           🚀 AI Project Assistant
         </button>
@@ -52,7 +59,6 @@ const Navigation: React.FC<NavigationProps> = ({ navigateToHome }) => {
               key={item.path}
               onClick={() => handleNavClick(item.path)}
               className={`nav-item ${isActive(item.path) ? 'active' : ''}`}
-              style={{ background: 'none', border: 'none', cursor: 'pointer' }}
             >
               <span className="nav-icon">{item.icon}</span>
               <span className="nav-label">{item.label}</span>
@@ -63,7 +69,7 @@ const Navigation: React.FC<NavigationProps> = ({ navigateToHome }) => {
         {/* Mobile Menu Button */}
         <button
           className="mobile-menu-button"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          onClick={toggleMobileMenu}
           aria-label="Toggle menu"
         >
           <span className={`hamburger ${isMenuOpen ? 'open' : ''}`}></span>
@@ -77,7 +83,6 @@ const Navigation: React.FC<NavigationProps> = ({ navigateToHome }) => {
             key={item.path}
             onClick={() => handleNavClick(item.path)}
             className={`nav-item ${isActive(item.path) ? 'active' : ''}`}
-            style={{ background: 'none', border: 'none', cursor: 'pointer', width: '100%', textAlign: 'left' }}
           >
             <span className="nav-icon">{item.icon}</span>
             <span className="nav-label">{item.label}</span>
@@ -88,4 +93,4 @@ const Navigation: React.FC<NavigationProps> = ({ navigateToHome }) => {
   );
 };
 
-export default Navigation; 
+export default Navigation;
