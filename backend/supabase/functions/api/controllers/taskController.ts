@@ -393,6 +393,64 @@ class TaskController {
       throw new Error(`Failed to get task analytics: ${error.message}`)
     }
   }
+
+  // Get all opportunities from Client Software Development Pipeline
+  async getClientSoftwareDevelopmentOpportunities(status: string = 'open'): Promise<any[]> {
+    try {
+      // Check token status first
+      const tokenStatus = goHighLevelService.getTokenStatus()
+      if (!tokenStatus.hasToken || tokenStatus.isExpired) {
+        throw new Error('GoHighLevel authentication required. Please configure access token.')
+      }
+
+      // Client Software Development Pipeline ID (from our earlier test)
+      const clientSoftwarePipelineId = 'uR2CMkTiwqoUOYuf8oGR'
+      
+      console.log(`Fetching opportunities from Client Software Development Pipeline (${clientSoftwarePipelineId}) with status: ${status}`)
+      
+      const opportunities = await goHighLevelService.getOpportunitiesWithTasks(clientSoftwarePipelineId, status)
+      
+      console.log(`✅ Retrieved ${opportunities.length} opportunities from Client Software Development Pipeline`)
+      
+      // Process and enrich the opportunities data
+      const processedOpportunities = opportunities.map(opportunity => ({
+        id: opportunity.id,
+        name: opportunity.name,
+        status: opportunity.status,
+        pipelineId: opportunity.pipelineId,
+        pipelineName: opportunity.pipelineName || 'Client Software Development Pipeline',
+        stageId: opportunity.stageId,
+        stageName: opportunity.stageName,
+        contactId: opportunity.contactId,
+        contactName: opportunity.contactName,
+        contactEmail: opportunity.contactEmail,
+        contactPhone: opportunity.contactPhone,
+        value: opportunity.value,
+        currency: opportunity.currency,
+        createdAt: opportunity.createdAt,
+        updatedAt: opportunity.updatedAt,
+        tasks: opportunity.tasks || [],
+        taskCount: opportunity.tasks ? opportunity.tasks.length : 0,
+        completedTasks: opportunity.tasks ? opportunity.tasks.filter((task: any) => task.completed).length : 0,
+        incompleteTasks: opportunity.tasks ? opportunity.tasks.filter((task: any) => !task.completed).length : 0
+      }))
+      
+      return processedOpportunities
+    } catch (error) {
+      console.error('Error getting Client Software Development opportunities:', error)
+      
+      // Provide more specific error messages
+      if (error.message.includes('401')) {
+        throw new Error('GoHighLevel authentication failed. Please check your access token.')
+      } else if (error.message.includes('403')) {
+        throw new Error('GoHighLevel access forbidden. Please check your permissions.')
+      } else if (error.message.includes('404')) {
+        throw new Error('Client Software Development Pipeline not found.')
+      }
+      
+      throw new Error(`Failed to get Client Software Development opportunities: ${error.message}`)
+    }
+  }
 }
 
 export const taskController = new TaskController()

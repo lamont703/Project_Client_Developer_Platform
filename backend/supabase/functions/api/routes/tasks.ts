@@ -33,6 +33,23 @@ export async function handleTasksRoute(req: Request, path: string): Promise<Resp
       })
     }
 
+    // Get Client Software Development Opportunities endpoint
+    if (path === "/api/tasks/client-software-opportunities" && req.method === "GET") {
+      const url = new URL(req.url)
+      const status = url.searchParams.get('status') || 'open'
+      
+      const opportunities = await taskController.getClientSoftwareDevelopmentOpportunities(status)
+      return new Response(JSON.stringify({ 
+        opportunities,
+        count: opportunities.length,
+        pipeline: 'Client Software Development Pipeline',
+        status: status
+      }), { 
+        status: 200, 
+        headers: { "Content-Type": "application/json" } 
+      })
+    }
+
     // Get Tasks endpoint (with filters)
     if (path.startsWith("/api/tasks") && req.method === "GET" && path !== "/api/tasks/status" && path !== "/api/tasks/pipelines" && !path.startsWith("/api/tasks/analytics")) {
       const url = new URL(req.url)
