@@ -1,0 +1,91 @@
+  const fetchTasks = async (filterParams?: TaskFilters) => {
+    try {
+      setIsLoading(true);
+      setError(null);
+
+      const url = new URL(API_CONFIG.getUrl('/tasks'));
+      
+      // Add query parameters
+      // Use the Client Software Development Pipeline ID
+      url.searchParams.set('pipelineId', 'uR2CMkTiwqoUOYuf8oGR');
+      if (filterParams?.status) url.searchParams.set('status', filterParams.status);
+      if (filterParams?.assignee) url.searchParams.set('assignee', filterParams.assignee);
+      if (filterParams?.search) url.searchParams.set('search', filterParams.search);
+
+      console.log('🔍 Fetching tasks from:', url.toString());
+
+      const response = await fetch(url.toString(), {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${API_CONFIG.SUPABASE_ANON_KEY}`,
+          'apikey': API_CONFIG.SUPABASE_ANON_KEY,
+        },
+      });
+
+      console.log('🔍 Response status:', response.status);
+
+      if (!response.ok) {
+        // Try to get error details from response
+        let errorMessage = `API request failed with status ${response.status}`;
+        try {
+          const errorData = await response.json();
+          if (errorData.error) {
+            errorMessage = `${errorMessage}: ${errorData.error}`;
+          }
+        } catch (jsonError) {
+          // If we can't parse JSON, use text
+          try {
+            const errorText = await response.text();
+            if (errorText) {
+              errorMessage = `${errorMessage}: ${errorText}`;
+            }
+          } catch (textError) {
+            // Use generic message
+          }
+        }
+        
+        // Don't throw error for 500 status, just log it and use fallback
+        if (response.status === 500) {
+          console.warn('⚠️ API temporarily unavailable, using mock data');
+          setError('API temporarily unavailable - showing sample data');
+          setTasks(getMockTasks());
+          return;
+        }
+        
+        throw new Error(errorMessage);
+      }
+
+      const data = await response.json();
+      console.log('🔍 Received data:', data);
+      
+      // Handle different response formats
+      if (data.tasks && Array.isArray(data.tasks)) {
+        setTasks(data.tasks);
+      } else if (Array.isArray(data)) {
+        setTasks(data);
+      } else {
+        console.warn('⚠️ Unexpected response format, using mock data');
+        setError('Unexpected response format - showing sample data');
+        setTasks(getMockTasks());
+      }
+    } catch (err) {
+      console.warn('⚠️ Error fetching tasks, using mock data:', err);
+      
+      // Provide user-friendly error messages
+      let userMessage = 'Unable to fetch tasks from server';
+      if (err instanceof Error) {
+        if (err.message.includes('Failed to fetch')) {
+          userMessage = 'Network connection error - please check your internet connection';
+        } else if (err.message.includes('500')) {
+          userMessage = 'Server temporarily unavailable - showing sample data';
+        } else {
+          userMessage = err.message;
+        }
+      }
+      
+      setError(userMessage);
+      setTasks(getMockTasks());
+    } finally {
+      setIsLoading(false);
+    }
+  };

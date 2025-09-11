@@ -131,7 +131,7 @@ class TaskManagerDatabaseService {
     }
   }
 
-  async getTasksFromCache(pipelineId: string): Promise<any[] | null> {
+  async getTasksFromCache(pipelineId: string): Promise<{tasks: any[], pipelineName: string} | null> {
     try {
       const { data, error } = await this.supabase
         .from('ghl_tasks_cache')
@@ -152,7 +152,7 @@ class TaskManagerDatabaseService {
       }
 
       console.log(`✅ Found fresh cache for pipeline ${pipelineId}`)
-      return data[0].tasks
+      return { tasks: data[0].tasks, pipelineName: data[0].pipeline_name }
     } catch (error) {
       console.error('Error in getTasksFromCache:', error)
       return null

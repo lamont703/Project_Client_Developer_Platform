@@ -20,7 +20,12 @@ export async function handleTasksRoute(req: Request, path: string): Promise<Resp
       const status = await taskController.getTaskManagerStatus()
       return new Response(JSON.stringify(status), { 
         status: 200, 
-        headers: { "Content-Type": "application/json" } 
+        headers: { 
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization",
+          "Content-Type": "application/json" 
+        } 
       })
     }
 
@@ -29,7 +34,12 @@ export async function handleTasksRoute(req: Request, path: string): Promise<Resp
       const pipelines = await taskController.getAllPipelines()
       return new Response(JSON.stringify({ pipelines }), { 
         status: 200, 
-        headers: { "Content-Type": "application/json" } 
+        headers: { 
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization",
+          "Content-Type": "application/json" 
+        } 
       })
     }
 
@@ -46,7 +56,12 @@ export async function handleTasksRoute(req: Request, path: string): Promise<Resp
         status: status
       }), { 
         status: 200, 
-        headers: { "Content-Type": "application/json" } 
+        headers: { 
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization",
+          "Content-Type": "application/json" 
+        } 
       })
     }
 
@@ -70,7 +85,12 @@ export async function handleTasksRoute(req: Request, path: string): Promise<Resp
       const result = await taskController.getTasks(filters)
       return new Response(JSON.stringify(result), {
         status: 200,
-        headers: { "Content-Type": "application/json" }
+        headers: { 
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization",
+          "Content-Type": "application/json" 
+        }
       })
     }
 
@@ -82,14 +102,24 @@ export async function handleTasksRoute(req: Request, path: string): Promise<Resp
       if (!pipelineId) {
         return new Response(JSON.stringify({ error: 'pipelineId parameter is required' }), {
           status: 400,
-          headers: { "Content-Type": "application/json" }
+          headers: { 
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization",
+          "Content-Type": "application/json" 
+        }
         })
       }
 
       const analytics = await taskController.getTaskAnalytics(pipelineId)
       return new Response(JSON.stringify({ analytics }), {
         status: 200,
-        headers: { "Content-Type": "application/json" }
+        headers: { 
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization",
+          "Content-Type": "application/json" 
+        }
       })
     }
 
@@ -105,14 +135,24 @@ export async function handleTasksRoute(req: Request, path: string): Promise<Resp
         if (typeof completed !== 'boolean') {
           return new Response(JSON.stringify({ error: 'completed field is required and must be boolean' }), {
             status: 400,
-            headers: { "Content-Type": "application/json" }
+            headers: { 
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization",
+          "Content-Type": "application/json" 
+        }
           })
         }
 
         const result = await taskController.updateTaskStatus(taskId, completed, userId)
         return new Response(JSON.stringify({ task: result }), {
           status: 200,
-          headers: { "Content-Type": "application/json" }
+          headers: { 
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization",
+          "Content-Type": "application/json" 
+        }
         })
       }
 
@@ -124,14 +164,24 @@ export async function handleTasksRoute(req: Request, path: string): Promise<Resp
         if (!assignedTo) {
           return new Response(JSON.stringify({ error: 'assignedTo field is required' }), {
             status: 400,
-            headers: { "Content-Type": "application/json" }
+            headers: { 
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization",
+          "Content-Type": "application/json" 
+        }
           })
         }
 
         const result = await taskController.assignTask(taskId, assignedTo, assignedBy)
         return new Response(JSON.stringify({ task: result }), {
           status: 200,
-          headers: { "Content-Type": "application/json" }
+          headers: { 
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization",
+          "Content-Type": "application/json" 
+        }
         })
       }
 
@@ -143,14 +193,24 @@ export async function handleTasksRoute(req: Request, path: string): Promise<Resp
         if (!dueDate) {
           return new Response(JSON.stringify({ error: 'dueDate field is required' }), {
             status: 400,
-            headers: { "Content-Type": "application/json" }
+            headers: { 
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization",
+          "Content-Type": "application/json" 
+        }
           })
         }
 
         const result = await taskController.updateTaskDueDate(taskId, dueDate, userId)
         return new Response(JSON.stringify({ task: result }), {
           status: 200,
-          headers: { "Content-Type": "application/json" }
+          headers: { 
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization",
+          "Content-Type": "application/json" 
+        }
         })
       }
     }
@@ -158,13 +218,38 @@ export async function handleTasksRoute(req: Request, path: string): Promise<Resp
     // If no route matches, return 404
     return new Response(JSON.stringify({ error: 'Task route not found' }), { 
       status: 404,
-      headers: { "Content-Type": "application/json" }
+      headers: { 
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization",
+          "Content-Type": "application/json" 
+        }
     })
   } catch (error) {
     logger.error(`Tasks route error: ${error.message}`)
-    return new Response(JSON.stringify({ error: error.message }), { 
+    
+    // Provide more specific error messages
+    let errorMessage = 'Task service temporarily unavailable';
+    if (error.message.includes('authentication')) {
+      errorMessage = 'Authentication service unavailable';
+    } else if (error.message.includes('token')) {
+      errorMessage = 'Token validation failed';
+    } else if (error.message.includes('Pipeline ID is required')) {
+      errorMessage = 'Invalid request parameters';
+    }
+    
+    return new Response(JSON.stringify({ 
+      error: errorMessage,
+      details: error.message,
+      timestamp: new Date().toISOString()
+    }), { 
       status: 500,
-      headers: { "Content-Type": "application/json" }
+      headers: { 
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization",
+          "Content-Type": "application/json" 
+        }
     })
   }
 }

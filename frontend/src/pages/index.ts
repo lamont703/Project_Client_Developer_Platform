@@ -8,3 +8,4 @@ export { default as DevelopersPage } from './DevelopersPage';
 export { default as AICommunityMemberPage } from './AICommunityMemberPage';
 export { default as PitchDeckPage } from './PitchDeckPage';
 export { default as DeFiPage } from './DeFiPage';
+export { default as TaskManagerPage } from './TaskManagerPage';

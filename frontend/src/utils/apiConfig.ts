@@ -33,7 +33,9 @@ export const API_CONFIG = {
     REPORTS: '/reports',
     ANALYTICS: '/analytics',
     // AI Community Member endpoints
-    MONITORING: '/monitoring'
+    MONITORING: '/monitoring',
+    // Task Manager endpoints
+    TASKS: '/tasks'
   },
   
   // Get full URL for an endpoint

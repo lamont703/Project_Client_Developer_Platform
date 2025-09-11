@@ -55,7 +55,7 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
           </div>
           
           <div className="feature-card" onClick={() => handleNavigation('/developer-chat')}>
-            <div className="feature-icon">👨‍💻</div>
+            <div className="feature-icon">👨‍��</div>
             <h3>AI Developer Assistant</h3>
             <p>Get technical guidance and development support from our AI assistant</p>
             <button className="feature-link">Get Support →</button>
@@ -89,6 +89,13 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
             <button className="feature-link">Find Developers →</button>
           </div>
           
+          <div className="feature-card" onClick={() => handleNavigation('/task-manager')}>
+            <div className="feature-icon">📋</div>
+            <h3>Task Manager</h3>
+            <p>Track and manage tasks assigned to developers with real-time status updates and due date tracking</p>
+            <button className="feature-link">Manage Tasks →</button>
+          </div>
+          
           <div className="feature-card" onClick={() => handleNavigation('/pitch-deck')}>
             <div className="feature-icon">📊</div>
             <h3>Platform Pitch Deck</h3>
@@ -104,8 +111,6 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
           </div>
         </div>
       </div>
-
-      
 
       <div className="stats-section">
         <div className="stats-grid">

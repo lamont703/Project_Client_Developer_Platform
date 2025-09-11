@@ -122,13 +122,21 @@ class TaskController {
 
       // Check cache first
       let tasks: any[] = []
-      const cachedTasks = await taskManagerDatabaseService.getTasksFromCache(pipelineId)
+      let pipelineName: string = "Unknown Pipeline"
+      const cachedData = await taskManagerDatabaseService.getTasksFromCache(pipelineId)
+      const cachedTasks = cachedData?.tasks
+      const cachedPipelineName = cachedData?.pipelineName
       
       if (cachedTasks) {
+        pipelineName = cachedPipelineName || "Unknown Pipeline"
         console.log('Using cached tasks')
         tasks = cachedTasks
       } else {
         console.log('Fetching fresh tasks from GHL')
+        // Get pipeline information to get the pipeline name
+        const pipelines = await goHighLevelService.getAllPipelines()
+        const pipeline = pipelines.find(p => p.id === pipelineId)
+        const pipelineName = pipeline?.name || 'Unknown Pipeline'
         const opportunities = await goHighLevelService.getOpportunitiesWithTasks(pipelineId, status)
         
         // Extract all tasks from opportunities
@@ -145,13 +153,13 @@ class TaskController {
         }
         
         // Store in cache
-        const pipelineName = opportunities[0]?.pipelineName || 'Unknown Pipeline'
+        // Use the pipeline name we fetched from getAllPipelines
         const locationId = Deno.env.get('GHL_LOCATION_ID')!
         await taskManagerDatabaseService.storeTasksCache(pipelineId, pipelineName, locationId, tasks)
       }
 
       // Process and categorize tasks
-      const processedTasks = this.processTasks(tasks, filters)
+      const processedTasks = this.processTasks(tasks, filters, pipelineName)
       
       return processedTasks
     } catch (error) {
@@ -171,8 +179,8 @@ class TaskController {
   }
 
   // Process tasks and apply filters
-  private processTasks(tasks: any[], filters: TaskFilters): ProcessedTasks {
-    let filteredTasks = [...tasks]
+  private processTasks(tasks: any[], filters: TaskFilters, pipelineName?: string): ProcessedTasks {
+    let filteredTasks = [...tasks.map(task => ({ ...task, pipelineName: pipelineName || task.pipelineName || "Unknown Pipeline" }))]
 
     // Apply filters
     if (filters.assignee) {

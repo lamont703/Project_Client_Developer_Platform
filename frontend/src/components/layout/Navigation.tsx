@@ -21,7 +21,8 @@ const Navigation: React.FC<NavigationProps> = ({ navigateToHome }) => {
     { path: '/jobs', label: '💼 Projects', icon: '💼' },
     { path: '/developers', label: '👥 Developers', icon: '👥' },
     { path: '/pitch-deck', label: '📊 Pitch Deck', icon: '📊' },
-    { path: '/defi-platform', label: '🏦 DeFi Platform', icon: '🏦' }
+    { path: '/defi-platform', label: '🏦 DeFi Platform', icon: '🏦' },
+    { path: '/task-manager', label: '📋 Task Manager', icon: '📋' }
   ];
 
   const handleNavClick = (path: string) => {
