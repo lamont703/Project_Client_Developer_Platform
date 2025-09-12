@@ -103,8 +103,9 @@ const LendingPool: React.FC<LendingPoolProps> = () => {
           </div>
 
           <div className="form-group">
-            <label>Investment Duration (months)</label>
+            <label htmlFor="duration-select">Investment Duration (months)</label>
             <select 
+              id="duration-select"
               value={duration} 
               onChange={(e) => setDuration(e.target.value)}
               className="duration-select"

@@ -1,9 +1,11 @@
 import React from 'react';
 import { HashRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { Navigation, ScrollToTop } from './components';
-import { HomePage, ChatPage, JobsPage, PostJobPage, DevelopersPage, AICommunityMemberPage, PitchDeckPage, DeFiPage, TaskManagerPage } from './pages';
+import { HomePage, ChatPage, JobsPage, PostJobPage, DevelopersPage, AICommunityMemberPage, PitchDeckPage, DeFiPage, TaskManagerPage, PipelineDashboardPage } from './pages';
+import LandingPage from './components/Landing Page/LandingPage';
 import DeveloperChatPage from './pages/DeveloperChatPage';
 import ProtoHubPage from './pages/ProtoHubPage';
+import GamificationPage from './pages/GamificationPage';
 import { Analytics } from './utils/analytics';
 import './App.css';
 
@@ -226,6 +228,11 @@ function AppContent() {
               <DevelopersPage navigateToHome={navigateToHome} />
             </SafeComponent>
           } />
+          <Route path="/gamification" element={
+            <SafeComponent>
+              <GamificationPage navigateToHome={navigateToHome} />
+            </SafeComponent>
+          } />
           <Route path="/ai-community-member" element={
             <SafeComponent>
               <AICommunityMemberPage navigateToHome={navigateToHome} />
@@ -241,9 +248,19 @@ function AppContent() {
               <PitchDeckPage navigateToHome={navigateToHome} />
             </SafeComponent>
           } />
+          <Route path="/landing-page" element={
+            <SafeComponent>
+              <LandingPage navigateToHome={navigateToHome} />
+            </SafeComponent>
+          } />
           <Route path="/defi-platform" element={
             <SafeComponent>
               <DeFiPage navigateToHome={navigateToHome} />
+            </SafeComponent>
+          } />
+          <Route path="/pipeline-dashboard" element={
+            <SafeComponent>
+              <PipelineDashboardPage navigateToHome={navigateToHome} />
             </SafeComponent>
           } />
           <Route path="*" element={<Navigate to="/" replace />} />
@@ -262,7 +279,7 @@ function App() {
       
       // Debug logging for development
       if (process.env.NODE_ENV === 'development' || window.location.hostname === 'localhost') {
-        console.log('🔍 Analytics initialized successfully');
+        console.log('�� Analytics initialized successfully');
         console.log('🔍 gtag available:', typeof (window as any).gtag === 'function');
         console.log('📊 dataLayer available:', Array.isArray((window as any).dataLayer));
       }

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/HomePage.css';
-import { HomePage as HomePageComponent, ChatPage, JobsPage, PostJobPage, DevelopersPage, AICommunityMemberPage, PitchDeckPage, DeFiPage, TaskManagerPage, PipelineDashboardPage } from './index';
 
 interface HomePageProps {
   navigateToHome?: () => void;
@@ -25,20 +24,25 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
   return (
     <div className="home-page">
       <div className="hero-section">
-        <div className="hero-badge">
-          <span className="badge-icon">✨</span>
-          <span className="badge-text">AI-Powered Development Platform</span>
-        </div>
-        
-        <h1 className="hero-title">
-          From Idea to Reality
-          <span className="hero-highlight"> in Minutes</span>
-        </h1>
-        
+        <h1>🚀 AI Project Assistant Platform</h1>
         <p className="hero-subtitle">
-          Connect with AI assistants and talented developers to bring your project ideas to life. 
-          Get instant help, find collaborators, and launch faster than ever before.
+          Connect with talented developers and bring your project ideas to life
         </p>
+        
+        <div className="hero-cta">
+          <button 
+            onClick={() => handleNavigation('/chat')} 
+            className="cta-button primary"
+          >
+            🤖 Start AI Assistant
+          </button>
+          <button 
+            onClick={() => handleNavigation('/jobs')} 
+            className="cta-button secondary"
+          >
+            💼 Browse Projects
+          </button>
+        </div>
       </div>
 
       <div className="features-section">
@@ -51,7 +55,7 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
           </div>
           
           <div className="feature-card" onClick={() => handleNavigation('/developer-chat')}>
-            <div className="feature-icon">👨‍💻</div>
+            <div className="feature-icon">👨‍��</div>
             <h3>AI Developer Assistant</h3>
             <p>Get technical guidance and development support from our AI assistant</p>
             <button className="feature-link">Get Support →</button>
@@ -99,32 +103,11 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
             <button className="feature-link">View Pitch Deck →</button>
           </div>
           
-          <div className="feature-card" onClick={() => handleNavigation('/landing-page')}>
-            <div className="feature-icon">🚀📊</div>
-            <h3>Prototype + Pitch Deck Service</h3>
-            <p>Transform your tech idea into reality with professional prototype and investor-ready pitch deck. Limited to 10 projects per month.</p>
-            <button className="feature-link">Join Waitlist →</button>
-          </div>
-          
           <div className="feature-card" onClick={() => handleNavigation('/defi-platform')}>
-            <div className="feature-icon">💰</div>
+            <div className="feature-icon">🏦</div>
             <h3>Tech Project Funding Platform</h3>
             <p>Peer-to-peer DeFi lending specifically for Software, AI, Blockchain, and Automation projects</p>
             <button className="feature-link">Get Funding →</button>
-          </div>
-          
-          <div className="feature-card" onClick={() => handleNavigation('/gamification')}>
-            <div className="feature-icon">🎮</div>
-            <h3>Developer Gamification</h3>
-            <p>Earn points, unlock achievements, and climb the leaderboard by contributing to our platform. Turn your development work into an exciting game!</p>
-            <button className="feature-link">Start Playing →</button>
-          </div>
-
-          <div className="feature-card" onClick={() => handleNavigation('/pipeline-dashboard')}>
-            <div className="feature-icon">📊</div>
-            <h3>Pipeline Control Center</h3>
-            <p>Your mission control for opportunity management and client progression with AI-powered insights</p>
-            <button className="feature-link">Open Dashboard →</button>
           </div>
         </div>
       </div>
