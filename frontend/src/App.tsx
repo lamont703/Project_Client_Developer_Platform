@@ -1,7 +1,7 @@
 import React from 'react';
 import { HashRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { Navigation, ScrollToTop } from './components';
-import { HomePage, ChatPage, JobsPage, PostJobPage, DevelopersPage, AICommunityMemberPage, PitchDeckPage, DeFiPage, TaskManagerPage, PipelineDashboardPage, UserFeedbackPage } from './pages';
+import { HomePage, ChatPage, JobsPage, PostJobPage, DevelopersPage, AICommunityMemberPage, PitchDeckPage, DeFiPage, TaskManagerPage, PipelineDashboardPage, UserFeedbackPage, CodeContributionsPage } from './pages';
 import LandingPage from './components/Landing Page/LandingPage';
 import DeveloperChatPage from './pages/DeveloperChatPage';
 import ProtoHubPage from './pages/ProtoHubPage';
@@ -268,7 +268,11 @@ function AppContent() {
               <UserFeedbackPage navigateToHome={navigateToHome} />
             </SafeComponent>
           } />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="/code-contributions" element={
+            <SafeComponent>
+              <CodeContributionsPage navigateToHome={navigateToHome} />
+            </SafeComponent>
+          } />          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </SafeComponent>
     </div>

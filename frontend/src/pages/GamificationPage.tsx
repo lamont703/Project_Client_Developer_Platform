@@ -5,6 +5,9 @@ import DeveloperDashboard from '../components/Gamification/DeveloperDashboard';
 import Leaderboard from '../components/Gamification/Leaderboard';
 import AchievementCenter from '../components/Gamification/AchievementCenter';
 import RewardCenter from '../components/Gamification/RewardCenter';
+import BountyBoard from '../components/Gamification/BountyBoard';
+import WLFIWallet from '../components/Gamification/WLFIWallet';
+import BountySubmission from '../components/Gamification/BountySubmission';
 
 interface HomePageProps {
   navigateToHome?: () => void;
@@ -32,7 +35,10 @@ const GamificationPage: React.FC<HomePageProps> = ({ navigateToHome }) => {
     { id: 'dashboard', label: 'My Progress', icon: '📊' },
     { id: 'achievements', label: 'Achievements', icon: '🏆' },
     { id: 'leaderboard', label: 'Leaderboard', icon: '🥇' },
-    { id: 'rewards', label: 'Rewards', icon: '🎁' }
+    { id: 'rewards', label: 'Rewards', icon: '🎁' },
+    { id: 'bounties', label: 'Bounties', icon: '🎯' },
+    { id: 'wallet', label: 'WLFI Wallet', icon: '💰' },
+    { id: 'submissions', label: 'Submissions', icon: '📝' }
   ];
 
   return (
@@ -59,8 +65,8 @@ const GamificationPage: React.FC<HomePageProps> = ({ navigateToHome }) => {
           </h1>
           
           <p className="page-subtitle">
-            Earn points, unlock achievements, and climb the leaderboard by contributing to our platform. 
-            Turn your development work into an exciting game!
+            Earn WLFI tokens, complete bounties, and climb the leaderboard by contributing to our platform. 
+            Turn your development work into an exciting game with real rewards!
           </p>
         </div>
       </div>
@@ -84,6 +90,9 @@ const GamificationPage: React.FC<HomePageProps> = ({ navigateToHome }) => {
           {activeTab === 'achievements' && <AchievementCenter />}
           {activeTab === 'leaderboard' && <Leaderboard />}
           {activeTab === 'rewards' && <RewardCenter />}
+          {activeTab === 'bounties' && <BountyBoard />}
+          {activeTab === 'wallet' && <WLFIWallet />}
+          {activeTab === 'submissions' && <BountySubmission />}
         </div>
       </div>
     </div>

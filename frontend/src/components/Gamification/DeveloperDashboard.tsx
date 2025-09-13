@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import WLFIService, { WLFITokenData } from '../../utils/wlfiService';
 import '../../styles/Gamification/DeveloperDashboard.css';
 
 interface DeveloperStats {
@@ -50,6 +51,31 @@ const DeveloperDashboard: React.FC = () => {
     }
   ]);
 
+  // Add state for collapsible quick actions
+  const [isQuickActionsExpanded, setIsQuickActionsExpanded] = useState(false);
+  
+  // Add WLFI token data state
+  const [wlfiData, setWlfiData] = useState<WLFITokenData>({
+    balance: 0,
+    staked: 0,
+    totalEarned: 0,
+    isConnected: false
+  });
+
+  useEffect(() => {
+    loadWLFIData();
+  }, []);
+
+  const loadWLFIData = async () => {
+    try {
+      const wlfiService = WLFIService.getInstance();
+      const tokenData = wlfiService.getTokenData();
+      setWlfiData(tokenData);
+    } catch (error) {
+      console.error('Failed to load WLFI data:', error);
+    }
+  };
+
   const getLevelProgress = () => {
     const currentLevelPoints = stats.currentLevel * 500;
     const nextLevelPoints = (stats.currentLevel + 1) * 500;
@@ -60,6 +86,11 @@ const DeveloperDashboard: React.FC = () => {
   const getLevelTitle = (level: number) => {
     const titles = ['Bronze Developer', 'Silver Developer', 'Gold Developer', 'Platinum Developer', 'Elite Developer'];
     return titles[Math.min(level - 1, titles.length - 1)] || 'Rookie Developer';
+  };
+
+  // Toggle function for quick actions
+  const toggleQuickActions = () => {
+    setIsQuickActionsExpanded(!isQuickActionsExpanded);
   };
 
   return (
@@ -81,6 +112,42 @@ const DeveloperDashboard: React.FC = () => {
             className="progress-fill" 
             style={{ width: `${getLevelProgress()}%` }}
           ></div>
+        </div>
+      </div>
+
+      {/* WLFI Token Balance Section */}
+      <div className="wlfi-balance-section">
+        <div className="wlfi-header">
+          <h3 className="wlfi-title">💰 WLFI Token Balance</h3>
+          <div className={`connection-status ${wlfiData.isConnected ? 'connected' : 'disconnected'}`}>
+            {wlfiData.isConnected ? '🟢 Connected' : '🔴 Disconnected'}
+          </div>
+        </div>
+        
+        <div className="wlfi-balance-grid">
+          <div className="wlfi-balance-card">
+            <div className="balance-icon">💰</div>
+            <div className="balance-info">
+              <div className="balance-amount">{wlfiData.balance.toLocaleString()}</div>
+              <div className="balance-label">Available WLFI</div>
+            </div>
+          </div>
+          
+          <div className="wlfi-balance-card">
+            <div className="balance-icon">🔒</div>
+            <div className="balance-info">
+              <div className="balance-amount">{wlfiData.staked.toLocaleString()}</div>
+              <div className="balance-label">Staked WLFI</div>
+            </div>
+          </div>
+          
+          <div className="wlfi-balance-card">
+            <div className="balance-icon">📈</div>
+            <div className="balance-info">
+              <div className="balance-amount">{wlfiData.totalEarned.toLocaleString()}</div>
+              <div className="balance-label">Total Earned</div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -137,26 +204,41 @@ const DeveloperDashboard: React.FC = () => {
         </div>
       </div>
 
-      <div className="quick-actions">
-        <h3 className="section-title">Quick Actions</h3>
-        <div className="actions-grid">
-          <button className="action-button">
-            <span className="action-icon">📋</span>
-            <span className="action-text">View Tasks</span>
-          </button>
-          <button className="action-button">
-            <span className="action-icon">🚀</span>
-            <span className="action-text">Create Project</span>
-          </button>
-          <button className="action-button">
-            <span className="action-icon">❓</span>
-            <span className="action-text">Help Community</span>
-          </button>
-          <button className="action-button">
-            <span className="action-icon">🤖</span>
-            <span className="action-text">Use AI Assistant</span>
-          </button>
+      <div className={`quick-actions ${isQuickActionsExpanded ? 'expanded' : 'collapsed'}`}>
+        <div className="section-header" onClick={toggleQuickActions}>
+          <h3 className="section-title">Quick Actions</h3>
+          <span className={`expand-icon ${isQuickActionsExpanded ? 'rotated' : ''}`}>
+            ▼
+          </span>
         </div>
+        {isQuickActionsExpanded && (
+          <div className="actions-grid">
+            <button className="action-button">
+              <span className="action-icon">📋</span>
+              <span className="action-text">View Tasks</span>
+            </button>
+            <button className="action-button">
+              <span className="action-icon">🚀</span>
+              <span className="action-text">Create Project</span>
+            </button>
+            <button className="action-button">
+              <span className="action-icon">❓</span>
+              <span className="action-text">Help Community</span>
+            </button>
+            <button className="action-button">
+              <span className="action-icon">🤖</span>
+              <span className="action-text">Use AI Assistant</span>
+            </button>
+            <button className="action-button">
+              <span className="action-icon">💰</span>
+              <span className="action-text">Manage WLFI</span>
+            </button>
+            <button className="action-button">
+              <span className="action-icon">🎯</span>
+              <span className="action-text">View Bounties</span>
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

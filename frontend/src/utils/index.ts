@@ -8,4 +8,8 @@ export * from './protoHubUtils';
 
 // Re-export existing utilities
 export * from './generators';
-export * from './slotEngine'; 
+export * from './slotEngine';
+
+// WLFI Token Service
+export { default as WLFIService } from './wlfiService';
+export type { WLFITokenData, BountyData, BountySubmission, WLFITransaction } from './wlfiService'; 

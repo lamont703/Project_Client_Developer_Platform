@@ -14,16 +14,16 @@ const Navigation: React.FC<NavigationProps> = ({ navigateToHome }) => {
   const isActive = (path: string) => location.pathname === path;
 
   const navItems = [
-    { path: '/', label: '🏠 Home', icon: '🏠' },
-    { path: '/chat', label: '🤖 AI Assistant', icon: '🤖' },
-    { path: '/developer-chat', label: '👨‍💻 Dev Assistant', icon: '👨‍💻' },
-    { path: '/proto-hub', label: '🚀 Proto Hub', icon: '🚀' },
-    { path: '/jobs', label: '💼 Projects', icon: '💼' },
-    { path: '/developers', label: '👥 Developers', icon: '👥' },
-    { path: '/pitch-deck', label: '📊 Pitch Deck', icon: '📊' },
-    { path: '/defi-platform', label: '🏦 DeFi Platform', icon: '🏦' },
-    { path: '/task-manager', label: '📋 Task Manager', icon: '📋' }
-  ];
+    { path: '/', label: 'Home', icon: '🏠' },
+    { path: '/chat', label: 'AI Assistant', icon: '🤖' },
+    { path: '/developer-chat', label: 'Dev Assistant', icon: '👨‍💻' },
+    { path: '/proto-hub', label: 'Proto Hub', icon: '🚀' },
+    { path: '/jobs', label: 'Projects', icon: '💼' },
+    { path: '/developers', label: 'Developers', icon: '👥' },
+    { path: '/pitch-deck', label: 'Pitch Deck', icon: '📊' },
+    { path: '/defi-platform', label: 'DeFi Platform', icon: '🏦' },
+    { path: '/task-manager', label: 'Task Manager', icon: '📋' },
+    { path: '/code-contributions', label: 'Bounties', icon: '💰' }  ];
 
   const handleNavClick = (path: string) => {
     // Scroll to top immediately before navigation

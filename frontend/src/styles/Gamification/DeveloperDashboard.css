@@ -234,18 +234,64 @@
     color: #9ca3af;
 }
 
-/* Quick Actions */
+/* Quick Actions - Updated for collapsible functionality */
 .quick-actions {
     background: white;
     border-radius: 20px;
     padding: 30px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.quick-actions.collapsed {
+    padding-bottom: 30px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    transition: all 0.3s ease;
+    padding: 5px 0;
+    border-radius: 8px;
+}
+
+.section-header:hover {
+    background: rgba(102, 126, 234, 0.05);
+    padding: 5px 10px;
+}
+
+.expand-icon {
+    font-size: 1.2rem;
+    color: #667eea;
+    transition: transform 0.3s ease;
+    font-weight: bold;
+}
+
+.expand-icon.rotated {
+    transform: rotate(180deg);
 }
 
 .actions-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 15px;
+    margin-top: 20px;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .action-button {
@@ -277,6 +323,96 @@
     font-size: 0.9rem;
     font-weight: 600;
     color: #374151;
+}
+
+/* WLFI Balance Section */
+.wlfi-balance-section {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.wlfi-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.wlfi-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0;
+}
+
+.connection-status {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.connection-status.connected {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.connection-status.disconnected {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.wlfi-balance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.wlfi-balance-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border: 2px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.wlfi-balance-card:hover {
+    border-color: #667eea;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.balance-icon {
+    font-size: 2rem;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.balance-info {
+    flex: 1;
+}
+
+.balance-amount {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #1f2937;
+    margin-bottom: 4px;
+}
+
+.balance-label {
+    font-size: 0.85rem;
+    color: #6b7280;
+    font-weight: 600;
 }
 
 /* Responsive Design */

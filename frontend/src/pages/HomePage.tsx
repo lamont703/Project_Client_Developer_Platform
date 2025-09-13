@@ -133,7 +133,13 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
             <p>Comprehensive feedback collection system with analytics, gamification, and community features. Get insights from every user interaction to improve your platform.</p>
             <button className="feature-link">Give Feedback →</button>
           </div>
-        </div>
+
+          <div className="feature-card" onClick={() => handleNavigation('/code-contributions')}>
+            <div className="feature-icon">💰🔧</div>
+            <h3>Code Contribution Bounties</h3>
+            <p>Help develop platform features and earn WLFI tokens. Access our GitHub repository, contribute code, and claim bounties for your contributions.</p>
+            <button className="feature-link">Start Contributing →</button>
+          </div>        </div>
       </div>
 
       <div className="stats-section">
