@@ -1,7 +1,7 @@
 import React from 'react';
 import { HashRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { Navigation, ScrollToTop } from './components';
-import { HomePage, ChatPage, JobsPage, PostJobPage, DevelopersPage, AICommunityMemberPage, PitchDeckPage, DeFiPage, TaskManagerPage, PipelineDashboardPage } from './pages';
+import { HomePage, ChatPage, JobsPage, PostJobPage, DevelopersPage, AICommunityMemberPage, PitchDeckPage, DeFiPage, TaskManagerPage, PipelineDashboardPage, UserFeedbackPage } from './pages';
 import LandingPage from './components/Landing Page/LandingPage';
 import DeveloperChatPage from './pages/DeveloperChatPage';
 import ProtoHubPage from './pages/ProtoHubPage';
@@ -263,6 +263,11 @@ function AppContent() {
               <PipelineDashboardPage navigateToHome={navigateToHome} />
             </SafeComponent>
           } />
+          <Route path="/user-feedback" element={
+            <SafeComponent>
+              <UserFeedbackPage navigateToHome={navigateToHome} />
+            </SafeComponent>
+          } />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </SafeComponent>
@@ -279,7 +284,7 @@ function App() {
       
       // Debug logging for development
       if (process.env.NODE_ENV === 'development' || window.location.hostname === 'localhost') {
-        console.log('�� Analytics initialized successfully');
+        console.log('✅ Analytics initialized successfully');
         console.log('🔍 gtag available:', typeof (window as any).gtag === 'function');
         console.log('📊 dataLayer available:', Array.isArray((window as any).dataLayer));
       }

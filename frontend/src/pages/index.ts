@@ -10,3 +10,4 @@ export { default as PitchDeckPage } from './PitchDeckPage';
 export { default as DeFiPage } from './DeFiPage';
 export { default as TaskManagerPage } from './TaskManagerPage';
 export { default as PipelineDashboardPage } from './PipelineDashboardPage';
+export { default as UserFeedbackPage } from './UserFeedbackPage';

@@ -126,6 +126,13 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
             <p>Your mission control for opportunity management and client progression with AI-powered insights</p>
             <button className="feature-link">Open Dashboard →</button>
           </div>
+
+          <div className="feature-card" onClick={() => handleNavigation('/user-feedback')}>
+            <div className="feature-icon">💬</div>
+            <h3>User Testing Feedback Platform</h3>
+            <p>Comprehensive feedback collection system with analytics, gamification, and community features. Get insights from every user interaction to improve your platform.</p>
+            <button className="feature-link">Give Feedback →</button>
+          </div>
         </div>
       </div>
 
