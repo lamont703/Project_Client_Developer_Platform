@@ -1,10 +1,36 @@
 import React from 'react';
 import '../../styles/Coding Education/WaitlistHero.css';
 
-const WaitlistHero: React.FC = () => {
+interface WaitlistHeroProps {
+  navigateToHome?: () => void;
+}
+
+const WaitlistHero: React.FC<WaitlistHeroProps> = ({ navigateToHome }) => {
+  const handleBackToHome = () => {
+    // Scroll to top immediately
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    // Navigate to home using the full URL
+    if (navigateToHome) {
+      navigateToHome();
+    } else {
+      // Fallback navigation
+      window.location.hash = '#/';
+    }
+  };
+
   return (
     <section className="waitlist-hero">
       <div className="hero-container">
+        <div className="page-navigation">
+          <button
+            onClick={handleBackToHome}
+            className="nav-link"
+            style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'white' }}
+          >
+            ← Back to Home
+          </button>
+        </div>
+        
         <div className="hero-badge">
           <span className="badge-icon">🎓</span>
           <span className="badge-text">1-on-1 AI Coding Education</span>

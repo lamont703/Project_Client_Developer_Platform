@@ -9,7 +9,7 @@ interface CodingEducationPageProps {
 const CodingEducationPage: React.FC<CodingEducationPageProps> = ({ navigateToHome }) => {
   return (
     <div className="coding-education-page">
-      <WaitlistHero />
+      <WaitlistHero navigateToHome={navigateToHome} />
       <CourseOverview />
       <WaitlistForm />
       <Testimonials />
