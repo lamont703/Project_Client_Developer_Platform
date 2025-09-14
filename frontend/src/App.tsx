@@ -1,7 +1,7 @@
 import React from 'react';
 import { HashRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { Navigation, ScrollToTop } from './components';
-import { HomePage, ChatPage, JobsPage, PostJobPage, DevelopersPage, AICommunityMemberPage, PitchDeckPage, DeFiPage, TaskManagerPage, PipelineDashboardPage, UserFeedbackPage, CodeContributionsPage } from './pages';
+import { HomePage, ChatPage, JobsPage, PostJobPage, DevelopersPage, AICommunityMemberPage, PitchDeckPage, DeFiPage, TaskManagerPage, PipelineDashboardPage, UserFeedbackPage, CodeContributionsPage, CodingEducationPage } from './pages';
 import LandingPage from './components/Landing Page/LandingPage';
 import DeveloperChatPage from './pages/DeveloperChatPage';
 import ProtoHubPage from './pages/ProtoHubPage';
@@ -28,7 +28,7 @@ class ErrorBoundary extends React.Component<{children: React.ReactNode}, {hasErr
     if (this.state.hasError) {
       return (
         <div style={{ padding: '20px', textAlign: 'center', background: '#fff' }}>
-          <h1>🚨 Something went wrong</h1>
+          <h1>�� Something went wrong</h1>
           <p>There was an error rendering the application.</p>
           <details style={{ margin: '20px 0', textAlign: 'left' }}>
             <summary>Error Details</summary>
@@ -272,7 +272,13 @@ function AppContent() {
             <SafeComponent>
               <CodeContributionsPage navigateToHome={navigateToHome} />
             </SafeComponent>
-          } />          <Route path="*" element={<Navigate to="/" replace />} />
+          } />
+          <Route path="/coding-education" element={
+            <SafeComponent>
+              <CodingEducationPage navigateToHome={navigateToHome} />
+            </SafeComponent>
+          } />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </SafeComponent>
     </div>

@@ -12,3 +12,4 @@ export { default as TaskManagerPage } from './TaskManagerPage';
 export { default as PipelineDashboardPage } from './PipelineDashboardPage';
 export { default as UserFeedbackPage } from './UserFeedbackPage';
 export { default as CodeContributionsPage } from './CodeContributionsPage';
+export { default as CodingEducationPage } from './CodingEducationPage';

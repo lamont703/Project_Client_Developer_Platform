@@ -139,7 +139,15 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
             <h3>Code Contribution Bounties</h3>
             <p>Help develop platform features and earn WLFI tokens. Access our GitHub repository, contribute code, and claim bounties for your contributions.</p>
             <button className="feature-link">Start Contributing →</button>
-          </div>        </div>
+          </div>
+
+          <div className="feature-card" onClick={() => handleNavigation('/coding-education')}>
+            <div className="feature-icon">🎓</div>
+            <h3>AI Coding Education Course</h3>
+            <p>Master full-stack development with 1-on-1 AI guidance. Learn frontend, backend, and deployment with personalized mentorship and real project experience.</p>
+            <button className="feature-link">Join Waitlist →</button>
+          </div>
+        </div>
       </div>
 
       <div className="stats-section">
