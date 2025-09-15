@@ -1,0 +1,220 @@
+<!-- /index.html -->
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Jobs Platform - Design System Hub</title>
+    <meta name="description"
+        content="Complete design system for Dev Jobs Platform - Documentation, Wireframes, and Interactive Prototype">
+    <link rel="stylesheet" href="assets/css/global.css">
+    <style>
+        /* Critical CSS for first paint */
+        .hero {
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+            color: white;
+            padding: var(--space-xl) var(--space-md);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: var(--space-sm);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+            padding: var(--space-xl) var(--space-md);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+            margin: var(--space-md) 0;
+        }
+
+        .checklist li {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            margin-bottom: var(--space-xs);
+        }
+
+        .check-icon {
+            color: var(--color-success);
+            font-weight: bold;
+        }
+
+        .quick-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            margin-top: var(--space-md);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--brand-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn:hover {
+            background: var(--brand-primary-dark);
+        }
+
+        .btn-secondary {
+            background: var(--bg-muted);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-muted-dark);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h2>🚀 Dev Jobs Platform</h2>
+                    <span class="subtitle">Design System Hub</span>
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Complete Design System</h1>
+            <p class="lead">Documentation, wireframes, and interactive prototype for a modern developer job marketplace
+            </p>
+        </section>
+
+        <section class="cards-grid">
+            <div class="card">
+                <h2>📚 Documentation</h2>
+                <p>Complete product specifications, user flows, requirements, and accessibility guidelines.</p>
+
+                <ul class="checklist">
+                    <li><span class="check-icon">✓</span> Product Brief & Requirements</li>
+                    <li><span class="check-icon">✓</span> User Stories & Flows</li>
+                    <li><span class="check-icon">✓</span> Information Architecture</li>
+                    <li><span class="check-icon">✓</span> Analytics & Content Strategy</li>
+                    <li><span class="check-icon">✓</span> Accessibility Plan</li>
+                </ul>
+
+                <div class="quick-links">
+                    <a href="docs/index.html" class="btn">View All Docs</a>
+                    <a href="docs/product-brief.html" class="btn-secondary btn">Product Brief</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>📐 Wireframes</h2>
+                <p>Low-fidelity, navigable HTML screens showing layout structure and user flows.</p>
+
+                <ul class="checklist">
+                    <li><span class="check-icon">✓</span> All Key Pages Mapped</li>
+                    <li><span class="check-icon">✓</span> Mobile-First Layout</li>
+                    <li><span class="check-icon">✓</span> Clickable Navigation</li>
+                    <li><span class="check-icon">✓</span> Annotation Notes</li>
+                    <li><span class="check-icon">✓</span> Gray-box Styling</li>
+                </ul>
+
+                <div class="quick-links">
+                    <a href="wireframes/index.html" class="btn">View Wireframes</a>
+                    <a href="wireframes/browse-jobs.html" class="btn-secondary btn">Browse Jobs</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🎨 Interactive Prototype</h2>
+                <p>High-fidelity, functional prototype with real interactions and mock data.</p>
+
+                <ul class="checklist">
+                    <li><span class="check-icon">✓</span> Polished UI Components</li>
+                    <li><span class="check-icon">✓</span> Form Validation</li>
+                    <li><span class="check-icon">✓</span> Interactive Flows</li>
+                    <li><span class="check-icon">✓</span> Mock Data Integration</li>
+                    <li><span class="check-icon">✓</span> Dark Mode Support</li>
+                </ul>
+
+                <div class="quick-links">
+                    <a href="prototype/index.html" class="btn">Launch Prototype</a>
+                    <a href="prototype/browse-jobs.html" class="btn-secondary btn">Browse Jobs</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="container" style="padding: var(--space-xl) var(--space-md);">
+            <h2>Project Overview</h2>
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-lg); margin-top: var(--space-lg);">
+                <div>
+                    <h3>🎯 Goal</h3>
+                    <p>Connect creators and businesses posting jobs with developers who apply, focusing on AI,
+                        Blockchain, Automation, and Software Development roles.</p>
+                </div>
+                <div>
+                    <h3>📱 Approach</h3>
+                    <p>Mobile-first responsive design (360-428px → tablets → desktop) with clean, modern, tech-forward
+                        aesthetic.</p>
+                </div>
+                <div>
+                    <h3>♿ Accessibility</h3>
+                    <p>WCAG AA compliant with keyboard navigation, screen reader support, and reduced motion
+                        preferences.</p>
+                </div>
+                <div>
+                    <h3>⚡ Performance</h3>
+                    <p>Static site with no build tools required. Optimized for Lighthouse scores ≥90 across all metrics.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Dev Jobs Platform Design System</p>
+                <p>Version 1.0 | Built with ❤️ for developers</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/app.js"></script>
+</body>
+
+</html>
