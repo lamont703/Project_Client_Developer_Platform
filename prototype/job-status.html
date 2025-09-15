@@ -1,0 +1,176 @@
+<!-- /prototype/job-status.html -->
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Status - Dev Jobs Platform Prototype</title>
+    <link rel="stylesheet" href="../assets/css/prototype.css">
+    <style>
+        .status-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--space-lg);
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--space-xl);
+        }
+
+        .status-header {
+            text-align: center;
+            margin-bottom: var(--space-lg);
+        }
+
+        .status-header h1 {
+            font-size: var(--text-2xl);
+            font-weight: 600;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .status-timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: var(--space-lg);
+            position: relative;
+        }
+
+        .status-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .status-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--border-color);
+            z-index: -1;
+        }
+
+        .status-step.completed::after {
+            background: var(--color-success);
+        }
+
+        .status-indicator {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-full);
+            background: var(--bg-muted);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: var(--text-sm);
+            margin: 0 auto var(--space-sm);
+            position: relative;
+            z-index: 1;
+        }
+
+        .status-step.active .status-indicator {
+            background: var(--brand-primary);
+            color: white;
+        }
+
+        .status-step.completed .status-indicator {
+            background: var(--color-success);
+            color: white;
+        }
+
+        .status-label {
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .status-step.active .status-label {
+            color: var(--brand-primary);
+        }
+
+        .status-step.completed .status-label {
+            color: var(--color-success);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h2><a href="../index.html" style="text-decoration: none; color: inherit;">🚀 Dev Jobs Platform</a>
+                    </h2>
+                    <span class="subtitle">Job Status</span>
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="status-container">
+            <div class="status-header">
+                <h1>Job Status Timeline</h1>
+                <p>Track the progress of your job application through various stages.</p>
+            </div>
+
+            <div class="status-timeline">
+                <div class="status-step completed">
+                    <div class="status-indicator">1</div>
+                    <div class="status-label">Posted</div>
+                </div>
+                <div class="status-step completed">
+                    <div class="status-indicator">2</div>
+                    <div class="status-label">Shortlisting</div>
+                </div>
+                <div class="status-step active">
+                    <div class="status-indicator">3</div>
+                    <div class="status-label">Hired</div>
+                </div>
+                <div class="status-step">
+                    <div class="status-indicator">4</div>
+                    <div class="status-label">In Progress</div>
+                </div>
+                <div class="status-step">
+                    <div class="status-indicator">5</div>
+                    <div class="status-label">Prototype Ready</div>
+                </div>
+                <div class="status-step">
+                    <div class="status-indicator">6</div>
+                    <div class="status-label">Completed</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Dev Jobs Platform Design System</p>
+                <p>Job Status | Interactive Prototype</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/data.js"></script>
+    <script src="../assets/js/components.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize status timeline
+            console.log('Job status timeline loaded');
+        });
+    </script>
+</body>
+
+</html>

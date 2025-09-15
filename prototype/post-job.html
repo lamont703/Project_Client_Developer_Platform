@@ -1,0 +1,307 @@
+<!-- /prototype/post-job.html -->
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Project - Dev Jobs Platform Prototype</title>
+    <meta name="description" content="Post a new project with a multi-step wizard and form validation">
+    <link rel="stylesheet" href="../assets/css/prototype.css">
+    <style>
+        .post-job {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--space-lg);
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--space-xl);
+        }
+
+        .stepper {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            position: relative;
+        }
+
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            width: 100%;
+            height: 2px;
+            background: var(--border-color);
+            z-index: -1;
+        }
+
+        .step.completed::after {
+            background: var(--color-success);
+        }
+
+        .step-indicator {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-full);
+            background: var(--bg-muted);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: var(--text-sm);
+            margin-right: var(--space-sm);
+            position: relative;
+            z-index: 1;
+        }
+
+        .step.active .step-indicator {
+            background: var(--brand-primary);
+            color: white;
+        }
+
+        .step.completed .step-indicator {
+            background: var(--color-success);
+            color: white;
+        }
+
+        .step-label {
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .step.active .step-label {
+            color: var(--brand-primary);
+        }
+
+        .step.completed .step-label {
+            color: var(--color-success);
+        }
+
+        .form-group {
+            margin-bottom: var(--space-md);
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: var(--space-sm) var(--space-md);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            font-size: var(--text-base);
+            transition: border-color 0.2s ease;
+            min-height: 44px;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--border-focus);
+            box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-error {
+            color: var(--color-error);
+            font-size: var(--text-sm);
+            margin-top: var(--space-xs);
+        }
+
+        .form-help {
+            color: var(--text-muted);
+            font-size: var(--text-sm);
+            margin-top: var(--space-xs);
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: var(--space-lg);
+        }
+
+        .ai-assistant-banner {
+            background: var(--bg-muted);
+            padding: var(--space-md);
+            text-align: center;
+            margin-bottom: var(--space-lg);
+            border-radius: var(--radius-md);
+        }
+
+        .btn-link {
+            color: var(--brand-primary);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h2><a href="../index.html" style="text-decoration: none; color: inherit;">🚀 Dev Jobs Platform</a>
+                    </h2>
+                    <span class="subtitle">Post a Project</span>
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="post-job">
+            <div class="ai-assistant-banner">
+                <p>Prefer to talk it out? <a href="ai-assistant.html" class="btn btn-link">Try the AI Assistant</a></p>
+            </div>
+            <div class="stepper">
+                <div class="step active">
+                    <div class="step-indicator">1</div>
+                    <div class="step-label">Basics</div>
+                </div>
+                <div class="step">
+                    <div class="step-indicator">2</div>
+                    <div class="step-label">Details</div>
+                </div>
+                <div class="step">
+                    <div class="step-indicator">3</div>
+                    <div class="step-label">Budget/Timeline</div>
+                </div>
+                <div class="step">
+                    <div class="step-indicator">4</div>
+                    <div class="step-label">Review & Publish</div>
+                </div>
+            </div>
+
+            <form id="postProjectForm">
+                <div class="form-group">
+                    <label for="title" class="form-label">Project Title</label>
+                    <input type="text" id="title" name="title" class="form-input" placeholder="Enter project title">
+                    <div class="form-error" id="title-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description" class="form-label">Project Description</label>
+                    <textarea id="description" name="description" class="form-textarea"
+                        placeholder="Describe the project responsibilities and requirements"></textarea>
+                    <div class="form-error" id="description-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="category" class="form-label">Category</label>
+                    <select id="category" name="category" class="form-select">
+                        <option value="">Select a category</option>
+                        <option value="ai">AI & Machine Learning</option>
+                        <option value="blockchain">Blockchain</option>
+                        <option value="automation">Automation</option>
+                        <option value="web">Web Development</option>
+                        <option value="mobile">Mobile Development</option>
+                        <option value="devops">DevOps</option>
+                    </select>
+                    <div class="form-error" id="category-error"></div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary">Back</button>
+                    <button type="submit" class="btn btn-primary">Next</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Dev Jobs Platform Design System</p>
+                <p>Post Job | Interactive Prototype</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/data.js"></script>
+    <script src="../assets/js/components.js"></script>
+    <script src="../assets/js/validate.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const formValidator = new FormValidator(document.getElementById('postProjectForm'), {
+                title: [ValidationRules.required, ValidationRules.minLength(5)],
+                description: [ValidationRules.required, ValidationRules.minLength(50)],
+                category: [ValidationRules.required]
+            });
+
+            const stepper = new Stepper(document.querySelector('.stepper'));
+
+            document.getElementById('postProjectForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (formValidator.validate()) {
+                    if (!stepper.isLastStep()) {
+                        stepper.next();
+                        updateStepVisibility();
+                    } else {
+                        // Submit the form
+                        console.log('Form submitted!');
+                    }
+                }
+            });
+
+            function updateStepVisibility() {
+                const steps = document.querySelectorAll('.step');
+                const forms = document.querySelectorAll('.form-group');
+                steps.forEach((step, index) => {
+                    if (step.classList.contains('active')) {
+                        forms.forEach((form, formIndex) => {
+                            form.style.display = formIndex === index ? 'block' : 'none';
+                        });
+                    }
+                });
+            }
+
+            const backButton = document.querySelector('.btn-secondary');
+            if (backButton) {
+                backButton.addEventListener('click', () => {
+                    if (!stepper.isFirstStep()) {
+                        stepper.previous();
+                        updateStepVisibility();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

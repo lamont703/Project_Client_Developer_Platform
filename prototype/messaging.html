@@ -1,0 +1,113 @@
+<!-- /prototype/messaging.html -->
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messaging - Dev Jobs Platform Prototype</title>
+    <meta name="description" content="Two-pane messaging interface with conversation list and message thread">
+    <link rel="stylesheet" href="../assets/css/prototype.css">
+    <style>
+        .messaging {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-lg);
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--space-xl);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: var(--space-md);
+        }
+
+        .conversation-list {
+            border-right: 1px solid var(--border-color);
+            padding-right: var(--space-md);
+        }
+
+        .conversation-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            margin-bottom: var(--space-sm);
+        }
+
+        .conversation-item:hover {
+            background: var(--bg-muted);
+        }
+
+        .conversation-item.active {
+            background: var(--bg-muted);
+            border-left: 4px solid var(--brand-primary);
+        }
+
+        .conversation-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-full);
+            background: var(--bg-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-lg);
+            color: var(--brand-primary);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="messaging">
+        <div class="conversation-list">
+            <h2>Conversations</h2>
+            <div class="conversation-item active">
+                <div class="conversation-avatar">A</div>
+                <div>
+                    <h4>John Doe</h4>
+                    <p>Last message: Hello!</p>
+                </div>
+            </div>
+            <div class="conversation-item">
+                <div class="conversation-avatar">B</div>
+                <div>
+                    <h4>Jane Smith</h4>
+                    <p>Last message: Hi there!</p>
+                </div>
+            </div>
+            <div class="conversation-item">
+                <div class="conversation-avatar">C</div>
+                <div>
+                    <h4>Peter Jones</h4>
+                    <p>Last message: How are you?</p>
+                </div>
+            </div>
+        </div>
+        <div class="message-thread">
+            <h2>Messages with John Doe</h2>
+            <div class="message-bubble">
+                <p>Hi John!</p>
+                <span>10:00 AM</span>
+            </div>
+            <div class="message-bubble">
+                <p>How's it going?</p>
+                <span>10:05 AM</span>
+            </div>
+            <div class="message-bubble">
+                <p>Good, thanks!</p>
+                <span>10:10 AM</span>
+            </div>
+            <div class="message-bubble">
+                <p>Let's meet tomorrow.</p>
+                <span>10:15 AM</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
