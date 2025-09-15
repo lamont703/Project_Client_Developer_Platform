@@ -1,16 +1,16 @@
-# Frontend
+# Backend
 
-Clean React frontend for production platform.
+Clean backend for production platform.
 
 ## Development
 
 ```bash
 npm install
-npm start
+npm run dev
 ```
 
 ## Features
 
 - Clean architecture
-- TypeScript support
+- Supabase integration
 - Production-ready foundation
