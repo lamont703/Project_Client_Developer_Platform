@@ -1,0 +1,228 @@
+<!-- /prototype/dashboard-client.html -->
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard - Dev Jobs Platform Prototype</title>
+    <meta name="description" content="Manage your job postings, review applications, and view analytics">
+    <link rel="stylesheet" href="../assets/css/prototype.css">
+    <style>
+        .dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-lg);
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--space-xl);
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-lg);
+        }
+
+        .dashboard-title {
+            font-size: var(--text-2xl);
+            font-weight: 600;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .dashboard-actions {
+            display: flex;
+            gap: var(--space-sm);
+        }
+
+        .dashboard-actions .btn {
+            padding: var(--space-xs) var(--space-md);
+            font-size: var(--text-sm);
+        }
+
+        .job-list {
+            margin-top: var(--space-lg);
+        }
+
+        .job-list h3 {
+            margin-bottom: var(--space-md);
+        }
+
+        .job-item {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
+            margin-bottom: var(--space-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .job-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .job-info {
+            flex: 1;
+        }
+
+        .job-title {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .job-meta {
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+            margin-top: var(--space-xs);
+        }
+
+        .job-actions {
+            display: flex;
+            gap: var(--space-sm);
+        }
+
+        .analytics {
+            margin-top: var(--space-xl);
+        }
+
+        .analytics h3 {
+            margin-bottom: var(--space-md);
+        }
+
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+        }
+
+        .analytics-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+        }
+
+        .analytics-value {
+            font-size: var(--text-2xl);
+            font-weight: bold;
+            color: var(--brand-primary);
+            display: block;
+        }
+
+        .analytics-label {
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h2><a href="../index.html" style="text-decoration: none; color: inherit;">🚀 Dev Jobs Platform</a>
+                    </h2>
+                    <span class="subtitle">Client Dashboard</span>
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="dashboard">
+            <div class="dashboard-header">
+                <h1 class="dashboard-title">Manage Your Jobs</h1>
+                <div class="dashboard-actions">
+                    <button class="btn btn-primary">Post New Job</button>
+                    <button class="btn btn-secondary">View Analytics</button>
+                </div>
+            </div>
+
+            <div class="job-list">
+                <h3>Your Job Postings</h3>
+                <div class="job-item">
+                    <div class="job-info">
+                        <h4 class="job-title">Senior AI Engineer - Computer Vision</h4>
+                        <p class="job-meta">23 applicants | Posted 3 days ago</p>
+                    </div>
+                    <div class="job-actions">
+                        <button class="btn btn-outline">Edit</button>
+                        <button class="btn btn-outline">Close</button>
+                    </div>
+                </div>
+                <div class="job-item">
+                    <div class="job-info">
+                        <h4 class="job-title">Blockchain Developer - DeFi Protocol</h4>
+                        <p class="job-meta">15 applicants | Posted 5 days ago</p>
+                    </div>
+                    <div class="job-actions">
+                        <button class="btn btn-outline">Edit</button>
+                        <button class="btn btn-outline">Close</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="analytics">
+                <h3>Job Performance Analytics</h3>
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <span class="analytics-value">85%</span>
+                        <span class="analytics-label">Application Rate</span>
+                    </div>
+                    <div class="analytics-card">
+                        <span class="analytics-value">42</span>
+                        <span class="analytics-label">Total Applicants</span>
+                    </div>
+                    <div class="analytics-card">
+                        <span class="analytics-value">5</span>
+                        <span class="analytics-label">Jobs Posted</span>
+                    </div>
+                    <div class="analytics-card">
+                        <span class="analytics-value">3</span>
+                        <span class="analytics-label">Active Jobs</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Dev Jobs Platform Design System</p>
+                <p>Client Dashboard | Interactive Prototype</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/data.js"></script>
+    <script src="../assets/js/components.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mock data and interactions can be added here
+            console.log('Client dashboard loaded');
+        });
+    </script>
+</body>
+
+</html>
