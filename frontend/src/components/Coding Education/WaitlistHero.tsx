@@ -14,7 +14,7 @@ const WaitlistHero: React.FC<WaitlistHeroProps> = ({ navigateToHome }) => {
       navigateToHome();
     } else {
       // Fallback navigation
-      window.location.hash = '#/';
+      window.location.href = '/';
     }
   };
 

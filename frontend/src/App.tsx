@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { Navigation, ScrollToTop } from './components';
 import { HomePage, ChatPage, JobsPage, PostJobPage, DevelopersPage, AICommunityMemberPage, PitchDeckPage, DeFiPage, TaskManagerPage, PipelineDashboardPage, UserFeedbackPage, CodeContributionsPage, CodingEducationPage } from './pages';
 import LandingPage from './components/Landing Page/LandingPage';
@@ -160,7 +160,7 @@ function AppContent() {
       navigate('/');
     } catch (error) {
       console.error('Navigation error:', error);
-      window.location.hash = '#/';
+      window.location.href = '/';
     }
   };
 

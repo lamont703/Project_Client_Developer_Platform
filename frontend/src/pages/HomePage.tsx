@@ -17,7 +17,7 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
     } catch (error) {
       console.error('HomePage navigation error:', error);
       // Fallback to hash navigation
-      window.location.hash = `#${route}`;
+      window.location.href = route;
     }
   };
 

@@ -20,7 +20,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ navigateToHome }) => {
       navigate(route);
     } catch (error) {
       console.error('LandingPage navigation error:', error);
-      window.location.hash = `#${route}`;
+      window.location.href = route;
     }
   };
 

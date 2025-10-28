@@ -44,7 +44,7 @@ const UserFeedbackPage: React.FC<{ navigateToHome?: () => void }> = ({ navigateT
       navigateToHome();
     } else {
       // Fallback navigation
-      window.location.hash = '#/';
+      window.location.href = '/';
     }
     
     analytics.trackEvent('feedback_back_to_home', {

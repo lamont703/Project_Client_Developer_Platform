@@ -10,7 +10,7 @@ const HeroSection: React.FC = () => {
       navigate(route);
     } catch (error) {
       console.error('HeroSection navigation error:', error);
-      window.location.hash = `#${route}`;
+      window.location.href = route;
     }
   };
 

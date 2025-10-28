@@ -23,7 +23,7 @@ const GamificationPage: React.FC<HomePageProps> = ({ navigateToHome }) => {
       navigate(route);
     } catch (error) {
       console.error('GamificationPage navigation error:', error);
-      window.location.hash = `#${route}`;
+      window.location.href = route;
     }
   };
 
