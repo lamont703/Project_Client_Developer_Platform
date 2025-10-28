@@ -20,6 +20,7 @@ const BountySubmission: React.FC<BountySubmissionProps> = ({ bountyId }) => {
       loadBountyData();
     }
     loadSubmissions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bountyId]);
 
   const loadBountyData = async () => {

@@ -13,6 +13,7 @@ interface LandingPageProps {
 const LandingPage: React.FC<LandingPageProps> = ({ navigateToHome }) => {
   const navigate = useNavigate();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleNavigation = (route: string) => {
     try {
       window.scrollTo({ top: 0, left: 0, behavior: 'auto' });

@@ -136,6 +136,7 @@ const PrototypeShowcase: React.FC = () => {
         };
 
         fetchPrototypes();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const filteredPrototypes = prototypes.filter(prototype => {

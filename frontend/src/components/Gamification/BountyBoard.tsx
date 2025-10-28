@@ -20,6 +20,7 @@ const BountyBoard: React.FC = () => {
 
   useEffect(() => {
     applyFilters();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bounties, filters]);
 
   const loadBounties = async () => {

@@ -33,6 +33,7 @@ const DeveloperDashboard: React.FC = () => {
     communityHelp: 23
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [recentAchievements, setRecentAchievements] = useState<RecentAchievement[]>([
     {
       id: '1',

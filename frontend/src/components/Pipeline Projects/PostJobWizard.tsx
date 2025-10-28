@@ -49,6 +49,7 @@ const PostJobWizard: React.FC = () => {
                 source: parsedDraft.source
             });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []); // Remove analytics from dependency array since it's a singleton
 
     const StepProgressIndicator = () => (

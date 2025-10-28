@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import '../styles/Code Contributions/CodeContributionsPage.css';
 import RepositoryInfo from '../components/Code Contributions/RepositoryInfo';
 import BountyList from '../components/Code Contributions/BountyList';

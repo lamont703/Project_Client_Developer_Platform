@@ -152,6 +152,7 @@ const ProtoHub: React.FC = () => {
         
         // Track ProtoHub opened
         Analytics.getInstance().trackProtoHubOpened();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const filteredQuestions = questions.filter(question => {
