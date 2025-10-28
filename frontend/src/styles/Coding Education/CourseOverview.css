@@ -1,6 +1,6 @@
 .course-overview {
   background: white;
-  padding: 6rem 0;
+  padding: 5rem 0;
 }
 
 .overview-container {
@@ -12,6 +12,10 @@
 .section-header {
   text-align: center;
   margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .section-title {
@@ -19,6 +23,9 @@
   font-weight: 700;
   color: #2d3748;
   margin-bottom: 1rem;
+  text-align: center !important;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .section-subtitle {
@@ -27,11 +34,12 @@
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
+  text-align: center;
 }
 
 .modules-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
   margin-bottom: 4rem;
 }
@@ -44,6 +52,9 @@
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .module-card::before {
@@ -78,12 +89,15 @@
   color: #718096;
   margin-bottom: 1.5rem;
   line-height: 1.6;
+  flex-grow: 1;
+  min-height: 48px;
 }
 
 .module-topics {
   list-style: none;
   padding: 0;
   margin: 0;
+  flex-grow: 1;
 }
 
 .topic-item {
@@ -131,37 +145,181 @@
   opacity: 0.9;
 }
 
+@media (min-width: 769px) and (max-width: 1024px) {
+  .modules-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
+  }
+  
+  .module-card {
+    padding: 1.75rem;
+  }
+}
+
 @media (max-width: 768px) {
   .course-overview {
     padding: 4rem 0;
   }
   
+  .overview-container {
+    padding: 0 1.5rem;
+  }
+  
+  .section-header {
+    margin-bottom: 3rem;
+    padding: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
   .section-title {
     font-size: 2rem;
+    line-height: 1.2;
+    margin-bottom: 0;
+    text-align: center !important;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  
+  .section-subtitle {
+    font-size: 1rem;
+    margin: 0 auto;
+    max-width: 100%;
+    line-height: 1.5;
+    width: 100%;
+    text-align: center !important;
+    display: block;
   }
   
   .modules-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+    margin-bottom: 3rem;
   }
   
   .module-card {
     padding: 1.5rem;
   }
   
+  .module-icon {
+    font-size: 2.5rem;
+  }
+  
+  .module-title {
+    font-size: 1.3rem;
+  }
+  
   .course-stats {
     grid-template-columns: repeat(2, 1fr);
     padding: 2rem 1rem;
+    gap: 1.5rem;
   }
   
   .stat-number {
     font-size: 2.5rem;
   }
+  
+  .stat-label {
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 480px) {
+  .course-overview {
+    padding: 3rem 0;
+  }
+  
+  .overview-container {
+    padding: 0 0.5rem;
+    text-align: center;
+  }
+  
+  .section-header {
+    margin-bottom: 2rem;
+    text-align: center !important;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    box-sizing: border-box;
+    position: relative;
+  }
+  
+  .section-title {
+    font-size: 1.75rem;
+    line-height: 1.3;
+    margin-bottom: 0;
+    text-align: center !important;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding: 0;
+  }
+  
+  .section-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0 auto;
+    max-width: 100%;
+    width: 100%;
+    text-align: center !important;
+    display: block;
+    padding: 0;
+  }
+  
+  .modules-grid {
+    gap: 1rem;
+  }
+  
+  .module-card {
+    padding: 1.25rem;
+  }
+  
+  .module-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .module-title {
+    font-size: 1.2rem;
+  }
+  
+  .module-description {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+  
+  .topic-item {
+    font-size: 0.9rem;
+    padding: 0.4rem 0;
+  }
+  
   .course-stats {
     grid-template-columns: 1fr;
     gap: 1rem;
+    padding: 1.5rem 1rem;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+  }
+  
+  .stat-label {
+    font-size: 0.85rem;
   }
 }

@@ -1,6 +1,6 @@
 .testimonials {
   background: white;
-  padding: 6rem 0;
+  padding: 5rem 0;
 }
 
 .testimonials-container {
@@ -137,12 +137,13 @@
   background: white;
   color: #667eea;
   text-decoration: none;
-  padding: 1rem 2rem;
-  border-radius: 8px;
+  border: 2px solid transparent;
+  border-radius: 50px;
   font-weight: 600;
+  cursor: pointer;
+  padding: 1rem 2rem;
   font-size: 1.1rem;
   transition: all 0.3s ease;
-  border: 2px solid transparent;
 }
 
 .cta-button:hover {
@@ -152,13 +153,38 @@
   transform: translateY(-2px);
 }
 
+@media (min-width: 769px) and (max-width: 1024px) {
+  .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
+  }
+  
+  .testimonial-card {
+    padding: 1.75rem;
+  }
+}
+
 @media (max-width: 768px) {
   .testimonials {
     padding: 4rem 0;
   }
   
+  .testimonials-container {
+    padding: 0 1.5rem;
+  }
+  
+  .section-header {
+    margin-bottom: 3rem;
+    padding: 0;
+  }
+  
   .section-title {
     font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  .section-subtitle {
+    font-size: 1.1rem;
   }
   
   .testimonials-grid {
@@ -170,6 +196,21 @@
     padding: 1.5rem;
   }
   
+  .quote-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .testimonial-text {
+    font-size: 1rem;
+  }
+  
+  .author-avatar {
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+  }
+  
   .testimonials-cta {
     padding: 2rem 1rem;
   }
@@ -177,16 +218,92 @@
   .testimonials-cta h3 {
     font-size: 1.5rem;
   }
+  
+  .testimonials-cta p {
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
+  .testimonials {
+    padding: 3rem 0;
+  }
+  
+  .testimonials-container {
+    padding: 0 1rem;
+  }
+  
+  .section-header {
+    margin-bottom: 2rem;
+  }
+  
+  .section-title {
+    font-size: 1.75rem;
+  }
+  
+  .section-subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .testimonials-grid {
+    gap: 1rem;
+  }
+  
+  .testimonial-card {
+    padding: 1.25rem;
+  }
+  
+  .quote-icon {
+    font-size: 2rem;
+  }
+  
+  .testimonial-text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
   .testimonial-author {
-    flex-direction: column;
-    text-align: center;
+    flex-direction: row;
+    text-align: left;
     gap: 0.75rem;
   }
   
+  .author-avatar {
+    font-size: 1.75rem;
+    width: 45px;
+    height: 45px;
+  }
+  
   .author-info {
-    text-align: center;
+    flex: 1;
+  }
+  
+  .author-name {
+    font-size: 0.95rem;
+  }
+  
+  .author-role {
+    font-size: 0.85rem;
+  }
+  
+  .author-company {
+    font-size: 0.8rem;
+  }
+  
+  .testimonials-cta {
+    padding: 1.5rem 1rem;
+  }
+  
+  .testimonials-cta h3 {
+    font-size: 1.25rem;
+  }
+  
+  .testimonials-cta p {
+    font-size: 0.95rem;
+  }
+  
+  .cta-button {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
   }
 }

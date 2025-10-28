@@ -46,14 +46,14 @@ const WaitlistForm: React.FC = () => {
           <div className="success-message">
             <div className="success-icon">🎉</div>
             <h2>You're on the waitlist!</h2>
-            <p>Thank you for your interest in our AI Coding Education Course. We'll be in touch soon with more details about the program.</p>
+            <p>Thank you for your interest in Lamont's One-on-One Full-Stack Developer Program. We'll be in touch soon with more details about personalized coaching.</p>
             <div className="next-steps">
               <h3>What's next?</h3>
               <ul>
-                <li>We'll review your application</li>
-                <li>Send you detailed course information</li>
-                <li>Schedule a brief interview</li>
-                <li>Confirm your spot in the program</li>
+                <li>Lamont will review your application personally</li>
+                <li>Receive detailed program information</li>
+                <li>Schedule a 1-on-1 consultation</li>
+                <li>Confirm your spot in the 8-week program</li>
               </ul>
             </div>
           </div>
@@ -66,9 +66,9 @@ const WaitlistForm: React.FC = () => {
     <section className="waitlist-form">
       <div className="form-container">
         <div className="form-header">
-          <h2 className="form-title">Join the Waitlist</h2>
+          <h2 className="form-title">Join Lamont's Program</h2>
           <p className="form-subtitle">
-            Be among the first to experience our revolutionary AI-powered coding education
+            Practical, conversational, and results-focused coaching to build confidence, skills, and a professional portfolio
           </p>
         </div>
         

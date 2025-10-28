@@ -4,22 +4,28 @@ import '../../styles/Coding Education/CourseOverview.css';
 const CourseOverview: React.FC = () => {
   const modules = [
     {
-      title: "Frontend Development",
+      title: "Frontend Foundations",
       icon: "🎨",
-      description: "Master React, TypeScript, and modern frontend frameworks",
-      topics: ["React & TypeScript", "State Management", "UI/UX Design", "Responsive Design"]
+      description: "Learn HTML, CSS, and JavaScript essentials with hands-on practice",
+      topics: ["HTML & CSS Basics", "JavaScript Fundamentals", "DOM Manipulation", "Responsive Design"]
     },
     {
       title: "Backend Development",
       icon: "⚙️",
-      description: "Build robust APIs and server-side applications",
-      topics: ["Node.js & Express", "Database Design", "API Development", "Authentication"]
+      description: "Build and connect to databases using Supabase",
+      topics: ["Database Design", "Supabase Integration", "API Development", "Data Modeling"]
     },
     {
-      title: "Deployment & DevOps",
+      title: "Full-Stack Integration",
+      icon: "🔗",
+      description: "Link frontend and backend to build real web apps",
+      topics: ["Frontend-Backend Connection", "State Management", "Authentication", "Real-time Features"]
+    },
+    {
+      title: "Deployment",
       icon: "🚀",
-      description: "Deploy applications and manage production environments",
-      topics: ["Cloud Platforms", "CI/CD Pipelines", "Monitoring", "Scaling"]
+      description: "Host projects live using Vercel and GitHub",
+      topics: ["GitHub for Version Control", "Vercel Deployment", "Live Site Management", "Domain Setup"]
     }
   ];
 
@@ -29,7 +35,7 @@ const CourseOverview: React.FC = () => {
         <div className="section-header">
           <h2 className="section-title">What You'll Learn</h2>
           <p className="section-subtitle">
-            A comprehensive curriculum designed to take you from beginner to job-ready developer
+            Practical, hands-on learning designed to take you from complete beginner to deploying your own live web application
           </p>
         </div>
         
@@ -53,20 +59,20 @@ const CourseOverview: React.FC = () => {
         
         <div className="course-stats">
           <div className="stat-item">
-            <div className="stat-number">12</div>
+            <div className="stat-number">8</div>
             <div className="stat-label">Weeks</div>
           </div>
           <div className="stat-item">
-            <div className="stat-number">40+</div>
-            <div className="stat-label">Hours</div>
+            <div className="stat-number">1-on-1</div>
+            <div className="stat-label">Coaching</div>
           </div>
           <div className="stat-item">
-            <div className="stat-number">3</div>
-            <div className="stat-label">Projects</div>
+            <div className="stat-number">1</div>
+            <div className="stat-label">Live App</div>
           </div>
           <div className="stat-item">
-            <div className="stat-number">1:1</div>
-            <div className="stat-label">Mentorship</div>
+            <div className="stat-number">3+ Years</div>
+            <div className="stat-label">Expertise</div>
           </div>
         </div>
       </div>
