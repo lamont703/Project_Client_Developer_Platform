@@ -1,5 +1,5 @@
 import React from 'react';
-import { PipelineStats as PipelineStatsType } from '../../pages/PipelineDashboardPage';
+import { PipelineStatsData as PipelineStatsType } from '../../pages/PipelineDashboardPage';
 import '../../styles/Pipeline Dashboard/PipelineStats.css';
 
 interface PipelineStatsProps {

@@ -35,7 +35,7 @@ export interface PipelineStage {
   conversionRate: number;
 }
 
-export interface PipelineStats {
+export interface PipelineStatsData {
   totalOpportunities: number;
   totalValue: number;
   averageDealSize: number;
@@ -51,7 +51,7 @@ interface PipelineDashboardPageProps {
 const PipelineDashboardPage: React.FC<PipelineDashboardPageProps> = ({ navigateToHome }) => {
   const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
   const [pipelineStages, setPipelineStages] = useState<PipelineStage[]>([]);
-  const [stats, setStats] = useState<PipelineStats>({
+  const [stats, setStats] = useState<PipelineStatsData>({
     totalOpportunities: 0,
     totalValue: 0,
     averageDealSize: 0,
@@ -70,6 +70,7 @@ const PipelineDashboardPage: React.FC<PipelineDashboardPageProps> = ({ navigateT
 
   useEffect(() => {
     fetchPipelineData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchPipelineData = async () => {

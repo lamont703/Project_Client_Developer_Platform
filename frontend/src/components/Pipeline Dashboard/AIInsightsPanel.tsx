@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Opportunity, PipelineStage, PipelineStats } from '../../pages/PipelineDashboardPage';
+import { Opportunity, PipelineStage, PipelineStatsData } from '../../pages/PipelineDashboardPage';
 import '../../styles/Pipeline Dashboard/AIInsightsPanel.css';
 
 interface AIInsightsPanelProps {
   opportunities: Opportunity[];
   stages: PipelineStage[];
-  stats: PipelineStats;
+  stats: PipelineStatsData;
 }
 
 interface AIInsight {

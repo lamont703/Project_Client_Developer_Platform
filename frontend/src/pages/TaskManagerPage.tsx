@@ -306,6 +306,7 @@ const TaskManagerPage: React.FC<TaskManagerPageProps> = ({ navigateToHome }) => 
   // Load tasks on component mount
   useEffect(() => {
     fetchTasks();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Apply filters when tasks or filters change
@@ -313,6 +314,7 @@ const TaskManagerPage: React.FC<TaskManagerPageProps> = ({ navigateToHome }) => 
     const filtered = applyFilters(tasks, filters);
     setFilteredTasks(filtered);
     setStats(calculateStats(filtered));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tasks, filters, currentUser, selectedDeveloper]);
 
   return (
