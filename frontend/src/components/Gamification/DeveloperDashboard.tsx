@@ -22,6 +22,7 @@ interface RecentAchievement {
 }
 
 const DeveloperDashboard: React.FC = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [stats, setStats] = useState<DeveloperStats>({
     totalPoints: 1250,
     currentLevel: 3,

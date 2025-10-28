@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../../styles/Gamification/Leaderboard.css';
 
 interface LeaderboardEntry {
@@ -13,6 +13,7 @@ interface LeaderboardEntry {
 }
 
 const Leaderboard: React.FC = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([
     {
       id: '1',

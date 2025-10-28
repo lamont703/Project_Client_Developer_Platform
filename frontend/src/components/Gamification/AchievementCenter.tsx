@@ -15,6 +15,7 @@ interface Achievement {
 
 const AchievementCenter: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [achievements, setAchievements] = useState<Achievement[]>([
     {
       id: '1',

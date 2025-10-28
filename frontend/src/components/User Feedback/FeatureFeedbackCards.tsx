@@ -13,6 +13,7 @@ interface FeatureData {
 }
 
 const FeatureFeedbackCards: React.FC = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [features, setFeatures] = useState<FeatureData[]>([
     {
       id: 'ai-assistant',

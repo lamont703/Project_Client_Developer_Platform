@@ -11,7 +11,6 @@ interface HomePageProps {
 }
 
 const CodeContributionsPage: React.FC<HomePageProps> = ({ navigateToHome }) => {
-  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('overview');
   const [isQuickActionsExpanded, setIsQuickActionsExpanded] = useState(false);
 
