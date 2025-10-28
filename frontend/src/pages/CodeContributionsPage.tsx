@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Code Contributions/CodeContributionsPage.css';
 import RepositoryInfo from '../components/Code Contributions/RepositoryInfo';
@@ -15,20 +15,11 @@ const CodeContributionsPage: React.FC<HomePageProps> = ({ navigateToHome }) => {
   const [activeTab, setActiveTab] = useState('overview');
   const [isQuickActionsExpanded, setIsQuickActionsExpanded] = useState(false);
 
-  const handleNavigation = (route: string) => {
-    try {
-      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-      navigate(route);
-    } catch (error) {
-      console.error('CodeContributionsPage navigation error:', error);
-      window.location.hash = `#${route}`;
-    }
-  };
-
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const toggleQuickActions = () => {
     setIsQuickActionsExpanded(!isQuickActionsExpanded);
   };

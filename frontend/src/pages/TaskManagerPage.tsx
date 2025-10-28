@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { API_CONFIG } from '../utils/apiConfig';
 import { TaskList } from '../components/Task Manager/TaskList';
-import { TaskFilters } from '../components/Task Manager/TaskFilters';
-import { TaskStats } from '../components/Task Manager/TaskStats';
+import { TaskFilters as TaskFiltersComponent } from '../components/Task Manager/TaskFilters';
+import { TaskStats as TaskStatsComponent } from '../components/Task Manager/TaskStats';
 import { TaskManagerHeader } from '../components/Task Manager/TaskManagerHeader';
 import { DeveloperTabs } from '../components/Task Manager/DeveloperTabs';
 import '../styles/Task Manager/TaskManagerPage.css';
@@ -268,6 +268,7 @@ const TaskManagerPage: React.FC<TaskManagerPageProps> = ({ navigateToHome }) => 
   };
 
   // Update task status
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const updateTaskStatus = async (taskId: string, completed: boolean) => {
     try {
       const response = await fetch(API_CONFIG.getUrl(`/tasks/${taskId}/status`), {
@@ -327,13 +328,13 @@ const TaskManagerPage: React.FC<TaskManagerPageProps> = ({ navigateToHome }) => 
       
       <div className="task-manager-content">
         <div className="task-manager-sidebar">
-          <TaskFilters 
+          <TaskFiltersComponent 
             filters={filters}
             onFilterChange={handleFilterChange}
             tasks={tasks}
           />
           
-          <TaskStats 
+          <TaskStatsComponent 
             stats={stats}
             isLoading={isLoading}
           />
