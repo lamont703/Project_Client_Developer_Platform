@@ -2,3 +2,7 @@ export { default as WaitlistHero } from './WaitlistHero';
 export { default as CourseOverview } from './CourseOverview';
 export { default as WaitlistForm } from './WaitlistForm';
 export { default as Testimonials } from './Testimonials';
+export { default as LearningSetupGuide } from './LearningSetupGuide';
+export { default as IntroVideo } from './IntroVideo';
+export { default as HeroVideo } from './HeroVideo';
+export { default as CodingEducationFooter } from './CodingEducationFooter';

@@ -1,0 +1,331 @@
+.hero-video-container {
+  margin: 3rem 0 0;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-video-preview {
+  display: flex;
+  gap: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
+}
+
+.hero-video-preview:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(102, 126, 234, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.hero-video-thumbnail {
+  flex-shrink: 0;
+  position: relative;
+  width: 280px;
+  height: 158px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-play-button {
+  z-index: 2;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.hero-video-preview:hover .hero-play-button {
+  transform: scale(1.15);
+}
+
+.video-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-badge {
+  background: rgba(255, 255, 255, 0.95);
+  color: #667eea;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.hero-video-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.hero-video-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0;
+}
+
+.hero-video-description {
+  font-size: 1rem;
+  color: #4a5568;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.video-topics-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.topic-preview-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  background: rgba(102, 126, 234, 0.05);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.hero-video-preview:hover .topic-preview-item {
+  background: rgba(102, 126, 234, 0.1);
+  transform: translateX(4px);
+}
+
+.topic-icon {
+  font-size: 1.2rem;
+  width: 32px;
+  text-align: center;
+}
+
+.topic-text {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.video-duration-hint {
+  font-size: 0.9rem;
+  color: #718096;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hero-video-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+  backdrop-filter: blur(4px);
+}
+
+.hero-video-modal-content {
+  background: white;
+  border-radius: 20px;
+  max-width: 1000px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4);
+  animation: heroSlideIn 0.4s ease;
+}
+
+@keyframes heroSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.hero-video-close-button {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  font-size: 1.75rem;
+  color: #4a5568;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.hero-video-close-button:hover {
+  background: #f7fafc;
+  transform: scale(1.1) rotate(90deg);
+  color: #2d3748;
+}
+
+.hero-video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  background: #000;
+  border-radius: 20px 20px 0 0;
+}
+
+.hero-video-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.hero-video-cta {
+  padding: 2.5rem;
+  text-align: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 0 0 20px 20px;
+}
+
+.hero-video-cta-text {
+  font-size: 1.1rem;
+  color: white;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  opacity: 0.95;
+}
+
+.hero-video-cta-button {
+  display: inline-block;
+  background: white;
+  color: #667eea;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.hero-video-cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  background: #f7fafc;
+}
+
+.hero-video-watched-badge {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  color: white;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
+}
+
+@media (max-width: 768px) {
+  .hero-video-container {
+    margin: 2rem 0 0;
+  }
+
+  .hero-video-preview {
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .hero-video-thumbnail {
+    width: 100%;
+    height: 200px;
+  }
+
+  .hero-video-title {
+    font-size: 1.25rem;
+  }
+
+  .hero-video-description {
+    font-size: 0.95rem;
+  }
+
+  .video-topics-preview {
+    gap: 0.5rem;
+  }
+
+  .topic-preview-item {
+    padding: 0.4rem;
+  }
+
+  .topic-icon {
+    font-size: 1rem;
+    width: 28px;
+  }
+
+  .topic-text {
+    font-size: 0.9rem;
+  }
+
+  .hero-video-modal-content {
+    margin: 1rem;
+    max-width: calc(100% - 2rem);
+  }
+
+  .hero-video-close-button {
+    top: -12px;
+    right: -12px;
+    width: 38px;
+    height: 38px;
+    font-size: 1.5rem;
+  }
+
+  .hero-video-cta {
+    padding: 2rem 1.5rem;
+  }
+
+  .hero-video-cta-text {
+    font-size: 1rem;
+  }
+
+  .hero-video-cta-button {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+  }
+}
+

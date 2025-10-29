@@ -30,7 +30,7 @@ const CourseOverview: React.FC = () => {
   ];
 
   return (
-    <section className="course-overview">
+    <section id="course-overview" className="course-overview">
       <div className="overview-container">
         <div className="section-header">
           <h2 className="section-title">What You'll Learn</h2>

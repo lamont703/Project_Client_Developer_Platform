@@ -1,31 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../styles/Coding Education/CodingEducationPage.css';
-import { WaitlistHero, CourseOverview, Testimonials } from '../components/Coding Education';
+import { WaitlistHero, CourseOverview, Testimonials, LearningSetupGuide, CodingEducationFooter } from '../components/Coding Education';
 
 interface CodingEducationPageProps {
   navigateToHome?: () => void;
 }
 
 const CodingEducationPage: React.FC<CodingEducationPageProps> = ({ navigateToHome }) => {
-  const [showWaitlistModal, setShowWaitlistModal] = useState(false);
-
-  const handleOpenWaitlist = () => {
-    setShowWaitlistModal(true);
-  };
-
-  const handleCloseWaitlist = () => {
-    setShowWaitlistModal(false);
-  };
-
   return (
     <div className="coding-education-page">
-      <WaitlistHero 
-        showWaitlistModal={showWaitlistModal}
-        handleOpenWaitlist={handleOpenWaitlist}
-        handleCloseWaitlist={handleCloseWaitlist}
-      />
+      <WaitlistHero />
+      <LearningSetupGuide />
       <CourseOverview />
-      <Testimonials onJoinWaitlist={handleOpenWaitlist} />
+      <Testimonials />
+      <CodingEducationFooter />
     </div>
   );
 };

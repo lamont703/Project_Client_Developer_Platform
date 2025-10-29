@@ -1,11 +1,7 @@
 import React from 'react';
 import '../../styles/Coding Education/Testimonials.css';
 
-interface TestimonialsProps {
-  onJoinWaitlist?: () => void;
-}
-
-const Testimonials: React.FC<TestimonialsProps> = ({ onJoinWaitlist }) => {
+const Testimonials: React.FC = () => {
   const testimonials = [
     {
       name: "Alex Martinez",
@@ -57,12 +53,6 @@ const Testimonials: React.FC<TestimonialsProps> = ({ onJoinWaitlist }) => {
               </div>
             </div>
           ))}
-        </div>
-        
-        <div className="testimonials-cta">
-          <h3>Ready to Build Your First Live App?</h3>
-          <p>Join beginners who went from zero to deployed applications with Lamont's personalized 8-week program.</p>
-          <button onClick={onJoinWaitlist} className="cta-button">Join the Waitlist</button>
         </div>
       </div>
     </section>
