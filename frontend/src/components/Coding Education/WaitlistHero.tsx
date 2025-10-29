@@ -2,7 +2,11 @@ import React from 'react';
 import '../../styles/Coding Education/WaitlistHero.css';
 import HeroVideo from './HeroVideo';
 
-const WaitlistHero: React.FC = () => {
+interface WaitlistHeroProps {
+  onScheduleClick?: () => void;
+}
+
+const WaitlistHero: React.FC<WaitlistHeroProps> = ({ onScheduleClick }) => {
   return (
     <section className="waitlist-hero">
       <div className="hero-container">
@@ -16,7 +20,7 @@ const WaitlistHero: React.FC = () => {
           Hands-on instruction, real-world projects, and modern development tools with personalized 1-on-1 coaching.
         </p>
         
-        <HeroVideo />
+        <HeroVideo onScheduleClick={onScheduleClick} />
       </div>
     </section>
   );

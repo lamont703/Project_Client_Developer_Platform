@@ -4,9 +4,10 @@ import '../../styles/Coding Education/IntroVideo.css';
 interface IntroVideoProps {
   videoId: string;
   title: string;
+  onScheduleClick?: () => void;
 }
 
-const IntroVideo: React.FC<IntroVideoProps> = ({ videoId, title }) => {
+const IntroVideo: React.FC<IntroVideoProps> = ({ videoId, title, onScheduleClick }) => {
   const [showVideo, setShowVideo] = useState(false);
   const [watched, setWatched] = useState(false);
 
@@ -68,15 +69,15 @@ const IntroVideo: React.FC<IntroVideoProps> = ({ videoId, title }) => {
               <p className="video-cta-text">
                 After watching, schedule a call with Lamont to discuss this topic and plan your next steps.
               </p>
-              <a 
-                href="https://calendly.com/lamont-evans" 
-                target="_blank" 
-                rel="noopener noreferrer"
+              <button 
                 className="video-cta-button"
-                onClick={(e) => e.stopPropagation()}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (onScheduleClick) onScheduleClick();
+                }}
               >
                 Schedule a Call with Lamont →
-              </a>
+              </button>
             </div>
           </div>
         </div>

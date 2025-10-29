@@ -12,7 +12,11 @@ interface SetupStep {
   completed: boolean;
 }
 
-const LearningSetupGuide: React.FC = () => {
+interface LearningSetupGuideProps {
+  onScheduleClick?: () => void;
+}
+
+const LearningSetupGuide: React.FC<LearningSetupGuideProps> = ({ onScheduleClick }) => {
   const [completedSteps, setCompletedSteps] = useState<Set<string>>(new Set());
   const progressFillRef = useRef<HTMLDivElement>(null);
 
@@ -154,6 +158,7 @@ const LearningSetupGuide: React.FC = () => {
                 <IntroVideo
                   videoId={step.videoId}
                   title={step.videoTitle || step.title}
+                  onScheduleClick={onScheduleClick}
                 />
               )}
 
@@ -176,14 +181,12 @@ const LearningSetupGuide: React.FC = () => {
             Once you've completed the setup steps above, schedule your first 1-on-1 session with Lamont.
             We'll review your progress and dive right into building your first project!
           </p>
-          <a 
-            href="https://calendly.com/lamont-evans" 
-            target="_blank" 
-            rel="noopener noreferrer"
+          <button 
+            onClick={onScheduleClick}
             className="cta-button"
           >
             Schedule Your First Session →
-          </a>
+          </button>
         </div>
       </div>
     </section>

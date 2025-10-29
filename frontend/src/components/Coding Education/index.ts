@@ -6,3 +6,4 @@ export { default as LearningSetupGuide } from './LearningSetupGuide';
 export { default as IntroVideo } from './IntroVideo';
 export { default as HeroVideo } from './HeroVideo';
 export { default as CodingEducationFooter } from './CodingEducationFooter';
+export { default as BookingModal } from './BookingModal';

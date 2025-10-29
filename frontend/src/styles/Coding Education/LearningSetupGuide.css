@@ -234,6 +234,9 @@
   font-weight: 600;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
 }
 
 .cta-button:hover {

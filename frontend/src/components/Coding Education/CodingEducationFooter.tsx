@@ -1,7 +1,11 @@
 import React from 'react';
 import '../../styles/Coding Education/CodingEducationFooter.css';
 
-const CodingEducationFooter: React.FC = () => {
+interface CodingEducationFooterProps {
+  onScheduleClick?: () => void;
+}
+
+const CodingEducationFooter: React.FC<CodingEducationFooterProps> = ({ onScheduleClick }) => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -19,14 +23,12 @@ const CodingEducationFooter: React.FC = () => {
             <h4 className="footer-heading">Get Started</h4>
             <ul className="footer-links">
               <li>
-                <a 
-                  href="https://calendly.com/lamont-evans" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="footer-link"
+                <button 
+                  onClick={onScheduleClick}
+                  className="footer-link footer-link-button"
                 >
                   Schedule Your First Session
-                </a>
+                </button>
               </li>
               <li>
                 <a href="/coding-education" className="footer-link">
@@ -50,14 +52,12 @@ const CodingEducationFooter: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a 
-                  href="https://calendly.com/lamont-evans" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="footer-link"
+                <button 
+                  onClick={onScheduleClick}
+                  className="footer-link footer-link-button"
                 >
                   Book a Consultation
-                </a>
+                </button>
               </li>
             </ul>
           </div>

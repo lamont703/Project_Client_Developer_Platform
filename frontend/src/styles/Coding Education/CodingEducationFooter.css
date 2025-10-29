@@ -87,6 +87,27 @@
   transform: translateX(0);
 }
 
+.footer-link-button {
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.footer-link-button::before {
+  content: '→';
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+}
+
+.footer-link-button:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 .footer-link-text {
   color: #cbd5e0;
   font-size: 0.95rem;

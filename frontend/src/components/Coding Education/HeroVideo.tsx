@@ -3,9 +3,10 @@ import '../../styles/Coding Education/HeroVideo.css';
 
 interface HeroVideoProps {
   videoId?: string; // YouTube video ID or URL
+  onScheduleClick?: () => void;
 }
 
-const HeroVideo: React.FC<HeroVideoProps> = ({ videoId = 'YOUR_HERO_VIDEO_ID' }) => {
+const HeroVideo: React.FC<HeroVideoProps> = ({ videoId = 'YOUR_HERO_VIDEO_ID', onScheduleClick }) => {
   const [showVideo, setShowVideo] = useState(false);
   const [watched, setWatched] = useState(false);
 
@@ -85,15 +86,15 @@ const HeroVideo: React.FC<HeroVideoProps> = ({ videoId = 'YOUR_HERO_VIDEO_ID' })
               <p className="hero-video-cta-text">
                 Ready to start your journey? Schedule your first 1-on-1 session with Lamont.
               </p>
-              <a 
-                href="https://calendly.com/lamont-evans" 
-                target="_blank" 
-                rel="noopener noreferrer"
+              <button 
                 className="hero-video-cta-button"
-                onClick={(e) => e.stopPropagation()}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (onScheduleClick) onScheduleClick();
+                }}
               >
                 Schedule Your First Session →
-              </a>
+              </button>
             </div>
           </div>
         </div>

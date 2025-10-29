@@ -1,0 +1,354 @@
+.booking-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 1rem;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease;
+  /* On mobile, overlay should not interfere with touches inside modal */
+  touch-action: none;
+}
+
+@media (max-width: 768px) {
+  .booking-modal-overlay {
+    /* On mobile, only allow touches to pass through to modal content */
+    pointer-events: auto;
+  }
+}
+
+/* Ensure modal content and iframe can receive touch events */
+.booking-modal-content {
+  pointer-events: auto;
+}
+
+.booking-iframe-container {
+  pointer-events: auto;
+}
+
+.booking-iframe {
+  pointer-events: auto !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.booking-modal-content {
+  background: white;
+  border-radius: 20px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 95vh;
+  position: relative;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4);
+  animation: slideUp 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Keep modal content from overflowing */
+  pointer-events: auto;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.booking-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #e2e8f0;
+  font-size: 1.75rem;
+  color: #4a5568;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  z-index: 10;
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+
+.booking-modal-close:hover {
+  background: #f7fafc;
+  border-color: #cbd5e0;
+  transform: scale(1.1) rotate(90deg);
+  color: #2d3748;
+}
+
+.booking-modal-header {
+  padding: 2rem 2rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+
+.booking-modal-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 0.5rem;
+}
+
+.booking-modal-subtitle {
+  font-size: 1rem;
+  color: #4a5568;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.booking-iframe-container {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 600px;
+  max-height: calc(95vh - 180px); /* Account for header and padding */
+  touch-action: auto; /* Let iframe handle all touch interactions including scrolling */
+  -webkit-overflow-scrolling: touch;
+  pointer-events: auto;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Ensure container doesn't block iframe touches */
+  isolation: isolate;
+  padding-bottom: 2rem; /* Add padding at bottom to show full calendar */
+}
+
+.booking-iframe {
+  width: 100%;
+  min-height: 900px; /* Increased to show full calendar */
+  height: auto;
+  border: none;
+  display: block;
+  pointer-events: auto !important;
+  touch-action: auto !important;
+  -webkit-user-select: text;
+  user-select: text;
+  /* Ensure iframe is above everything and receives all touches */
+  position: relative;
+  z-index: 1;
+  margin-bottom: 1rem; /* Extra space at bottom */
+}
+
+@media (max-width: 768px) {
+  .booking-modal-overlay {
+    padding: 0;
+    align-items: flex-start; /* Align modal to top on mobile */
+    padding-top: 0;
+  }
+
+  .booking-modal-content {
+    max-width: 100%;
+    max-height: 100vh;
+    border-radius: 0;
+    margin: 0;
+    width: 100%;
+    animation: slideUpMobile 0.4s ease;
+    position: relative;
+    top: 0;
+  }
+
+  @keyframes slideUpMobile {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .booking-modal-header {
+    padding: 1rem 1rem 0.75rem;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 5;
+    border-bottom: 1px solid #e2e8f0;
+    /* Reduce header height to move calendar up */
+    flex-shrink: 0;
+  }
+
+  .booking-modal-title {
+    font-size: 1.35rem;
+    line-height: 1.3;
+  }
+
+  .booking-modal-subtitle {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-top: 0.5rem;
+  }
+
+  .booking-modal-close {
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 36px;
+    height: 36px;
+    font-size: 1.4rem;
+    background: rgba(255, 255, 255, 0.95);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+
+  .booking-iframe-container {
+    min-height: 600px;
+    max-height: calc(100vh - 80px); /* Move calendar up by reducing header space */
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* Smooth scrolling on older iOS devices */
+    -webkit-overflow-scrolling: touch;
+    touch-action: auto; /* Let iframe handle all touches on mobile */
+    pointer-events: auto;
+    /* Critical: Ensure container doesn't interfere with iframe on mobile */
+    overscroll-behavior: contain;
+    margin-top: 0;
+    padding-bottom: 2rem; /* Add padding at bottom to show full calendar */
+  }
+
+  .booking-iframe {
+    min-height: 900px; /* Increased to show full calendar */
+    width: 100%;
+    pointer-events: auto !important;
+    touch-action: auto !important;
+    position: relative;
+    z-index: 10; /* Higher z-index on mobile to ensure it's above everything */
+    margin-bottom: 1rem; /* Extra space at bottom */
+  }
+}
+
+@media (max-width: 480px) {
+  .booking-modal-overlay {
+    padding: 0;
+    align-items: flex-start;
+    /* Critical for small screens: don't interfere with touches */
+    touch-action: none;
+    pointer-events: auto;
+  }
+
+  .booking-modal-content {
+    max-height: 100vh;
+    border-radius: 0;
+    margin: 0;
+    /* Ensure content can receive touches */
+    pointer-events: auto;
+    touch-action: auto;
+  }
+
+  .booking-modal-header {
+    padding: 0.75rem 0.875rem 0.5rem;
+    pointer-events: auto;
+    /* Even smaller header on smallest screens */
+  }
+
+  .booking-modal-title {
+    font-size: 1.2rem;
+    padding-right: 2.5rem; /* Make room for close button */
+  }
+
+  .booking-modal-subtitle {
+    font-size: 0.8rem;
+    padding-right: 2.5rem;
+  }
+
+  .booking-modal-close {
+    top: 0.625rem;
+    right: 0.625rem;
+    width: 32px;
+    height: 32px;
+    font-size: 1.2rem;
+    pointer-events: auto;
+    touch-action: manipulation;
+  }
+
+  .booking-iframe-container {
+    min-height: 500px;
+    max-height: calc(100vh - 70px); /* Move calendar even higher on smallest screens */
+    /* Critical: Allow touches to pass through to iframe on small screens */
+    pointer-events: auto; /* Container allows events but doesn't capture */
+    touch-action: auto; /* Let iframe handle everything */
+    margin-top: 0;
+    padding-bottom: 2rem; /* Add padding at bottom to show full calendar */
+  }
+
+  .booking-iframe {
+    min-height: 800px; /* Increased to show full calendar on small screens */
+    pointer-events: auto !important;
+    touch-action: auto !important;
+    z-index: 20; /* Even higher on smallest screens */
+    margin-bottom: 1rem; /* Extra space at bottom */
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .booking-modal-close {
+    min-width: 44px; /* Minimum touch target size */
+    min-height: 44px;
+    padding: 0.5rem;
+  }
+
+  .booking-iframe-container {
+    scroll-behavior: smooth;
+    /* Smooth scrolling on older iOS devices */
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Landscape mobile optimization */
+@media (max-width: 768px) and (orientation: landscape) {
+  .booking-modal-content {
+    max-height: 98vh;
+  }
+
+  .booking-modal-header {
+    padding: 1rem 1rem 0.75rem;
+  }
+
+  .booking-modal-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .booking-modal-subtitle {
+    font-size: 0.8rem;
+    margin: 0;
+  }
+
+  .booking-iframe-container {
+    max-height: calc(98vh - 90px);
+  }
+
+  .booking-iframe {
+    min-height: 500px;
+  }
+}
+
