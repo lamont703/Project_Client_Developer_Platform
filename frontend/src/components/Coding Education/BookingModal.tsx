@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import '../../styles/Coding Education/BookingModal.css';
 
 interface BookingModalProps {
@@ -7,63 +7,8 @@ interface BookingModalProps {
 }
 
 const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) => {
-  const scriptRef = useRef<HTMLScriptElement | null>(null);
-  const scriptLoadedRef = useRef(false);
-
-  useEffect(() => {
-    // The booking widget iframe works without the script
-    // The script is optional and may cause errors, so we'll skip it for now
-    // The iframe will function perfectly without it
-    scriptLoadedRef.current = true;
-    
-    // Optional: Load script only in production if needed
-    // Uncomment below if you want to attempt script loading with error suppression
-    /*
-    if (!scriptLoadedRef.current && typeof document !== 'undefined') {
-      const existingScript = document.querySelector('script[src*="form_embed.js"]');
-      
-      if (!existingScript && document.body) {
-        const script = document.createElement('script');
-        script.src = 'https://link.msgsndr.com/js/form_embed.js';
-        script.type = 'text/javascript';
-        script.async = true;
-        script.crossOrigin = 'anonymous';
-        
-        // Catch and suppress all errors
-        const originalErrorHandler = window.onerror;
-        window.onerror = (msg, url, line, col, error) => {
-          if (url?.includes('form_embed.js')) {
-            return true; // Suppress error
-          }
-          if (originalErrorHandler) {
-            return originalErrorHandler(msg, url, line, col, error);
-          }
-          return false;
-        };
-        
-        script.onerror = () => {
-          window.onerror = originalErrorHandler;
-          scriptLoadedRef.current = true;
-        };
-        
-        script.onload = () => {
-          window.onerror = originalErrorHandler;
-          scriptLoadedRef.current = true;
-        };
-        
-        try {
-          document.body.appendChild(script);
-          scriptRef.current = script;
-        } catch {
-          window.onerror = originalErrorHandler;
-          scriptLoadedRef.current = true;
-        }
-      } else {
-        scriptLoadedRef.current = true;
-      }
-    }
-    */
-  }, []);
+  // The booking widget iframe works without the external script
+  // The iframe will function perfectly without it
 
   useEffect(() => {
     // Prevent body scroll when modal is open
