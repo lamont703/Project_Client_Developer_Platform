@@ -20,7 +20,6 @@ const CodingEducationPage: React.FC<CodingEducationPageProps> = ({ navigateToHom
   return (
     <div className="coding-education-page">
       <WaitlistHero 
-        navigateToHome={navigateToHome}
         showWaitlistModal={showWaitlistModal}
         handleOpenWaitlist={handleOpenWaitlist}
         handleCloseWaitlist={handleCloseWaitlist}

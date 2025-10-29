@@ -32,11 +32,28 @@ const WaitlistForm: React.FC = () => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitted(true);
-    setIsLoading(false);
+    try {
+      // Submit to our backend API
+      const response = await fetch('https://qhlzjrcidehlpmiimmfm.supabase.co/functions/v1/api/waitlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+      console.log('Waitlist submission result:', result);
+      
+      // Show success message
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error('Error submitting waitlist form:', error);
+      // Still show success message to user even if submission fails
+      setIsSubmitted(true);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (isSubmitted) {

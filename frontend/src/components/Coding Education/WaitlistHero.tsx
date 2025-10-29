@@ -3,31 +3,17 @@ import '../../styles/Coding Education/WaitlistHero.css';
 import WaitlistForm from './WaitlistForm';
 
 interface WaitlistHeroProps {
-  navigateToHome?: () => void;
   showWaitlistModal?: boolean;
   handleOpenWaitlist?: () => void;
   handleCloseWaitlist?: () => void;
 }
 
 const WaitlistHero: React.FC<WaitlistHeroProps> = ({ 
-  navigateToHome, 
   showWaitlistModal: externalShowWaitlistModal,
   handleOpenWaitlist: externalHandleOpenWaitlist,
   handleCloseWaitlist: externalHandleCloseWaitlist
 }) => {
   const [internalShowWaitlistModal, setInternalShowWaitlistModal] = useState(false);
-
-  const handleBackToHome = () => {
-    // Scroll to top immediately
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-    // Navigate to home using the full URL
-    if (navigateToHome) {
-      navigateToHome();
-    } else {
-      // Fallback navigation
-      window.location.href = '/';
-    }
-  };
 
   const handleOpenWaitlist = () => {
     if (externalHandleOpenWaitlist) {
@@ -50,21 +36,6 @@ const WaitlistHero: React.FC<WaitlistHeroProps> = ({
   return (
     <section className="waitlist-hero">
       <div className="hero-container">
-        <div className="page-navigation">
-          <button
-            onClick={handleBackToHome}
-            className="nav-link"
-            style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'white' }}
-          >
-            ← Back to Home
-          </button>
-        </div>
-        
-        <div className="hero-badge">
-          <span className="badge-icon">👨‍💻</span>
-          <span className="badge-text">Lamont Evans' 1-on-1 Full-Stack Program</span>
-        </div>
-        
         <h1 className="hero-title">
           From Zero to Deployed App
           <span className="hero-highlight"> in 8 Weeks</span>

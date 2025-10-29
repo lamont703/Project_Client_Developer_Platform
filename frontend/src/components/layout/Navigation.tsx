@@ -50,7 +50,7 @@ const Navigation: React.FC<NavigationProps> = ({ navigateToHome }) => {
           onClick={() => handleNavClick('/')} 
           className="nav-logo"
         >
-          🚀 AI Project Assistant
+          🚀 XRBlockDev Services
         </button>
         
         {/* Desktop Navigation */}
