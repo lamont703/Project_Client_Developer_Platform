@@ -5,24 +5,27 @@ const Testimonials: React.FC = () => {
   const testimonials = [
     {
       name: "Alex Martinez",
-      role: "Former Marketing Professional",
-      company: "Freelancer",
-      content: "I had zero coding experience when I started. Lamont's practical approach and short sessions made learning manageable. I deployed my first app in 8 weeks!",
-      avatar: "👨‍💼"
+      role: "Freelance Full-Stack Developer",
+      company: "Self-Employed",
+      content: "I had zero coding experience when I started. Just 2 weeks after completing the program and deploying my portfolio project, I landed my first client! The live app I built became the centerpiece of my freelance pitch.",
+      avatar: "👨‍💼",
+      highlight: "FIRST CLIENT IN 2 WEEKS"
     },
     {
       name: "Jordan Taylor",
-      role: "Entrepreneur",
-      company: "Tech Startup",
-      content: "The 1-on-1 coaching was exactly what I needed. Lamont breaks down complex concepts into small, digestible chunks. I now build my own apps!",
-      avatar: "👩‍💼"
+      role: "Freelance Web Developer",
+      company: "Tech Consultant",
+      content: "The program didn't just teach me to code—it taught me skills clients actually pay for. My deployed project shows I can handle full-stack work, and that's what gets me hired. I'm now taking on multiple projects!",
+      avatar: "👩‍💼",
+      highlight: "MULTIPLE CLIENTS, FULL-STACK PRO"
     },
     {
       name: "Sam Williams",
-      role: "Creative Professional",
-      company: "Freelance Designer",
-      content: "Lamont's teaching style is conversational and results-focused. Every session taught me something new I could immediately use. The personal mentorship is unmatched.",
-      avatar: "🎨"
+      role: "Freelance Developer",
+      company: "Design & Development",
+      content: "I went from freelance designer to full-stack freelancer. Lamont's approach of building a real, deployed app gave me the confidence and portfolio piece I needed to charge professional rates.",
+      avatar: "🎨",
+      highlight: "UPGRADED FROM DESIGNER TO DEVELOPER"
     }
   ];
 
@@ -30,9 +33,9 @@ const Testimonials: React.FC = () => {
     <section className="testimonials">
       <div className="testimonials-container">
         <div className="section-header">
-          <h2 className="section-title">Success Stories from Complete Beginners</h2>
+          <h2 className="section-title">Success Stories: From Zero to Freelancing</h2>
           <p className="section-subtitle">
-            Hear from people who went from zero coding experience to building their own live web applications
+            Hear from people who went from zero coding experience to landing freelance clients and building real client projects
           </p>
         </div>
         
@@ -49,6 +52,9 @@ const Testimonials: React.FC = () => {
                   <div className="author-name">{testimonial.name}</div>
                   <div className="author-role">{testimonial.role}</div>
                   <div className="author-company">{testimonial.company}</div>
+                  {testimonial.highlight && (
+                    <div className="author-highlight">{testimonial.highlight}</div>
+                  )}
                 </div>
               </div>
             </div>

@@ -107,6 +107,21 @@ const LearningSetupGuide: React.FC<LearningSetupGuideProps> = ({ onScheduleClick
       videoId: 'YOUR_VIDEO_ID_5', // Replace with actual video ID
       videoTitle: 'Organizing Your Learning Space',
       completed: false
+    },
+    {
+      id: 'freelance-foundation',
+      title: 'Set Up Your Freelancer Foundation',
+      description: 'Prepare your professional presence while you learn. This foundation will support your freelance journey.',
+      steps: [
+        'Create or update your LinkedIn profile (if you don\'t have one)',
+        'Prepare a professional email address for client communication',
+        'Think about your professional brand: what makes you unique?',
+        'Set up a calendar system for scheduling (we\'ll use this for sessions and future client calls)',
+        'Create a simple "Portfolio Coming Soon" page concept (we\'ll build the real one!)'
+      ],
+      videoId: 'YOUR_VIDEO_ID_6', // Replace with actual video ID
+      videoTitle: 'Building Your Freelancer Foundation',
+      completed: false
     }
   ];
 

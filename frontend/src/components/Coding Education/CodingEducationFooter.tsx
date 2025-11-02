@@ -40,6 +40,29 @@ const CodingEducationFooter: React.FC<CodingEducationFooterProps> = ({ onSchedul
                   Course Overview
                 </a>
               </li>
+              <li>
+                <a href="/coding-education#freelance-skills" className="footer-link">
+                  Freelance Resources
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div className="footer-section">
+            <h4 className="footer-heading">Freelancing Resources</h4>
+            <ul className="footer-links">
+              <li>
+                <span className="footer-link-text">Portfolio Building</span>
+              </li>
+              <li>
+                <span className="footer-link-text">Client Acquisition Tips</span>
+              </li>
+              <li>
+                <span className="footer-link-text">Pricing Guidance</span>
+              </li>
+              <li>
+                <span className="footer-link-text">Ongoing Mentorship</span>
+              </li>
             </ul>
           </div>
 

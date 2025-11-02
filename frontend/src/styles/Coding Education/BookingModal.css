@@ -231,7 +231,7 @@
     /* Critical: Ensure container doesn't interfere with iframe on mobile */
     overscroll-behavior: contain;
     margin-top: 0;
-    padding-bottom: 2rem; /* Add padding at bottom to show full calendar */
+    padding-bottom: 4rem; /* Increased padding to ensure button is not clipped */
   }
 
   .booking-iframe {
@@ -241,7 +241,8 @@
     touch-action: auto !important;
     position: relative;
     z-index: 10; /* Higher z-index on mobile to ensure it's above everything */
-    margin-bottom: 1rem; /* Extra space at bottom */
+    margin-bottom: 3rem; /* Increased margin to ensure Schedule Meeting button is fully visible */
+    padding-bottom: 2rem; /* Additional padding inside iframe space */
   }
 }
 
@@ -296,7 +297,7 @@
     pointer-events: auto; /* Container allows events but doesn't capture */
     touch-action: auto; /* Let iframe handle everything */
     margin-top: 0;
-    padding-bottom: 2rem; /* Add padding at bottom to show full calendar */
+    padding-bottom: 5rem; /* Increased padding to ensure button is not clipped on small screens */
   }
 
   .booking-iframe {
@@ -304,7 +305,8 @@
     pointer-events: auto !important;
     touch-action: auto !important;
     z-index: 20; /* Even higher on smallest screens */
-    margin-bottom: 1rem; /* Extra space at bottom */
+    margin-bottom: 4rem; /* Increased margin to ensure Schedule Meeting button is fully visible */
+    padding-bottom: 2rem; /* Additional padding inside iframe space */
   }
 }
 
@@ -345,10 +347,13 @@
 
   .booking-iframe-container {
     max-height: calc(98vh - 90px);
+    padding-bottom: 4rem; /* Ensure button is visible in landscape */
   }
 
   .booking-iframe {
     min-height: 500px;
+    margin-bottom: 3rem; /* Space for Schedule Meeting button */
+    padding-bottom: 2rem; /* Additional padding */
   }
 }
 

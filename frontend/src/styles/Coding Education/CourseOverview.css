@@ -87,10 +87,31 @@
 
 .module-description {
   color: #718096;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   line-height: 1.6;
   flex-grow: 1;
   min-height: 48px;
+}
+
+.freelance-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.freelance-badge-icon {
+  font-size: 1rem;
+}
+
+.freelance-badge-text {
+  flex: 1;
 }
 
 .module-topics {

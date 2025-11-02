@@ -11,13 +11,12 @@ const WaitlistHero: React.FC<WaitlistHeroProps> = ({ onScheduleClick }) => {
     <section className="waitlist-hero">
       <div className="hero-container">
         <h1 className="hero-title">
-          From Zero to Deployed App
+          From Zero to Freelance Full-Stack Developer
           <span className="hero-highlight"> in 8 Weeks</span>
         </h1>
         
         <p className="hero-subtitle">
-          Take complete beginners from zero coding experience to deploying their own live web application. 
-          Hands-on instruction, real-world projects, and modern development tools with personalized 1-on-1 coaching.
+          Learn the full-stack skills that clients actually hire for. Build a real, deployed application you can showcase to potential clients—while getting personalized 1-on-1 coaching designed to prepare you for freelance success.
         </p>
         
         <HeroVideo onScheduleClick={onScheduleClick} />
