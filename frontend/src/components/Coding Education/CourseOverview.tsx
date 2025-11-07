@@ -247,9 +247,9 @@ const CourseOverview: React.FC = () => {
                         <li key={index} className="week-list-item deliverable-item">
                           <span className="deliverable-check">✓</span>
                           {item}
-                        </li>
-                      ))}
-                    </ul>
+                  </li>
+                ))}
+              </ul>
                   </div>
                 </div>
               )}
