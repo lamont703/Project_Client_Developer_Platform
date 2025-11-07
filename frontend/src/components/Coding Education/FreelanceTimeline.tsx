@@ -34,9 +34,9 @@ const FreelanceTimeline: React.FC = () => {
     {
       week: 'Post-Graduation',
       phase: 'Freelancing',
-      title: 'Land Your First Client',
-      description: 'Use your deployed portfolio project to land your first freelance client. Get guidance on client acquisition and proposal writing.',
-      freelanceFocus: 'From portfolio to paid projects'
+      title: 'Land Your First Client + Access Our Pipeline',
+      description: 'Use your deployed portfolio project to land your first freelance client. Plus, qualified graduates may access real projects from our agency\'s client pipeline—no cold outreach needed.',
+      freelanceFocus: 'From portfolio to paid projects + agency opportunities'
     }
   ];
 

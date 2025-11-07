@@ -11,12 +11,12 @@ const WaitlistHero: React.FC<WaitlistHeroProps> = ({ onScheduleClick }) => {
     <section className="waitlist-hero">
       <div className="hero-container">
         <h1 className="hero-title">
-          From Zero to Freelance Full-Stack Developer
-          <span className="hero-highlight"> in 8 Weeks</span>
+          AI-Powered Full-Stack Freelancer Accelerator
+          <span className="hero-highlight"> (8 Weeks)</span>
         </h1>
         
         <p className="hero-subtitle">
-          Learn the full-stack skills that clients actually hire for. Build a real, deployed application you can showcase to potential clients—while getting personalized 1-on-1 coaching designed to prepare you for freelance success.
+          Learn to code, ship, and sell full-stack software solutions with AI as your teammate. Most "AI-powered coding bootcamps" teach you how to code, but not how to make money as a developer. We produce independent, income-ready devs, not just job seekers.
         </p>
         
         <HeroVideo onScheduleClick={onScheduleClick} />

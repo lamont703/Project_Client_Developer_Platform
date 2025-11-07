@@ -9,3 +9,4 @@ export { default as CodingEducationFooter } from './CodingEducationFooter';
 export { default as BookingModal } from './BookingModal';
 export { default as FreelanceReadySkills } from './FreelanceReadySkills';
 export { default as FreelanceTimeline } from './FreelanceTimeline';
+export { default as AgencyPipelineOpportunities } from './AgencyPipelineOpportunities';

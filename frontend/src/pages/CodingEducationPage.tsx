@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/Coding Education/CodingEducationPage.css';
-import { WaitlistHero, CourseOverview, Testimonials, LearningSetupGuide, CodingEducationFooter, BookingModal, FreelanceReadySkills, FreelanceTimeline } from '../components/Coding Education';
+import { WaitlistHero, CourseOverview, Testimonials, LearningSetupGuide, CodingEducationFooter, BookingModal, FreelanceReadySkills, FreelanceTimeline, AgencyPipelineOpportunities } from '../components/Coding Education';
 
 interface CodingEducationPageProps {
   navigateToHome?: () => void;
@@ -18,6 +18,7 @@ const CodingEducationPage: React.FC<CodingEducationPageProps> = ({ navigateToHom
       <LearningSetupGuide onScheduleClick={openBookingModal} />
       <CourseOverview />
       <FreelanceReadySkills onScheduleClick={openBookingModal} />
+      <AgencyPipelineOpportunities onScheduleClick={openBookingModal} />
       <FreelanceTimeline />
       <Testimonials />
       <CodingEducationFooter onScheduleClick={openBookingModal} />
