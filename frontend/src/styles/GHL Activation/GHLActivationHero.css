@@ -1,0 +1,156 @@
+.ghl-activation-hero {
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-align: center;
+}
+
+.ghl-hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ghl-hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.ghl-success-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.ghl-check-icon {
+  font-size: 1.25rem;
+  color: #4ade80;
+}
+
+.ghl-badge-text {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.ghl-hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0;
+  max-width: 900px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.ghl-hero-subtitle {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0;
+  opacity: 0.95;
+}
+
+.ghl-hero-features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 1rem;
+  max-width: 900px;
+  width: 100%;
+}
+
+.ghl-feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.ghl-feature-item:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.ghl-feature-icon {
+  font-size: 2rem;
+}
+
+.ghl-feature-text {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@media (max-width: 768px) {
+  .ghl-activation-hero {
+    padding: 3rem 1.5rem;
+  }
+  
+  .ghl-hero-title {
+    font-size: 2rem;
+  }
+  
+  .ghl-hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .ghl-hero-features {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .ghl-feature-item {
+    padding: 1.25rem 0.75rem;
+  }
+  
+  .ghl-feature-icon {
+    font-size: 1.75rem;
+  }
+  
+  .ghl-feature-text {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ghl-activation-hero {
+    padding: 2rem 1rem;
+  }
+  
+  .ghl-hero-title {
+    font-size: 1.75rem;
+  }
+  
+  .ghl-hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .ghl-success-badge {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+

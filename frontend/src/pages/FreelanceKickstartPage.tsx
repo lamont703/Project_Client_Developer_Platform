@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/Freelance Kickstart/FreelanceKickstartPage.css';
 import { 
   HeroSection, 
@@ -8,26 +8,27 @@ import {
   CTASection, 
   FAQSection 
 } from '../components/Freelance Kickstart';
+import PaymentModal from '../components/Freelance Kickstart/PaymentModal';
 
 interface FreelanceKickstartPageProps {
   navigateToHome?: () => void;
 }
 
 const FreelanceKickstartPage: React.FC<FreelanceKickstartPageProps> = ({ navigateToHome }) => {
-  const handleJoinClick = () => {
-    // Navigate to checkout page
-    // You can replace this with your actual checkout URL or payment integration
-    window.location.href = '/checkout?product=10day-kickstart';
-  };
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+
+  const openPaymentModal = () => setIsPaymentModalOpen(true);
+  const closePaymentModal = () => setIsPaymentModalOpen(false);
 
   return (
     <div className="freelance-kickstart-page">
-      <HeroSection />
+      <HeroSection onOpenPaymentModal={openPaymentModal} />
       <WhatsIncludedSection />
       <HowItWorksSection />
       <TestimonialsSection />
-      <CTASection onJoinClick={handleJoinClick} />
+      <CTASection onOpenPaymentModal={openPaymentModal} />
       <FAQSection />
+      <PaymentModal isOpen={isPaymentModalOpen} onClose={closePaymentModal} />
     </div>
   );
 };

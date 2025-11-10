@@ -2,13 +2,13 @@ import React from 'react';
 import '../../styles/Freelance Kickstart/CTASection.css';
 
 interface CTASectionProps {
-  onJoinClick?: () => void;
+  onOpenPaymentModal?: () => void;
 }
 
-const CTASection: React.FC<CTASectionProps> = ({ onJoinClick }) => {
+const CTASection: React.FC<CTASectionProps> = ({ onOpenPaymentModal }) => {
   const handleClick = () => {
-    if (onJoinClick) {
-      onJoinClick();
+    if (onOpenPaymentModal) {
+      onOpenPaymentModal();
     } else {
       // Default behavior: navigate to checkout
       // You can replace this with your actual checkout URL

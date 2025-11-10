@@ -26,7 +26,7 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
 }
 
 .hero-badge {
@@ -175,7 +175,6 @@
   text-align: center;
   min-height: 90px;
   height: 100%;
-  width: 100%;
   box-sizing: border-box;
 }
 
@@ -269,28 +268,36 @@
   
   .hero-container {
     padding: 0 1rem;
+    align-items: stretch;
   }
   
   .hero-features {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem;
     margin-top: 2rem;
     max-width: 100%;
+    width: 100%;
+    padding: 0;
+    align-self: stretch;
   }
   
   .feature-item {
     font-size: 0.85rem;
-    padding: 0.875rem 0.75rem;
-    min-height: 85px;
+    padding: 0.75rem 0.5rem;
+    aspect-ratio: 1;
     gap: 0.4rem;
+    min-height: unset;
+    width: auto;
+    max-width: none;
   }
   
   .feature-icon {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
   
   .feature-text {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     line-height: 1.2;
   }
 }
@@ -339,25 +346,30 @@
   }
   
   .hero-features {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.6rem;
     margin-top: 1.5rem;
     width: 100%;
+    padding: 0;
   }
   
   .feature-item {
     font-size: 0.8rem;
-    padding: 0.75rem 0.5rem;
-    min-height: 80px;
-    gap: 0.35rem;
+    padding: 0.6rem 0.4rem;
+    aspect-ratio: 1;
+    gap: 0.3rem;
+    min-height: unset;
+    width: auto;
+    max-width: none;
   }
   
   .feature-icon {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
   
   .feature-text {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     line-height: 1.2;
   }
   
@@ -401,22 +413,30 @@
   }
   
   .hero-features {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.6rem;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0;
   }
   
   .feature-item {
-    min-height: 75px;
-    padding: 0.7rem 0.45rem;
+    aspect-ratio: 1;
+    padding: 0.6rem 0.4rem;
     font-size: 0.75rem;
+    min-height: unset;
+    width: auto;
+    max-width: none;
+    gap: 0.25rem;
   }
   
   .feature-icon {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
   
   .feature-text {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
+    line-height: 1.15;
   }
 }
 

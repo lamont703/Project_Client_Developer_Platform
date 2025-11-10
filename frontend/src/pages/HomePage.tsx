@@ -153,6 +153,13 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
             <p>Launch your AI freelance journey in just 10 days. Get hands-on with AI tools, start freelancing smarter, and test-drive GoHighLevel. Only $50.</p>
             <button className="feature-link">Get Started →</button>
           </div>
+
+          <div className="feature-card" onClick={() => handleNavigation('/activate-ghl')}>
+            <div className="feature-icon">🎯</div>
+            <h3>Activate GoHighLevel Trial</h3>
+            <p>Complete your 10-Day Kickstart setup by activating your 14-day free GoHighLevel trial. Get full access to CRM, automation, and marketing tools.</p>
+            <button className="feature-link">Activate Trial →</button>
+          </div>
         </div>
       </div>
 

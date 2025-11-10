@@ -1,7 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { Navigation, ScrollToTop } from './components';
-import { HomePage, ChatPage, JobsPage, PostJobPage, DevelopersPage, AICommunityMemberPage, PitchDeckPage, DeFiPage, TaskManagerPage, PipelineDashboardPage, UserFeedbackPage, CodeContributionsPage, CodingEducationPage, FreelanceKickstartPage } from './pages';
+import { HomePage, ChatPage, JobsPage, PostJobPage, DevelopersPage, AICommunityMemberPage, PitchDeckPage, DeFiPage, TaskManagerPage, PipelineDashboardPage, UserFeedbackPage, CodeContributionsPage, CodingEducationPage, FreelanceKickstartPage, ActivateGHLPage } from './pages';
 import LandingPage from './components/Landing Page/LandingPage';
 import DeveloperChatPage from './pages/DeveloperChatPage';
 import ProtoHubPage from './pages/ProtoHubPage';
@@ -152,6 +152,7 @@ const DOMReadyCheck: React.FC<{children: React.ReactNode}> = ({ children }) => {
 
 function AppContent() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isReady, setIsReady] = React.useState(false);
   
   // Function to navigate to home page using React Router
@@ -163,6 +164,9 @@ function AppContent() {
       window.location.href = '/';
     }
   };
+
+  // Hide navigation on the freelance kickstart page
+  const shouldShowNavigation = location.pathname !== '/10Day-Freelance-Kickstart';
 
   // Wait for everything to be ready
   React.useEffect(() => {
@@ -187,9 +191,11 @@ function AppContent() {
         <ScrollToTop />
       </SafeComponent>
       
-      <SafeComponent>
-        <Navigation navigateToHome={navigateToHome} />
-      </SafeComponent>
+      {shouldShowNavigation && (
+        <SafeComponent>
+          <Navigation navigateToHome={navigateToHome} />
+        </SafeComponent>
+      )}
       
       <SafeComponent>
         <Routes>
@@ -281,6 +287,11 @@ function AppContent() {
           <Route path="/10Day-Freelance-Kickstart" element={
             <SafeComponent>
               <FreelanceKickstartPage navigateToHome={navigateToHome} />
+            </SafeComponent>
+          } />
+          <Route path="/activate-ghl" element={
+            <SafeComponent>
+              <ActivateGHLPage navigateToHome={navigateToHome} />
             </SafeComponent>
           } />
           <Route path="*" element={<Navigate to="/" replace />} />

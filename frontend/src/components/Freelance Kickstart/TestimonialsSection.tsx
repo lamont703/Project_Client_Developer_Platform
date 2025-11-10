@@ -30,7 +30,7 @@ const TestimonialsSection: React.FC = () => {
     <section className="kickstart-testimonials">
       <div className="testimonials-container">
         <div className="section-header">
-          <h2 className="section-title">What Our Students Say</h2>
+          <h2 className="section-title">What Our Freelancers Say</h2>
           <p className="section-subtitle">
             Real results from freelancers who completed the 10-Day AI Freelance Kickstart
           </p>

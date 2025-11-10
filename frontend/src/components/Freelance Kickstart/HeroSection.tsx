@@ -1,7 +1,12 @@
 import React from 'react';
 import '../../styles/Freelance Kickstart/HeroSection.css';
+import PaymentButton from './PaymentButton';
 
-const HeroSection: React.FC = () => {
+interface HeroSectionProps {
+  onOpenPaymentModal: () => void;
+}
+
+const HeroSection: React.FC<HeroSectionProps> = ({ onOpenPaymentModal }) => {
   return (
     <section className="freelance-kickstart-hero">
       <div className="hero-container">
@@ -22,6 +27,8 @@ const HeroSection: React.FC = () => {
             </div>
           </div>
         </div>
+        
+        <PaymentButton onClick={onOpenPaymentModal} />
         
         <div className="hero-features">
           <div className="feature-item">

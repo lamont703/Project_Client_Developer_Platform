@@ -1,0 +1,260 @@
+.payment-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 1rem;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Preload state - iframe loads but overlay is hidden */
+.payment-modal-overlay.closed {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Open state - overlay is visible */
+.payment-modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.payment-modal-content {
+  background: white;
+  border-radius: 20px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 95vh;
+  position: relative;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4);
+  animation: slideUp 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.payment-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #e2e8f0;
+  font-size: 1.75rem;
+  color: #4a5568;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  z-index: 10;
+  touch-action: manipulation;
+}
+
+.payment-modal-close:hover {
+  background: #f7fafc;
+  border-color: #cbd5e0;
+  transform: scale(1.1) rotate(90deg);
+  color: #2d3748;
+}
+
+.payment-modal-close:active {
+  transform: scale(0.95);
+}
+
+.payment-modal-header {
+  padding: 2rem 2rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.payment-modal-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: white;
+}
+
+.payment-modal-subtitle {
+  margin: 0;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 500;
+}
+
+.payment-iframe-container {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  min-height: 500px;
+}
+
+.payment-iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  border: none;
+  display: block;
+}
+
+/* Preload the iframe when modal is closed - keep it loading but hidden */
+.payment-modal-overlay.closed .payment-iframe-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  /* Keep iframe in DOM and loaded */
+  visibility: visible;
+}
+
+.payment-modal-overlay.closed .payment-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 900px;
+  height: 600px;
+  min-height: 600px;
+  /* Ensure iframe stays loaded */
+  display: block;
+  visibility: visible;
+}
+
+.payment-modal-overlay.open .payment-iframe-container {
+  position: relative;
+  width: auto;
+  height: auto;
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.payment-modal-overlay.open .payment-iframe {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  visibility: visible;
+}
+
+@media (max-width: 768px) {
+  .payment-modal-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+  
+  .payment-modal-content {
+    max-width: 100%;
+    max-height: 100vh;
+    border-radius: 20px 20px 0 0;
+    height: 95vh;
+  }
+  
+  .payment-modal-header {
+    padding: 1.5rem 1rem 1rem;
+  }
+  
+  .payment-modal-title {
+    font-size: 1.5rem;
+  }
+  
+  .payment-modal-subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .payment-modal-close {
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+  
+  .payment-iframe-container {
+    min-height: calc(95vh - 120px);
+  }
+  
+  .payment-iframe {
+    min-height: calc(95vh - 120px);
+  }
+  
+  /* Preload sizing for mobile */
+  .payment-modal-overlay.closed .payment-iframe {
+    width: 400px;
+    height: 600px;
+  }
+}
+
+@media (max-width: 480px) {
+  .payment-modal-content {
+    height: 100vh;
+    border-radius: 0;
+    max-height: 100vh;
+  }
+  
+  .payment-modal-header {
+    padding: 1.25rem 1rem 0.75rem;
+  }
+  
+  .payment-modal-title {
+    font-size: 1.3rem;
+  }
+  
+  .payment-modal-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .payment-iframe-container {
+    min-height: calc(100vh - 100px);
+  }
+  
+  .payment-iframe {
+    min-height: calc(100vh - 100px);
+  }
+  
+  /* Preload sizing for small mobile */
+  .payment-modal-overlay.closed .payment-iframe {
+    width: 360px;
+    height: 600px;
+  }
+}
+
