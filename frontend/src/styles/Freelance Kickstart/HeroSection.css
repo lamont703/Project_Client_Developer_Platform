@@ -58,9 +58,12 @@
   max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
-  word-wrap: break-word;
-  -webkit-hyphens: auto;
-  hyphens: auto;
+  word-wrap: normal;
+  overflow-wrap: normal;
+  word-break: normal;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  hyphens: none;
   text-align: center;
   -webkit-text-size-adjust: 100% !important;
   text-size-adjust: 100% !important;
@@ -195,6 +198,12 @@
     font-size: 1.8rem !important;
     -webkit-text-size-adjust: 90% !important;
     text-size-adjust: 90% !important;
+    word-wrap: normal;
+    overflow-wrap: normal;
+    word-break: normal;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    hyphens: none;
   }
 }
 
@@ -204,6 +213,12 @@
     font-size: 2.8125rem !important; /* 45px */
     -webkit-text-size-adjust: 100% !important;
     text-size-adjust: 100% !important;
+    word-wrap: normal;
+    overflow-wrap: normal;
+    word-break: normal;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    hyphens: none;
   }
 }
 
@@ -212,6 +227,12 @@
     font-size: 1.4375rem !important; /* 23px */
     -webkit-text-size-adjust: 100% !important;
     text-size-adjust: 100% !important;
+    word-wrap: normal;
+    overflow-wrap: normal;
+    word-break: normal;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    hyphens: none;
   }
 }
 
@@ -221,6 +242,12 @@
     .hero-title {
       font-size: 0.9rem !important;
       -webkit-text-size-adjust: 90% !important;
+      word-wrap: normal;
+      overflow-wrap: normal;
+      word-break: normal;
+      -webkit-hyphens: none;
+      -moz-hyphens: none;
+      hyphens: none;
     }
   }
   
@@ -229,6 +256,12 @@
       font-size: 1.4375rem !important; /* 23px */
       -webkit-text-size-adjust: 100% !important;
       text-size-adjust: 100% !important;
+      word-wrap: normal;
+      overflow-wrap: normal;
+      word-break: normal;
+      -webkit-hyphens: none;
+      -moz-hyphens: none;
+      hyphens: none;
     }
   }
 }
@@ -244,6 +277,12 @@
     margin-bottom: 1rem;
     -webkit-text-size-adjust: 90%;
     text-size-adjust: 90%;
+    word-wrap: normal;
+    overflow-wrap: normal;
+    word-break: normal;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    hyphens: none;
   }
   
   .hero-subtitle {
@@ -318,6 +357,12 @@
     padding: 0 0.5rem;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    word-wrap: normal;
+    overflow-wrap: normal;
+    word-break: normal;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    hyphens: none;
   }
   
   .hero-subtitle {
@@ -393,6 +438,12 @@
     line-height: 1.35;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    word-wrap: normal;
+    overflow-wrap: normal;
+    word-break: normal;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    hyphens: none;
   }
   
   .hero-subtitle {
@@ -448,6 +499,12 @@
     text-size-adjust: 100% !important;
     transform: none !important;
     zoom: 1 !important;
+    word-wrap: normal !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    -webkit-hyphens: none !important;
+    -moz-hyphens: none !important;
+    hyphens: none !important;
   }
 }
 
