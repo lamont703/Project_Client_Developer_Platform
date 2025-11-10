@@ -1,0 +1,26 @@
+.freelance-kickstart-page {
+  width: 100%;
+  min-height: 100vh;
+  background: white;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Ensure all sections have proper spacing on mobile */
+@media (max-width: 768px) {
+  .freelance-kickstart-page {
+    padding: 0;
+  }
+}
+
+/* Prevent text overflow on very small screens */
+@media (max-width: 480px) {
+  .freelance-kickstart-page {
+    font-size: 16px; /* Base font size for readability */
+  }
+  
+  * {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+

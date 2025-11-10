@@ -146,6 +146,13 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
             <p>Master full-stack development with 1-on-1 AI guidance. Learn frontend, backend, and deployment with personalized mentorship and real project experience.</p>
             <button className="feature-link">Join Waitlist →</button>
           </div>
+
+          <div className="feature-card" onClick={() => handleNavigation('/10Day-Freelance-Kickstart')}>
+            <div className="feature-icon">🚀</div>
+            <h3>10-Day AI Freelance Kickstart</h3>
+            <p>Launch your AI freelance journey in just 10 days. Get hands-on with AI tools, start freelancing smarter, and test-drive GoHighLevel. Only $50.</p>
+            <button className="feature-link">Get Started →</button>
+          </div>
         </div>
       </div>
 
