@@ -179,18 +179,24 @@
 @media (max-width: 768px) {
   .payment-modal-overlay {
     padding: 0;
-    align-items: flex-end;
+    align-items: flex-start;
+    justify-content: center;
   }
   
   .payment-modal-content {
     max-width: 100%;
     max-height: 100vh;
-    border-radius: 20px 20px 0 0;
-    height: 95vh;
+    border-radius: 0;
+    height: 100vh;
+    margin: 0;
   }
   
   .payment-modal-header {
-    padding: 1.5rem 1rem 1rem;
+    padding: 1.5rem 3.5rem 1rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    flex-shrink: 0;
   }
   
   .payment-modal-title {
@@ -204,17 +210,26 @@
   .payment-modal-close {
     top: 0.75rem;
     right: 0.75rem;
-    width: 40px;
-    height: 40px;
-    font-size: 1.5rem;
+    width: 44px;
+    height: 44px;
+    font-size: 1.75rem;
+    z-index: 15;
+    position: fixed;
+    background: rgba(255, 255, 255, 0.95);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
   }
   
   .payment-iframe-container {
-    min-height: calc(95vh - 120px);
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    min-height: 0;
   }
   
   .payment-iframe {
-    min-height: calc(95vh - 120px);
+    min-height: 600px;
+    height: auto;
   }
   
   /* Preload sizing for mobile */
@@ -232,7 +247,10 @@
   }
   
   .payment-modal-header {
-    padding: 1.25rem 1rem 0.75rem;
+    padding: 1.25rem 3.5rem 0.75rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 5;
   }
   
   .payment-modal-title {
@@ -243,18 +261,49 @@
     font-size: 0.9rem;
   }
   
+  .payment-modal-close {
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 44px;
+    height: 44px;
+    font-size: 1.75rem;
+    z-index: 15;
+    position: fixed;
+    background: rgba(255, 255, 255, 0.95);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+  
   .payment-iframe-container {
-    min-height: calc(100vh - 100px);
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    min-height: 0;
   }
   
   .payment-iframe {
-    min-height: calc(100vh - 100px);
+    min-height: 600px;
+    height: auto;
   }
   
   /* Preload sizing for small mobile */
   .payment-modal-overlay.closed .payment-iframe {
     width: 360px;
     height: 600px;
+  }
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) {
+    .payment-modal-content {
+      height: -webkit-fill-available;
+      max-height: -webkit-fill-available;
+    }
+    
+    .payment-modal-overlay {
+      height: -webkit-fill-available;
+    }
   }
 }
 
