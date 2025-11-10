@@ -165,8 +165,8 @@ function AppContent() {
     }
   };
 
-  // Hide navigation on the freelance kickstart page
-  const shouldShowNavigation = location.pathname !== '/10Day-Freelance-Kickstart';
+  // Hide navigation on the freelance kickstart and activate GHL pages
+  const shouldShowNavigation = location.pathname !== '/10Day-Freelance-Kickstart' && location.pathname !== '/activate-ghl';
 
   // Wait for everything to be ready
   React.useEffect(() => {
