@@ -31,10 +31,6 @@ const LessonVideoPlayer: React.FC<LessonVideoPlayerProps> = ({
     return `https://www.youtube.com/embed/${id}`;
   };
 
-  const handleVideoEnd = () => {
-    setWatched(true);
-  };
-
   return (
     <div className={`lesson-video-player ${type}`}>
       <div className="video-header">
