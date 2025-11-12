@@ -1,0 +1,192 @@
+.lesson-navigation {
+  padding: 3rem 0;
+  background: #f8f9fa;
+  border-top: 1px solid #e2e8f0;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.nav-button {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  min-width: 160px;
+}
+
+.nav-button:hover:not(.disabled) {
+  border-color: #667eea;
+  background: linear-gradient(135deg, #f7f9fc 0%, #edf2f7 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+.nav-button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.nav-button.prev {
+  justify-content: flex-start;
+}
+
+.nav-button.next {
+  justify-content: flex-end;
+}
+
+.nav-arrow {
+  font-size: 1.5rem;
+  color: #667eea;
+  font-weight: 700;
+}
+
+.nav-button.disabled .nav-arrow {
+  color: #a0aec0;
+}
+
+.nav-button-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.nav-button.next .nav-button-content {
+  align-items: flex-end;
+}
+
+.nav-label {
+  font-size: 0.85rem;
+  color: #718096;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.nav-day {
+  font-size: 1rem;
+  color: #2d3748;
+  font-weight: 700;
+}
+
+.lesson-progress {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 400px;
+}
+
+.progress-text {
+  font-size: 0.95rem;
+  color: #4a5568;
+  font-weight: 600;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.progress-fill[data-progress="1"] { width: 10%; }
+.progress-fill[data-progress="2"] { width: 20%; }
+.progress-fill[data-progress="3"] { width: 30%; }
+.progress-fill[data-progress="4"] { width: 40%; }
+.progress-fill[data-progress="5"] { width: 50%; }
+.progress-fill[data-progress="6"] { width: 60%; }
+.progress-fill[data-progress="7"] { width: 70%; }
+.progress-fill[data-progress="8"] { width: 80%; }
+.progress-fill[data-progress="9"] { width: 90%; }
+.progress-fill[data-progress="10"] { width: 100%; }
+
+.nav-complete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 160px;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
+}
+
+.complete-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.complete-icon {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: 700;
+}
+
+.complete-text {
+  font-size: 1rem;
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .lesson-navigation {
+    padding: 2rem 0;
+  }
+
+  .nav-container {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0 1.5rem;
+  }
+
+  .nav-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-button.prev,
+  .nav-button.next {
+    justify-content: center;
+  }
+
+  .nav-button.next .nav-button-content {
+    align-items: center;
+  }
+
+  .nav-complete {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .lesson-progress {
+    width: 100%;
+    max-width: none;
+  }
+}
+

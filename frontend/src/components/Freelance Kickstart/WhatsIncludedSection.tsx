@@ -15,16 +15,17 @@ const WhatsIncludedSection: React.FC = () => {
         <div className="included-grid">
           <div className="included-card">
             <div className="card-icon">📚</div>
-            <h3 className="card-title">10-Day Kickstart</h3>
+            <h3 className="card-title">10-Day Daily Lessons</h3>
             <p className="card-description">
-              Daily lessons with step-by-step guidance on using AI tools like Cursor and GoHighLevel. 
-              Access to a supportive community and hands-on practice to build your freelance skills.
+              Each day includes comprehensive lessons designed to build your freelance skills systematically. 
+              Every lesson features both theory and practical components to ensure you understand concepts 
+              and can apply them immediately.
             </p>
             <ul className="card-features">
-              <li>✓ Daily structured lessons</li>
-              <li>✓ AI tool tutorials</li>
-              <li>✓ Community support</li>
+              <li>✓ Theory portion: Learn core concepts</li>
+              <li>✓ Practical portion: Live screen share demonstrations</li>
               <li>✓ Step-by-step guidance</li>
+              <li>✓ Hands-on practice opportunities</li>
             </ul>
           </div>
           
@@ -42,6 +43,54 @@ const WhatsIncludedSection: React.FC = () => {
               <li>✓ Full platform access</li>
               <li>✓ Workflow automation</li>
               <li>✓ Client management tools</li>
+            </ul>
+          </div>
+          
+          <div className="included-card">
+            <div className="card-icon">📋</div>
+            <h3 className="card-title">Worksheets & Checklists</h3>
+            <p className="card-description">
+              Access downloadable worksheets and checklists designed to help you understand concepts clearly 
+              and maintain clarity in your operations. These practical tools ensure you stay organized and 
+              on track throughout your freelance journey.
+            </p>
+            <ul className="card-features">
+              <li>✓ Concept comprehension worksheets</li>
+              <li>✓ Operational checklists</li>
+              <li>✓ Downloadable resources</li>
+              <li>✓ Progress tracking tools</li>
+            </ul>
+          </div>
+          
+          <div className="included-card">
+            <div className="card-icon">👥</div>
+            <h3 className="card-title">Private Freelancer Community</h3>
+            <p className="card-description">
+              Join an exclusive private networking community of freelancers. Connect with peers, share 
+              experiences, collaborate on projects, and build lasting professional relationships in a 
+              supportive environment.
+            </p>
+            <ul className="card-features">
+              <li>✓ Private networking community</li>
+              <li>✓ Peer collaboration opportunities</li>
+              <li>✓ Knowledge sharing platform</li>
+              <li>✓ Professional connections</li>
+            </ul>
+          </div>
+          
+          <div className="included-card">
+            <div className="card-icon">🛠️</div>
+            <h3 className="card-title">Tech Support</h3>
+            <p className="card-description">
+              Get dedicated technical support whenever you need it. If anything goes wrong or you have 
+              questions about the platform, tools, or lessons, our support team is here to help you 
+              succeed.
+            </p>
+            <ul className="card-features">
+              <li>✓ Dedicated tech support</li>
+              <li>✓ Troubleshooting assistance</li>
+              <li>✓ Platform guidance</li>
+              <li>✓ Quick response times</li>
             </ul>
           </div>
           

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { Navigation, ScrollToTop } from './components';
-import { HomePage, ChatPage, JobsPage, PostJobPage, DevelopersPage, AICommunityMemberPage, PitchDeckPage, DeFiPage, TaskManagerPage, PipelineDashboardPage, UserFeedbackPage, CodeContributionsPage, CodingEducationPage, FreelanceKickstartPage, ActivateGHLPage } from './pages';
+import { HomePage, ChatPage, JobsPage, PostJobPage, DevelopersPage, AICommunityMemberPage, PitchDeckPage, DeFiPage, TaskManagerPage, PipelineDashboardPage, UserFeedbackPage, CodeContributionsPage, CodingEducationPage, FreelanceKickstartPage, DailyLessonPage, ActivateGHLPage } from './pages';
 import LandingPage from './components/Landing Page/LandingPage';
 import DeveloperChatPage from './pages/DeveloperChatPage';
 import ProtoHubPage from './pages/ProtoHubPage';
@@ -165,8 +165,11 @@ function AppContent() {
     }
   };
 
-  // Hide navigation on the freelance kickstart and activate GHL pages
-  const shouldShowNavigation = location.pathname !== '/10Day-Freelance-Kickstart' && location.pathname !== '/activate-ghl';
+  // Hide navigation on the freelance kickstart, lesson pages, and activate GHL pages
+  const shouldShowNavigation = 
+    location.pathname !== '/10Day-Freelance-Kickstart' && 
+    !location.pathname.startsWith('/10Day-Freelance-Kickstart/lesson/') &&
+    location.pathname !== '/activate-ghl';
 
   // Wait for everything to be ready
   React.useEffect(() => {
@@ -287,6 +290,11 @@ function AppContent() {
           <Route path="/10Day-Freelance-Kickstart" element={
             <SafeComponent>
               <FreelanceKickstartPage navigateToHome={navigateToHome} />
+            </SafeComponent>
+          } />
+          <Route path="/10Day-Freelance-Kickstart/lesson/:day" element={
+            <SafeComponent>
+              <DailyLessonPage navigateToHome={navigateToHome} />
             </SafeComponent>
           } />
           <Route path="/activate-ghl" element={

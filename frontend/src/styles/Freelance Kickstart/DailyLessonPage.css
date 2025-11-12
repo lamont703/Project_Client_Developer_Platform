@@ -1,0 +1,17 @@
+.daily-lesson-page {
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+.lesson-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem 3rem;
+}
+
+@media (max-width: 768px) {
+  .lesson-content {
+    padding: 0 1.5rem 2rem;
+  }
+}
+

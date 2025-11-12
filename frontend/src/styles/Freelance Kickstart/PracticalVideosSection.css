@@ -1,0 +1,81 @@
+.practical-videos-section {
+  padding: 3rem 0;
+  background: white;
+}
+
+.practical-videos-section .section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.practical-videos-section .section-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.practical-videos-section .section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 1rem;
+}
+
+.practical-videos-section .section-subtitle {
+  font-size: 1.1rem;
+  color: #4a5568;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.practical-videos-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+.practical-video-item {
+  position: relative;
+}
+
+.video-number-badge {
+  position: absolute;
+  top: -12px;
+  left: 2rem;
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
+}
+
+@media (max-width: 768px) {
+  .practical-videos-section {
+    padding: 2rem 0;
+  }
+
+  .practical-videos-section .section-container {
+    padding: 0 1.5rem;
+  }
+
+  .practical-videos-section .section-title {
+    font-size: 1.75rem;
+  }
+
+  .practical-videos-section .section-subtitle {
+    font-size: 1rem;
+  }
+
+  .practical-videos-grid {
+    gap: 2rem;
+  }
+
+  .video-number-badge {
+    left: 1.5rem;
+  }
+}
+

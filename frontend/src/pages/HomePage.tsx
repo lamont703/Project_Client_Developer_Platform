@@ -154,6 +154,13 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
             <button className="feature-link">Get Started →</button>
           </div>
 
+          <div className="feature-card" onClick={() => handleNavigation('/10Day-Freelance-Kickstart/lesson/1')}>
+            <div className="feature-icon">📚</div>
+            <h3>Daily Lessons</h3>
+            <p>Access your daily lessons with theory videos and practical screen share demonstrations. Each lesson includes worksheets, checklists, and hands-on practice.</p>
+            <button className="feature-link">Start Lesson 1 →</button>
+          </div>
+          
           <div className="feature-card" onClick={() => handleNavigation('/activate-ghl')}>
             <div className="feature-icon">🎯</div>
             <h3>Activate GoHighLevel Trial</h3>

@@ -25,10 +25,12 @@ const CTASection: React.FC<CTASectionProps> = ({ onOpenPaymentModal }) => {
             Join hundreds of freelancers who are already using AI tools to work smarter and grow their businesses
           </p>
           <div className="cta-features">
-            <div className="cta-feature">✓ 10 days of guided lessons</div>
+            <div className="cta-feature">✓ 10 days of theory + practical lessons</div>
+            <div className="cta-feature">✓ Live screen share demonstrations</div>
+            <div className="cta-feature">✓ Worksheets & checklists</div>
+            <div className="cta-feature">✓ Private freelancer community</div>
+            <div className="cta-feature">✓ Tech support included</div>
             <div className="cta-feature">✓ 14-day GoHighLevel trial</div>
-            <div className="cta-feature">✓ Community support</div>
-            <div className="cta-feature">✓ Beginner-friendly</div>
           </div>
           <button className="cta-button" onClick={handleClick}>
             Join the 10-Day AI Freelance Kickstart for $50
