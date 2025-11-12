@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../../styles/Freelance Kickstart/LessonVideoPlayer.css';
 
 interface LessonVideoPlayerProps {
@@ -14,7 +14,6 @@ const LessonVideoPlayer: React.FC<LessonVideoPlayerProps> = ({
   description,
   type = 'theory'
 }) => {
-  const [watched, setWatched] = useState(false);
 
   // Handle if videoId is a YouTube URL or just an ID
   const getVideoEmbedUrl = (id: string) => {
@@ -52,19 +51,9 @@ const LessonVideoPlayer: React.FC<LessonVideoPlayerProps> = ({
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             className="video-iframe"
-            onLoad={() => {
-              // Track when video loads (we can't reliably detect end without YouTube API)
-              // For now, we'll mark as watched when user interacts
-            }}
           />
         </div>
       </div>
-
-      {watched && (
-        <div className="video-completed-badge">
-          <span>✓ {type === 'theory' ? 'Theory' : 'Practical'} video completed</span>
-        </div>
-      )}
     </div>
   );
 };
