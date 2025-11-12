@@ -92,8 +92,11 @@ const DailyLessonPage: React.FC<DailyLessonPageProps> = ({ navigateToHome }) => 
       
       <div className="lesson-content">
         <TheoryVideoSection 
+          day={lesson.day}
           theoryVideo={lesson.theoryVideo} 
           resources={lesson.resources}
+          learningOutcomes={lesson.learningOutcomes}
+          checklistItems={lesson.checklistItems}
         />
         <PracticalVideosSection practicalVideos={lesson.practicalVideos} />
       </div>

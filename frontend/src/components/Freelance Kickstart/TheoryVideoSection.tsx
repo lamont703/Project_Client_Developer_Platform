@@ -1,15 +1,25 @@
 import React from 'react';
 import LessonVideoPlayer from './LessonVideoPlayer';
 import LessonResources from './LessonResources';
+import LessonChecklist from './LessonChecklist';
 import { LessonVideo, Lesson } from '../../data/freelanceKickstartLessons';
 import '../../styles/Freelance Kickstart/TheoryVideoSection.css';
 
 interface TheoryVideoSectionProps {
+  day: number;
   theoryVideo: LessonVideo;
   resources?: Lesson['resources'];
+  learningOutcomes?: string[];
+  checklistItems?: Lesson['checklistItems'];
 }
 
-const TheoryVideoSection: React.FC<TheoryVideoSectionProps> = ({ theoryVideo, resources }) => {
+const TheoryVideoSection: React.FC<TheoryVideoSectionProps> = ({ 
+  day,
+  theoryVideo, 
+  resources,
+  learningOutcomes,
+  checklistItems
+}) => {
   return (
     <section className="theory-video-section">
       <div className="section-container">
@@ -25,6 +35,14 @@ const TheoryVideoSection: React.FC<TheoryVideoSectionProps> = ({ theoryVideo, re
           description={theoryVideo.description}
           type="theory"
         />
+        {learningOutcomes && checklistItems && (
+          <LessonChecklist 
+            key={`lesson-checklist-day-${day}`}
+            day={day}
+            learningOutcomes={learningOutcomes}
+            checklistItems={checklistItems}
+          />
+        )}
         <LessonResources resources={resources} />
       </div>
     </section>

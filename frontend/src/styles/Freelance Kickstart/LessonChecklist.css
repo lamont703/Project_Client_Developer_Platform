@@ -1,0 +1,210 @@
+.lesson-checklist {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-top: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  border-left: 4px solid #48bb78;
+}
+
+.checklist-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.checklist-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 1rem;
+}
+
+.checklist-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.progress-text {
+  font-size: 0.95rem;
+  color: #4a5568;
+  font-weight: 600;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  border-radius: 5px;
+  transition: width 0.3s ease;
+}
+
+/* Progress fill widths - using data attributes for dynamic values */
+.progress-fill[data-progress="0"] { width: 0%; }
+.progress-fill[data-progress="10"] { width: 10%; }
+.progress-fill[data-progress="20"] { width: 20%; }
+.progress-fill[data-progress="30"] { width: 30%; }
+.progress-fill[data-progress="40"] { width: 40%; }
+.progress-fill[data-progress="50"] { width: 50%; }
+.progress-fill[data-progress="60"] { width: 60%; }
+.progress-fill[data-progress="70"] { width: 70%; }
+.progress-fill[data-progress="80"] { width: 80%; }
+.progress-fill[data-progress="90"] { width: 90%; }
+.progress-fill[data-progress="100"] { width: 100%; }
+
+.checklist-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.learning-outcomes-section,
+.action-checklist-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 1rem;
+}
+
+.outcomes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.outcome-item {
+  padding: 0.75rem 0;
+  font-size: 1rem;
+  color: #4a5568;
+  line-height: 1.6;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.outcome-item:last-child {
+  border-bottom: none;
+}
+
+.outcome-item::before {
+  content: '•';
+  color: #667eea;
+  font-weight: bold;
+  margin-right: 0.75rem;
+  font-size: 1.2rem;
+}
+
+.checklist-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.875rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.checklist-item:hover {
+  background: #f7fafc;
+}
+
+.checklist-item.completed {
+  background: #f0fdf4;
+}
+
+.checklist-item.completed .item-text {
+  text-decoration: line-through;
+  color: #68d391;
+}
+
+.checkbox-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkbox-custom {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #cbd5e0;
+  border-radius: 4px;
+  background: white;
+  position: relative;
+  transition: all 0.2s ease;
+  margin-top: 2px;
+}
+
+.checklist-item:hover .checkbox-custom {
+  border-color: #48bb78;
+}
+
+.checklist-item.completed .checkbox-custom {
+  background: #48bb78;
+  border-color: #48bb78;
+}
+
+.checklist-item.completed .checkbox-custom::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.item-text {
+  flex: 1;
+  font-size: 1rem;
+  color: #2d3748;
+  line-height: 1.6;
+  transition: all 0.2s ease;
+}
+
+@media (max-width: 768px) {
+  .lesson-checklist {
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .checklist-title {
+    font-size: 1.3rem;
+  }
+
+  .checklist-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.1rem;
+  }
+
+  .outcome-item,
+  .item-text {
+    font-size: 0.95rem;
+  }
+}
+

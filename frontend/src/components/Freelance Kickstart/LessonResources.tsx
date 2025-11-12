@@ -7,7 +7,7 @@ interface LessonResourcesProps {
 }
 
 const LessonResources: React.FC<LessonResourcesProps> = ({ resources }) => {
-  if (!resources || (!resources.worksheets?.length && !resources.checklists?.length)) {
+  if (!resources || !resources.worksheets?.length) {
     return null;
   }
 
@@ -20,7 +20,7 @@ const LessonResources: React.FC<LessonResourcesProps> = ({ resources }) => {
     <div className="lesson-resources">
       <div className="resources-header">
         <h3 className="resources-title">📥 Download Resources</h3>
-        <p className="resources-subtitle">Get your worksheets and checklists to follow along with the lesson</p>
+        <p className="resources-subtitle">Download worksheets to follow along with the lesson</p>
       </div>
 
       <div className="resources-grid">
@@ -38,28 +38,6 @@ const LessonResources: React.FC<LessonResourcesProps> = ({ resources }) => {
                   >
                     <span className="download-icon">📄</span>
                     <span className="download-text">Download Worksheet {index + 1}</span>
-                    <span className="download-arrow">↓</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        )}
-
-        {resources.checklists && resources.checklists.length > 0 && (
-          <div className="resource-category">
-            <h4 className="category-title">✅ Checklists</h4>
-            <div className="resource-list">
-              {resources.checklists.map((pdfUrl, index) => {
-                const filename = pdfUrl.split('/').pop() || `checklist-${index + 1}.pdf`;
-                return (
-                  <button
-                    key={index}
-                    className="resource-download-btn checklist"
-                    onClick={() => handleDownload(pdfUrl, filename)}
-                  >
-                    <span className="download-icon">📋</span>
-                    <span className="download-text">Download Checklist {index + 1}</span>
                     <span className="download-arrow">↓</span>
                   </button>
                 );

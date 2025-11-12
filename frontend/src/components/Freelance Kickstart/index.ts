@@ -12,4 +12,5 @@ export { default as TheoryVideoSection } from './TheoryVideoSection';
 export { default as PracticalVideosSection } from './PracticalVideosSection';
 export { default as LessonNavigation } from './LessonNavigation';
 export { default as LessonResources } from './LessonResources';
+export { default as LessonChecklist } from './LessonChecklist';
 

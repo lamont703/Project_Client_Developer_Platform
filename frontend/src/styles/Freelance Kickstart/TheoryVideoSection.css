@@ -29,6 +29,29 @@
   margin: 0 auto;
 }
 
+.lesson-description-section {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-top: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  border-left: 4px solid #667eea;
+}
+
+.description-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 1rem;
+}
+
+.description-text {
+  font-size: 1.05rem;
+  color: #4a5568;
+  line-height: 1.7;
+  margin: 0;
+}
+
 @media (max-width: 768px) {
   .theory-video-section {
     padding: 2rem 0;
@@ -43,6 +66,19 @@
   }
 
   .section-subtitle {
+    font-size: 1rem;
+  }
+
+  .lesson-description-section {
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .description-title {
+    font-size: 1.2rem;
+  }
+
+  .description-text {
     font-size: 1rem;
   }
 }

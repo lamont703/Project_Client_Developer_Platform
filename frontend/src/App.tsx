@@ -167,8 +167,7 @@ function AppContent() {
 
   // Hide navigation on the freelance kickstart, lesson pages, and activate GHL pages
   const shouldShowNavigation = 
-    location.pathname !== '/10Day-Freelance-Kickstart' && 
-    !location.pathname.startsWith('/10Day-Freelance-Kickstart/lesson/') &&
+    !location.pathname.startsWith('/10Day-Freelance-Kickstart') &&
     location.pathname !== '/activate-ghl';
 
   // Wait for everything to be ready

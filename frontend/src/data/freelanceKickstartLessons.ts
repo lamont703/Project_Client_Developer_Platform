@@ -5,15 +5,21 @@ export interface LessonVideo {
   description?: string;
 }
 
+export interface ChecklistItem {
+  text: string;
+  completed?: boolean;
+}
+
 export interface Lesson {
   day: number;
   title: string;
   description: string;
   theoryVideo: LessonVideo;
   practicalVideos: LessonVideo[];
+  learningOutcomes: string[];
+  checklistItems: ChecklistItem[];
   resources?: {
     worksheets?: string[];
-    checklists?: string[];
   };
 }
 
@@ -35,9 +41,20 @@ export const lessons: Lesson[] = [
         description: 'Watch how to create and use a goal-setting checklist to maintain clarity in your freelance journey'
       }
     ],
+    learningOutcomes: [
+      'Define your freelance vision and income goals',
+      'Identify target industries and ideal clients',
+      'Understand the 3-month and 12-month roadmap'
+    ],
+    checklistItems: [
+      { text: 'Write your "Why" statement' },
+      { text: 'Set SMART goals (income + client type + timeline)' },
+      { text: 'List your top 3 service ideas' },
+      { text: 'Create a simple 3-month action plan' },
+      { text: 'Save this document in your GHL workspace' }
+    ],
     resources: {
-      worksheets: ['https://example.com/pdfs/day1-goal-setting-worksheet.pdf'],
-      checklists: ['https://example.com/pdfs/day1-goal-setting-checklist.pdf']
+      worksheets: ['https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/691501923f869471c31913bf.pdf']
     }
   },
   {
@@ -61,9 +78,20 @@ export const lessons: Lesson[] = [
         description: 'Step-by-step guide to creating your personalized tool skills checklist'
       }
     ],
+    learningOutcomes: [
+      'Understand key AI tools for freelancers (Cursor, ChatGPT, Midjourney, GoHighLevel)',
+      'Learn how to integrate tools into daily workflow',
+      'Build confidence using AI for creative and technical tasks'
+    ],
+    checklistItems: [
+      { text: 'Create accounts for Cursor, ChatGPT, Midjourney, and GHL' },
+      { text: 'Test each tool with a small task (e.g., write copy, generate code, design asset)' },
+      { text: 'Note which tools fit your niche best' },
+      { text: 'Save login links + credentials securely' },
+      { text: 'Build a quick "AI Tools Hub" in Notion or GHL' }
+    ],
     resources: {
-      worksheets: ['https://example.com/pdfs/day2-ai-tools-worksheet.pdf'],
-      checklists: ['https://example.com/pdfs/day2-tool-skills-checklist.pdf']
+      worksheets: ['https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/691501923f869471c31913bf.pdf']
     }
   },
   {
@@ -82,9 +110,20 @@ export const lessons: Lesson[] = [
         description: 'Live demonstration of using templates and checklists to manage clients'
       }
     ],
+    learningOutcomes: [
+      'Structure your freelance projects with clarity',
+      'Use templates to streamline onboarding and communication',
+      'Learn documentation best practices'
+    ],
+    checklistItems: [
+      { text: 'Download and customize project brief + onboarding templates' },
+      { text: 'Upload templates to your GHL or Drive folder' },
+      { text: 'Create a client folder naming convention' },
+      { text: 'Prepare a sample "Welcome Packet"' },
+      { text: 'Test sending a mock onboarding email' }
+    ],
     resources: {
-      worksheets: ['https://example.com/pdfs/day3-client-management-worksheet.pdf'],
-      checklists: ['https://example.com/pdfs/day3-client-management-checklist.pdf']
+      worksheets: ['https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/691501923f869471c31913bf.pdf']
     }
   },
   {
@@ -103,9 +142,20 @@ export const lessons: Lesson[] = [
         description: 'Step-by-step guide to creating and presenting offers to leads'
       }
     ],
+    learningOutcomes: [
+      'Write high-converting proposals and service descriptions',
+      'Use AI to polish tone, clarity, and benefits',
+      'Design a service pitch page or one-pager'
+    ],
+    checklistItems: [
+      { text: 'Define 1–2 core offers (problem + solution + result)' },
+      { text: 'Use AI to generate headline variations' },
+      { text: 'Write a 3-paragraph proposal template' },
+      { text: 'Upload final version to GHL pipeline templates' },
+      { text: 'Record a short video pitch (optional)' }
+    ],
     resources: {
-      worksheets: ['https://example.com/pdfs/day4-offer-creation-worksheet.pdf'],
-      checklists: ['https://example.com/pdfs/day4-offer-presentation-checklist.pdf']
+      worksheets: ['https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/691501923f869471c31913bf.pdf']
     }
   },
   {
@@ -124,9 +174,20 @@ export const lessons: Lesson[] = [
         description: 'Live demonstration of creating and managing your follow-up process'
       }
     ],
+    learningOutcomes: [
+      'Build automated follow-ups using GoHighLevel',
+      'Create workflows to nurture leads and clients',
+      'Track communications efficiently'
+    ],
+    checklistItems: [
+      { text: 'Create a "Leads" pipeline in GHL' },
+      { text: 'Set up 3 pipeline stages (New Lead → Proposal Sent → Client Won)' },
+      { text: 'Automate a 2-email follow-up sequence' },
+      { text: 'Add reminders for manual follow-ups' },
+      { text: 'Test workflow with a dummy contact' }
+    ],
     resources: {
-      worksheets: ['https://example.com/pdfs/day5-pipeline-worksheet.pdf'],
-      checklists: ['https://example.com/pdfs/day5-follow-up-checklist.pdf']
+      worksheets: ['https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/691501923f869471c31913bf.pdf']
     }
   },
   {
@@ -145,9 +206,20 @@ export const lessons: Lesson[] = [
         description: 'Step-by-step guide to creating your professional portfolio site'
       }
     ],
+    learningOutcomes: [
+      'Build a simple, professional portfolio site',
+      'Display projects and testimonials effectively',
+      'Optimize for conversions'
+    ],
+    checklistItems: [
+      { text: 'Choose a platform (GHL, Framer, Webflow, or Notion)' },
+      { text: 'Add bio, photo, and tagline' },
+      { text: 'Add 2 sample projects or mock case studies' },
+      { text: 'Include contact form or CTA button' },
+      { text: 'Publish and test on desktop + mobile' }
+    ],
     resources: {
-      worksheets: ['https://example.com/pdfs/day6-portfolio-worksheet.pdf'],
-      checklists: ['https://example.com/pdfs/day6-portfolio-checklist.pdf']
+      worksheets: ['https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/691501923f869471c31913bf.pdf']
     }
   },
   {
@@ -166,9 +238,20 @@ export const lessons: Lesson[] = [
         description: 'Live demonstration of building and implementing your content production strategy'
       }
     ],
+    learningOutcomes: [
+      'Learn how to create social media content that attracts clients',
+      'Develop a simple weekly posting plan',
+      'Use AI to generate ideas and captions'
+    ],
+    checklistItems: [
+      { text: 'Identify 3 content pillars (educate | showcase | personal)' },
+      { text: 'Use AI to generate 10 post ideas' },
+      { text: 'Schedule 3 posts for this week' },
+      { text: 'Create Canva templates for consistency' },
+      { text: 'Link social profiles to your portfolio' }
+    ],
     resources: {
-      worksheets: ['https://example.com/pdfs/day7-content-strategy-worksheet.pdf'],
-      checklists: ['https://example.com/pdfs/day7-content-production-checklist.pdf']
+      worksheets: ['https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/691501923f869471c31913bf.pdf']
     }
   },
   {
@@ -187,9 +270,20 @@ export const lessons: Lesson[] = [
         description: 'Step-by-step guide to pricing and packaging your services'
       }
     ],
+    learningOutcomes: [
+      'Understand pricing psychology and positioning',
+      'Learn how to package your offers',
+      'Build confidence discussing rates'
+    ],
+    checklistItems: [
+      { text: 'Calculate your base hourly rate & minimum project rate' },
+      { text: 'Create 3 tiers of offers (Starter | Growth | Premium)' },
+      { text: 'Add pricing table to your proposal template' },
+      { text: 'Draft a "scope vs price" matrix for clarity' },
+      { text: 'Role-play a pricing conversation with AI (ChatGPT or Cursor)' }
+    ],
     resources: {
-      worksheets: ['https://example.com/pdfs/day8-pricing-worksheet.pdf'],
-      checklists: ['https://example.com/pdfs/day8-pricing-packaging-checklist.pdf']
+      worksheets: ['https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/691501923f869471c31913bf.pdf']
     }
   },
   {
@@ -208,9 +302,20 @@ export const lessons: Lesson[] = [
         description: 'Live demonstration of advanced techniques and optimizations'
       }
     ],
+    learningOutcomes: [
+      'Systemize your workflow for scalability',
+      'Use automation and analytics for insights',
+      'Plan next-level growth steps'
+    ],
+    checklistItems: [
+      { text: 'Identify 2 manual tasks to automate with GHL/Zapier' },
+      { text: 'Track conversion rate of your proposals' },
+      { text: 'Create a "Client Retention" plan (referrals, follow-ups)' },
+      { text: 'Document your repeatable service process' },
+      { text: 'List 3 new systems to explore post-Kickstart' }
+    ],
     resources: {
-      worksheets: ['https://example.com/pdfs/day9-advanced-strategies-worksheet.pdf'],
-      checklists: ['https://example.com/pdfs/day9-optimization-checklist.pdf']
+      worksheets: ['https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/691501923f869471c31913bf.pdf']
     }
   },
   {
@@ -229,12 +334,20 @@ export const lessons: Lesson[] = [
         description: 'Complete your networking checklist and review your 10-day kickstart journey'
       }
     ],
+    learningOutcomes: [
+      'Build relationships with other AI freelancers',
+      'Learn how to give/receive referrals',
+      'Celebrate progress and map your next step'
+    ],
+    checklistItems: [
+      { text: 'Join the official community (Discord, Circle, etc.)' },
+      { text: 'Introduce yourself with your niche & goals' },
+      { text: 'Connect with 3 other members' },
+      { text: 'Share your biggest win from the 10 days' },
+      { text: 'Review your goals from Day 1 and plan next steps' }
+    ],
     resources: {
-      worksheets: ['https://example.com/pdfs/day10-networking-worksheet.pdf'],
-      checklists: [
-        'https://example.com/pdfs/day10-networking-checklist.pdf',
-        'https://example.com/pdfs/day10-journey-summary-checklist.pdf'
-      ]
+      worksheets: ['https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/691501923f869471c31913bf.pdf']
     }
   }
 ];
