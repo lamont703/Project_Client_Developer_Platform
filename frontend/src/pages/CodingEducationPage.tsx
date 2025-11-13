@@ -8,15 +8,13 @@ interface CodingEducationPageProps {
 
 const CodingEducationPage: React.FC<CodingEducationPageProps> = ({ navigateToHome }) => {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
-  // Show waitlist overlay by default (page not ready for public)
-  const [showWaitlistOverlay, setShowWaitlistOverlay] = useState(true);
 
   const openBookingModal = () => setIsBookingModalOpen(true);
   const closeBookingModal = () => setIsBookingModalOpen(false);
 
   return (
     <div className="coding-education-page">
-      <WaitlistOverlay isVisible={showWaitlistOverlay} />
+      <WaitlistOverlay isVisible={true} />
       <WaitlistHero onScheduleClick={openBookingModal} />
       <LearningSetupGuide onScheduleClick={openBookingModal} />
       <CourseOverview />
