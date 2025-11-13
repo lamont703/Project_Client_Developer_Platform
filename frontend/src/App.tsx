@@ -165,9 +165,10 @@ function AppContent() {
     }
   };
 
-  // Hide navigation on the freelance kickstart, lesson pages, and activate GHL pages
+  // Hide navigation on the freelance kickstart, lesson pages, coding education, and activate GHL pages
   const shouldShowNavigation = 
     !location.pathname.startsWith('/10Day-Freelance-Kickstart') &&
+    location.pathname !== '/coding-education' &&
     location.pathname !== '/activate-ghl';
 
   // Wait for everything to be ready

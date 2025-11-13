@@ -155,7 +155,6 @@ const LearningSetupGuide: React.FC<LearningSetupGuideProps> = ({ onScheduleClick
           {setupSteps.map((step, index) => (
             <div key={step.id} className={`setup-step-card ${completedSteps.has(step.id) ? 'completed' : ''}`}>
               <div className="step-header">
-                <div className="step-number">{index + 1}</div>
                 <div className="step-title-section">
                   <h3 className="step-title">{step.title}</h3>
                   <p className="step-description">{step.description}</p>
