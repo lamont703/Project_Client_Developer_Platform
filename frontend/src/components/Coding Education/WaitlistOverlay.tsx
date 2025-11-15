@@ -184,3 +184,4 @@ const WaitlistOverlay: React.FC<WaitlistOverlayProps> = ({ isVisible }) => {
 
 export default WaitlistOverlay;
 
+

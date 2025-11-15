@@ -13,7 +13,7 @@ export async function handleWaitlistRoute(req: Request, path: string): Promise<R
     if (method === 'POST' && path === '/api/waitlist') {
       const formData = await parseRequestBody(req)
       
-      logger.info('Waitlist submission received:', { name: formData.name, email: formData.email })
+      logger.info('Waitlist submission received:', { name: formData.name, email: formData.email, phone: formData.phone })
       
       // Send email notification using a simple email service
       const emailBody = `
@@ -21,6 +21,7 @@ New Waitlist Signup - Coding Education Program
 
 Name: ${formData.name}
 Email: ${formData.email}
+Phone: ${formData.phone || 'Not provided'}
 Experience Level: ${formData.experience || 'Not specified'}
 Learning Goals: ${formData.goals || 'Not specified'}
 Preferred Schedule: ${formData.availability || 'Not specified'}
@@ -48,6 +49,7 @@ Sent from XRBlockDev Services website
         data: {
           name: formData.name,
           email: formData.email,
+          phone: formData.phone || null,
           timestamp: new Date().toISOString()
         }
       }, 200)
