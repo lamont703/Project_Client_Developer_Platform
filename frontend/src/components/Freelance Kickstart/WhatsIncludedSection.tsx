@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../../styles/Freelance Kickstart/WhatsIncludedSection.css';
 
 const WhatsIncludedSection: React.FC = () => {
+  useEffect(() => {
+    // Load the form embed script
+    const script = document.createElement('script');
+    script.src = 'https://link.msgsndr.com/js/form_embed.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      // Cleanup: remove script when component unmounts
+      const existingScript = document.querySelector('script[src="https://link.msgsndr.com/js/form_embed.js"]');
+      if (existingScript) {
+        document.body.removeChild(existingScript);
+      }
+    };
+  }, []);
+
   return (
     <section className="whats-included">
       <div className="whats-included-container">
@@ -94,19 +110,31 @@ const WhatsIncludedSection: React.FC = () => {
             </ul>
           </div>
           
-          <div className="included-card">
-            <div className="card-icon">💡</div>
-            <h3 className="card-title">AI Freelancing Lessons</h3>
+          <div className="included-card form-card">
+            <div className="card-icon">📝</div>
+            <h3 className="card-title">10 Day AI Freelance Curriculum & List</h3>
             <p className="card-description">
-              Learn how to leverage AI tools to work smarter, not harder. Master techniques for 
-              development, digital marketing, design, and other freelancing niches using cutting-edge AI technology.
+              Get access to the complete 10 Day AI Freelance Curriculum and our list of the top AI Freelance Skills in 2026! 
             </p>
-            <ul className="card-features">
-              <li>✓ AI tool integration</li>
-              <li>✓ Freelance best practices</li>
-              <li>✓ Multiple niche coverage</li>
-              <li>✓ Real-world applications</li>
-            </ul>
+            <div className="form-embed-container">
+              <iframe
+                src="https://api.leadconnectorhq.com/widget/form/asiv80Sqs0qWpYJcgGfq"
+                className="form-embed-iframe"
+                id="inline-asiv80Sqs0qWpYJcgGfq"
+                data-layout='{"id":"INLINE"}'
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="10 Day AI Freelance Curriculum & List"
+                data-height="432"
+                data-layout-iframe-id="inline-asiv80Sqs0qWpYJcgGfq"
+                data-form-id="asiv80Sqs0qWpYJcgGfq"
+                title="10 Day AI Freelance Curriculum & List"
+              />
+            </div>
           </div>
         </div>
       </div>
