@@ -29,6 +29,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onOpenPaymentModal }) => {
     setIsPlaying(true);
   };
 
+  const handleViewCurriculum = () => {
+    const formCard = document.getElementById('curriculum-form-card');
+    if (formCard) {
+      formCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <section className="freelance-kickstart-hero">
       <div className="hero-container">
@@ -67,6 +74,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onOpenPaymentModal }) => {
         </div>
         
         <PaymentButton onClick={onOpenPaymentModal} />
+        
+        <button 
+          className="view-curriculum-button"
+          onClick={handleViewCurriculum}
+        >
+          <span className="button-main-text">View the 10 Day Freelance Curriculum</span>
+          <span className="button-subtext">click here</span>
+        </button>
         
         <div className="hero-features">
           <div className="feature-item">

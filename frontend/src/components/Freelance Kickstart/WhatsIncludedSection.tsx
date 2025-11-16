@@ -110,9 +110,9 @@ const WhatsIncludedSection: React.FC = () => {
             </ul>
           </div>
           
-          <div className="included-card form-card">
+          <div className="included-card form-card" id="curriculum-form-card">
             <div className="card-icon">📝</div>
-            <h3 className="card-title">10 Day AI Freelance Curriculum & List</h3>
+            <h3 className="card-title">10 Day AI Freelance Curriculum & Top AI Freelance Skills 2026 List</h3>
             <p className="card-description">
               Get access to the complete 10 Day AI Freelance Curriculum and our list of the top AI Freelance Skills in 2026! 
             </p>

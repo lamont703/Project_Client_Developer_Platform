@@ -13,6 +13,9 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({ onClick }) => {
         
         <div className="payment-header">
           <div className="payment-price-section">
+            <div className="original-price-wrapper">
+              <span className="original-price">$197</span>
+            </div>
             <div className="price-wrapper">
               <span className="price-currency">$</span>
               <span className="price-amount">50</span>
