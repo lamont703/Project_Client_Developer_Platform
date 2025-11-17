@@ -49,7 +49,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose }) => {
         <div className="payment-modal-header">
           <h2 className="payment-modal-title">Complete Your Purchase</h2>
           <p className="payment-modal-subtitle">
-            10-Day AI Freelance Kickstart - $50
+            10-Day AI Freelance Kickstart - $97
           </p>
         </div>
         <div className="payment-iframe-container">

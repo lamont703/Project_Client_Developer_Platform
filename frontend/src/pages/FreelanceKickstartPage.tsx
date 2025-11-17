@@ -27,7 +27,7 @@ const FreelanceKickstartPage: React.FC<FreelanceKickstartPageProps> = ({ navigat
     // Update meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Launch your AI freelance journey in just 10 days. Get hands-on with AI tools, start freelancing smarter, and test-drive GoHighLevel. Only $50 with a 100% money-back guarantee.');
+      metaDescription.setAttribute('content', 'Launch your AI freelance journey in just 10 days. Get hands-on with AI tools, start freelancing smarter, and test-drive GoHighLevel. Only $97 with a 100% money-back guarantee.');
     }
 
     // Update Open Graph tags
@@ -46,7 +46,7 @@ const FreelanceKickstartPage: React.FC<FreelanceKickstartPageProps> = ({ navigat
     updateMetaTag('og:type', 'website');
     updateMetaTag('og:url', currentUrl);
     updateMetaTag('og:title', '10-Day AI Freelance Kickstart - Launch Your Freelance Career');
-    updateMetaTag('og:description', 'Launch your AI freelance journey in just 10 days. Get hands-on with AI tools, start freelancing smarter, and test-drive GoHighLevel. Only $50 with a 100% money-back guarantee.');
+    updateMetaTag('og:description', 'Launch your AI freelance journey in just 10 days. Get hands-on with AI tools, start freelancing smarter, and test-drive GoHighLevel. Only $97 with a 100% money-back guarantee.');
     updateMetaTag('og:image', 'https://www.xrwebsites.io/XRBlockDev%20Logo.png');
     updateMetaTag('og:site_name', 'XRBlockDev Services');
 
@@ -64,7 +64,7 @@ const FreelanceKickstartPage: React.FC<FreelanceKickstartPageProps> = ({ navigat
     updateTwitterTag('twitter:card', 'summary_large_image');
     updateTwitterTag('twitter:url', currentUrl);
     updateTwitterTag('twitter:title', '10-Day AI Freelance Kickstart - Launch Your Freelance Career');
-    updateTwitterTag('twitter:description', 'Launch your AI freelance journey in just 10 days. Get hands-on with AI tools, start freelancing smarter, and test-drive GoHighLevel. Only $50 with a 100% money-back guarantee.');
+    updateTwitterTag('twitter:description', 'Launch your AI freelance journey in just 10 days. Get hands-on with AI tools, start freelancing smarter, and test-drive GoHighLevel. Only $97 with a 100% money-back guarantee.');
     updateTwitterTag('twitter:image', 'https://www.xrwebsites.io/XRBlockDev%20Logo.png');
 
     // Cleanup function to restore original meta tags when component unmounts

@@ -26,7 +26,7 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
 }
 
 .hero-badge {
@@ -56,6 +56,7 @@
   line-height: 1.3;
   margin-bottom: 1.5rem;
   max-width: 1000px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   word-wrap: normal;
@@ -83,6 +84,7 @@
   line-height: 1.5;
   margin-bottom: 2.5rem;
   max-width: 800px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   opacity: 0.95;
@@ -568,6 +570,10 @@
 
 /* Final desktop override - must come last to override all mobile rules */
 @media (min-width: 769px) {
+  .hero-container {
+    align-items: center;
+  }
+  
   .hero-title {
     font-size: 2.8125rem !important; /* 45px - exactly 45px on desktop */
     -webkit-text-size-adjust: 100% !important;
@@ -580,6 +586,15 @@
     -webkit-hyphens: none !important;
     -moz-hyphens: none !important;
     hyphens: none !important;
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  
+  .hero-subtitle {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 }
 
