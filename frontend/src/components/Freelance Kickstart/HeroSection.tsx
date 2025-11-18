@@ -73,6 +73,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onOpenPaymentModal }) => {
           </div>
         </div>
         
+        <p className="hero-description">
+          Learn the process of using AI to close your next $5K+ project in the next 12 months without platforms like Fiverr & Upwork
+        </p>
+        
         <PaymentButton onClick={onOpenPaymentModal} />
         
         <button 
