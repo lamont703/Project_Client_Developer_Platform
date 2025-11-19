@@ -111,10 +111,15 @@ const WhatsIncludedSection: React.FC = () => {
           </div>
           
           <div className="included-card form-card" id="curriculum-form-card">
-            <div className="card-icon">📝</div>
-            <h3 className="card-title">10 Day AI Freelance Curriculum & Top AI Freelance Skills 2026 List</h3>
+            <div className="card-icon">
+              <img 
+                src="/Book Cover.PNG" 
+                alt="Blueprint To Freelance Freedom Book Cover"
+              />
+            </div>
+            <h3 className="card-title">10 Day AI Freelance Curriculum & Free Book Offer</h3>
             <p className="card-description">
-              Get access to the complete 10 Day AI Freelance Curriculum and our list of the top AI Freelance Skills in 2026! 
+              View the complete 10 Day AI Freelance Curriculum and receive "Blueprint To Freelance Freedom" free book offer!
             </p>
             <div className="form-embed-container">
               <iframe
@@ -128,11 +133,11 @@ const WhatsIncludedSection: React.FC = () => {
                 data-activation-value=""
                 data-deactivation-type="neverDeactivate"
                 data-deactivation-value=""
-                data-form-name="10 Day AI Freelance Curriculum & List"
+                data-form-name="10 Day AI Freelance Curriculum & Free Book"
                 data-height="432"
                 data-layout-iframe-id="inline-asiv80Sqs0qWpYJcgGfq"
                 data-form-id="asiv80Sqs0qWpYJcgGfq"
-                title="10 Day AI Freelance Curriculum & List"
+                title="10 Day AI Freelance Curriculum & Free Book"
               />
             </div>
           </div>
