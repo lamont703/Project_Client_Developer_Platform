@@ -4,6 +4,7 @@ import {
   HeroSection, 
   WhatsIncludedSection, 
   HowItWorksSection, 
+  WhoIsThisForSection,
   TestimonialsSection, 
   CTASection, 
   FAQSection 
@@ -81,6 +82,7 @@ const FreelanceKickstartPage: React.FC<FreelanceKickstartPageProps> = ({ navigat
       <HeroSection onOpenPaymentModal={openPaymentModal} />
       <WhatsIncludedSection />
       <HowItWorksSection />
+      <WhoIsThisForSection />
       <TestimonialsSection />
       <CTASection onOpenPaymentModal={openPaymentModal} />
       <FAQSection />

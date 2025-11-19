@@ -89,20 +89,20 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onOpenPaymentModal }) => {
         
         <div className="hero-features">
           <div className="feature-item">
-            <span className="feature-icon">🤖</span>
-            <span className="feature-text">AI Tools Mastery</span>
+            <span className="feature-icon">💰</span>
+            <span className="feature-text">Higher Paying Clients</span>
           </div>
           <div className="feature-item">
-            <span className="feature-icon">💼</span>
-            <span className="feature-text">Freelance Guidance</span>
+            <span className="feature-icon">✨</span>
+            <span className="feature-text">No Fiverr/Upwork Fees</span>
           </div>
           <div className="feature-item">
-            <span className="feature-icon">⚡</span>
-            <span className="feature-text">14-Day Trial</span>
+            <span className="feature-icon">⚙️</span>
+            <span className="feature-text">Our Freelance System</span>
           </div>
           <div className="feature-item">
-            <span className="feature-icon">👥</span>
-            <span className="feature-text">Supportive Community</span>
+            <span className="feature-icon">🎯</span>
+            <span className="feature-text">Clear Easy Offers</span>
           </div>
         </div>
       </div>
