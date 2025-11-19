@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
-import { Navigation, ScrollToTop } from './components';
+import { ScrollToTop } from './components';
 import { HomePage, ChatPage, JobsPage, PostJobPage, DevelopersPage, AICommunityMemberPage, PitchDeckPage, DeFiPage, TaskManagerPage, PipelineDashboardPage, UserFeedbackPage, CodeContributionsPage, CodingEducationPage, FreelanceKickstartPage, DailyLessonPage, ActivateGHLPage, BookLandingPage } from './pages';
 import LandingPage from './components/Landing Page/LandingPage';
 import DeveloperChatPage from './pages/DeveloperChatPage';
@@ -165,12 +165,6 @@ function AppContent() {
     }
   };
 
-  // Hide navigation on the freelance kickstart, lesson pages, coding education, activate GHL pages, and book landing page
-  const shouldShowNavigation = 
-    !location.pathname.startsWith('/10Day-Freelance-Kickstart') &&
-    location.pathname !== '/coding-education' &&
-    location.pathname !== '/activate-ghl' &&
-    location.pathname !== '/blueprint-to-freelance-freedom';
 
   // Wait for everything to be ready
   React.useEffect(() => {
@@ -194,12 +188,6 @@ function AppContent() {
       <SafeComponent>
         <ScrollToTop />
       </SafeComponent>
-      
-      {shouldShowNavigation && (
-        <SafeComponent>
-          <Navigation navigateToHome={navigateToHome} />
-        </SafeComponent>
-      )}
       
       <SafeComponent>
         <Routes>
