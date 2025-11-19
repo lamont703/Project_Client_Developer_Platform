@@ -6,7 +6,7 @@ const HowItWorksSection: React.FC = () => {
     {
       number: 1,
       title: 'Sign Up',
-      description: 'Join the 10-day Kickstart for just $97 and get instant access to all materials and the GoHighLevel trial.',
+      description: 'Join the 10-day Kickstart for just $197 and get instant access to all materials and the GoHighLevel trial.',
       icon: '📝'
     },
     {
