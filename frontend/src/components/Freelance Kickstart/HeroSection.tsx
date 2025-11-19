@@ -98,7 +98,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onOpenPaymentModal }) => {
           </div>
           <div className="feature-item">
             <span className="feature-icon">⚙️</span>
-            <span className="feature-text">Our Freelance System</span>
+            <span className="feature-text">Our AI Freelance System</span>
           </div>
           <div className="feature-item">
             <span className="feature-icon">🎯</span>
