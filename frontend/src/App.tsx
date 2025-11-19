@@ -1,7 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { ScrollToTop } from './components';
-import { HomePage, ChatPage, JobsPage, PostJobPage, DevelopersPage, AICommunityMemberPage, PitchDeckPage, DeFiPage, TaskManagerPage, PipelineDashboardPage, UserFeedbackPage, CodeContributionsPage, CodingEducationPage, FreelanceKickstartPage, DailyLessonPage, ActivateGHLPage, BookLandingPage } from './pages';
+import { HomePage, ChatPage, JobsPage, PostJobPage, DevelopersPage, AICommunityMemberPage, PitchDeckPage, DeFiPage, TaskManagerPage, PipelineDashboardPage, UserFeedbackPage, CodeContributionsPage, CodingEducationPage, FreelanceKickstartPage, DailyLessonPage, ActivateGHLPage, BookLandingPage, AcceleratorCoursePage } from './pages';
 import LandingPage from './components/Landing Page/LandingPage';
 import DeveloperChatPage from './pages/DeveloperChatPage';
 import ProtoHubPage from './pages/ProtoHubPage';
@@ -152,7 +152,6 @@ const DOMReadyCheck: React.FC<{children: React.ReactNode}> = ({ children }) => {
 
 function AppContent() {
   const navigate = useNavigate();
-  const location = useLocation();
   const [isReady, setIsReady] = React.useState(false);
   
   // Function to navigate to home page using React Router
@@ -294,6 +293,11 @@ function AppContent() {
           <Route path="/blueprint-to-freelance-freedom" element={
             <SafeComponent>
               <BookLandingPage navigateToHome={navigateToHome} />
+            </SafeComponent>
+          } />
+          <Route path="/ai-freelance-accelerator" element={
+            <SafeComponent>
+              <AcceleratorCoursePage navigateToHome={navigateToHome} />
             </SafeComponent>
           } />
           <Route path="*" element={<Navigate to="/" replace />} />

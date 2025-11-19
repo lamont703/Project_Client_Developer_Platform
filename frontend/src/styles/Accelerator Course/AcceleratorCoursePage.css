@@ -1,0 +1,24 @@
+.accelerator-course-page {
+  width: 100%;
+  min-height: 100vh;
+  background: white;
+  overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+  .accelerator-course-page {
+    padding: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .accelerator-course-page {
+    font-size: 16px;
+  }
+  
+  * {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+

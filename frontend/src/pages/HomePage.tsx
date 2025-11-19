@@ -161,6 +161,13 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
             <button className="feature-link">Get Your Copy →</button>
           </div>
 
+          <div className="feature-card" onClick={() => handleNavigation('/ai-freelance-accelerator')}>
+            <div className="feature-icon">🚀</div>
+            <h3>AI Freelance Accelerator Course</h3>
+            <p>Scale your freelance business from $5K to $50K+ monthly with advanced strategies, 1-on-1 coaching, and proven AI systems. Complete accelerator program for serious freelancers.</p>
+            <button className="feature-link">Enroll Now →</button>
+          </div>
+
           <div className="feature-card" onClick={() => handleNavigation('/10Day-Freelance-Kickstart/lesson/1')}>
             <div className="feature-icon">📚</div>
             <h3>Daily Lessons</h3>
