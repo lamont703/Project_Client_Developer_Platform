@@ -16,3 +16,4 @@ export { default as CodingEducationPage } from './CodingEducationPage';
 export { default as FreelanceKickstartPage } from './FreelanceKickstartPage';
 export { default as DailyLessonPage } from './DailyLessonPage';
 export { default as ActivateGHLPage } from './ActivateGHLPage';
+export { default as BookLandingPage } from './BookLandingPage';

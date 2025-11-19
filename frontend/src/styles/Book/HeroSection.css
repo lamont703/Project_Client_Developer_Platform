@@ -1,0 +1,251 @@
+.book-hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 6rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.book-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.3;
+}
+
+.hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.book-cover-hero {
+  margin-bottom: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.book-cover-main {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  object-fit: contain;
+  background: transparent;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
+  max-width: 1000px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color: white;
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  max-width: 800px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.95;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 500;
+}
+
+.hero-description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin: 2rem auto 2.5rem;
+  max-width: 900px;
+  width: 100%;
+  padding: 0 1rem;
+  opacity: 0.95;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 600;
+}
+
+.hero-features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
+  gap: 1.5rem 2rem;
+  margin-top: 3rem;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  padding: 1rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: center;
+  min-height: 90px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.feature-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.feature-text {
+  line-height: 1.3;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+  .book-hero {
+    padding: 3rem 0;
+  }
+  
+  .hero-container {
+    padding: 0 1rem;
+  }
+  
+  .book-cover-main {
+    max-width: 250px;
+  }
+  
+  .hero-title {
+    font-size: 1.8rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
+  }
+  
+  .hero-description {
+    font-size: 1rem;
+    margin: 1.5rem auto 2rem;
+    padding: 0 0.5rem;
+  }
+  
+  .hero-features {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    max-width: 100%;
+    width: 100%;
+    padding: 0;
+  }
+  
+  .feature-item {
+    font-size: 0.85rem;
+    padding: 0.75rem 0.5rem;
+    aspect-ratio: 1;
+    gap: 0.4rem;
+    min-height: unset;
+    width: auto;
+    max-width: none;
+  }
+  
+  .feature-icon {
+    font-size: 1.3rem;
+  }
+  
+  .feature-text {
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-hero {
+    padding: 2.5rem 0;
+  }
+  
+  .book-cover-main {
+    max-width: 200px;
+  }
+  
+  .hero-title {
+    font-size: 1.5rem;
+    line-height: 1.4;
+    margin-bottom: 0.875rem;
+    padding: 0 0.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
+    line-height: 1.4;
+  }
+  
+  .hero-description {
+    font-size: 0.9rem;
+    margin: 1.25rem auto 1.75rem;
+    padding: 0 0.5rem;
+    line-height: 1.4;
+  }
+  
+  .hero-features {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+    width: 100%;
+    padding: 0;
+  }
+  
+  .feature-item {
+    font-size: 0.8rem;
+    padding: 0.6rem 0.4rem;
+    aspect-ratio: 1;
+    gap: 0.3rem;
+    min-height: unset;
+    width: auto;
+    max-width: none;
+  }
+  
+  .feature-icon {
+    font-size: 1.2rem;
+  }
+  
+  .feature-text {
+    font-size: 0.75rem;
+    line-height: 1.2;
+  }
+}
+

@@ -1,0 +1,159 @@
+.who-is-this-for {
+  padding: 5rem 0;
+  background: #f8f9fa;
+}
+
+.who-is-this-for-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1a202c;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: #4a5568;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.audience-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.audience-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.audience-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.audience-icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  background: #667eea;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 0.125rem;
+}
+
+.audience-text {
+  font-size: 1.1rem;
+  color: #1a202c;
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .who-is-this-for {
+    padding: 3rem 0;
+  }
+  
+  .who-is-this-for-container {
+    padding: 0 1.5rem;
+  }
+  
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1rem;
+    padding: 0 0.5rem;
+  }
+  
+  .audience-list {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  
+  .audience-item {
+    padding: 1.25rem;
+  }
+  
+  .audience-icon {
+    width: 24px;
+    height: 24px;
+    font-size: 0.9rem;
+  }
+  
+  .audience-text {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .who-is-this-for {
+    padding: 2.5rem 0;
+  }
+  
+  .who-is-this-for-container {
+    padding: 0 1rem;
+  }
+  
+  .section-title {
+    font-size: 1.75rem;
+  }
+  
+  .section-subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .audience-list {
+    gap: 1rem;
+  }
+  
+  .audience-item {
+    padding: 1rem;
+    gap: 0.875rem;
+  }
+  
+  .audience-icon {
+    width: 22px;
+    height: 22px;
+    font-size: 0.85rem;
+  }
+  
+  .audience-text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+}
+
