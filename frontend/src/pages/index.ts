@@ -18,3 +18,4 @@ export { default as DailyLessonPage } from './DailyLessonPage';
 export { default as ActivateGHLPage } from './ActivateGHLPage';
 export { default as BookLandingPage } from './BookLandingPage';
 export { default as AcceleratorCoursePage } from './AcceleratorCoursePage';
+export { default as WebinarWorkshopPage } from './WebinarWorkshopPage';

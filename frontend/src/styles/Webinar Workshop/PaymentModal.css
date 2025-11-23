@@ -1,0 +1,150 @@
+.payment-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  overflow: hidden;
+}
+
+.payment-modal-overlay.closed {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.payment-modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.payment-modal-close {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  font-size: 2rem;
+  color: #000000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  z-index: 10;
+  touch-action: manipulation;
+  line-height: 1;
+  padding: 0;
+}
+
+.payment-modal-close:hover {
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.1) rotate(90deg);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.payment-modal-close:active {
+  transform: scale(0.95) rotate(90deg);
+}
+
+.payment-iframe-container {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.payment-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .payment-modal-overlay {
+    padding: 0;
+  }
+  
+  .payment-modal-close {
+    top: 1rem;
+    right: 1rem;
+    width: 44px;
+    height: 44px;
+    font-size: 1.75rem;
+  }
+  
+  .payment-iframe-container {
+    height: 100vh;
+    height: -webkit-fill-available;
+  }
+  
+  .payment-iframe {
+    height: 100%;
+    height: -webkit-fill-available;
+  }
+}
+
+@media (max-width: 480px) {
+  .payment-modal-close {
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+  
+  .payment-iframe-container {
+    height: 100vh;
+    height: -webkit-fill-available;
+  }
+  
+  .payment-iframe {
+    height: 100%;
+    height: -webkit-fill-available;
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) {
+    .payment-modal-overlay {
+      height: -webkit-fill-available;
+    }
+    
+    .payment-iframe-container {
+      height: -webkit-fill-available;
+    }
+    
+    .payment-iframe {
+      height: -webkit-fill-available;
+    }
+  }
+}
+

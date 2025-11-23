@@ -1,0 +1,335 @@
+.payment-button-container {
+  position: relative;
+  max-width: 650px;
+  margin: 2.5rem auto 0;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.payment-button-container:hover {
+  transform: translateY(-6px);
+}
+
+.payment-button-container:active {
+  transform: translateY(-2px);
+}
+
+.payment-button-content {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.12) 100%);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 24px;
+  padding: 2.5rem;
+  padding-top: 3rem;
+  position: relative;
+  z-index: 2;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: visible;
+}
+
+.payment-button-container:hover .payment-button-content {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.18) 100%);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.payment-badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+  color: #1a202c;
+  padding: 0.5rem 1.25rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+  z-index: 10;
+  animation: pulse 2s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.05);
+  }
+}
+
+.payment-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.payment-price-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.price-wrapper {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.price-currency {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: white;
+  line-height: 1;
+}
+
+.price-amount {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: white;
+  line-height: 1;
+}
+
+.price-label {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  margin-top: 0.5rem;
+  display: block;
+}
+
+.payment-cta-button {
+  width: 100%;
+  background: white;
+  color: #f5576c;
+  border: none;
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  font-size: 1.3rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  margin-bottom: 1.5rem;
+}
+
+.payment-cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+.payment-cta-button:active {
+  transform: translateY(0);
+}
+
+.cta-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.cta-text {
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.cta-subtext {
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.payment-features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.payment-feature {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 500;
+}
+
+.feature-check {
+  color: #ffd700;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.payment-security {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+}
+
+.security-icon {
+  font-size: 1rem;
+}
+
+.payment-button-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+  animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+.payment-shine {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+  animation: shine 3s infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .payment-button-container {
+    margin: 2rem auto 0;
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+  
+  .payment-button-content {
+    padding: 2rem 1.5rem;
+    padding-top: 2.5rem;
+  }
+  
+  .payment-badge {
+    font-size: 0.75rem;
+    padding: 0.4rem 1rem;
+  }
+  
+  .price-currency {
+    font-size: 2rem;
+  }
+  
+  .price-amount {
+    font-size: 2.75rem;
+  }
+  
+  .price-label {
+    font-size: 0.85rem;
+  }
+  
+  .payment-cta-button {
+    padding: 1.25rem 1.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .cta-text {
+    font-size: 1.1rem;
+  }
+  
+  .cta-subtext {
+    font-size: 0.85rem;
+  }
+  
+  .payment-feature {
+    font-size: 0.9rem;
+  }
+  
+  .payment-security {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .payment-button-container {
+    margin: 1.5rem auto 0;
+    padding: 0 0.5rem;
+  }
+  
+  .payment-button-content {
+    padding: 1.75rem 1.25rem;
+    padding-top: 2.25rem;
+  }
+  
+  .payment-badge {
+    font-size: 0.7rem;
+    padding: 0.35rem 0.875rem;
+  }
+  
+  .price-currency {
+    font-size: 1.75rem;
+  }
+  
+  .price-amount {
+    font-size: 2.25rem;
+  }
+  
+  .price-label {
+    font-size: 0.8rem;
+  }
+  
+  .payment-cta-button {
+    padding: 1.1rem 1.25rem;
+    font-size: 1rem;
+  }
+  
+  .cta-text {
+    font-size: 1rem;
+  }
+  
+  .cta-subtext {
+    font-size: 0.8rem;
+  }
+  
+  .payment-features {
+    gap: 0.6rem;
+  }
+  
+  .payment-feature {
+    font-size: 0.85rem;
+  }
+  
+  .payment-security {
+    font-size: 0.75rem;
+  }
+}
+
+
