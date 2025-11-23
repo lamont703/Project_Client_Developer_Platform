@@ -76,7 +76,7 @@
   overflow: hidden;
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 
@@ -91,6 +91,9 @@
 @media (max-width: 768px) {
   .payment-modal-overlay {
     padding: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    align-items: flex-start;
   }
   
   .payment-modal-close {
@@ -99,51 +102,81 @@
     width: 44px;
     height: 44px;
     font-size: 1.75rem;
+    position: fixed;
+    z-index: 15;
   }
   
   .payment-iframe-container {
-    height: 100vh;
-    height: -webkit-fill-available;
+    width: 100%;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    height: auto;
+    overflow: visible;
+    padding-bottom: 2rem;
+    align-items: flex-start;
   }
   
   .payment-iframe {
-    height: 100%;
-    height: -webkit-fill-available;
+    width: 100%;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    height: auto;
+    overflow: visible;
   }
 }
 
 @media (max-width: 480px) {
+  .payment-modal-overlay {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
   .payment-modal-close {
     top: 0.75rem;
     right: 0.75rem;
     width: 40px;
     height: 40px;
     font-size: 1.5rem;
+    position: fixed;
+    z-index: 15;
   }
   
   .payment-iframe-container {
-    height: 100vh;
-    height: -webkit-fill-available;
+    width: 100%;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    height: auto;
+    overflow: visible;
+    padding-bottom: 2rem;
   }
   
   .payment-iframe {
-    height: 100%;
-    height: -webkit-fill-available;
+    width: 100%;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    height: auto;
+    overflow: visible;
   }
 }
 
 @supports (-webkit-touch-callout: none) {
   @media (max-width: 768px) {
     .payment-modal-overlay {
-      height: -webkit-fill-available;
+      min-height: -webkit-fill-available;
+      height: auto;
+      overflow-y: auto;
     }
     
     .payment-iframe-container {
-      height: -webkit-fill-available;
+      min-height: -webkit-fill-available;
+      height: auto;
+      overflow: visible;
     }
     
     .payment-iframe {
-      height: -webkit-fill-available;
+      min-height: -webkit-fill-available;
+      height: auto;
+      overflow: visible;
     }
   }
 }

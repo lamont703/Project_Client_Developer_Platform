@@ -86,9 +86,9 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose }) => {
           className="payment-iframe"
           title="Workshop Booking Calendar"
           frameBorder="0"
-          scrolling="no"
+          scrolling="yes"
           id={uniqueId}
-          style={{ width: '100%', border: 'none', overflow: 'hidden' }}
+          style={{ width: '100%', border: 'none' }}
           allowFullScreen
           loading="lazy"
         />
