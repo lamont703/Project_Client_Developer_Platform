@@ -101,13 +101,52 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose }) => {
         } else if (existingScript) {
           scriptLoaded.current = true;
         }
+
+        // Try to resize iframe to fit content after a delay
+        const resizeTimer = setTimeout(() => {
+          const iframe = iframeRef.current || document.getElementById(uniqueId);
+          if (iframe) {
+            // Set iframe to auto height to allow full content display
+            iframe.style.height = 'auto';
+            iframe.style.minHeight = '100vh';
+            
+            // Listen for iframe load to potentially adjust height
+            iframe.onload = () => {
+              try {
+                // Try to get iframe content height (may fail due to CORS)
+                const iframeDoc = (iframe as HTMLIFrameElement).contentDocument || 
+                                 (iframe as HTMLIFrameElement).contentWindow?.document;
+                if (iframeDoc) {
+                  const height = Math.max(
+                    iframeDoc.body.scrollHeight,
+                    iframeDoc.body.offsetHeight,
+                    iframeDoc.documentElement.clientHeight,
+                    iframeDoc.documentElement.scrollHeight,
+                    iframeDoc.documentElement.offsetHeight
+                  );
+                  if (height > 0) {
+                    iframe.style.height = `${height}px`;
+                  }
+                }
+              } catch (e) {
+                // CORS restriction - can't access iframe content
+                // This is expected for external iframes
+                console.log('[PaymentModal] Cannot access iframe content (CORS), using auto height');
+              }
+            };
+          }
+        }, 500);
+
+        return () => {
+          clearTimeout(resizeTimer);
+        };
       }, 100);
 
       return () => {
         clearTimeout(timer);
       };
     }
-  }, [isOpen]);
+  }, [isOpen, uniqueId]);
 
   // Unified close handler that works on both desktop and mobile
   const handleClose = () => {
@@ -366,7 +405,9 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose }) => {
               width: '100%', 
               border: 'none',
               pointerEvents: 'auto',
-              touchAction: 'manipulation'
+              touchAction: 'manipulation',
+              minHeight: '100vh',
+              height: 'auto'
             }}
             allowFullScreen
             loading="lazy"

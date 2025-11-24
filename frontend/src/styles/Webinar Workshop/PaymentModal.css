@@ -111,13 +111,14 @@
   pointer-events: auto;
   z-index: 1;
   isolation: isolate;
-  padding-bottom: 4rem;
+  padding-bottom: 6rem;
   -webkit-touch-callout: default;
 }
 
 .payment-iframe {
   width: 100%;
   min-height: 100vh;
+  height: auto;
   border: none;
   display: block;
   pointer-events: auto;
@@ -170,7 +171,7 @@
     min-height: 100vh;
     min-height: -webkit-fill-available;
     height: auto;
-    padding-bottom: 4rem;
+    padding-bottom: 6rem;
     align-items: flex-start;
     pointer-events: auto;
   }
@@ -180,6 +181,7 @@
     min-height: 100vh;
     min-height: -webkit-fill-available;
     height: auto;
+    max-height: none;
     pointer-events: auto;
   }
 }
@@ -226,7 +228,7 @@
     min-height: 100vh;
     min-height: -webkit-fill-available;
     height: auto;
-    padding-bottom: 4rem;
+    padding-bottom: 6rem;
     pointer-events: auto;
   }
   
@@ -235,6 +237,7 @@
     min-height: 100vh;
     min-height: -webkit-fill-available;
     height: auto;
+    max-height: none;
     pointer-events: auto;
   }
 }
