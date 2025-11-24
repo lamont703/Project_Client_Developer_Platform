@@ -8,7 +8,7 @@ interface PaymentModalProps {
 
 const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose }) => {
   const scriptLoaded = useRef(false);
-  const bookingId = 'ACNzCcCMVzQqXjSV79zG';
+  const bookingId = 'ThJEjpQHi0ajEB0UxJKJ';
   const [uniqueId] = useState(() => `${bookingId}_${Date.now()}`);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -395,15 +395,16 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose }) => {
         >
           <iframe
             ref={iframeRef}
-            src="https://api.leadconnectorhq.com/widget/booking/ACNzCcCMVzQqXjSV79zG"
+            src="https://api.leadconnectorhq.com/widget/booking/ThJEjpQHi0ajEB0UxJKJ"
             className="payment-iframe"
             title="Workshop Booking Calendar"
             frameBorder="0"
-            scrolling="yes"
+            scrolling="no"
             id={uniqueId}
             style={{ 
               width: '100%', 
               border: 'none',
+              overflow: 'hidden',
               pointerEvents: 'auto',
               touchAction: 'manipulation',
               minHeight: '100vh',
