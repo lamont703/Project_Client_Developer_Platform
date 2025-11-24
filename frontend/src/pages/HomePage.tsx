@@ -157,7 +157,7 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
           <div className="feature-card" onClick={() => handleNavigation('/webinar-workshop')}>
             <div className="feature-icon">🎓</div>
             <h3>Live Webinar Workshop</h3>
-            <p>Master the "what" and "why" behind AI freelancing. Join our live interactive workshop to understand core concepts that complement the 10-Day Kickstart. Special bonus for attendees!</p>
+            <p>Tired of lowball clients and 20% platform fees? Learn the AI-freelancing system that gets you $5K+ clients — fast. Escape Fiverr/Upwork forever.</p>
             <button className="feature-link">Reserve Your Spot →</button>
           </div>
 

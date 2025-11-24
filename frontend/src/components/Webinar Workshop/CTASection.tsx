@@ -19,14 +19,14 @@ const CTASection: React.FC<CTASectionProps> = ({ onOpenPaymentModal }) => {
     <section className="webinar-cta">
       <div className="cta-container">
         <div className="cta-content">
-          <h2 className="cta-title">Ready to Master AI Freelance Concepts?</h2>
+          <h2 className="cta-title">Ready to Escape Lowball Clients and Platform Fees?</h2>
           <p className="cta-subtitle">
-            Join our live workshop and understand the "what" and "why" that will transform your freelance career
+            Join our live workshop and learn the AI-freelancing system that gets you $5K+ clients — fast. Stop competing on price and start attracting clients who pay $5K or higher per project.
           </p>
           <div className="cta-features">
-            <div className="cta-feature">✓ Live interactive workshop</div>
-            <div className="cta-feature">✓ Learn core concepts and strategies</div>
-            <div className="cta-feature">✓ Understand the "what" and "why"</div>
+            <div className="cta-feature">✓ Learn to escape 20% platform fees</div>
+            <div className="cta-feature">✓ Attract $5K+ clients who pay premium rates</div>
+            <div className="cta-feature">✓ Get results fast with proven system</div>
             <div className="cta-feature">✓ Live Q&A session</div>
             <div className="cta-feature">✓ Workshop recording included</div>
             <div className="cta-feature">✓ Exclusive bonus for attendees</div>

@@ -7,74 +7,66 @@ const WhatsIncludedSection: React.FC = () => {
       <div className="whats-included-container">
         <div className="section-header">
           <h2 className="section-title">What You'll Learn</h2>
+          
+          <div className="infographic-container">
+            <img 
+              src="/infographic.png" 
+              alt="AI & The Future of Freelancing: Adapt or Be Replaced - Infographic showing the AI disruption in freelancing, market splitting, platform fees, and the 5-step system to find clients"
+              className="infographic-image"
+            />
+          </div>
+          
           <p className="section-subtitle">
-            Master the foundational concepts that complement the 10-Day AI Freelance Kickstart
+            Discover the AI-freelancing system that helps you escape lowball clients and platform fees, and start attracting clients who pay $5K or higher per project
           </p>
         </div>
         
         <div className="included-grid">
           <div className="included-card">
-            <div className="card-icon">❓</div>
-            <h3 className="card-title">The "What" - Core Concepts</h3>
+            <div className="card-icon">🚫</div>
+            <h3 className="card-title">Escape Platform Fees & Lowball Clients</h3>
             <p className="card-description">
-              Understand exactly what AI freelancing is, how it differs from traditional freelancing, 
-              and what makes it so powerful. Learn the fundamental concepts that form the foundation 
-              of a successful AI-powered freelance business.
+              Learn why platforms like Fiverr and Upwork keep you stuck in a race to the bottom, 
+              and discover the proven system to break free. Understand how to eliminate 20% fees 
+              and stop competing on price alone.
             </p>
             <ul className="card-features">
-              <li>✓ What AI freelancing really means</li>
-              <li>✓ Key concepts and terminology</li>
-              <li>✓ The AI freelancing ecosystem</li>
-              <li>✓ Essential tools and platforms</li>
+              <li>✓ Why platforms keep you underpaid</li>
+              <li>✓ How to eliminate 20% platform fees</li>
+              <li>✓ Stop competing on price</li>
+              <li>✓ Break free from the race to the bottom</li>
             </ul>
           </div>
           
           <div className="included-card featured">
             <div className="card-badge">Core Focus</div>
-            <div className="card-icon">💭</div>
-            <h3 className="card-title">The "Why" - Strategic Understanding</h3>
+            <div className="card-icon">🎯</div>
+            <h3 className="card-title">The AI-Freelancing System for $5K+ Clients</h3>
             <p className="card-description">
-              Discover why AI freelancing works, why certain strategies are more effective than others, 
-              and why the traditional freelance model is being disrupted. Gain the strategic insight 
-              needed to make informed decisions in your freelance journey.
+              Discover the exact system that helps you attract clients who pay $5K or higher per project. 
+              Learn how AI tools amplify your skills and help you deliver results that command premium rates — fast.
             </p>
             <ul className="card-features">
-              <li>✓ Why AI changes everything</li>
-              <li>✓ Why skip Fiverr and Upwork</li>
-              <li>✓ Why direct client relationships matter</li>
-              <li>✓ Why systems beat hustle</li>
+              <li>✓ How to attract $5K+ clients</li>
+              <li>✓ AI tools that get results fast</li>
+              <li>✓ System for premium client acquisition</li>
+              <li>✓ Strategies that work immediately</li>
             </ul>
           </div>
           
           <div className="included-card">
-            <div className="card-icon">🧠</div>
-            <h3 className="card-title">Mindset & Strategy</h3>
+            <div className="card-icon">⚡</div>
+            <h3 className="card-title">Get Results Fast</h3>
             <p className="card-description">
-              Learn the mindset shifts necessary for success in AI freelancing. Understand how to think 
-              strategically about your freelance business and make decisions that lead to long-term growth 
-              rather than short-term gains.
+              This isn't theory — it's a proven system you can implement immediately. Learn the 
+              exact strategies and AI tools that help you start attracting $5K+ clients right away, 
+              without months of trial and error.
             </p>
             <ul className="card-features">
-              <li>✓ Strategic thinking frameworks</li>
-              <li>✓ Mindset shifts for success</li>
-              <li>✓ Decision-making principles</li>
-              <li>✓ Long-term vs short-term thinking</li>
-            </ul>
-          </div>
-          
-          <div className="included-card">
-            <div className="card-icon">🔗</div>
-            <h3 className="card-title">How It Complements the Kickstart</h3>
-            <p className="card-description">
-              See how understanding these concepts makes the 10-Day AI Freelance Kickstart even more 
-              effective. When you know the "what" and "why," the "how" becomes much more powerful 
-              and meaningful.
-            </p>
-            <ul className="card-features">
-              <li>✓ Connect concepts to implementation</li>
-              <li>✓ Understand the bigger picture</li>
-              <li>✓ Make informed decisions</li>
-              <li>✓ Accelerate your learning curve</li>
+              <li>✓ Actionable strategies you can use today</li>
+              <li>✓ Fast-track to $5K+ clients</li>
+              <li>✓ Immediate implementation steps</li>
+              <li>✓ Skip the learning curve</li>
             </ul>
           </div>
           

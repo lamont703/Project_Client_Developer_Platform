@@ -3,14 +3,14 @@ import '../../styles/Webinar Workshop/WhoIsThisForSection.css';
 
 const WhoIsThisForSection: React.FC = () => {
   const targetAudiences = [
-    'Someone considering the 10-Day AI Freelance Kickstart',
-    'A freelancer who wants to understand the "why" behind strategies',
-    'A beginner who needs foundational concepts before implementation',
-    'Someone who learns better by understanding principles first',
-    'A freelancer stuck on platforms wanting to understand alternatives',
-    'Anyone who wants to make informed decisions about their freelance career',
-    'Someone who values strategic understanding over just tactics',
-    'A freelancer ready to think bigger about their business'
+    'Tired of lowball clients who don\'t value your work',
+    'Sick of paying 20% platform fees on every project',
+    'Stuck on Fiverr or Upwork competing on price',
+    'Ready to attract clients who pay $5K or higher per project',
+    'Want to escape the race to the bottom',
+    'Looking for a system that gets $5K+ clients fast',
+    'A freelancer ready to break free from platforms',
+    'Someone who wants to build a real freelance business with premium clients'
   ];
 
   return (

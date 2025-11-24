@@ -6,12 +6,20 @@
   bottom: 0;
   background: #000000;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   z-index: 2000;
   padding: 0;
   transition: opacity 0.3s ease, visibility 0.3s ease;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  pointer-events: auto;
+}
+
+/* Ensure overlay doesn't block child elements */
+.payment-modal-overlay > * {
+  pointer-events: auto;
 }
 
 .payment-modal-overlay.closed {
@@ -36,10 +44,24 @@
   }
 }
 
-.payment-modal-close {
+.payment-modal-close-wrapper {
   position: fixed;
-  top: 1.5rem;
-  right: 1.5rem;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  z-index: 3000;
+  pointer-events: none;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  isolation: isolate;
+  touch-action: none;
+}
+
+.payment-modal-close {
+  position: relative;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -53,10 +75,19 @@
   justify-content: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
-  z-index: 10;
   touch-action: manipulation;
   line-height: 1;
   padding: 0;
+  margin: 0;
+  outline: none;
+  pointer-events: auto !important;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0.5);
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  z-index: 3001;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .payment-modal-close:hover {
@@ -72,20 +103,27 @@
 
 .payment-iframe-container {
   width: 100%;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
   position: relative;
   display: flex;
   align-items: flex-start;
   justify-content: center;
+  pointer-events: auto;
+  z-index: 1;
+  isolation: isolate;
+  padding-bottom: 4rem;
+  -webkit-touch-callout: default;
 }
 
 .payment-iframe {
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   border: none;
   display: block;
-  overflow: hidden;
+  pointer-events: auto;
+  position: relative;
+  z-index: 1;
+  -webkit-touch-callout: default;
 }
 
 @media (max-width: 768px) {
@@ -96,14 +134,35 @@
     align-items: flex-start;
   }
   
+  .payment-modal-close-wrapper {
+    width: 80px;
+    height: 80px;
+    padding: 0.75rem;
+    position: fixed !important;
+    top: 0.5rem !important;
+    right: 0.5rem !important;
+    z-index: 9999 !important;
+    pointer-events: none;
+    touch-action: none;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
   .payment-modal-close {
-    top: 1rem;
-    right: 1rem;
     width: 44px;
     height: 44px;
     font-size: 1.75rem;
-    position: fixed;
-    z-index: 15;
+    position: relative;
+    z-index: 10000 !important;
+    pointer-events: auto !important;
+    touch-action: manipulation;
+    -webkit-appearance: none;
+    appearance: none;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: rgba(255, 255, 255, 0.95) !important;
   }
   
   .payment-iframe-container {
@@ -111,9 +170,9 @@
     min-height: 100vh;
     min-height: -webkit-fill-available;
     height: auto;
-    overflow: visible;
-    padding-bottom: 2rem;
+    padding-bottom: 4rem;
     align-items: flex-start;
+    pointer-events: auto;
   }
   
   .payment-iframe {
@@ -121,7 +180,7 @@
     min-height: 100vh;
     min-height: -webkit-fill-available;
     height: auto;
-    overflow: visible;
+    pointer-events: auto;
   }
 }
 
@@ -131,14 +190,35 @@
     -webkit-overflow-scrolling: touch;
   }
   
+  .payment-modal-close-wrapper {
+    width: 70px;
+    height: 70px;
+    padding: 0.5rem;
+    position: fixed !important;
+    top: 0.5rem !important;
+    right: 0.5rem !important;
+    z-index: 9999 !important;
+    pointer-events: none;
+    touch-action: none;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
   .payment-modal-close {
-    top: 0.75rem;
-    right: 0.75rem;
     width: 40px;
     height: 40px;
     font-size: 1.5rem;
-    position: fixed;
-    z-index: 15;
+    position: relative;
+    z-index: 10000 !important;
+    pointer-events: auto !important;
+    touch-action: manipulation;
+    -webkit-appearance: none;
+    appearance: none;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: rgba(255, 255, 255, 0.95) !important;
   }
   
   .payment-iframe-container {
@@ -146,8 +226,8 @@
     min-height: 100vh;
     min-height: -webkit-fill-available;
     height: auto;
-    overflow: visible;
-    padding-bottom: 2rem;
+    padding-bottom: 4rem;
+    pointer-events: auto;
   }
   
   .payment-iframe {
@@ -155,7 +235,7 @@
     min-height: 100vh;
     min-height: -webkit-fill-available;
     height: auto;
-    overflow: visible;
+    pointer-events: auto;
   }
 }
 

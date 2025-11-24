@@ -10,9 +10,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onOpenPaymentModal }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showControls, setShowControls] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  // You can update these URLs with your webinar video
-  const videoUrl = 'https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/691808c861d44d48969d1e89.mov';
-  const thumbnailUrl = 'https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/69180aa3964b865ac7beeb45.jpg';
+  const videoUrl = 'https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/6923b1284da788e40dbb258a.mp4';
+  const thumbnailUrl = 'https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/6923b4bec7f3f5226ecd9561.png';
 
   const handlePlayClick = () => {
     if (videoRef.current) {
@@ -36,11 +35,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onOpenPaymentModal }) => {
         <div className="hero-badge">🎓 Live Interactive Workshop</div>
         
         <h1 className="hero-title">
-          Master the "What" and "Why" Behind AI Freelancing
+          Tired of Lowball Clients and 20% Platform Fees?
         </h1>
         
         <p className="hero-subtitle">
-          Join our live webinar workshop and discover the foundational concepts that make the 10-Day AI Freelance Kickstart so powerful. Understand the principles before you implement them.
+          Learn the AI-Freelancing System That Gets You $5K+ Clients — Fast. Join our live workshop and discover how to escape platforms like Fiverr and Upwork, eliminate fees, and attract clients who pay $5K or higher per project.
         </p>
         
         <div className="hero-video-section">
@@ -70,27 +69,27 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onOpenPaymentModal }) => {
         </div>
         
         <p className="hero-description">
-          Learn the core concepts, strategies, and mindset shifts that separate successful AI freelancers from those stuck on platforms like Fiverr and Upwork.
+          Stop competing on price. Stop paying platform fees. Start attracting clients who pay $5K or higher per project. This workshop reveals the AI-freelancing system that gets you $5K+ clients — fast.
         </p>
         
         <PaymentButton onClick={onOpenPaymentModal} />
         
         <div className="hero-features">
           <div className="feature-item">
+            <span className="feature-icon">💰</span>
+            <span className="feature-text">Escape 20% Platform Fees</span>
+          </div>
+          <div className="feature-item">
             <span className="feature-icon">🎯</span>
-            <span className="feature-text">Understand Core Concepts</span>
+            <span className="feature-text">Attract $5K+ Clients</span>
           </div>
           <div className="feature-item">
-            <span className="feature-icon">💡</span>
-            <span className="feature-text">Learn the "Why" Behind Strategies</span>
+            <span className="feature-icon">⚡</span>
+            <span className="feature-text">Get Results Fast</span>
           </div>
           <div className="feature-item">
-            <span className="feature-icon">🎁</span>
-            <span className="feature-text">Exclusive Bonus for Attendees</span>
-          </div>
-          <div className="feature-item">
-            <span className="feature-icon">🤝</span>
-            <span className="feature-text">Live Q&A Session</span>
+            <span className="feature-icon">🤖</span>
+            <span className="feature-text">AI-Freelancing System</span>
           </div>
         </div>
       </div>

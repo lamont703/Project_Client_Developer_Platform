@@ -15,7 +15,7 @@ const FAQSection: React.FC = () => {
     },
     {
       question: "How long is the workshop?",
-      answer: "The workshop typically runs for 60-90 minutes, including the presentation, Q&A session, and bonus reveal. We'll send you the exact schedule when you register."
+      answer: "The workshop typically runs for 30-45 minutes, including the presentation, Q&A session, and bonus reveal. We'll send you the exact schedule when you register."
     },
     {
       question: "Do I need the 10-Day AI Freelance Kickstart to benefit from this workshop?",
