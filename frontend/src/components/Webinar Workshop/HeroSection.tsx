@@ -39,7 +39,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onOpenPaymentModal }) => {
         </h1>
         
         <p className="hero-subtitle">
-          Learn the AI-Freelancing System That Gets You $5K+ Clients — Fast. Join our live workshop and discover how to escape platforms like Fiverr and Upwork, eliminate fees, and attract clients who pay $5K or higher per project.
+          Learn the S.T.A.R. Method to our AI-Freelancing System That Gets You $5K+ Clients — Fast. Join our live workshop and discover how to escape platforms like Fiverr and Upwork, eliminate fees, and attract clients who pay $5K or higher per project.
         </p>
         
         <div className="hero-video-section">
@@ -69,7 +69,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onOpenPaymentModal }) => {
         </div>
         
         <p className="hero-description">
-          Stop competing on price. Stop paying platform fees. Start attracting clients who pay $5K or higher per project. This workshop reveals the AI-freelancing system that gets you $5K+ clients — fast.
+          Stop competing on price. Stop paying platform fees. Start attracting clients who pay $5K or higher per project. This workshop reveals the S.T.A.R. Method to our AI-freelancing system that gets you $5K+ clients — fast.
         </p>
         
         <PaymentButton onClick={onOpenPaymentModal} />
@@ -89,7 +89,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onOpenPaymentModal }) => {
           </div>
           <div className="feature-item">
             <span className="feature-icon">🤖</span>
-            <span className="feature-text">AI-Freelancing System</span>
+            <span className="feature-text">S.T.A.R. Method</span>
           </div>
         </div>
       </div>

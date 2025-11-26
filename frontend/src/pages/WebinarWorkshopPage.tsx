@@ -23,12 +23,12 @@ const WebinarWorkshopPage: React.FC<WebinarWorkshopPageProps> = ({ navigateToHom
 
   useEffect(() => {
     // Update page title
-    document.title = 'Escape Lowball Clients & 20% Fees - AI Freelancing System Workshop | XRBlockDev';
+    document.title = 'Escape Lowball Clients & 20% Fees - S.T.A.R. Method AI Freelancing System Workshop | XRBlockDev';
 
     // Update meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Tired of lowball clients and 20% platform fees? Learn the AI-freelancing system that gets you $5K+ clients — fast. Join our live workshop and escape Fiverr/Upwork forever.');
+      metaDescription.setAttribute('content', 'Tired of lowball clients and 20% platform fees? Learn the S.T.A.R. Method to our AI-freelancing system that gets you $5K+ clients — fast. Join our live workshop and escape Fiverr/Upwork forever.');
     }
 
     // Update Open Graph tags
@@ -46,8 +46,8 @@ const WebinarWorkshopPage: React.FC<WebinarWorkshopPageProps> = ({ navigateToHom
     
     updateMetaTag('og:type', 'website');
     updateMetaTag('og:url', currentUrl);
-    updateMetaTag('og:title', 'Escape Lowball Clients & 20% Fees - AI Freelancing System Workshop');
-    updateMetaTag('og:description', 'Tired of lowball clients and 20% platform fees? Learn the AI-freelancing system that gets you $5K+ clients — fast. Join our live workshop and escape Fiverr/Upwork forever.');
+    updateMetaTag('og:title', 'Escape Lowball Clients & 20% Fees - S.T.A.R. Method AI Freelancing System Workshop');
+    updateMetaTag('og:description', 'Tired of lowball clients and 20% platform fees? Learn the S.T.A.R. Method to our AI-freelancing system that gets you $5K+ clients — fast. Join our live workshop and escape Fiverr/Upwork forever.');
     updateMetaTag('og:image', 'https://www.xrwebsites.io/XRBlockDev%20Logo.png');
     updateMetaTag('og:site_name', 'XRBlockDev Services');
 
@@ -64,8 +64,8 @@ const WebinarWorkshopPage: React.FC<WebinarWorkshopPageProps> = ({ navigateToHom
 
     updateTwitterTag('twitter:card', 'summary_large_image');
     updateTwitterTag('twitter:url', currentUrl);
-    updateTwitterTag('twitter:title', 'Escape Lowball Clients & 20% Fees - AI Freelancing System Workshop');
-    updateTwitterTag('twitter:description', 'Tired of lowball clients and 20% platform fees? Learn the AI-freelancing system that gets you $5K+ clients — fast. Join our live workshop and escape Fiverr/Upwork forever.');
+    updateTwitterTag('twitter:title', 'Escape Lowball Clients & 20% Fees - S.T.A.R. Method AI Freelancing System Workshop');
+    updateTwitterTag('twitter:description', 'Tired of lowball clients and 20% platform fees? Learn the S.T.A.R. Method to our AI-freelancing system that gets you $5K+ clients — fast. Join our live workshop and escape Fiverr/Upwork forever.');
     updateTwitterTag('twitter:image', 'https://www.xrwebsites.io/XRBlockDev%20Logo.png');
 
     // Cleanup function to restore original meta tags when component unmounts

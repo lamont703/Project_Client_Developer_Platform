@@ -17,7 +17,7 @@ const WhatsIncludedSection: React.FC = () => {
           </div>
           
           <p className="section-subtitle">
-            Discover the AI-freelancing system that helps you escape lowball clients and platform fees, and start attracting clients who pay $5K or higher per project
+            Discover the S.T.A.R. Method to our AI-freelancing system that helps you escape lowball clients and platform fees, and start attracting clients who pay $5K or higher per project
           </p>
         </div>
         
@@ -41,13 +41,13 @@ const WhatsIncludedSection: React.FC = () => {
           <div className="included-card featured">
             <div className="card-badge">Core Focus</div>
             <div className="card-icon">🎯</div>
-            <h3 className="card-title">The AI-Freelancing System for $5K+ Clients</h3>
+            <h3 className="card-title">The S.T.A.R. Method: AI-Freelancing System for $5K+ Clients</h3>
             <p className="card-description">
-              Discover the exact system that helps you attract clients who pay $5K or higher per project. 
+              Discover the S.T.A.R. Method — the exact system that helps you attract clients who pay $5K or higher per project. 
               Learn how AI tools amplify your skills and help you deliver results that command premium rates — fast.
             </p>
             <ul className="card-features">
-              <li>✓ How to attract $5K+ clients</li>
+              <li>✓ The S.T.A.R. Method for $5K+ clients</li>
               <li>✓ AI tools that get results fast</li>
               <li>✓ System for premium client acquisition</li>
               <li>✓ Strategies that work immediately</li>

@@ -21,7 +21,7 @@ const CTASection: React.FC<CTASectionProps> = ({ onOpenPaymentModal }) => {
         <div className="cta-content">
           <h2 className="cta-title">Ready to Escape Lowball Clients and Platform Fees?</h2>
           <p className="cta-subtitle">
-            Join our live workshop and learn the AI-freelancing system that gets you $5K+ clients — fast. Stop competing on price and start attracting clients who pay $5K or higher per project.
+            Join our live workshop and learn the S.T.A.R. Method to our AI-freelancing system that gets you $5K+ clients — fast. Stop competing on price and start attracting clients who pay $5K or higher per project.
           </p>
           <div className="cta-features">
             <div className="cta-feature">✓ Learn to escape 20% platform fees</div>
