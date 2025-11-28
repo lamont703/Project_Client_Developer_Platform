@@ -9,18 +9,21 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({ onClick }) => {
   return (
     <div className="payment-button-container" onClick={onClick}>
       <div className="payment-button-content">
-        <div className="payment-badge">✨ Limited Time Offer</div>
+        <div className="product-image-container">
+          <img 
+            src="/10Day Kickstart Product Display.jpeg" 
+            alt="10 Day AI Freelance Kickstart Product Display" 
+            className="product-display-image"
+          />
+        </div>
         
         <div className="payment-header">
           <div className="payment-price-section">
-            <div className="original-price-wrapper">
-              <span className="original-price">$497</span>
-            </div>
             <div className="price-wrapper">
               <span className="price-currency">$</span>
-              <span className="price-amount">197</span>
+              <span className="price-amount">497</span>
             </div>
-            <span className="price-label">One-Time Payment for Pre-Launch Discount</span>
+            <span className="price-label">One-Time Payment</span>
           </div>
         </div>
 

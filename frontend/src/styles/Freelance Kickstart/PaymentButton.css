@@ -28,6 +28,28 @@
   overflow: visible;
 }
 
+.product-image-container {
+  width: 100%;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-display-image {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.payment-button-container:hover .product-display-image {
+  transform: scale(1.02);
+}
+
 .payment-button-container:hover .payment-button-content {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.18) 100%);
   border-color: rgba(255, 255, 255, 0.5);
@@ -280,6 +302,15 @@
     padding-top: 2.5rem;
   }
   
+  .product-image-container {
+    margin-bottom: 1.5rem;
+  }
+  
+  .product-display-image {
+    max-width: 100%;
+    border-radius: 12px;
+  }
+  
   .payment-badge {
     font-size: 0.75rem;
     padding: 0.4rem 1rem;
@@ -340,6 +371,14 @@
     padding: 1.75rem 1.25rem;
     padding-top: 2.25rem;
     border-radius: 20px;
+  }
+  
+  .product-image-container {
+    margin-bottom: 1.25rem;
+  }
+  
+  .product-display-image {
+    border-radius: 10px;
   }
   
   .payment-badge {

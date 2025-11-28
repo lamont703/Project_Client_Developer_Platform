@@ -21,6 +21,24 @@
   margin-bottom: 1rem;
 }
 
+.star-method-infographic {
+  width: 100%;
+  max-width: 900px;
+  margin: 2rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.star-method-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  object-fit: contain;
+}
+
 .section-subtitle {
   font-size: 1.2rem;
   color: #4a5568;
@@ -200,6 +218,15 @@
     margin-bottom: 0.75rem;
   }
   
+  .star-method-infographic {
+    margin: 1.5rem auto;
+    max-width: 100%;
+  }
+  
+  .star-method-image {
+    border-radius: 10px;
+  }
+  
   .section-subtitle {
     font-size: 1rem;
     padding: 0 0.5rem;
@@ -281,6 +308,14 @@
   
   .section-title {
     font-size: 1.75rem;
+  }
+  
+  .star-method-infographic {
+    margin: 1.25rem auto;
+  }
+  
+  .star-method-image {
+    border-radius: 8px;
   }
   
   .section-subtitle {

@@ -23,6 +23,13 @@ const WhatsIncludedSection: React.FC = () => {
       <div className="whats-included-container">
         <div className="section-header">
           <h2 className="section-title">What's Included</h2>
+          <div className="star-method-infographic">
+            <img 
+              src="/STAR Method.png" 
+              alt="The STAR Method for Freelancers - A four-phase, AI-powered framework" 
+              className="star-method-image"
+            />
+          </div>
           <p className="section-subtitle">
             Everything you need to jumpstart your AI-powered freelance career in just 10 days
           </p>

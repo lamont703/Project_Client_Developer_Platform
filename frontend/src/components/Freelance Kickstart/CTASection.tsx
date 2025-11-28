@@ -33,7 +33,7 @@ const CTASection: React.FC<CTASectionProps> = ({ onOpenPaymentModal }) => {
             <div className="cta-feature">✓ 14-day GoHighLevel trial</div>
           </div>
           <button className="cta-button" onClick={handleClick}>
-            Join the 10-Day AI Freelance Kickstart for $197
+            Join the 10-Day AI Freelance Kickstart for $497
           </button>
           <p className="cta-guarantee">30-day money-back guarantee • Cancel anytime</p>
         </div>

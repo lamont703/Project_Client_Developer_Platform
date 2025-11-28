@@ -7,7 +7,7 @@ interface PaymentModalProps {
 }
 
 const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose }) => {
-  const paymentLink = 'https://link.fastpaydirect.com/payment-link/69113074ac56fe1b59ff83ea';
+  const paymentLink = 'https://innergcomplete.app.clientclub.net/courses/offers/4311e147-57f9-4b89-a315-a061e83c5e16';
 
   useEffect(() => {
     // Prevent body scroll when modal is open
@@ -49,7 +49,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose }) => {
         <div className="payment-modal-header">
           <h2 className="payment-modal-title">Complete Your Purchase</h2>
           <p className="payment-modal-subtitle">
-            10-Day AI Freelance Kickstart - $197
+            10-Day AI Freelance Kickstart - $497
           </p>
         </div>
         <div className="payment-iframe-container">
