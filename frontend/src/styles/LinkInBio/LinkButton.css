@@ -1,0 +1,117 @@
+.link-button {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+  font-family: inherit;
+}
+
+.link-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.link-button:hover::before {
+  left: 100%;
+}
+
+.link-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(102, 126, 234, 0.5);
+}
+
+.link-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.link-button-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.link-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.link-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a202c;
+  flex: 1;
+  text-align: left;
+}
+
+.link-external-indicator {
+  font-size: 1rem;
+  color: #667eea;
+  opacity: 0.6;
+  flex-shrink: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.link-button:hover .link-external-indicator {
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+
+@media (max-width: 768px) {
+  .link-button {
+    padding: 1.1rem 1.25rem;
+    border-radius: 14px;
+  }
+
+  .link-icon {
+    font-size: 1.35rem;
+  }
+
+  .link-title {
+    font-size: 1rem;
+  }
+
+  .link-external-indicator {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .link-button {
+    padding: 1rem 1.125rem;
+    border-radius: 12px;
+  }
+
+  .link-icon {
+    font-size: 1.25rem;
+  }
+
+  .link-title {
+    font-size: 0.95rem;
+  }
+
+  .link-button-content {
+    gap: 0.875rem;
+  }
+}
+
+
+

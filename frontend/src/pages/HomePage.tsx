@@ -188,6 +188,13 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
             <p>Complete your 10-Day Kickstart setup by activating your 14-day free GoHighLevel trial. Get full access to CRM, automation, and marketing tools.</p>
             <button className="feature-link">Activate Trial →</button>
           </div>
+
+          <div className="feature-card" onClick={() => handleNavigation('/link-in-bio')}>
+            <div className="feature-icon">🔗</div>
+            <h3>Link in Bio</h3>
+            <p>Access all our courses, resources, and social media links in one convenient place. Your gateway to everything XRBlockDev has to offer.</p>
+            <button className="feature-link">View Links →</button>
+          </div>
         </div>
       </div>
 
