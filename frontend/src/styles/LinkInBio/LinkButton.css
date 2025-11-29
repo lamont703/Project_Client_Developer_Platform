@@ -1,16 +1,15 @@
+/* Base link button styles */
 .link-button {
   width: 100%;
-  background: rgba(255, 255, 255, 0.95);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 16px;
+  border-radius: 12px;
   padding: 1.25rem 1.5rem;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
   text-align: left;
   font-family: inherit;
+  border: 2px solid transparent;
 }
 
 .link-button::before {
@@ -20,24 +19,12 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
   transition: left 0.5s ease;
 }
 
 .link-button:hover::before {
   left: 100%;
-}
-
-.link-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  background: rgba(255, 255, 255, 1);
-  border-color: rgba(102, 126, 234, 0.5);
-}
-
-.link-button:active {
-  transform: translateY(0);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .link-button-content {
@@ -57,14 +44,12 @@
 .link-title {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #1a202c;
   flex: 1;
   text-align: left;
 }
 
 .link-external-indicator {
   font-size: 1rem;
-  color: #667eea;
   opacity: 0.6;
   flex-shrink: 0;
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -75,10 +60,130 @@
   transform: translate(2px, -2px);
 }
 
+/* Primary Button - LIVE WORKSHOP REGISTRATION (Electric Green) */
+.link-button-primary {
+  background: linear-gradient(135deg, rgba(0, 255, 150, 0.15) 0%, rgba(0, 255, 150, 0.25) 100%);
+  border: 2px solid #00ff96;
+  box-shadow: 
+    0 0 20px rgba(0, 255, 150, 0.4),
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    inset 0 0 20px rgba(0, 255, 150, 0.1);
+}
+
+.link-button-primary .link-title {
+  color: #00ff96;
+  font-weight: 800;
+  font-size: 1.2rem;
+  text-shadow: 0 0 10px rgba(0, 255, 150, 0.8);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.link-button-primary .link-icon {
+  filter: drop-shadow(0 0 5px rgba(0, 255, 150, 0.8));
+}
+
+.link-button-primary:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 0 30px rgba(0, 255, 150, 0.6),
+    0 8px 24px rgba(0, 0, 0, 0.4),
+    inset 0 0 30px rgba(0, 255, 150, 0.2);
+  border-color: #00ffb3;
+}
+
+.link-button-primary:active {
+  transform: translateY(-2px);
+}
+
+/* Secondary Button - 10 Day Kickstart (Gold/Orange) */
+.link-button-secondary {
+  background: linear-gradient(135deg, rgba(255, 165, 0, 0.15) 0%, rgba(255, 140, 0, 0.25) 100%);
+  border: 2px solid #ffa500;
+  box-shadow: 
+    0 0 20px rgba(255, 165, 0, 0.4),
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    inset 0 0 20px rgba(255, 165, 0, 0.1);
+}
+
+.link-button-secondary .link-title {
+  color: #ffa500;
+  font-weight: 700;
+  font-size: 1.15rem;
+  text-shadow: 0 0 10px rgba(255, 165, 0, 0.8);
+  letter-spacing: 0.3px;
+}
+
+.link-button-secondary .link-icon {
+  filter: drop-shadow(0 0 5px rgba(255, 165, 0, 0.8));
+}
+
+.link-button-secondary:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 0 30px rgba(255, 165, 0, 0.6),
+    0 8px 24px rgba(0, 0, 0, 0.4),
+    inset 0 0 30px rgba(255, 165, 0, 0.2);
+  border-color: #ffb84d;
+}
+
+.link-button-secondary:active {
+  transform: translateY(-1px);
+}
+
+/* Tertiary Buttons - Default styling */
+.link-button-tertiary {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.link-button-tertiary .link-title {
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 600;
+}
+
+.link-button-tertiary:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.link-button-tertiary:active {
+  transform: translateY(0);
+}
+
+/* Green accent for tertiary buttons */
+.link-button-green {
+  border-color: rgba(0, 255, 150, 0.3);
+}
+
+.link-button-green:hover {
+  border-color: rgba(0, 255, 150, 0.5);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    0 0 15px rgba(0, 255, 150, 0.2);
+}
+
+/* Gold accent for tertiary buttons */
+.link-button-gold {
+  border-color: rgba(255, 165, 0, 0.3);
+}
+
+.link-button-gold:hover {
+  border-color: rgba(255, 165, 0, 0.5);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    0 0 15px rgba(255, 165, 0, 0.2);
+}
+
 @media (max-width: 768px) {
   .link-button {
     padding: 1.1rem 1.25rem;
-    border-radius: 14px;
+    border-radius: 10px;
   }
 
   .link-icon {
@@ -89,6 +194,14 @@
     font-size: 1rem;
   }
 
+  .link-button-primary .link-title {
+    font-size: 1.1rem;
+  }
+
+  .link-button-secondary .link-title {
+    font-size: 1.05rem;
+  }
+
   .link-external-indicator {
     font-size: 0.9rem;
   }
@@ -97,7 +210,7 @@
 @media (max-width: 480px) {
   .link-button {
     padding: 1rem 1.125rem;
-    border-radius: 12px;
+    border-radius: 10px;
   }
 
   .link-icon {
@@ -108,10 +221,15 @@
     font-size: 0.95rem;
   }
 
+  .link-button-primary .link-title {
+    font-size: 1rem;
+  }
+
+  .link-button-secondary .link-title {
+    font-size: 0.95rem;
+  }
+
   .link-button-content {
     gap: 0.875rem;
   }
 }
-
-
-

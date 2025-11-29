@@ -6,12 +6,16 @@ interface LinkButtonProps {
   icon?: string;
   onClick: () => void;
   external?: boolean;
+  priority?: 'primary' | 'secondary' | 'tertiary';
+  accentColor?: 'green' | 'gold' | 'default';
 }
 
-const LinkButton: React.FC<LinkButtonProps> = ({ title, icon, onClick, external }) => {
+const LinkButton: React.FC<LinkButtonProps> = ({ title, icon, onClick, external, priority = 'tertiary', accentColor = 'default' }) => {
+  const buttonClass = `link-button link-button-${priority} link-button-${accentColor}`;
+  
   return (
     <button 
-      className="link-button" 
+      className={buttonClass} 
       onClick={onClick}
       aria-label={`${title}${external ? ' (opens in new tab)' : ''}`}
     >
