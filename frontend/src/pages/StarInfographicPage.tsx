@@ -37,7 +37,7 @@ const StarInfographicPage: React.FC<StarInfographicPageProps> = () => {
 
           <div className="star-hero-image-wrapper">
             <img
-              src="/STAR Method.png"
+              src="/Updated STAR Method.jpeg"
               alt="STAR Method Infographic"
               className="star-hero-image"
             />
@@ -45,8 +45,8 @@ const StarInfographicPage: React.FC<StarInfographicPageProps> = () => {
 
           <div className="star-download-wrapper">
             <a
-              href="/STAR Method.png"
-              download="STAR_Method_Infographic.png"
+              href="/Updated STAR Method.jpeg"
+              download="Updated_STAR_Method_Infographic.jpeg"
               className="star-download-button"
             >
               Download High-Res PDF/Image

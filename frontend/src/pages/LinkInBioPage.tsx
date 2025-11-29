@@ -16,16 +16,8 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
     if (metaDescription) {
       metaDescription.setAttribute('content', 'Lamont T. Evans - AI Freelance Systems Architect. Learn the STAR Method to get $10K+ AI clients without Upwork or Fiverr.');
     }
-  }, []);
 
-  const handleNavigation = (route: string) => {
-    navigate(route);
-  };
-
-  const handleDMWidgetClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-
-    // If widget script not yet loaded, inject it
+    // Load chat widget script on page load to make icon visible
     const existingScript = document.querySelector<HTMLScriptElement>(
       'script[data-widget-id="668475f9178c3150954773ef"]'
     );
@@ -38,13 +30,12 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
       script.async = true;
       document.body.appendChild(script);
     }
+  }, []);
 
-    // Try to open the widget if LeadConnector exposes an API
-    const anyWindow = window as any;
-    if (anyWindow.LC_API && typeof anyWindow.LC_API.open_chat === 'function') {
-      anyWindow.LC_API.open_chat();
-    }
+  const handleNavigation = (route: string) => {
+    navigate(route);
   };
+
 
   return (
     <div className="link-in-bio-page">
@@ -180,8 +171,11 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
 
           <a 
             className="tertiary-text-link dm-infographic-link"
-            onClick={handleDMWidgetClick}
-            href="#chat-widget"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavigation('/infographic');
+            }}
+            href="/infographic"
           >
             Messaged 'STAR'? Click here for your Infographic
           </a>
