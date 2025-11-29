@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import '../styles/Webinar Workshop/WebinarWorkshopPage.css';
 import PaymentModal from '../components/Webinar Workshop/PaymentModal';
 
@@ -8,7 +7,6 @@ interface WebinarWorkshopPageProps {
 }
 
 const WebinarWorkshopPage: React.FC<WebinarWorkshopPageProps> = ({ navigateToHome }) => {
-  const navigate = useNavigate();
   const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false);
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
