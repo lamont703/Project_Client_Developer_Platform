@@ -22,10 +22,6 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
     navigate(route);
   };
 
-  const handleExternalLink = (url: string) => {
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
-
   return (
     <div className="link-in-bio-page">
       <div className="circuit-pattern"></div>
