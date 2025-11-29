@@ -20,3 +20,5 @@ export { default as BookLandingPage } from './BookLandingPage';
 export { default as AcceleratorCoursePage } from './AcceleratorCoursePage';
 export { default as WebinarWorkshopPage } from './WebinarWorkshopPage';
 export { default as LinkInBioPage } from './LinkInBioPage';
+export { default as AIToolStackPage } from './AIToolStackPage';
+export { default as StarInfographicPage } from './StarInfographicPage';

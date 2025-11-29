@@ -22,6 +22,30 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
     navigate(route);
   };
 
+  const handleDMWidgetClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+
+    // If widget script not yet loaded, inject it
+    const existingScript = document.querySelector<HTMLScriptElement>(
+      'script[data-widget-id="668475f9178c3150954773ef"]'
+    );
+
+    if (!existingScript) {
+      const script = document.createElement('script');
+      script.src = 'https://beta.leadconnectorhq.com/loader.js';
+      script.setAttribute('data-resources-url', 'https://beta.leadconnectorhq.com/chat-widget/loader.js');
+      script.setAttribute('data-widget-id', '668475f9178c3150954773ef');
+      script.async = true;
+      document.body.appendChild(script);
+    }
+
+    // Try to open the widget if LeadConnector exposes an API
+    const anyWindow = window as any;
+    if (anyWindow.LC_API && typeof anyWindow.LC_API.open_chat === 'function') {
+      anyWindow.LC_API.open_chat();
+    }
+  };
+
   return (
     <div className="link-in-bio-page">
       <div className="circuit-pattern"></div>
@@ -156,13 +180,9 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
 
           <a 
             className="tertiary-text-link dm-infographic-link"
-            onClick={(e) => {
-              e.preventDefault();
-              handleNavigation('/infographic');
-            }}
-            href="/infographic"
+            onClick={handleDMWidgetClick}
+            href="#chat-widget"
           >
-            <span className="dm-icon">💬</span>
             Messaged 'STAR'? Click here for your Infographic
           </a>
         </div>

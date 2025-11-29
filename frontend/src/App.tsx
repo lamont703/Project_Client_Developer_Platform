@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { ScrollToTop } from './components';
-import { HomePage, ChatPage, JobsPage, PostJobPage, DevelopersPage, AICommunityMemberPage, PitchDeckPage, DeFiPage, TaskManagerPage, PipelineDashboardPage, UserFeedbackPage, CodeContributionsPage, CodingEducationPage, FreelanceKickstartPage, DailyLessonPage, ActivateGHLPage, BookLandingPage, AcceleratorCoursePage, WebinarWorkshopPage, LinkInBioPage } from './pages';
+import { HomePage, ChatPage, JobsPage, PostJobPage, DevelopersPage, AICommunityMemberPage, PitchDeckPage, DeFiPage, TaskManagerPage, PipelineDashboardPage, UserFeedbackPage, CodeContributionsPage, CodingEducationPage, FreelanceKickstartPage, DailyLessonPage, ActivateGHLPage, BookLandingPage, AcceleratorCoursePage, WebinarWorkshopPage, LinkInBioPage, AIToolStackPage, StarInfographicPage } from './pages';
 import LandingPage from './components/Landing Page/LandingPage';
 import DeveloperChatPage from './pages/DeveloperChatPage';
 import ProtoHubPage from './pages/ProtoHubPage';
@@ -303,6 +303,16 @@ function AppContent() {
           <Route path="/webinar-workshop" element={
             <SafeComponent>
               <WebinarWorkshopPage navigateToHome={navigateToHome} />
+            </SafeComponent>
+          } />
+          <Route path="/infographic" element={
+            <SafeComponent>
+              <StarInfographicPage navigateToHome={navigateToHome} />
+            </SafeComponent>
+          } />
+          <Route path="/ai-tool-stack" element={
+            <SafeComponent>
+              <AIToolStackPage navigateToHome={navigateToHome} />
             </SafeComponent>
           } />
           <Route path="/link-in-bio" element={
