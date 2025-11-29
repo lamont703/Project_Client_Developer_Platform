@@ -1,26 +1,455 @@
 .freelance-kickstart-page {
   width: 100%;
   min-height: 100vh;
-  background: white;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  background: #050814;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(0, 255, 150, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 165, 0, 0.04) 0%, transparent 55%),
+    linear-gradient(135deg, #050814 0%, #101526 50%, #060913 100%);
+  overflow-x: hidden;
+  position: relative;
+  color: #ffffff;
 }
 
-/* Ensure all sections have proper spacing on mobile */
+.section-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+/* Hero */
+.kickstart-hero {
+  padding: 3.5rem 0 3rem;
+}
+
+.hero-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-product-visual {
+  flex: 1 1 280px;
+  max-width: 380px;
+}
+
+.hero-product-image {
+  width: 100%;
+  border-radius: 18px;
+  box-shadow: 0 0 35px rgba(0, 255, 150, 0.4), 0 14px 40px rgba(0, 0, 0, 0.7);
+  border: 2px solid rgba(0, 255, 150, 0.35);
+  object-fit: cover;
+}
+
+.hero-copy {
+  flex: 1 1 320px;
+}
+
+.hero-title {
+  font-size: 2.3rem;
+  font-weight: 900;
+  color: #ffa500;
+  line-height: 1.25;
+  margin: 0 0 1rem;
+}
+
+.hero-title-accent {
+  display: block;
+  color: #ffcf66;
+}
+
+.hero-subtitle {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.7;
+  margin: 0 0 1.75rem;
+}
+
+.hero-pricing-block {
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 18px;
+  padding: 1.5rem 1.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.hero-price-label {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 0.35rem;
+}
+
+.hero-price-amount {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.25rem;
+  margin-bottom: 0.35rem;
+}
+
+.hero-price-currency {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #ffd27f;
+}
+
+.hero-price-number {
+  font-size: 3.4rem;
+  font-weight: 900;
+  color: #ffa500;
+}
+
+.hero-price-subcopy {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 1.25rem;
+}
+
+.hero-enroll-button {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.1rem 1.5rem;
+  border-radius: 999px;
+  border: 2px solid #00ff96;
+  background: linear-gradient(135deg, rgba(0, 255, 150, 0.25), rgba(0, 255, 150, 0.4));
+  color: #00140d;
+  font-weight: 800;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+}
+
+.hero-enroll-icon {
+  font-size: 1.3rem;
+}
+
+.hero-enroll-text {
+  text-align: center;
+}
+
+/* Shared section heading */
+.section-headline-gold {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffa500;
+  text-align: center;
+  margin: 0 0 2rem;
+}
+
+.section-intro {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.88);
+  text-align: center;
+  margin: 0 0 2.25rem;
+  line-height: 1.7;
+}
+
+/* Crisis */
+.kickstart-crisis {
+  padding: 3.5rem 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.crisis-stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.crisis-stat-card {
+  background: rgba(0, 255, 150, 0.08);
+  border-radius: 14px;
+  padding: 1.75rem 1.5rem;
+}
+
+.crisis-stat-value {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #ffa500;
+  margin-bottom: 0.5rem;
+}
+
+.crisis-stat-label {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.crisis-message {
+  font-size: 1.1rem;
+  color: #ff6b6b;
+  text-align: center;
+}
+
+/* Curriculum */
+.kickstart-curriculum {
+  padding: 3.5rem 0;
+}
+
+.kickstart-curriculum .curriculum-timeline {
+  position: relative;
+  padding-left: 1.75rem;
+}
+
+.kickstart-curriculum .timeline-line {
+  position: absolute;
+  left: 0.5rem;
+  top: 0.75rem;
+  bottom: 0.75rem;
+  width: 2px;
+  background: #00ff96;
+}
+
+.kickstart-curriculum .timeline-item {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.kickstart-curriculum .timeline-dot {
+  margin-top: 0.25rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #00ff96;
+  flex-shrink: 0;
+}
+
+.kickstart-curriculum .timeline-content {
+  background: rgba(5, 8, 20, 0.95);
+  border-radius: 12px;
+  padding: 1.35rem 1.6rem;
+  border: 1px solid rgba(0, 255, 150, 0.35);
+  box-shadow: 0 0 22px rgba(0, 0, 0, 0.85);
+}
+
+.kickstart-curriculum .timeline-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ffa500;
+  margin: 0 0 0.6rem;
+}
+
+.kickstart-curriculum .timeline-description {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.75;
+}
+
+/* Tool stack */
+.kickstart-tool-stack {
+  padding: 3.5rem 0;
+  background: rgba(0, 0, 0, 0.24);
+}
+
+.tool-stack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.75rem;
+}
+
+.tool-stack-column {
+  background: rgba(0, 255, 150, 0.09);
+  border-radius: 14px;
+  padding: 1.5rem 1.25rem;
+}
+
+.tool-category-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #00ff96;
+  margin: 0 0 0.9rem;
+}
+
+.tool-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.tool-pill {
+  display: inline-flex;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.6);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.tool-benefits {
+  font-size: 1.02rem;
+  color: rgba(255, 255, 255, 0.88);
+  margin-top: 2rem;
+  line-height: 1.7;
+}
+
+/* Value stack */
+.kickstart-value-stack {
+  padding: 3.5rem 0;
+}
+
+.value-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.value-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.value-image {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.value-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffa500;
+  margin: 0 0 0.35rem;
+}
+
+.value-description {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+}
+
+/* Final CTA */
+.kickstart-final-cta {
+  padding: 3.5rem 0 4.5rem;
+  background: rgba(0, 0, 0, 0.32);
+}
+
+.final-cta-container {
+  text-align: center;
+}
+
+.final-price-amount {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0.25rem;
+  margin-bottom: 0.4rem;
+}
+
+.final-price-currency {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ffd27f;
+}
+
+.final-price-number {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #ffa500;
+}
+
+/* Mobile */
 @media (max-width: 768px) {
-  .freelance-kickstart-page {
-    padding: 0;
+  .kickstart-hero {
+    padding: 2.5rem 0 2.25rem;
+  }
+
+  .hero-inner {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: stretch;
+  }
+
+  .hero-product-visual,
+  .hero-copy {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .hero-product-visual {
+    padding: 0 0.5rem;
+    box-sizing: border-box;
+  }
+
+  .hero-product-visual,
+  .hero-copy {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .hero-title {
+    font-size: 1.9rem;
+    text-align: center;
+  }
+
+  .hero-subtitle {
+    text-align: center;
+  }
+
+  .section-headline-gold {
+    font-size: 1.6rem;
+  }
+
+  .crisis-stats-row {
+    grid-template-columns: 1fr;
+  }
+
+  .curriculum-timeline {
+    padding-left: 1.25rem;
+  }
+
+  .timeline-line {
+    left: 0.35rem;
   }
 }
 
-/* Prevent text overflow on very small screens */
 @media (max-width: 480px) {
   .freelance-kickstart-page {
-    font-size: 16px; /* Base font size for readability */
+    font-size: 16px;
   }
-  
+
   * {
     word-wrap: break-word;
     overflow-wrap: break-word;
+  }
+
+  .hero-title {
+    font-size: 1.6rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.98rem;
+  }
+
+  .hero-price-number {
+    font-size: 2.4rem;
+  }
+
+  .hero-enroll-button {
+    font-size: 0.9rem;
+    padding: 0.9rem 1.1rem;
+  }
+
+  .section-headline-gold {
+    font-size: 1.4rem;
+  }
+
+  .timeline-title {
+    font-size: 1.25rem;
+  }
+
+  .timeline-description {
+    font-size: 1rem;
   }
 }
 

@@ -156,7 +156,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose }) => {
   // Add native event listeners for mobile close button as backup
   useEffect(() => {
     if (!isOpen) {
-      console.log('[PaymentModal] Modal not open, skipping event listener setup');
+      // Modal is closed, skip event listener setup
       return;
     }
 
@@ -361,7 +361,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose }) => {
   }, [isOpen, uniqueId]);
 
   if (!isOpen) {
-    console.log('[PaymentModal] Modal not open, returning null');
+    // Modal is closed, do not render anything
     return null;
   }
 

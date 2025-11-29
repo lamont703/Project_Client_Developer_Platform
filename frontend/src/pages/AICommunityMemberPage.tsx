@@ -1,557 +1,207 @@
-import React, { useState } from 'react';
-import { API_CONFIG } from '../utils/apiConfig';
+import React, { useEffect, useState } from 'react';
 import '../styles/AICommunityMemberPage.css';
+import SupportNetworkModal from '../components/AI Project Assistant/SupportNetworkModal';
 
 interface AICommunityMemberPageProps {
   navigateToHome?: () => void;
 }
 
-interface TestResult {
-  success: boolean;
-  data?: any;
-  error?: string;
-  timestamp: string;
-}
-
 const AICommunityMemberPage: React.FC<AICommunityMemberPageProps> = ({ navigateToHome }) => {
-  const [testResults, setTestResults] = useState<TestResult[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const addTestResult = (result: TestResult) => {
-    setTestResults(prev => [result, ...prev.slice(0, 9)]); // Keep last 10 results
+  useEffect(() => {
+    document.title = 'AI Freelance Support Network – Private Hub for STAR Method Freelancers';
+  }, []);
+
+  const handleJoinClick = () => {
+    setIsModalOpen(true);
   };
 
-  const makeApiRequest = async (endpoint: string, method: string = 'GET', body?: any) => {
-    setIsLoading(true);
-    const startTime = Date.now();
-    
-    try {
-      const url = API_CONFIG.getUrl(endpoint);
-      const options: RequestInit = {
-        method,
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${API_CONFIG.SUPABASE_ANON_KEY}`,
-          'apikey': API_CONFIG.SUPABASE_ANON_KEY,
-        },
-      };
-
-      if (body && method !== 'GET') {
-        options.body = JSON.stringify(body);
-      }
-
-      const response = await fetch(url, options);
-      const data = await response.json();
-      const duration = Date.now() - startTime;
-
-      addTestResult({
-        success: response.ok,
-        data: {
-          ...data,
-          status: response.status,
-          duration: `${duration}ms`
-        },
-        timestamp: new Date().toISOString()
-      });
-    } catch (error) {
-      addTestResult({
-        success: false,
-        error: error instanceof Error ? error.message : 'Unknown error',
-        timestamp: new Date().toISOString()
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const testEndpoints = {
-    // AI Community Member specific endpoints (from sequence diagram)
-    getAIStats: () => makeApiRequest('/ai-community-member/stats', 'GET'),
-    getAIPersonas: () => makeApiRequest('/ai-community-member/personas', 'GET'),
-    getTrendingTopics: () => makeApiRequest('/ai-community-member/trending-topics', 'GET'),
-    generateAIResponse: () => makeApiRequest('/ai-community-member/generate-response', 'POST', {
-      questionId: '550e8400-e29b-41d4-a716-446655440001', // Valid UUID format
-      context: 'test-context'
-    }),
-    generateProactiveEngagement: () => makeApiRequest('/ai-community-member/proactive-engagement', 'POST'),
-    startAIMonitoring: () => makeApiRequest('/ai-community-member/monitor', 'POST'),
-    
-    // Monitoring endpoints
-    forceEngagement: () => makeApiRequest('/monitoring/force-engagement', 'POST'),
-    forceAnalysis: () => makeApiRequest('/monitoring/force-analysis', 'POST'),
-    getMonitoringStats: () => makeApiRequest('/monitoring/stats', 'GET'),
-    getHistory: () => makeApiRequest('/monitoring/history', 'GET'),
-    startMonitoring: () => makeApiRequest('/monitoring/start', 'POST'),
-    stopMonitoring: () => makeApiRequest('/monitoring/stop', 'POST'),
-    updateConfig: () => makeApiRequest('/monitoring/config', 'PUT', {
-      proactiveEngagementInterval: 15,
-      maxEngagementsPerHour: 3
-    }),
-    
-    // Questions endpoints
-    getQuestions: () => makeApiRequest('/questions', 'GET'),
-    createQuestion: () => makeApiRequest('/questions', 'POST', {
-      title: 'Test Question - AI Community Member Control Center',
-      content: 'This is a test question created by the AI Community Member Control Center testing interface.',
-      tags: ['test', 'ai-community', 'monitoring', 'control-center']
-    }),
-    getQuestionsAIPersonas: () => makeApiRequest('/questions/ai-personas', 'GET'),
-    generateQuestionsEngagement: () => makeApiRequest('/questions/ai-engagement', 'POST', {
-      questionId: 'test-question-id',
-      persona: 'proto-bot-alex'
-    }),
-    
-    // Prototypes endpoints
-    getPrototypes: () => makeApiRequest('/prototypes', 'GET'),
-    createPrototype: () => makeApiRequest('/prototypes', 'POST', {
-      title: 'Test Prototype - AI Community Member',
-      description: 'This is a test prototype created by the AI Community Member Control Center.',
-      category: 'test',
-      tags: ['test', 'ai-community', 'prototype']
-    }),
-    
-    // Users endpoints
-    getUsers: () => makeApiRequest('/users', 'GET'),
-    getCurrentUser: () => makeApiRequest('/users/me', 'GET'),
-    
-    // Analytics endpoints
-    getAnalyticsSummary: () => makeApiRequest('/analytics/summary', 'GET'),
-    getAnalyticsEvents: () => makeApiRequest('/analytics/events', 'GET'),
-    getUserAnalytics: () => makeApiRequest('/analytics/user/test-user-id', 'GET'),
-    getPopularContent: () => makeApiRequest('/analytics/popular', 'GET'),
-    
-    // Debug endpoints
-    debugEnv: () => makeApiRequest('/debug/env', 'GET'),
-    debugDatabase: () => makeApiRequest('/debug/database', 'GET'),
-    debugGHLStatus: () => makeApiRequest('/debug/ghl-status', 'GET'),
-    debugTrendingTopics: () => makeApiRequest('/debug/trending-topics', 'GET'),
-    debugAIStats: () => makeApiRequest('/debug/ai-community-member/stats', 'GET'),
-    
-    // Reports endpoints
-    getReports: () => makeApiRequest('/reports', 'GET'),
-    getPendingReports: () => makeApiRequest('/reports/pending', 'GET'),
-    
-    // Health check
-    healthCheck: () => makeApiRequest('/health', 'GET'),
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
-    <div className="ai-community-member-page">
-      <div className="page-header">
-        <h1>🤖 AI Community Member Control Center</h1>
-        <p>Test and monitor the AI Community Member Control Center endpoints</p>
-        {navigateToHome && (
-          <button onClick={navigateToHome} className="back-button">
-            ← Back to Home
+    <div className="ai-support-page">
+      {/* Section 1: Hero & Exclusivity */}
+      <section className="ai-support-hero">
+        <div className="ai-support-hero-inner">
+          <div className="ai-support-graphic">
+            <img
+              src="/AI_SUPPORT_NETWORK_HUB.jpeg"
+              alt="AI Freelance Support Network Hub"
+              className="ai-support-graphic-image"
+            />
+          </div>
+
+          <div className="ai-support-hero-copy">
+            <h1 className="ai-support-hero-title">
+              The AI Freelance Support Network:
+              <span className="ai-support-hero-accent">
+                Get Real-Time Project Support &amp; Expert Networking
+              </span>
+            </h1>
+
+            <p className="ai-support-hero-subtitle">
+              The private hub where STAR Method freelancers connect, collaborate, and access the assets needed to operate
+              as capable as a full agency.
+            </p>
+
+            <div className="ai-support-hero-pricing">
+              <p className="ai-support-investment-line">Access Now for [Price]</p>
+              <p className="ai-support-value-line">12 Months Access (Total Value: $240)</p>
+
+              <button className="ai-support-primary-cta" onClick={handleJoinClick}>
+                <span className="ai-support-cta-icon">⚡</span>
+                <span className="ai-support-cta-text">Join the Exclusive Network Now</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 2: Need for Community */}
+      <section className="ai-support-need">
+        <div className="ai-support-section-container">
+          <h2 className="ai-support-headline-gold">Survive the AI Reckoning: You Cannot Do This Alone.</h2>
+
+          <div className="ai-support-need-grid">
+            <div className="ai-support-need-card">
+              <h3 className="ai-support-need-title">The Market Is Splitting</h3>
+              <p className="ai-support-need-text">
+                High-skill AI roles are demanding constant adaptation. The middle is disappearing — only freelancers who
+                keep upgrading their skills and systems will stay in demand.
+              </p>
+            </div>
+            <div className="ai-support-need-card">
+              <h3 className="ai-support-need-title">Tools Aren&apos;t Enough</h3>
+              <p className="ai-support-need-text">
+                AI tools give you on-demand education, but you need a vetted community to help you troubleshoot, avoid
+                shiny-object syndrome, and build consistent workflows that actually ship.
+              </p>
+            </div>
+            <div className="ai-support-need-card">
+              <h3 className="ai-support-need-title">Long Sales Cycles Need Support</h3>
+              <p className="ai-support-need-text">
+                High-ticket clients move slowly. You need peers who understand long pipelines, proposal iteration, and
+                what it takes to stay consistent until deals close.
+              </p>
+            </div>
+          </div>
+
+          <p className="ai-support-need-message">
+            The AI Freelance Support Network is where you get the community and support to stay with a stable tool stack
+            and implementation path instead of burning out on constant switching.
+          </p>
+        </div>
+      </section>
+
+      {/* Section 3: Inside the AI Support Hub */}
+      <section className="ai-support-inside">
+        <div className="ai-support-section-container">
+          <h2 className="ai-support-headline-gold">Your Access Pass to Expert Resources &amp; Collaboration.</h2>
+
+          <div className="ai-support-features-grid">
+            <div className="ai-support-feature-card">
+              <h3 className="ai-support-feature-title">Networking on Real World Projects</h3>
+              <p className="ai-support-feature-text">
+                Collaborate on live builds, client work, and internal experiments that become portfolio pieces and case
+                studies — the primary benefit of the network.
+              </p>
+            </div>
+            <div className="ai-support-feature-card">
+              <h3 className="ai-support-feature-title">Project Alpha: AI Agent Deployment</h3>
+              <p className="ai-support-feature-text">
+                Join advanced projects focused on AI agent deployment, integrations, and workflow automation so you can
+                move beyond tutorials and into real implementation.
+              </p>
+            </div>
+            <div className="ai-support-feature-card">
+              <h3 className="ai-support-feature-title">Design Asset Library</h3>
+              <p className="ai-support-feature-text">
+                Access a shared library of design assets, layouts, and templates that help you ship client-ready
+                deliverables faster.
+              </p>
+            </div>
+            <div className="ai-support-feature-card">
+              <h3 className="ai-support-feature-title">Config Code &amp; Resource Portals</h3>
+              <p className="ai-support-feature-text">
+                Tap into config snippets, starter repos, and learning resources so you&apos;re not rebuilding every
+                system from scratch.
+              </p>
+            </div>
+            <div className="ai-support-feature-card">
+              <h3 className="ai-support-feature-title">Real-Time Project Updates</h3>
+              <p className="ai-support-feature-text">
+                See live progress from other freelancers working the STAR Method, giving you a reference point for pace,
+                scope, and results.
+              </p>
+            </div>
+            <div className="ai-support-feature-card">
+              <h3 className="ai-support-feature-title">Chat Community</h3>
+              <p className="ai-support-feature-text">
+                Ask questions, share wins, and troubleshoot problems in a private chat — no more trying to solve every
+                issue alone at 2 a.m.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 4: Professional Advantage */}
+      <section className="ai-support-advantage">
+        <div className="ai-support-section-container">
+          <h2 className="ai-support-headline-gold">Accelerate Your STAR Method Implementation.</h2>
+
+          <ul className="ai-support-advantage-list">
+            <li className="ai-support-advantage-item">
+              <span className="ai-support-advantage-bullet">✔</span>
+              <span>
+                Get support integrating complex tools like <strong>Cursor (IDE)</strong> and{' '}
+                <strong>GoHighLevel (CRM)</strong> so your stack is Workflow Fit instead of cobbled together.
+              </span>
+            </li>
+            <li className="ai-support-advantage-item">
+              <span className="ai-support-advantage-bullet">✔</span>
+              <span>
+                Collaborate on projects that help you <strong>Showcase</strong> your capabilities and attract warm,
+                inbound leads that already believe in your value.
+              </span>
+            </li>
+            <li className="ai-support-advantage-item">
+              <span className="ai-support-advantage-bullet">✔</span>
+              <span>
+                Learn how others are automating <strong>follow-ups, upsells, and referrals</strong> to achieve
+                Retention and predictable monthly income.
+              </span>
+            </li>
+            <li className="ai-support-advantage-item">
+              <span className="ai-support-advantage-bullet">✔</span>
+              <span>
+                Gain the <strong>Professional Organization</strong> (systems, assets, and support) required to work
+                confidently with high-ticket clients.
+              </span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      {/* Section 5: Final Enrollment */}
+      <section className="ai-support-final-cta">
+        <div className="ai-support-section-container ai-support-final-inner">
+          <div className="ai-support-final-price-block">
+            <p className="ai-support-final-price-line">12 Months Access (Total Value: $240)</p>
+            <p className="ai-support-final-investment-line">Join today for [Price]</p>
+          </div>
+
+          <button className="ai-support-primary-cta ai-support-final-button" onClick={handleJoinClick}>
+            <span className="ai-support-cta-icon">✅</span>
+            <span className="ai-support-cta-text">Yes, Grant Me Access to the Private Support Network</span>
           </button>
-        )}
-      </div>
-
-      {/* Documentation Section */}
-      <div className="documentation-section">
-        <h2>📚 How It Works</h2>
-        <div className="doc-grid">
-          <div className="doc-card">
-            <h3>🎯 Purpose</h3>
-            <p>The AI Community Member system automatically engages with the Proto Hub community by:</p>
-            <ul>
-              <li>Answering unanswered questions from community members</li>
-              <li>Creating proactive discussions about trending topics</li>
-              <li>Providing helpful insights and guidance</li>
-              <li>Maintaining an active, supportive community environment</li>
-            </ul>
-          </div>
-          
-          <div className="doc-card">
-            <h3>🔄 Integration with Proto Hub</h3>
-            <p>The AI Community Member seamlessly integrates with Proto Hub:</p>
-            <ul>
-              <li><strong>Questions System:</strong> Monitors and answers questions in real-time</li>
-              <li><strong>Community Engagement:</strong> Creates discussions and shares insights</li>
-              <li><strong>Persona System:</strong> Uses different AI personas (Alex, Maya, Jordan, Sam)</li>
-              <li><strong>Analytics:</strong> Tracks engagement metrics and community health</li>
-            </ul>
-          </div>
-          
-          <div className="doc-card">
-            <h3>🤖 AI Personas</h3>
-            <p>Four distinct AI personas engage with the community:</p>
-            <ul>
-              <li><strong>Alex:</strong> General prototyping and community engagement</li>
-              <li><strong>Maya:</strong> Design-focused discussions and UI/UX guidance</li>
-              <li><strong>Jordan:</strong> Technical development and coding support</li>
-              <li><strong>Sam:</strong> Product validation and research insights</li>
-            </ul>
-          </div>
-          
-          <div className="doc-card">
-            <h3>⚡ Monitoring Service</h3>
-            <p>The monitoring service runs automatically to:</p>
-            <ul>
-              <li>Scan for unanswered questions every 30 minutes</li>
-              <li>Analyze community trends and topics</li>
-              <li>Generate proactive engagement opportunities</li>
-              <li>Maintain engagement limits (max 5 per hour)</li>
-            </ul>
-          </div>
         </div>
-      </div>
+      </section>
 
-      <div className="testing-section">
-        <h2>🧪 Endpoint Testing</h2>
-        <p className="testing-description">
-          Use the buttons below to test different AI Community Member Control Center endpoints. 
-          Each test will show the response data and execution time.
-        </p>
-        
-        <div className="endpoint-groups">
-          {/* AI Community Member Endpoints */}
-          <div className="endpoint-group">
-            <h3>🤖 AI Community Member</h3>
-            <div className="endpoint-buttons">
-              <button 
-                onClick={testEndpoints.getAIStats}
-                disabled={isLoading}
-                className="test-button primary"
-              >
-                📊 Get AI Stats
-              </button>
-              <button 
-                onClick={testEndpoints.getAIPersonas}
-                disabled={isLoading}
-                className="test-button"
-              >
-                👥 Get AI Personas
-              </button>
-              <button 
-                onClick={testEndpoints.getTrendingTopics}
-                disabled={isLoading}
-                className="test-button"
-              >
-                📈 Get Trending Topics
-              </button>
-              <button 
-                onClick={testEndpoints.generateAIResponse}
-                disabled={isLoading}
-                className="test-button"
-              >
-                💬 Generate AI Response
-              </button>
-              <button 
-                onClick={testEndpoints.generateProactiveEngagement}
-                disabled={isLoading}
-                className="test-button"
-              >
-                🚀 Generate Proactive Engagement
-              </button>
-              <button 
-                onClick={testEndpoints.startAIMonitoring}
-                disabled={isLoading}
-                className="test-button success"
-              >
-                ▶️ Start AI Monitoring
-              </button>
-            </div>
-          </div>
-
-          {/* Monitoring Endpoints */}
-          <div className="endpoint-group">
-            <h3>📊 Monitoring Service</h3>
-            <div className="endpoint-buttons">
-              <button 
-                onClick={testEndpoints.forceEngagement}
-                disabled={isLoading}
-                className="test-button primary"
-              >
-                🚀 Force Engagement
-              </button>
-              <button 
-                onClick={testEndpoints.forceAnalysis}
-                disabled={isLoading}
-                className="test-button"
-              >
-                📈 Force Analysis
-              </button>
-              <button 
-                onClick={testEndpoints.getMonitoringStats}
-                disabled={isLoading}
-                className="test-button"
-              >
-                📊 Get Monitoring Stats
-              </button>
-              <button 
-                onClick={testEndpoints.getHistory}
-                disabled={isLoading}
-                className="test-button"
-              >
-                📝 Get History
-              </button>
-              <button 
-                onClick={testEndpoints.startMonitoring}
-                disabled={isLoading}
-                className="test-button success"
-              >
-                ▶️ Start Monitoring
-              </button>
-              <button 
-                onClick={testEndpoints.stopMonitoring}
-                disabled={isLoading}
-                className="test-button danger"
-              >
-                ⏹️ Stop Monitoring
-              </button>
-              <button 
-                onClick={testEndpoints.updateConfig}
-                disabled={isLoading}
-                className="test-button"
-              >
-                ⚙️ Update Config
-              </button>
-            </div>
-          </div>
-
-          {/* Questions Endpoints */}
-          <div className="endpoint-group">
-            <h3>❓ Questions Management</h3>
-            <div className="endpoint-buttons">
-              <button 
-                onClick={testEndpoints.getQuestions}
-                disabled={isLoading}
-                className="test-button"
-              >
-                📋 Get Questions
-              </button>
-              <button 
-                onClick={testEndpoints.createQuestion}
-                disabled={isLoading}
-                className="test-button"
-              >
-                ➕ Create Question
-              </button>
-              <button 
-                onClick={testEndpoints.getQuestionsAIPersonas}
-                disabled={isLoading}
-                className="test-button"
-              >
-                🤖 Get Questions AI Personas
-              </button>
-              <button 
-                onClick={testEndpoints.generateQuestionsEngagement}
-                disabled={isLoading}
-                className="test-button"
-              >
-                💬 Generate Questions Engagement
-              </button>
-            </div>
-          </div>
-
-          {/* Analytics Endpoints */}
-          <div className="endpoint-group">
-            <h3>📊 Analytics</h3>
-            <div className="endpoint-buttons">
-              <button 
-                onClick={testEndpoints.getAnalyticsSummary}
-                disabled={isLoading}
-                className="test-button"
-              >
-                📊 Get Analytics Summary
-              </button>
-              <button 
-                onClick={testEndpoints.getAnalyticsEvents}
-                disabled={isLoading}
-                className="test-button"
-              >
-                📈 Get Analytics Events
-              </button>
-              <button 
-                onClick={testEndpoints.getUserAnalytics}
-                disabled={isLoading}
-                className="test-button"
-              >
-                👤 Get User Analytics
-              </button>
-              <button 
-                onClick={testEndpoints.getPopularContent}
-                disabled={isLoading}
-                className="test-button"
-              >
-                🔥 Get Popular Content
-              </button>
-            </div>
-          </div>
-
-          {/* Debug Endpoints */}
-          <div className="endpoint-group">
-            <h3>🔧 Debug & System</h3>
-            <div className="endpoint-buttons">
-              <button 
-                onClick={testEndpoints.debugEnv}
-                disabled={isLoading}
-                className="test-button"
-              >
-                🌍 Debug Environment
-              </button>
-              <button 
-                onClick={testEndpoints.debugDatabase}
-                disabled={isLoading}
-                className="test-button"
-              >
-                🗄️ Debug Database
-              </button>
-              <button 
-                onClick={testEndpoints.debugGHLStatus}
-                disabled={isLoading}
-                className="test-button"
-              >
-                🔗 Debug GHL Status
-              </button>
-              <button 
-                onClick={testEndpoints.debugTrendingTopics}
-                disabled={isLoading}
-                className="test-button"
-              >
-                📈 Debug Trending Topics
-              </button>
-              <button 
-                onClick={testEndpoints.debugAIStats}
-                disabled={isLoading}
-                className="test-button"
-              >
-                🤖 Debug AI Stats
-              </button>
-              <button 
-                onClick={testEndpoints.healthCheck}
-                disabled={isLoading}
-                className="test-button"
-              >
-                ❤️ Health Check
-              </button>
-            </div>
-          </div>
-
-          {/* Prototypes Endpoints */}
-          <div className="endpoint-group">
-            <h3>🚀 Prototypes Management</h3>
-            <div className="endpoint-buttons">
-              <button 
-                onClick={testEndpoints.getPrototypes}
-                disabled={isLoading}
-                className="test-button"
-              >
-                📋 Get Prototypes
-              </button>
-              <button 
-                onClick={testEndpoints.createPrototype}
-                disabled={isLoading}
-                className="test-button"
-              >
-                ➕ Create Prototype
-              </button>
-            </div>
-          </div>
-
-          {/* Users & Reports */}
-          <div className="endpoint-group">
-            <h3>👥 Users & Reports</h3>
-            <div className="endpoint-buttons">
-              <button 
-                onClick={testEndpoints.getUsers}
-                disabled={isLoading}
-                className="test-button"
-              >
-                👥 Get Users
-              </button>
-              <button 
-                onClick={testEndpoints.getCurrentUser}
-                disabled={isLoading}
-                className="test-button"
-              >
-                👤 Get Current User
-              </button>
-              <button 
-                onClick={testEndpoints.getReports}
-                disabled={isLoading}
-                className="test-button"
-              >
-                📋 Get Reports
-              </button>
-              <button 
-                onClick={testEndpoints.getPendingReports}
-                disabled={isLoading}
-                className="test-button"
-              >
-                ⏳ Pending Reports
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {isLoading && (
-          <div className="loading-indicator">
-            <div className="spinner"></div>
-            <span>Testing endpoint...</span>
-          </div>
-        )}
-      </div>
-
-      {/* Test Results */}
-      <div className="results-section">
-        <h2>📋 Test Results</h2>
-        {testResults.length === 0 ? (
-          <div className="no-results">
-            <p>No tests run yet. Click a button above to test an endpoint.</p>
-          </div>
-        ) : (
-          <div className="results-list">
-            {testResults.map((result, index) => (
-              <div key={index} className={`result-item ${result.success ? 'success' : 'error'}`}>
-                <div className="result-header">
-                  <span className="result-status">
-                    {result.success ? '✅' : '❌'}
-                  </span>
-                  <span className="result-timestamp">
-                    {new Date(result.timestamp).toLocaleTimeString()}
-                  </span>
-                </div>
-                <div className="result-content">
-                  {result.data ? (
-                    <pre className="result-data">
-                      {JSON.stringify(result.data, null, 2)}
-                    </pre>
-                  ) : (
-                    <div className="result-error">
-                      Error: {result.error}
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Secure API Configuration Info */}
-      <div className="config-section">
-        <h2>⚙️ System Status</h2>
-        <div className="config-info">
-          <div className="config-item">
-            <strong>Environment:</strong> {API_CONFIG.ENVIRONMENT}
-          </div>
-          <div className="config-item">
-            <strong>API Status:</strong> {API_CONFIG.SUPABASE_ANON_KEY ? '✅ Connected' : '❌ Disconnected'}
-          </div>
-          <div className="config-item">
-            <strong>Monitoring:</strong> Active
-          </div>
-          <div className="config-item">
-            <strong>Last Updated:</strong> {new Date().toLocaleDateString()}
-          </div>
-        </div>
-        <div className="security-note">
-          <p>🔒 <strong>Security Note:</strong> Sensitive configuration details are not displayed for security reasons. 
-          Only essential status information is shown.</p>
-        </div>
-      </div>
+      <SupportNetworkModal isOpen={isModalOpen} onClose={handleCloseModal} />
     </div>
   );
 };
