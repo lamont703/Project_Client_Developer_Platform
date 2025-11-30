@@ -36,6 +36,15 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
     navigate(route);
   };
 
+  const handlePFAuditClick = () => {
+    handleNavigation('/professional-freelancer-audit');
+  };
+
+  const handleGHLTrialClick = () => {
+    // Navigate to activate-ghl page
+    handleNavigation('/activate-ghl');
+  };
+
 
   return (
     <div className="link-in-bio-page">
@@ -63,8 +72,23 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
           </div>
         </div>
 
-        {/* Section 2: Primary CTA Block (Live Workshop) */}
-        <div className="primary-cta-section">
+        {/* Tier 1: Highest Lead Capture - Top of Page */}
+        <div className="tier-1-ctas-section">
+          {/* Professional Freelancer Audit Button */}
+          <button 
+            className="pf-audit-button"
+            onClick={handlePFAuditClick}
+          >
+            <div className="pf-audit-button-content">
+              <span className="pf-audit-icon">📊</span>
+              <div className="pf-audit-text-wrapper">
+                <span className="pf-audit-main-text">Start Your Free Professional Freelancer Audit</span>
+                <span className="pf-audit-sub-text">The STAR Method Roadmap</span>
+              </div>
+            </div>
+          </button>
+
+          {/* Free Workshop Button */}
           <button 
             className="workshop-button primary-cta-button"
             onClick={() => handleNavigation('/webinar-workshop')}
@@ -81,19 +105,52 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
               Learn the Blueprint to $10K+ AI Clients (Without Upwork or Fiverr)
             </div>
           </button>
+        </div>
 
-          <div className="kickstart-image-container">
-            <img 
-              src="/KICKSTART_10DAY_PRODUCT.jpeg" 
-              alt="10 Day AI Freelance Kickstart" 
-              className="kickstart-product-image"
-            />
+        {/* Tier 2: Hands-On Implementation & Immediate Value - Mid-Page */}
+        <div className="tier-2-ctas-section">
+          {/* GoHighLevel Trial Button */}
+          <button 
+            className="ghl-trial-button"
+            onClick={handleGHLTrialClick}
+          >
+            <div className="ghl-trial-button-content">
+              <span className="ghl-trial-icon">⚡</span>
+              <div className="ghl-trial-text-wrapper">
+                <span className="ghl-trial-main-text">14-Day Free Trial: Build Your Professional AI System</span>
+                <span className="ghl-trial-sub-text">Powered by GoHighLevel</span>
+              </div>
+            </div>
+          </button>
+
+          {/* Book Download Link with Image */}
+          <div className="cta-with-image-block">
+            <button 
+              className="book-download-button"
+              onClick={() => handleNavigation('/blueprint-to-freelance-freedom')}
+            >
+              <div className="book-button-content">
+                <span className="book-icon">📚</span>
+                <div className="book-text-wrapper">
+                  <span className="book-main-text">Download the Blueprint To Freelance Freedom Book</span>
+                  <span className="book-bonus-badge">(FREE BONUS COPY)</span>
+                </div>
+              </div>
+            </button>
+            <div className="book-image-container">
+              <img 
+                src="/EVANS_BOOK_BLUEPRINT.jpeg" 
+                alt="Blueprint To Freelance Freedom Book" 
+                className="book-cover-image"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
           </div>
         </div>
 
-        {/* Section 3: Secondary CTAs (Value Stack Integration) */}
-        <div className="secondary-ctas-section">
-          
+        {/* Tier 3: Primary Paid Offer - Bottom of Page */}
+        <div className="tier-3-ctas-section">
           {/* Direct Enrollment Link - Premium Gold Button */}
           <button 
             className="enroll-kickstart-button"
@@ -130,32 +187,6 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
               />
             </div>
           </div>
-
-          {/* Book Download Link with Image */}
-          <div className="cta-with-image-block">
-            <button 
-              className="book-download-button"
-              onClick={() => handleNavigation('/blueprint-to-freelance-freedom')}
-            >
-              <div className="book-button-content">
-                <span className="book-icon">📚</span>
-                <div className="book-text-wrapper">
-                  <span className="book-main-text">Download the Blueprint To Freelance Freedom Book</span>
-                  <span className="book-bonus-badge">(FREE BONUS COPY)</span>
-                </div>
-              </div>
-            </button>
-            <div className="book-image-container">
-              <img 
-                src="/EVANS_BOOK_BLUEPRINT.jpeg" 
-                alt="Blueprint To Freelance Freedom Book" 
-                className="book-cover-image"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-          </div>
-
         </div>
 
         {/* Section 4: Tertiary CTAs (Utility & Engagement) */}

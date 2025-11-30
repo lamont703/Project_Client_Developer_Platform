@@ -1,12 +1,513 @@
+/* Activate GHL Page - High-Tech Dark Theme with Electric Green & Gold Accents */
+
 .activate-ghl-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding-top: 80px;
+  background: #0a0e27;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(0, 255, 150, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 165, 0, 0.03) 0%, transparent 50%),
+    linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1629 100%);
+  position: relative;
+  overflow-x: hidden;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
 }
 
-@media (max-width: 768px) {
-  .activate-ghl-page {
-    padding-top: 60px;
+.ghl-circuit-pattern {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(90deg, rgba(0, 255, 150, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(0, 255, 150, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 150, 0.04) 1px, transparent 1px),
+    linear-gradient(rgba(0, 255, 150, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px, 60px 60px, 120px 120px, 120px 120px;
+  background-position: 0 0, 0 0, 30px 30px, 30px 30px;
+  opacity: 0.5;
+  animation: circuitPulse 5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes circuitPulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
   }
 }
 
+.ghl-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Hero Section */
+.ghl-hero-section {
+  text-align: center;
+  padding: 3rem 0 2rem;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.ghl-logo-container {
+  margin-bottom: 2rem;
+}
+
+.ghl-logo-placeholder {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(0, 255, 150, 0.3);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.ghl-logo-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #00ff96;
+  text-shadow: 0 0 20px rgba(0, 255, 150, 0.8);
+  letter-spacing: 2px;
+}
+
+.ghl-main-headline {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #00ff96;
+  text-shadow: 
+    0 0 30px rgba(0, 255, 150, 1),
+    0 4px 20px rgba(0, 0, 0, 0.8);
+  line-height: 1.2;
+  margin: 0 0 1rem 0;
+  letter-spacing: -0.5px;
+}
+
+.ghl-subheadline {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Problem Section */
+.ghl-problem-section {
+  padding: 3rem 0;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.ghl-section-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #00ff96;
+  text-shadow: 
+    0 0 20px rgba(0, 255, 150, 0.8),
+    0 2px 10px rgba(0, 0, 0, 0.8);
+  margin: 0 0 2rem 0;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.ghl-problem-content {
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(0, 255, 150, 0.2);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 
+    0 0 30px rgba(0, 255, 150, 0.2),
+    inset 0 0 30px rgba(0, 255, 150, 0.05);
+}
+
+.ghl-problem-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 1.5rem 0;
+}
+
+.ghl-problem-text:last-child {
+  margin-bottom: 0;
+}
+
+.ghl-problem-text strong {
+  color: #00ff96;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(0, 255, 150, 0.6);
+}
+
+/* STAR Foundation Section */
+.ghl-star-foundation-section {
+  padding: 3rem 0;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.ghl-foundation-intro {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.95);
+  text-align: center;
+  margin: 0 0 2.5rem 0;
+  padding: 1.5rem;
+  background: rgba(255, 165, 0, 0.1);
+  border: 2px solid rgba(255, 165, 0, 0.3);
+  border-radius: 12px;
+}
+
+.ghl-foundation-intro strong {
+  color: #ffa500;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(255, 165, 0, 0.6);
+}
+
+.ghl-star-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.ghl-star-benefit-item {
+  display: flex;
+  gap: 1.5rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(0, 255, 150, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.ghl-star-benefit-item:hover {
+  border-color: rgba(0, 255, 150, 0.5);
+  box-shadow: 0 0 25px rgba(0, 255, 150, 0.3);
+  transform: translateX(5px);
+}
+
+.ghl-star-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 10px rgba(0, 255, 150, 0.6));
+}
+
+.ghl-star-benefit-content {
+  flex: 1;
+}
+
+.ghl-star-benefit-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #00ff96;
+  text-shadow: 0 0 15px rgba(0, 255, 150, 0.8);
+  margin: 0 0 0.75rem 0;
+}
+
+.ghl-star-benefit-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+
+/* Benefits Section */
+.ghl-benefits-section {
+  padding: 3rem 0;
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+
+.ghl-benefits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.ghl-benefit-item {
+  display: flex;
+  gap: 1.5rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(255, 165, 0, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.ghl-benefit-item:hover {
+  border-color: rgba(255, 165, 0, 0.5);
+  box-shadow: 0 0 25px rgba(255, 165, 0, 0.3);
+  transform: translateX(5px);
+}
+
+.ghl-benefit-check {
+  font-size: 2rem;
+  color: #00ff96;
+  font-weight: 700;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 10px rgba(0, 255, 150, 0.8));
+}
+
+.ghl-benefit-content {
+  flex: 1;
+}
+
+.ghl-benefit-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ffa500;
+  text-shadow: 0 0 15px rgba(255, 165, 0, 0.8);
+  margin: 0 0 0.75rem 0;
+}
+
+.ghl-benefit-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+
+/* CTA Section */
+.ghl-cta-section {
+  padding: 4rem 0;
+  animation: fadeInUp 0.8s ease-out 0.8s both;
+}
+
+.ghl-cta-content {
+  text-align: center;
+}
+
+.ghl-primary-cta-button {
+  width: 100%;
+  max-width: 600px;
+  background: linear-gradient(135deg, #ff8c00 0%, #ffa500 50%, #ff8c00 100%);
+  background-size: 200% 100%;
+  border: 3px solid #ffb84d;
+  border-radius: 16px;
+  padding: 2rem 2.5rem;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  font-family: inherit;
+  box-shadow: 
+    0 0 40px rgba(255, 165, 0, 0.7),
+    0 12px 40px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.ghl-primary-cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.ghl-primary-cta-button:hover::before {
+  left: 100%;
+}
+
+.ghl-primary-cta-button:hover {
+  transform: translateY(-5px);
+  background-position: 100% 0;
+  box-shadow: 
+    0 0 50px rgba(255, 165, 0, 0.9),
+    0 16px 50px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+  border-color: #ffc966;
+}
+
+.ghl-primary-cta-button:active {
+  transform: translateY(-2px);
+}
+
+.ghl-cta-main-text {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #000000;
+  text-shadow: 
+    0 1px 3px rgba(255, 255, 255, 0.6),
+    0 2px 6px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.ghl-cta-sub-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #000000;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  position: relative;
+  z-index: 1;
+}
+
+.ghl-affiliate-disclosure {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+.ghl-affiliate-disclosure strong {
+  color: #00ff96;
+  font-weight: 700;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .activate-ghl-page {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+  .ghl-container {
+    padding: 0 1rem;
+  }
+
+  .ghl-hero-section {
+    padding: 2rem 0 1.5rem;
+  }
+
+  .ghl-logo-text {
+    font-size: 1.2rem;
+  }
+
+  .ghl-main-headline {
+    font-size: 1.8rem;
+  }
+
+  .ghl-subheadline {
+    font-size: 1.1rem;
+  }
+
+  .ghl-section-title {
+    font-size: 1.5rem;
+  }
+
+  .ghl-problem-section,
+  .ghl-star-foundation-section,
+  .ghl-benefits-section {
+    padding: 2rem 0;
+  }
+
+  .ghl-problem-content,
+  .ghl-star-benefit-item,
+  .ghl-benefit-item {
+    padding: 1.25rem;
+  }
+
+  .ghl-problem-text,
+  .ghl-foundation-intro {
+    font-size: 1rem;
+  }
+
+  .ghl-star-icon,
+  .ghl-benefit-check {
+    font-size: 2rem;
+  }
+
+  .ghl-star-benefit-title,
+  .ghl-benefit-title {
+    font-size: 1.1rem;
+  }
+
+  .ghl-star-benefit-text,
+  .ghl-benefit-description {
+    font-size: 0.95rem;
+  }
+
+  .ghl-cta-section {
+    padding: 3rem 0;
+  }
+
+  .ghl-primary-cta-button {
+    padding: 1.5rem 1.5rem;
+  }
+
+  .ghl-cta-main-text {
+    font-size: 1.2rem;
+  }
+
+  .ghl-cta-sub-text {
+    font-size: 1rem;
+  }
+
+  .ghl-affiliate-disclosure {
+    font-size: 0.8rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ghl-main-headline {
+    font-size: 1.5rem;
+  }
+
+  .ghl-subheadline {
+    font-size: 1rem;
+  }
+
+  .ghl-section-title {
+    font-size: 1.3rem;
+  }
+
+  .ghl-star-benefit-item,
+  .ghl-benefit-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .ghl-star-icon,
+  .ghl-benefit-check {
+    margin: 0 auto;
+  }
+
+  .ghl-cta-main-text {
+    font-size: 1.1rem;
+  }
+
+  .ghl-cta-sub-text {
+    font-size: 0.95rem;
+  }
+}
