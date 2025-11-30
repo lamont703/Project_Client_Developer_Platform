@@ -103,7 +103,7 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
               <span className="enroll-icon">🚀</span>
               <div className="enroll-text-wrapper">
                 <span className="enroll-main-text">Enroll in the 10 Day AI Freelance Kickstart</span>
-                <span className="enroll-price-badge">($197 Today Only!)</span>
+                <span className="enroll-price-badge">($497 Today Only!)</span>
               </div>
             </div>
           </button>
@@ -150,6 +150,8 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
                 src="/EVANS_BOOK_BLUEPRINT.jpeg" 
                 alt="Blueprint To Freelance Freedom Book" 
                 className="book-cover-image"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
