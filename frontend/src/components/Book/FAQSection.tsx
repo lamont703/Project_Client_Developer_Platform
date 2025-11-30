@@ -7,7 +7,7 @@ const FAQSection: React.FC = () => {
   const faqs = [
     {
       question: "What format is the book in?",
-      answer: "The book is delivered as a digital PDF that you can download immediately after purchase. You can read it on any device - computer, tablet, or phone."
+      answer: "The book is delivered as a digital PDF that you receive immediately after ordering for $29. You can read it on any device - computer, tablet, or phone."
     },
     {
       question: "Is this only for developers?",

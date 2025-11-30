@@ -272,7 +272,7 @@ const WebinarWorkshopPage: React.FC<WebinarWorkshopPageProps> = ({ navigateToHom
                 alt="Blueprint To Freelance Freedom" 
                 className="bonus-image"
               />
-              <p className="bonus-label">Free Copy of Blueprint To Freelance Freedom</p>
+              <p className="bonus-label">Blueprint To Freelance Freedom Book ($29)</p>
             </div>
 
             <div className="bonus-item">

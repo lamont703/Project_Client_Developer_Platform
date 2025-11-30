@@ -93,10 +93,10 @@ const BookLandingPage: React.FC<BookLandingPageProps> = ({ navigateToHome }) => 
             <p className="book-author-line">By Lamont T. Evans, AI Freelance Systems Architect</p>
 
             <div className="book-hero-pricing">
-              <p className="book-price-line">Available Now for [Price]</p>
+              <p className="book-price-line">Available Now for $29</p>
               <button className="book-primary-cta" onClick={openPaymentModal}>
                 <span className="book-cta-icon">⚡</span>
-                <span className="book-cta-text">Get The Definitive Blueprint Now</span>
+                <span className="book-cta-text">Order The Definitive Blueprint Now</span>
               </button>
             </div>
           </div>
@@ -281,12 +281,12 @@ const BookLandingPage: React.FC<BookLandingPageProps> = ({ navigateToHome }) => 
       <section className="book-final-cta">
         <div className="book-section-container book-final-cta-inner">
           <div className="book-final-price-block">
-            <p className="book-final-price-line">Available Now for [Price]</p>
+            <p className="book-final-price-line">Available Now for $29</p>
           </div>
 
           <button className="book-primary-cta book-final-cta-button" onClick={openPaymentModal}>
             <span className="book-cta-icon">✅</span>
-            <span className="book-cta-text">Download Your Blueprint &amp; Start Building Your System</span>
+            <span className="book-cta-text">Order Your Blueprint &amp; Start Building Your System</span>
           </button>
 
           <p className="book-final-reassurance">

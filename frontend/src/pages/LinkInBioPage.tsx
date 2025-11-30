@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/LinkInBio/LinkInBioPage.css';
+import BookReader from '../components/Book Reader/BookReader';
 
 interface LinkInBioPageProps {
   navigateToHome?: () => void;
@@ -123,7 +124,7 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
             </div>
           </button>
 
-          {/* Book Download Link with Image */}
+          {/* Book Order Link with Image */}
           <div className="cta-with-image-block">
             <button 
               className="book-download-button"
@@ -132,19 +133,13 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
               <div className="book-button-content">
                 <span className="book-icon">📚</span>
                 <div className="book-text-wrapper">
-                  <span className="book-main-text">Download the Blueprint To Freelance Freedom Book</span>
-                  <span className="book-bonus-badge">(FREE BONUS COPY)</span>
+                  <span className="book-main-text">Order the Blueprint To Freelance Freedom Book</span>
+                  <span className="book-bonus-badge">($29)</span>
                 </div>
               </div>
             </button>
             <div className="book-image-container">
-              <img 
-                src="/EVANS_BOOK_BLUEPRINT.jpeg" 
-                alt="Blueprint To Freelance Freedom Book" 
-                className="book-cover-image"
-                loading="lazy"
-                decoding="async"
-              />
+              <BookReader onOrderClick={() => handleNavigation('/blueprint-to-freelance-freedom')} />
             </div>
           </div>
         </div>

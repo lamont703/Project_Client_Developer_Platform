@@ -5,8 +5,8 @@ const HowItWorksSection: React.FC = () => {
   const steps = [
     {
       number: 1,
-      title: 'Purchase & Download',
-      description: 'Get instant access to your digital copy of Blueprint To Freelance Freedom. Download immediately after purchase.',
+      title: 'Purchase & Order',
+      description: 'Order your copy of Blueprint To Freelance Freedom for $29. Get instant access to your digital copy immediately after purchase.',
       icon: '📥'
     },
     {
