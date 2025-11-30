@@ -474,11 +474,11 @@
   }
 
   .book-reader-nav-prev {
-    left: -20px;
+    left: 5px;
   }
 
   .book-reader-nav-next {
-    right: -20px;
+    right: 5px;
     padding: 0.4rem 0.6rem;
   }
 
@@ -561,11 +561,11 @@
   }
 
   .book-reader-nav-prev {
-    left: -15px;
+    left: 5px;
   }
 
   .book-reader-nav-next {
-    right: -15px;
+    right: 5px;
     padding: 0.3rem 0.5rem;
   }
 
