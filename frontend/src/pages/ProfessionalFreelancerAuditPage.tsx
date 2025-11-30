@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import '../styles/Professional Freelancer Audit/ProfessionalFreelancerAuditPage.css';
 import PFAuditForm from '../components/Professional Freelancer Audit/PFAuditForm';
 
