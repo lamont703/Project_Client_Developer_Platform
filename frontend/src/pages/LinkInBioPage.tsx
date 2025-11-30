@@ -29,6 +29,19 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
       script.setAttribute('data-resources-url', 'https://beta.leadconnectorhq.com/chat-widget/loader.js');
       script.setAttribute('data-widget-id', '668475f9178c3150954773ef');
       script.async = true;
+      
+      // Add error handling for script loading
+      script.onerror = () => {
+        // Silently handle script loading errors - widget may not be available
+        console.debug('Chat widget script failed to load (this is expected if widget is not configured)');
+      };
+      
+      // Suppress errors from the loaded script
+      script.onload = () => {
+        // Script loaded successfully, but errors may still occur if widget isn't configured
+        // These errors are handled by the global error handler in index.tsx
+      };
+      
       document.body.appendChild(script);
     }
   }, []);
@@ -70,6 +83,63 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
             <p className="urgency-subheadline">
               (21% Decrease in Simple Jobs)
             </p>
+          </div>
+        </div>
+
+        {/* Video Section - High-Authority Loop */}
+        <div className="video-hero-section">
+          <div 
+            className="video-container"
+            onClick={() => handleNavigation('/10Day-Freelance-Kickstart')}
+          >
+            <video
+              className="kickstart-video"
+              autoPlay
+              muted
+              loop
+              playsInline
+              onClick={() => handleNavigation('/10Day-Freelance-Kickstart')}
+            >
+              <source src="/10Day Kickstart Product Video.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <div className="video-overlay">
+              <div className="video-click-indicator">
+                <span className="video-click-text">Tap to Enroll</span>
+                <span className="video-click-arrow">→</span>
+              </div>
+            </div>
+          </div>
+          
+          {/* STAR Method & Authority Icons */}
+          <div className="video-context-section">
+            <div className="star-method-display">
+              <div className="star-method-item">
+                <span className="star-char">S</span>
+                <span className="star-label">Showcase</span>
+              </div>
+              <div className="star-method-item">
+                <span className="star-char">T</span>
+                <span className="star-label">Tools</span>
+              </div>
+              <div className="star-method-item">
+                <span className="star-char">A</span>
+                <span className="star-label">Acquisition</span>
+              </div>
+              <div className="star-method-item">
+                <span className="star-char">R</span>
+                <span className="star-label">Retention</span>
+              </div>
+            </div>
+            
+            <div className="authority-icons">
+              <div className="authority-icon-item">
+                <span className="authority-icon-text">GoHighLevel</span>
+              </div>
+              <div className="authority-icon-item">
+                <span className="authority-icon-text">ChatGPT</span>
+              </div>
+            </div>
           </div>
         </div>
 

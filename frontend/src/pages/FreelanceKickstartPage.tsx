@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import '../styles/Freelance Kickstart/FreelanceKickstartPage.css';
 import PaymentModal from '../components/Freelance Kickstart/PaymentModal';
 
@@ -8,9 +8,51 @@ interface FreelanceKickstartPageProps {
 
 const FreelanceKickstartPage: React.FC<FreelanceKickstartPageProps> = ({ navigateToHome }) => {
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [showVideoControls, setShowVideoControls] = useState(false);
+  const [videoError, setVideoError] = useState<string | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const openPaymentModal = () => setIsPaymentModalOpen(true);
   const closePaymentModal = () => setIsPaymentModalOpen(false);
+
+  const handleVideoPlayClick = async () => {
+    if (videoRef.current) {
+      try {
+        await videoRef.current.play();
+        setIsVideoPlaying(true);
+        setShowVideoControls(true);
+        setVideoError(null);
+      } catch (error) {
+        // If autoplay fails, show controls so user can manually play
+        console.error('Video play failed:', error);
+        setShowVideoControls(true);
+        setVideoError('Click the play button on the video player to start playback');
+        // Still try to show controls even if play fails
+        if (videoRef.current) {
+          videoRef.current.controls = true;
+        }
+      }
+    }
+  };
+
+  const handleVideoPause = () => {
+    setIsVideoPlaying(false);
+  };
+
+  const handleVideoPlay = () => {
+    setIsVideoPlaying(true);
+    setShowVideoControls(true);
+    setVideoError(null);
+  };
+
+  const handleVideoError = () => {
+    setVideoError('There was an error loading the video. Please try refreshing the page.');
+    setShowVideoControls(true);
+    if (videoRef.current) {
+      videoRef.current.controls = true;
+    }
+  };
 
   useEffect(() => {
     document.title = '10 Day AI Freelance Kickstart – Premium Implementation Training';
@@ -114,7 +156,115 @@ const FreelanceKickstartPage: React.FC<FreelanceKickstartPageProps> = ({ navigat
         </div>
       </section>
 
-      {/* Section 2: The Crisis */}
+      {/* Section 2: Video Deep Dive */}
+      <section className="kickstart-video-section">
+        <div className="section-container">
+          <h2 className="video-section-title">
+            WATCH NOW: The STAR Method Blueprint – Your Accelerated Path to Predictable Income.
+          </h2>
+          
+          <div className="video-player-container">
+            <div className="video-wrapper">
+              <video
+                ref={videoRef}
+                src="https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/692cc54b96dd5b625314f1b9.mp4"
+                className="kickstart-video"
+                controls
+                onPause={handleVideoPause}
+                onPlay={handleVideoPlay}
+                onError={handleVideoError}
+                playsInline
+                preload="metadata"
+              >
+                Your browser does not support the video tag.
+              </video>
+              {!isVideoPlaying && (
+                <div 
+                  className={`video-overlay ${showVideoControls ? 'video-overlay-hidden' : ''}`}
+                  onClick={handleVideoPlayClick}
+                >
+                  <div className="video-overlay-content">
+                    <div className="play-button">▶</div>
+                    <p className="video-overlay-text">Play Video</p>
+                  </div>
+                </div>
+              )}
+              {videoError && (
+                <div className="video-error-message">
+                  <p>{videoError}</p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* STAR Method Phases */}
+          <div className="star-method-breakdown">
+            <h3 className="star-breakdown-title">The Four Phases of the STAR Method</h3>
+            <div className="star-phases-grid">
+              <div className="star-phase-card">
+                <div className="phase-letter-badge">S</div>
+                <h4 className="phase-card-title">Showcase</h4>
+                <p className="phase-card-description">Build visibility and credibility</p>
+              </div>
+              <div className="star-phase-card">
+                <div className="phase-letter-badge">T</div>
+                <h4 className="phase-card-title">Tools</h4>
+                <p className="phase-card-description">Select and integrate AI systems for Enhanced Efficiency</p>
+              </div>
+              <div className="star-phase-card">
+                <div className="phase-letter-badge">A</div>
+                <h4 className="phase-card-title">Acquisition</h4>
+                <p className="phase-card-description">Achieve Frictionless Client Closing</p>
+              </div>
+              <div className="star-phase-card">
+                <div className="phase-letter-badge">R</div>
+                <h4 className="phase-card-title">Retention</h4>
+                <p className="phase-card-description">Secure Predictable Monthly Income</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Proprietary Tools Showcase */}
+          <div className="tools-showcase">
+            <h3 className="tools-showcase-title">Proprietary Tool Stack</h3>
+            <p className="tools-showcase-subtitle">
+              The curated tools that achieve Workflow Fit and accelerate development
+            </p>
+            <div className="tools-logo-grid">
+              <div className="tool-logo-item">
+                <div className="tool-logo-name">GoHighLevel</div>
+                <div className="tool-logo-category">CRM/Automation</div>
+              </div>
+              <div className="tool-logo-item">
+                <div className="tool-logo-name">ChatGPT</div>
+                <div className="tool-logo-category">AI Reasoning/Communication</div>
+              </div>
+              <div className="tool-logo-item">
+                <div className="tool-logo-name">Cursor</div>
+                <div className="tool-logo-category">Development IDE</div>
+              </div>
+              <div className="tool-logo-item">
+                <div className="tool-logo-name">Vercel</div>
+                <div className="tool-logo-category">Deployment Platform</div>
+              </div>
+            </div>
+            <p className="tools-outcome">
+              <strong>Result:</strong> Building a reliable, scalable, and efficient AI-driven tool stack
+            </p>
+          </div>
+
+          {/* Video CTA */}
+          <div className="video-cta-container">
+            <button className="video-cta-button" onClick={openPaymentModal}>
+              <span className="video-cta-icon">🚀</span>
+              <span className="video-cta-text">ENROLL NOW: Get the Full 10 Day AI Freelance Kickstart System</span>
+            </button>
+            <p className="video-cta-price">Final Price: $497</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 3: The Crisis */}
       <section className="kickstart-crisis">
         <div className="section-container">
           <h2 className="section-headline-gold">The AI Reckoning is Here. It's Not Time to Play Anymore.</h2>
@@ -136,7 +286,7 @@ const FreelanceKickstartPage: React.FC<FreelanceKickstartPageProps> = ({ navigat
         </div>
       </section>
 
-      {/* Section 3: Curriculum Breakdown */}
+      {/* Section 4: Curriculum Breakdown */}
       <section className="kickstart-curriculum">
         <div className="section-container">
           <h2 className="section-headline-gold">What You Do Over the 10 Days</h2>
@@ -196,7 +346,7 @@ const FreelanceKickstartPage: React.FC<FreelanceKickstartPageProps> = ({ navigat
         </div>
       </section>
 
-      {/* Section 4: Tool Stack */}
+      {/* Section 5: Tool Stack */}
       <section className="kickstart-tool-stack">
         <div className="section-container">
           <h2 className="section-headline-gold">Master Your AI Tool Stack: Deliver Work Like a Full Agency</h2>
@@ -238,7 +388,7 @@ const FreelanceKickstartPage: React.FC<FreelanceKickstartPageProps> = ({ navigat
         </div>
       </section>
 
-      {/* Section 5: Value Stack & Bonuses */}
+      {/* Section 6: Value Stack & Bonuses */}
       <section className="kickstart-value-stack">
         <div className="section-container">
           <h2 className="section-headline-gold">
@@ -280,7 +430,7 @@ const FreelanceKickstartPage: React.FC<FreelanceKickstartPageProps> = ({ navigat
         </div>
       </section>
 
-      {/* Section 6: Final Enrollment & Guarantee */}
+      {/* Section 7: Final Enrollment & Guarantee */}
       <section className="kickstart-final-cta">
         <div className="section-container final-cta-container">
           <div className="final-price-block">
