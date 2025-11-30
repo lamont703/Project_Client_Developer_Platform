@@ -9,7 +9,6 @@ const originalConsoleWarn = console.warn;
 
 // Filter out known GoHighLevel chat widget errors
 console.error = (...args: any[]) => {
-  const errorMessage = args.length > 0 ? String(args[0] || '') : '';
   const fullMessage = args.join(' ');
   
   // Suppress GoHighLevel chat widget configuration errors
