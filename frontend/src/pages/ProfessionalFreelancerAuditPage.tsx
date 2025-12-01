@@ -135,6 +135,7 @@ const ProfessionalFreelancerAuditPage: React.FC<ProfessionalFreelancerAuditPageP
               <video
                 ref={videoRef}
                 src="https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/692d0b8d96dd5b6e8620b030.mov"
+                poster="/pf thumbnail.jpeg"
                 className="pf-authority-video"
                 controls={isVideoPlaying || showVideoControls}
                 controlsList="nodownload"
