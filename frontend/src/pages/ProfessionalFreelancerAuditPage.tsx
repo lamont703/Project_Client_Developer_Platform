@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import '../styles/Professional Freelancer Audit/ProfessionalFreelancerAuditPage.css';
 import PFAuditForm from '../components/Professional Freelancer Audit/PFAuditForm';
 
@@ -7,6 +7,11 @@ interface ProfessionalFreelancerAuditPageProps {
 }
 
 const ProfessionalFreelancerAuditPage: React.FC<ProfessionalFreelancerAuditPageProps> = ({ navigateToHome }) => {
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [showVideoControls, setShowVideoControls] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
   useEffect(() => {
     document.title = 'Professional Freelancer Audit: Your Learning Path to Scalable Predictable Income';
     
@@ -15,6 +20,80 @@ const ProfessionalFreelancerAuditPage: React.FC<ProfessionalFreelancerAuditPageP
       metaDescription.setAttribute('content', 'Get your free Professional Freelancer Audit and unlock your STAR Method Roadmap. Identify your #1 scaling bottleneck and receive a customized Learning Path Report.');
     }
   }, []);
+
+  // Ensure video starts paused
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+      setIsVideoPlaying(false);
+    }
+  }, []);
+
+  const handleVideoPlayClick = async (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    
+    if (videoRef.current) {
+      try {
+        const video = videoRef.current;
+        
+        if (video.readyState < 2) {
+          video.load();
+          await new Promise((resolve) => {
+            video.addEventListener('loadeddata', resolve, { once: true });
+            setTimeout(resolve, 2000);
+          });
+        }
+        
+        const playPromise = video.play();
+        
+        if (playPromise !== undefined) {
+          await playPromise;
+          setIsVideoPlaying(true);
+          setShowVideoControls(true);
+        } else {
+          setIsVideoPlaying(true);
+          setShowVideoControls(true);
+        }
+      } catch (error: any) {
+        console.error('Video play failed:', error);
+        setShowVideoControls(true);
+        
+        if (videoRef.current) {
+          videoRef.current.controls = true;
+          setTimeout(() => {
+            if (videoRef.current && videoRef.current.paused) {
+              videoRef.current.play().catch(() => {
+                console.error('Video play failed on retry');
+              });
+            }
+          }, 100);
+        }
+      }
+    }
+  };
+
+  const handleVideoPause = () => {
+    setIsVideoPlaying(false);
+  };
+
+  const handleVideoPlay = () => {
+    setIsVideoPlaying(true);
+    setShowVideoControls(true);
+  };
+
+  const handleShowForm = () => {
+    setShowForm(true);
+    // Scroll to form
+    setTimeout(() => {
+      const formSection = document.querySelector('.pf-form-section');
+      if (formSection) {
+        formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
+  };
 
   return (
     <div className="pf-audit-page">
@@ -40,6 +119,105 @@ const ProfessionalFreelancerAuditPage: React.FC<ProfessionalFreelancerAuditPageP
             <h2 className="pf-subheading">
               Get the STAR Method Roadmap that identifies your #1 Scaling Bottleneck
             </h2>
+          </div>
+        </div>
+      </section>
+
+      {/* Video Section */}
+      <section className="pf-video-section">
+        <div className="pf-container">
+          <h2 className="pf-video-header">
+            WATCH NOW: Your Personal System Diagnosis and STAR Method Roadmap
+          </h2>
+          
+          <div className="pf-video-player-container">
+            <div className="pf-video-wrapper">
+              <div className="pf-video-logo">
+                <img 
+                  src="/XRBlockDev Logo.png" 
+                  alt="Inner G Complete Agency" 
+                  className="pf-logo-image"
+                />
+              </div>
+              <video
+                ref={videoRef}
+                src="https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/692d0b8d96dd5b6e8620b030.mov"
+                className="pf-authority-video"
+                controls={isVideoPlaying || showVideoControls}
+                controlsList="nodownload"
+                onPause={handleVideoPause}
+                onPlay={handleVideoPlay}
+                onLoadedData={() => {
+                  if (videoRef.current && !isVideoPlaying) {
+                    videoRef.current.pause();
+                  }
+                }}
+                onClick={(e) => {
+                  if (isVideoPlaying || showVideoControls) {
+                    e.stopPropagation();
+                  }
+                }}
+                playsInline
+                preload="auto"
+              >
+                Your browser does not support the video tag.
+              </video>
+              <div 
+                className={`pf-video-overlay ${isVideoPlaying ? 'pf-video-overlay-hidden' : ''}`}
+                onClick={(e) => {
+                  if (!isVideoPlaying) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleVideoPlayClick(e);
+                  }
+                }}
+                onTouchStart={(e) => {
+                  if (!isVideoPlaying) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleVideoPlayClick();
+                  }
+                }}
+              >
+                <div className="pf-video-overlay-content">
+                  <div className="pf-play-button">▶</div>
+                  <p className="pf-video-overlay-text">Play Video</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Value Bullet Points */}
+          <div className="pf-video-value-bullets">
+            <div className="pf-bullet-item">
+              <span className="pf-bullet-icon">✓</span>
+              <p className="pf-bullet-text">
+                <strong>Identifies the Core Scaling Bottleneck:</strong> Reveals why Fulfillment Consumption is preventing scaling.
+              </p>
+            </div>
+            <div className="pf-bullet-item">
+              <span className="pf-bullet-icon">✓</span>
+              <p className="pf-bullet-text">
+                <strong>Prescribes the STAR Method Fix:</strong> Explains the required focus on Showcase (S), Tools (T), Acquisition (A), and Retention (R) for scaling.
+              </p>
+            </div>
+            <div className="pf-bullet-item">
+              <span className="pf-bullet-icon">✓</span>
+              <p className="pf-bullet-text">
+                <strong>Confirms Tool Stack Necessity:</strong> Highlights the need for Enhanced Efficiency and Workflow Fit using tools like GoHighLevel.
+              </p>
+            </div>
+          </div>
+
+          {/* Primary CTA Button */}
+          <div className="pf-video-cta-container">
+            <button 
+              className="pf-video-cta-button"
+              onClick={handleShowForm}
+            >
+              <span className="pf-cta-icon">🚀</span>
+              <span className="pf-cta-text">YES! Send Me My Professional Freelancer Audit & Learning Path Report</span>
+            </button>
           </div>
         </div>
       </section>
@@ -148,7 +326,7 @@ const ProfessionalFreelancerAuditPage: React.FC<ProfessionalFreelancerAuditPageP
       </section>
 
       {/* Form Section - Center of Page */}
-      <section className="pf-form-section">
+      <section className={`pf-form-section ${showForm ? 'pf-form-section-visible' : ''}`}>
         <div className="pf-container">
           <PFAuditForm />
         </div>
