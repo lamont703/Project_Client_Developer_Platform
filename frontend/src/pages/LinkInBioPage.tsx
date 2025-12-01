@@ -61,6 +61,14 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
       video.playsInline = true;
       video.controls = false;
       
+      // Prevent fullscreen in TikTok and other browsers
+      video.setAttribute('webkit-playsinline', 'true');
+      video.setAttribute('playsinline', 'true');
+      video.setAttribute('x5-playsinline', 'true'); // For some Android browsers
+      video.setAttribute('x5-video-player-type', 'h5');
+      video.setAttribute('x5-video-player-fullscreen', 'false');
+      video.setAttribute('x5-video-orientation', 'portraint');
+      
       // Prevent user from pausing/playing the video
       const preventInteraction = (e: Event) => {
         e.preventDefault();
@@ -128,11 +136,45 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
         }
       };
       
+      // TikTok-specific: Try to play on scroll (this is when TikTok allows it)
+      let scrollPlayAttempted = false;
+      const handleScroll = async () => {
+        if (isTikTokBrowser && !scrollPlayAttempted && video.paused) {
+          scrollPlayAttempted = true;
+          await tryPlayVideo();
+          // Keep trying on subsequent scrolls if still paused
+          if (video.paused) {
+            scrollPlayAttempted = false;
+          }
+        }
+      };
+      
       // Handle video errors gracefully
       const handleVideoError = (e: Event) => {
         const videoElement = e.target as HTMLVideoElement;
         if (videoElement.error) {
           console.error('Video error:', videoElement.error.code, videoElement.error.message);
+        }
+      };
+      
+      // Prevent fullscreen
+      const preventFullscreen = (e: Event) => {
+        e.preventDefault();
+        e.stopPropagation();
+        // Exit fullscreen if somehow entered
+        if (document.fullscreenElement === video || 
+            (document as any).webkitFullscreenElement === video ||
+            (document as any).mozFullScreenElement === video ||
+            (document as any).msFullscreenElement === video) {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if ((document as any).webkitExitFullscreen) {
+            (document as any).webkitExitFullscreen();
+          } else if ((document as any).mozCancelFullScreen) {
+            (document as any).mozCancelFullScreen();
+          } else if ((document as any).msExitFullscreen) {
+            (document as any).msExitFullscreen();
+          }
         }
       };
       
@@ -144,9 +186,17 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
       video.addEventListener('canplay', handleCanPlay, { once: true });
       video.addEventListener('loadeddata', handleCanPlay, { once: true });
       video.addEventListener('error', handleVideoError);
+      video.addEventListener('webkitbeginfullscreen', preventFullscreen);
+      video.addEventListener('webkitendfullscreen', preventFullscreen);
+      document.addEventListener('fullscreenchange', preventFullscreen);
+      document.addEventListener('webkitfullscreenchange', preventFullscreen);
       
       // TikTok-specific handlers
       if (isTikTokBrowser) {
+        // Try to play on scroll (TikTok allows video play on scroll)
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        document.addEventListener('scroll', handleScroll, { passive: true });
+        
         // Try to play on first user interaction
         document.addEventListener('touchstart', handleFirstInteraction, { once: true, passive: true });
         document.addEventListener('click', handleFirstInteraction, { once: true, passive: true });
@@ -179,8 +229,14 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
         video.removeEventListener('canplay', handleCanPlay);
         video.removeEventListener('loadeddata', handleCanPlay);
         video.removeEventListener('error', handleVideoError);
+        video.removeEventListener('webkitbeginfullscreen', preventFullscreen);
+        video.removeEventListener('webkitendfullscreen', preventFullscreen);
+        document.removeEventListener('fullscreenchange', preventFullscreen);
+        document.removeEventListener('webkitfullscreenchange', preventFullscreen);
         
         if (isTikTokBrowser) {
+          window.removeEventListener('scroll', handleScroll);
+          document.removeEventListener('scroll', handleScroll);
           document.removeEventListener('touchstart', handleFirstInteraction);
           document.removeEventListener('click', handleFirstInteraction);
           window.removeEventListener('focus', handleFirstInteraction);
@@ -244,6 +300,10 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
               controls={false}
               disablePictureInPicture
               disableRemotePlayback
+              webkit-playsinline="true"
+              x5-playsinline="true"
+              x5-video-player-type="h5"
+              x5-video-player-fullscreen="false"
             >
               <source src="/10Day Kickstart Product Video.mp4" type="video/mp4" />
               Your browser does not support the video tag.
