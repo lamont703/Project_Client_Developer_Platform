@@ -50,6 +50,11 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
     if (videoRef.current) {
       const video = videoRef.current;
       
+      // Detect TikTok browser
+      const isTikTokBrowser = /TikTok|Musical/i.test(navigator.userAgent) || 
+                              /aweme/i.test(navigator.userAgent) ||
+                              (window as any).__tiktok !== undefined;
+      
       // Set video properties for autoplay and looping
       video.muted = true;
       video.loop = true;
@@ -77,15 +82,49 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
         }
       };
       
+      // Try to play video with retry logic
+      const tryPlayVideo = async (retries = 3) => {
+        for (let i = 0; i < retries; i++) {
+          try {
+            if (video.paused) {
+              const playPromise = video.play();
+              if (playPromise !== undefined) {
+                await playPromise;
+                return true; // Successfully playing
+              }
+            } else {
+              return true; // Already playing
+            }
+          } catch (error) {
+            if (i < retries - 1) {
+              // Wait before retry
+              await new Promise(resolve => setTimeout(resolve, 300 * (i + 1)));
+            }
+          }
+        }
+        return false;
+      };
+      
       // Try to play when video can play
       const handleCanPlay = async () => {
-        try {
-          const playPromise = video.play();
-          if (playPromise !== undefined) {
-            await playPromise;
-          }
-        } catch (error) {
-          // Autoplay was prevented - this is normal on some browsers
+        await tryPlayVideo();
+      };
+      
+      // TikTok-specific: Try to play on first user interaction
+      const handleFirstInteraction = async () => {
+        if (isTikTokBrowser && video.paused) {
+          await tryPlayVideo();
+          // Remove listeners after first interaction
+          document.removeEventListener('touchstart', handleFirstInteraction);
+          document.removeEventListener('click', handleFirstInteraction);
+          window.removeEventListener('focus', handleFirstInteraction);
+        }
+      };
+      
+      // TikTok-specific: Try to play when page becomes visible
+      const handleVisibilityChange = async () => {
+        if (isTikTokBrowser && !document.hidden && video.paused) {
+          await tryPlayVideo();
         }
       };
       
@@ -103,7 +142,29 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
       video.addEventListener('touchend', preventInteraction, true);
       video.addEventListener('pause', handlePause);
       video.addEventListener('canplay', handleCanPlay, { once: true });
+      video.addEventListener('loadeddata', handleCanPlay, { once: true });
       video.addEventListener('error', handleVideoError);
+      
+      // TikTok-specific handlers
+      if (isTikTokBrowser) {
+        // Try to play on first user interaction
+        document.addEventListener('touchstart', handleFirstInteraction, { once: true, passive: true });
+        document.addEventListener('click', handleFirstInteraction, { once: true, passive: true });
+        window.addEventListener('focus', handleFirstInteraction, { once: true });
+        
+        // Try to play when page becomes visible
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+        
+        // Try to play after a short delay (TikTok sometimes needs time to initialize)
+        setTimeout(() => {
+          tryPlayVideo();
+        }, 500);
+        
+        // Additional retry after longer delay
+        setTimeout(() => {
+          tryPlayVideo();
+        }, 1500);
+      }
       
       // If video is already ready, try to play
       if (video.readyState >= 3) {
@@ -116,7 +177,15 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
         video.removeEventListener('touchend', preventInteraction, true);
         video.removeEventListener('pause', handlePause);
         video.removeEventListener('canplay', handleCanPlay);
+        video.removeEventListener('loadeddata', handleCanPlay);
         video.removeEventListener('error', handleVideoError);
+        
+        if (isTikTokBrowser) {
+          document.removeEventListener('touchstart', handleFirstInteraction);
+          document.removeEventListener('click', handleFirstInteraction);
+          window.removeEventListener('focus', handleFirstInteraction);
+          document.removeEventListener('visibilitychange', handleVisibilityChange);
+        }
       };
     }
   }, []);
@@ -163,10 +232,7 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
 
         {/* Video Section - High-Authority Loop */}
         <div className="video-hero-section">
-          <div 
-            className="video-container"
-            onClick={() => handleNavigation('/10Day-Freelance-Kickstart')}
-          >
+          <div className="video-container">
             <video
               ref={videoRef}
               className="kickstart-video"
@@ -182,12 +248,6 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
               <source src="/10Day Kickstart Product Video.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-            <div className="video-overlay">
-              <div className="video-click-indicator">
-                <span className="video-click-text">Tap to Enroll</span>
-                <span className="video-click-arrow">→</span>
-              </div>
-            </div>
           </div>
           
           {/* STAR Method & Authority Icons */}
