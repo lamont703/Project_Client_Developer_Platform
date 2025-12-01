@@ -160,6 +160,10 @@
   border: 3px solid rgba(0, 255, 150, 0.3);
   transition: all 0.3s ease;
   background: #000000;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .video-container:hover {
@@ -173,8 +177,11 @@
 .kickstart-video {
   width: 100%;
   height: auto;
+  min-height: 300px;
   display: block;
   cursor: pointer;
+  object-fit: contain;
+  background: #000000;
 }
 
 .video-overlay {
@@ -1153,6 +1160,19 @@
 
   .video-container {
     border-width: 2px;
+    min-height: 300px;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .kickstart-video {
+    min-height: 300px;
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 
   .video-context-section {
@@ -1319,6 +1339,19 @@
   .video-container {
     border-width: 2px;
     border-radius: 12px;
+    min-height: 250px;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .kickstart-video {
+    min-height: 250px;
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 
   .video-context-section {

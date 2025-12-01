@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/LinkInBio/LinkInBioPage.css';
 import BookReader from '../components/Book Reader/BookReader';
@@ -9,6 +9,7 @@ interface LinkInBioPageProps {
 
 const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
   const navigate = useNavigate();
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     document.title = 'Lamont T. Evans - AI Freelance Systems Architect';
@@ -43,6 +44,29 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
       };
       
       document.body.appendChild(script);
+    }
+
+    // Ensure video loads properly
+    if (videoRef.current) {
+      const video = videoRef.current;
+      const videoSrc = '/10Day Kickstart Product Video.mp4';
+      
+      // Try to load the video
+      video.load();
+      
+      // Add error handler
+      const handleVideoError = () => {
+        console.error('Video failed to load, trying URL-encoded path');
+        // Try URL-encoded version
+        video.src = encodeURI(videoSrc);
+        video.load();
+      };
+      
+      video.addEventListener('error', handleVideoError);
+      
+      return () => {
+        video.removeEventListener('error', handleVideoError);
+      };
     }
   }, []);
 
@@ -93,11 +117,13 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
             onClick={() => handleNavigation('/10Day-Freelance-Kickstart')}
           >
             <video
+              ref={videoRef}
               className="kickstart-video"
               autoPlay
               muted
               loop
               playsInline
+              preload="auto"
               onClick={() => handleNavigation('/10Day-Freelance-Kickstart')}
             >
               <source src="/10Day Kickstart Product Video.mp4" type="video/mp4" />
