@@ -132,13 +132,6 @@ const ProfessionalFreelancerAuditPage: React.FC<ProfessionalFreelancerAuditPageP
           
           <div className="pf-video-player-container">
             <div className="pf-video-wrapper">
-              <div className="pf-video-logo">
-                <img 
-                  src="/XRBlockDev Logo.png" 
-                  alt="Inner G Complete Agency" 
-                  className="pf-logo-image"
-                />
-              </div>
               <video
                 ref={videoRef}
                 src="https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/692d0b8d96dd5b6e8620b030.mov"
