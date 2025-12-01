@@ -13,24 +13,68 @@ const FreelanceKickstartPage: React.FC<FreelanceKickstartPageProps> = ({ navigat
   const [videoError, setVideoError] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // Ensure video starts paused
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+      setIsVideoPlaying(false);
+    }
+  }, []);
+
   const openPaymentModal = () => setIsPaymentModalOpen(true);
   const closePaymentModal = () => setIsPaymentModalOpen(false);
 
-  const handleVideoPlayClick = async () => {
+  const handleVideoPlayClick = async (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    
     if (videoRef.current) {
       try {
-        await videoRef.current.play();
-        setIsVideoPlaying(true);
-        setShowVideoControls(true);
-        setVideoError(null);
-      } catch (error) {
+        const video = videoRef.current;
+        
+        // Ensure video is ready to play
+        if (video.readyState < 2) {
+          video.load();
+          await new Promise((resolve) => {
+            video.addEventListener('loadeddata', resolve, { once: true });
+            setTimeout(resolve, 2000); // Timeout after 2 seconds
+          });
+        }
+        
+        // Try to play the video
+        const playPromise = video.play();
+        
+        if (playPromise !== undefined) {
+          await playPromise;
+          setIsVideoPlaying(true);
+          setShowVideoControls(true);
+          setVideoError(null);
+        } else {
+          // If play() returns undefined, video should be playing
+          setIsVideoPlaying(true);
+          setShowVideoControls(true);
+          setVideoError(null);
+        }
+      } catch (error: any) {
         // If autoplay fails, show controls so user can manually play
         console.error('Video play failed:', error);
         setShowVideoControls(true);
-        setVideoError('Click the play button on the video player to start playback');
-        // Still try to show controls even if play fails
+        
+        // Try to enable controls and let user click native play button
         if (videoRef.current) {
           videoRef.current.controls = true;
+          // Try one more time after a short delay
+          setTimeout(() => {
+            if (videoRef.current && videoRef.current.paused) {
+              videoRef.current.play().catch(() => {
+                setVideoError('Please click the play button on the video player to start playback');
+              });
+            }
+          }, 100);
+        } else {
+          setVideoError('Please click the play button on the video player to start playback');
         }
       }
     }
@@ -169,26 +213,50 @@ const FreelanceKickstartPage: React.FC<FreelanceKickstartPageProps> = ({ navigat
                 ref={videoRef}
                 src="https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/692cc54b96dd5b625314f1b9.mp4"
                 className="kickstart-video"
-                controls
+                controls={isVideoPlaying || showVideoControls}
+                controlsList="nodownload"
                 onPause={handleVideoPause}
                 onPlay={handleVideoPlay}
                 onError={handleVideoError}
+                onLoadedData={() => {
+                  // Ensure video is paused when loaded
+                  if (videoRef.current && !isVideoPlaying) {
+                    videoRef.current.pause();
+                  }
+                }}
+                onClick={(e) => {
+                  // Allow clicking on video to pause/play when controls are visible
+                  if (isVideoPlaying || showVideoControls) {
+                    e.stopPropagation();
+                  }
+                }}
                 playsInline
-                preload="metadata"
+                preload="auto"
               >
                 Your browser does not support the video tag.
               </video>
-              {!isVideoPlaying && (
-                <div 
-                  className={`video-overlay ${showVideoControls ? 'video-overlay-hidden' : ''}`}
-                  onClick={handleVideoPlayClick}
-                >
-                  <div className="video-overlay-content">
-                    <div className="play-button">▶</div>
-                    <p className="video-overlay-text">Play Video</p>
-                  </div>
+              <div 
+                className={`video-overlay ${isVideoPlaying ? 'video-overlay-hidden' : ''}`}
+                onClick={(e) => {
+                  if (!isVideoPlaying) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleVideoPlayClick(e);
+                  }
+                }}
+                onTouchStart={(e) => {
+                  if (!isVideoPlaying) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleVideoPlayClick();
+                  }
+                }}
+              >
+                <div className="video-overlay-content">
+                  <div className="play-button">▶</div>
+                  <p className="video-overlay-text">Play Video</p>
                 </div>
-              )}
+              </div>
               {videoError && (
                 <div className="video-error-message">
                   <p>{videoError}</p>
