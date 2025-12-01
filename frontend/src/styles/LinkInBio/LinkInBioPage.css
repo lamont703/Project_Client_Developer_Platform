@@ -179,9 +179,13 @@
   height: auto;
   min-height: 300px;
   display: block;
-  cursor: pointer;
+  cursor: default;
+  pointer-events: none;
   object-fit: contain;
   background: #000000;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .video-overlay {

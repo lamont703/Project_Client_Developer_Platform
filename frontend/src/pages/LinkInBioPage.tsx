@@ -46,25 +46,76 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
       document.body.appendChild(script);
     }
 
-    // Ensure video loads properly
+    // Ensure video plays when ready and prevent user interaction
     if (videoRef.current) {
       const video = videoRef.current;
-      const videoSrc = '/10Day Kickstart Product Video.mp4';
       
-      // Try to load the video
-      video.load();
+      // Set video properties for autoplay and looping
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.controls = false;
       
-      // Add error handler
-      const handleVideoError = () => {
-        console.error('Video failed to load, trying URL-encoded path');
-        // Try URL-encoded version
-        video.src = encodeURI(videoSrc);
-        video.load();
+      // Prevent user from pausing/playing the video
+      const preventInteraction = (e: Event) => {
+        e.preventDefault();
+        e.stopPropagation();
+        // If video was paused, resume it
+        if (video.paused) {
+          video.play().catch(() => {
+            // Ignore play errors
+          });
+        }
       };
       
+      // Auto-resume if paused
+      const handlePause = () => {
+        if (!video.ended) {
+          video.play().catch(() => {
+            // Ignore play errors
+          });
+        }
+      };
+      
+      // Try to play when video can play
+      const handleCanPlay = async () => {
+        try {
+          const playPromise = video.play();
+          if (playPromise !== undefined) {
+            await playPromise;
+          }
+        } catch (error) {
+          // Autoplay was prevented - this is normal on some browsers
+        }
+      };
+      
+      // Handle video errors gracefully
+      const handleVideoError = (e: Event) => {
+        const videoElement = e.target as HTMLVideoElement;
+        if (videoElement.error) {
+          console.error('Video error:', videoElement.error.code, videoElement.error.message);
+        }
+      };
+      
+      // Prevent click/tap interactions on video
+      video.addEventListener('click', preventInteraction, true);
+      video.addEventListener('touchstart', preventInteraction, true);
+      video.addEventListener('touchend', preventInteraction, true);
+      video.addEventListener('pause', handlePause);
+      video.addEventListener('canplay', handleCanPlay, { once: true });
       video.addEventListener('error', handleVideoError);
       
+      // If video is already ready, try to play
+      if (video.readyState >= 3) {
+        handleCanPlay();
+      }
+      
       return () => {
+        video.removeEventListener('click', preventInteraction, true);
+        video.removeEventListener('touchstart', preventInteraction, true);
+        video.removeEventListener('touchend', preventInteraction, true);
+        video.removeEventListener('pause', handlePause);
+        video.removeEventListener('canplay', handleCanPlay);
         video.removeEventListener('error', handleVideoError);
       };
     }
@@ -123,8 +174,10 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
               muted
               loop
               playsInline
-              preload="auto"
-              onClick={() => handleNavigation('/10Day-Freelance-Kickstart')}
+              preload="metadata"
+              controls={false}
+              disablePictureInPicture
+              disableRemotePlayback
             >
               <source src="/10Day Kickstart Product Video.mp4" type="video/mp4" />
               Your browser does not support the video tag.
