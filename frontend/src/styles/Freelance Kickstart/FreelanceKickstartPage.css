@@ -202,7 +202,7 @@
   object-fit: contain;
   object-position: center top !important;
   background: #000;
-  z-index: 1 !important;
+  z-index: 2 !important;
   pointer-events: auto;
   margin: 0 !important;
   padding: 0 !important;
@@ -222,22 +222,124 @@
   opacity: 1 !important;
   margin: 0 !important;
   padding: 0 !important;
+  z-index: 10001 !important;
+  position: relative !important;
 }
 
 .video-wrapper .kickstart-video::-webkit-media-controls-play-button {
   display: flex !important;
   margin: 0 !important;
   padding: 0 !important;
+  z-index: 10001 !important;
+  position: relative !important;
 }
 
 .video-wrapper .kickstart-video::-webkit-media-controls {
   margin: 0 !important;
   padding: 0 !important;
+  z-index: 10001 !important;
+  position: relative !important;
 }
 
 .video-wrapper .kickstart-video::-webkit-media-controls-enclosure {
   margin: 0 !important;
   padding: 0 !important;
+  z-index: 10001 !important;
+  position: relative !important;
+}
+
+.video-wrapper .kickstart-video::-webkit-media-controls-play-button {
+  z-index: 10001 !important;
+}
+
+.video-wrapper .kickstart-video::-webkit-media-controls-pause-button {
+  z-index: 10001 !important;
+  display: flex !important;
+  opacity: 1 !important;
+}
+
+.video-wrapper .kickstart-video::-webkit-media-controls-timeline {
+  z-index: 10001 !important;
+}
+
+.video-wrapper .kickstart-video::-webkit-media-controls-current-time-display {
+  z-index: 10001 !important;
+}
+
+.video-wrapper .kickstart-video::-webkit-media-controls-time-remaining-display {
+  z-index: 10001 !important;
+}
+
+.video-wrapper .kickstart-video::-webkit-media-controls-mute-button {
+  z-index: 10001 !important;
+}
+
+.video-wrapper .kickstart-video::-webkit-media-controls-volume-slider {
+  z-index: 10001 !important;
+}
+
+.video-wrapper .kickstart-video::-webkit-media-controls-fullscreen-button {
+  z-index: 10001 !important;
+}
+
+/* Ensure all video controls are visible and accessible */
+.video-wrapper .kickstart-video[controls]::-webkit-media-controls {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 10001 !important;
+}
+
+.video-wrapper .kickstart-video[controls]::-webkit-media-controls-enclosure {
+  background: rgba(0, 0, 0, 0.7) !important;
+  border-radius: 4px !important;
+  z-index: 10001 !important;
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+  .video-wrapper .kickstart-video[controls] {
+    -webkit-touch-callout: default !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+  }
+
+  .video-wrapper .kickstart-video[controls]::-webkit-media-controls-enclosure {
+    -webkit-touch-callout: default !important;
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+  }
+
+  .video-wrapper .kickstart-video[controls]::-webkit-media-controls-play-button,
+  .video-wrapper .kickstart-video[controls]::-webkit-media-controls-pause-button {
+    -webkit-touch-callout: default !important;
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.3) !important;
+  }
+
+  /* Ensure overlay doesn't block on iOS */
+  .video-wrapper .video-overlay-hidden {
+    pointer-events: none !important;
+    touch-action: none !important;
+    -webkit-touch-callout: none !important;
+  }
+}
+
+/* Ensure controls are clickable */
+.video-wrapper .kickstart-video[controls] {
+  pointer-events: auto !important;
+}
+
+/* When video is playing, overlay should not block */
+.video-wrapper .video-overlay-hidden {
+  pointer-events: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  display: none !important;
+  z-index: -1 !important;
+  touch-action: none !important;
+  -webkit-touch-callout: none !important;
 }
 
 .video-wrapper .video-overlay {
@@ -271,6 +373,17 @@
   visibility: hidden !important;
   display: none !important;
   z-index: -1 !important;
+}
+
+/* Ensure video controls are always accessible when video is playing */
+.video-wrapper .kickstart-video[controls] {
+  z-index: 3 !important;
+}
+
+/* When overlay is hidden, ensure it doesn't interfere with controls */
+.video-wrapper .video-overlay-hidden + .kickstart-video,
+.video-wrapper .kickstart-video[controls] {
+  z-index: 3 !important;
 }
 
 .video-wrapper .video-overlay:hover {
@@ -866,6 +979,78 @@
   .timeline-line {
     left: 0.35rem;
   }
+
+  /* Mobile video controls fixes */
+  .video-wrapper .kickstart-video {
+    -webkit-touch-callout: default !important;
+    touch-action: manipulation !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+  }
+
+  .video-wrapper .kickstart-video[controls] {
+    z-index: 3 !important;
+    pointer-events: auto !important;
+    -webkit-touch-callout: default !important;
+    touch-action: manipulation !important;
+  }
+
+  /* Ensure mobile controls are visible and accessible */
+  .video-wrapper .kickstart-video[controls]::-webkit-media-controls {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 10001 !important;
+    position: relative !important;
+    pointer-events: auto !important;
+    -webkit-touch-callout: default !important;
+    touch-action: manipulation !important;
+  }
+
+  .video-wrapper .kickstart-video[controls]::-webkit-media-controls-enclosure {
+    background: rgba(0, 0, 0, 0.8) !important;
+    border-radius: 4px !important;
+    z-index: 10001 !important;
+    pointer-events: auto !important;
+    -webkit-touch-callout: default !important;
+    touch-action: manipulation !important;
+    position: relative !important;
+  }
+
+  .video-wrapper .kickstart-video[controls]::-webkit-media-controls-panel {
+    z-index: 10001 !important;
+    pointer-events: auto !important;
+    -webkit-touch-callout: default !important;
+    touch-action: manipulation !important;
+  }
+
+  .video-wrapper .kickstart-video[controls]::-webkit-media-controls-play-button,
+  .video-wrapper .kickstart-video[controls]::-webkit-media-controls-pause-button {
+    z-index: 10001 !important;
+    pointer-events: auto !important;
+    -webkit-touch-callout: default !important;
+    touch-action: manipulation !important;
+    display: flex !important;
+    opacity: 1 !important;
+    cursor: pointer !important;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.3) !important;
+  }
+
+  /* Ensure overlay doesn't block when video is playing on mobile */
+  .video-wrapper .video-overlay-hidden {
+    pointer-events: none !important;
+    touch-action: none !important;
+    -webkit-touch-callout: none !important;
+  }
+
+  /* Allow video to receive touch events on mobile */
+  .video-wrapper .kickstart-video {
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  .video-wrapper .kickstart-video[controls] {
+    -webkit-tap-highlight-color: transparent !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -888,6 +1073,29 @@
 
   .hero-price-number {
     font-size: 2.4rem;
+  }
+
+  /* Small mobile video controls fixes */
+  .video-wrapper .kickstart-video[controls] {
+    z-index: 3 !important;
+    pointer-events: auto !important;
+    -webkit-touch-callout: default !important;
+    touch-action: manipulation !important;
+  }
+
+  .video-wrapper .kickstart-video[controls]::-webkit-media-controls-enclosure {
+    background: rgba(0, 0, 0, 0.85) !important;
+    pointer-events: auto !important;
+    -webkit-touch-callout: default !important;
+    touch-action: manipulation !important;
+  }
+
+  .video-wrapper .kickstart-video[controls]::-webkit-media-controls-play-button,
+  .video-wrapper .kickstart-video[controls]::-webkit-media-controls-pause-button {
+    min-width: 44px !important;
+    min-height: 44px !important;
+    pointer-events: auto !important;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.4) !important;
   }
 
   .hero-enroll-button {

@@ -12,6 +12,8 @@ const FreelanceKickstartPage: React.FC<FreelanceKickstartPageProps> = ({ navigat
   const [showVideoControls, setShowVideoControls] = useState(false);
   const [videoError, setVideoError] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const touchStartRef = useRef<{ x: number; y: number; time: number } | null>(null);
+  const lastToggleTimeRef = useRef<number>(0);
 
   // Ensure video starts paused
   useEffect(() => {
@@ -85,9 +87,95 @@ const FreelanceKickstartPage: React.FC<FreelanceKickstartPageProps> = ({ navigat
   };
 
   const handleVideoPlay = () => {
-    setIsVideoPlaying(true);
-    setShowVideoControls(true);
-    setVideoError(null);
+    // Only update state if video is actually playing (not just triggered)
+    if (videoRef.current && !videoRef.current.paused) {
+      setIsVideoPlaying(true);
+      setShowVideoControls(true);
+      setVideoError(null);
+    }
+  };
+
+  const handleVideoTap = (e: React.MouseEvent<HTMLVideoElement> | React.TouchEvent<HTMLVideoElement>, shouldPreventDefault: boolean = false) => {
+    // Only handle tap-to-pause when video is playing
+    if (!isVideoPlaying && !showVideoControls) {
+      return false; // Let overlay handle play
+    }
+
+    if (!videoRef.current) return false;
+
+    // Get click/touch coordinates
+    let clientX = 0;
+    let clientY = 0;
+    
+    if ('touches' in e && e.touches.length > 0) {
+      // Touch event - use first touch point
+      clientX = e.touches[0].clientX;
+      clientY = e.touches[0].clientY;
+    } else if ('changedTouches' in e && e.changedTouches.length > 0) {
+      // TouchEnd event - use changed touches
+      clientX = e.changedTouches[0].clientX;
+      clientY = e.changedTouches[0].clientY;
+    } else if ('clientX' in e) {
+      // Mouse event
+      clientX = e.clientX;
+      clientY = e.clientY;
+    }
+
+    // Get video element position and dimensions
+    const video = videoRef.current;
+    const rect = video.getBoundingClientRect();
+    const videoHeight = rect.height;
+    const videoWidth = rect.width;
+    
+    // Calculate relative position within video
+    const relativeX = clientX - rect.left;
+    const relativeY = clientY - rect.top;
+    
+    // Check if tap is within video bounds
+    if (relativeX < 0 || relativeX > videoWidth || relativeY < 0 || relativeY > videoHeight) {
+      return false; // Tap outside video
+    }
+    
+    // Controls are typically in the bottom 25% of the video
+    // If tap is in the bottom 25%, let native controls handle it
+    const controlAreaHeight = videoHeight * 0.25;
+    const isInControlArea = relativeY > (videoHeight - controlAreaHeight);
+    
+    // If tap is in control area, don't toggle (let native controls work)
+    if (isInControlArea) {
+      return false;
+    }
+
+    // Prevent default and stop propagation to avoid double-handling
+    if (shouldPreventDefault) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    // Prevent rapid toggling (debounce)
+    const now = Date.now();
+    if (now - lastToggleTimeRef.current < 300) {
+      return false; // Too soon after last toggle, ignore
+    }
+    lastToggleTimeRef.current = now;
+
+    // Toggle play/pause on video tap (outside control area)
+    const wasPaused = video.paused;
+    
+    if (wasPaused) {
+      // Video is paused, play it
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          console.error('Video play failed on tap');
+        });
+      }
+    } else {
+      // Video is playing, pause it
+      video.pause();
+    }
+    
+    return true; // Indicate we handled the tap
   };
 
   const handleVideoError = () => {
@@ -226,9 +314,64 @@ const FreelanceKickstartPage: React.FC<FreelanceKickstartPageProps> = ({ navigat
                   }
                 }}
                 onClick={(e) => {
-                  // Allow clicking on video to pause/play when controls are visible
+                  // Handle tap-to-pause on desktop
                   if (isVideoPlaying || showVideoControls) {
+                    // Check if click was directly on video element (not a child control element)
+                    const target = e.target as HTMLElement;
+                    if (target === videoRef.current || target.tagName === 'VIDEO') {
+                      const handled = handleVideoTap(e, true);
+                      if (handled) {
+                        // We handled it, prevent native controls from also handling
+                        e.stopPropagation();
+                        e.preventDefault();
+                      }
+                    }
+                    // If click was on controls or other elements, let native controls work
+                  } else {
+                    // Video not playing, let overlay handle it
                     e.stopPropagation();
+                  }
+                }}
+                onTouchStart={(e) => {
+                  // Track touch start for tap detection
+                  if (isVideoPlaying || showVideoControls) {
+                    const touch = e.touches[0];
+                    touchStartRef.current = {
+                      x: touch.clientX,
+                      y: touch.clientY,
+                      time: Date.now()
+                    };
+                  }
+                }}
+                onTouchEnd={(e) => {
+                  // Handle tap-to-pause on mobile
+                  if ((isVideoPlaying || showVideoControls) && touchStartRef.current) {
+                    const touch = e.changedTouches[0];
+                    const touchEnd = {
+                      x: touch.clientX,
+                      y: touch.clientY,
+                      time: Date.now()
+                    };
+                    
+                    // Check if this was a tap (not a swipe or long press)
+                    const deltaX = Math.abs(touchEnd.x - touchStartRef.current.x);
+                    const deltaY = Math.abs(touchEnd.y - touchStartRef.current.y);
+                    const deltaTime = touchEnd.time - touchStartRef.current.time;
+                    
+                    // If it's a quick tap (not a swipe), handle it
+                    if (deltaTime < 300 && deltaX < 10 && deltaY < 10) {
+                      // Create a synthetic event for handleVideoTap
+                      const syntheticEvent = {
+                        ...e,
+                        clientX: touchEnd.x,
+                        clientY: touchEnd.y,
+                        changedTouches: e.changedTouches
+                      } as React.TouchEvent<HTMLVideoElement>;
+                      
+                      handleVideoTap(syntheticEvent);
+                    }
+                    
+                    touchStartRef.current = null;
                   }
                 }}
                 playsInline
