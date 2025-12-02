@@ -9,8 +9,11 @@ interface ProfessionalFreelancerAuditPageProps {
 const ProfessionalFreelancerAuditPage: React.FC<ProfessionalFreelancerAuditPageProps> = ({ navigateToHome }) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [showVideoControls, setShowVideoControls] = useState(false);
+  const [isPortraitVideoPlaying, setIsPortraitVideoPlaying] = useState(false);
+  const [showPortraitVideoControls, setShowPortraitVideoControls] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const portraitVideoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     document.title = 'Professional Freelancer Audit: Your Learning Path to Scalable Predictable Income';
@@ -21,11 +24,15 @@ const ProfessionalFreelancerAuditPage: React.FC<ProfessionalFreelancerAuditPageP
     }
   }, []);
 
-  // Ensure video starts paused
+  // Ensure videos start paused
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.pause();
       setIsVideoPlaying(false);
+    }
+    if (portraitVideoRef.current) {
+      portraitVideoRef.current.pause();
+      setIsPortraitVideoPlaying(false);
     }
   }, []);
 
@@ -82,6 +89,61 @@ const ProfessionalFreelancerAuditPage: React.FC<ProfessionalFreelancerAuditPageP
   const handleVideoPlay = () => {
     setIsVideoPlaying(true);
     setShowVideoControls(true);
+  };
+
+  const handlePortraitVideoPlayClick = async (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    
+    if (portraitVideoRef.current) {
+      try {
+        const video = portraitVideoRef.current;
+        
+        if (video.readyState < 2) {
+          video.load();
+          await new Promise((resolve) => {
+            video.addEventListener('loadeddata', resolve, { once: true });
+            setTimeout(resolve, 2000);
+          });
+        }
+        
+        const playPromise = video.play();
+        
+        if (playPromise !== undefined) {
+          await playPromise;
+          setIsPortraitVideoPlaying(true);
+          setShowPortraitVideoControls(true);
+        } else {
+          setIsPortraitVideoPlaying(true);
+          setShowPortraitVideoControls(true);
+        }
+      } catch (error: any) {
+        console.error('Portrait video play failed:', error);
+        setShowPortraitVideoControls(true);
+        
+        if (portraitVideoRef.current) {
+          portraitVideoRef.current.controls = true;
+          setTimeout(() => {
+            if (portraitVideoRef.current && portraitVideoRef.current.paused) {
+              portraitVideoRef.current.play().catch(() => {
+                console.error('Portrait video play failed on retry');
+              });
+            }
+          }, 100);
+        }
+      }
+    }
+  };
+
+  const handlePortraitVideoPause = () => {
+    setIsPortraitVideoPlaying(false);
+  };
+
+  const handlePortraitVideoPlay = () => {
+    setIsPortraitVideoPlaying(true);
+    setShowPortraitVideoControls(true);
   };
 
   const handleShowForm = () => {
@@ -257,6 +319,62 @@ const ProfessionalFreelancerAuditPage: React.FC<ProfessionalFreelancerAuditPageP
                   <strong> Enhanced Efficiency</strong> needed to compete. Without a structured approach, 
                   you're operating like a hobby, not a professional business.
                 </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Portrait Video Section */}
+      <section className="pf-portrait-video-section">
+        <div className="pf-container">
+          <div className="pf-portrait-video-player-container">
+            <div className="pf-portrait-video-wrapper">
+              <video
+                ref={portraitVideoRef}
+                src="https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/692e242e2b865e27d9378761.mov"
+                poster="/Thumbnail for PF Video.jpeg"
+                className="pf-portrait-video"
+                controls={isPortraitVideoPlaying || showPortraitVideoControls}
+                controlsList="nodownload"
+                onPause={handlePortraitVideoPause}
+                onPlay={handlePortraitVideoPlay}
+                onLoadedData={() => {
+                  if (portraitVideoRef.current && !isPortraitVideoPlaying) {
+                    portraitVideoRef.current.pause();
+                  }
+                }}
+                onClick={(e) => {
+                  if (isPortraitVideoPlaying || showPortraitVideoControls) {
+                    e.stopPropagation();
+                  }
+                }}
+                playsInline
+                preload="auto"
+              >
+                Your browser does not support the video tag.
+              </video>
+              <div 
+                className={`pf-portrait-video-overlay ${isPortraitVideoPlaying ? 'pf-portrait-video-overlay-hidden' : ''}`}
+                onClick={(e) => {
+                  if (!isPortraitVideoPlaying) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handlePortraitVideoPlayClick(e);
+                  }
+                }}
+                onTouchStart={(e) => {
+                  if (!isPortraitVideoPlaying) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handlePortraitVideoPlayClick();
+                  }
+                }}
+              >
+                <div className="pf-portrait-video-overlay-content">
+                  <div className="pf-portrait-play-button">▶</div>
+                  <p className="pf-portrait-video-overlay-text">Play Video</p>
+                </div>
               </div>
             </div>
           </div>

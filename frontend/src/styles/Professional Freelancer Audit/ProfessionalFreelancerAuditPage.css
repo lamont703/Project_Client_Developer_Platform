@@ -398,6 +398,202 @@
   transform: scale(1.02);
 }
 
+/* Portrait Video Section */
+.pf-portrait-video-section {
+  padding: 3rem 0;
+  animation: fadeInUp 0.8s ease-out 0.5s both;
+}
+
+.pf-portrait-video-player-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0;
+}
+
+.pf-portrait-video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  padding-bottom: 136%; /* Reduced by 15% from 160% to compact vertical space */
+  background: transparent;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 
+    0 0 40px rgba(0, 255, 150, 0.5),
+    0 14px 40px rgba(0, 0, 0, 0.7);
+  border: 3px solid rgba(0, 255, 150, 0.4);
+  margin: 0 auto;
+  padding-top: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  font-size: 0;
+  line-height: 0;
+  vertical-align: top;
+  height: 0;
+}
+
+.pf-portrait-video-wrapper .pf-portrait-video {
+  position: absolute;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  object-fit: contain;
+  object-position: center top !important;
+  background: transparent;
+  z-index: 1 !important;
+  pointer-events: auto;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+  vertical-align: top !important;
+  line-height: 0 !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  font-size: 0;
+  transform: translateY(0) !important;
+  box-sizing: border-box !important;
+}
+
+.pf-portrait-video-wrapper .pf-portrait-video-overlay {
+  position: absolute;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+  -webkit-tap-highlight-color: transparent;
+  visibility: visible !important;
+  opacity: 1 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0;
+  line-height: 0;
+}
+
+.pf-portrait-video-wrapper .pf-portrait-video-overlay-hidden {
+  pointer-events: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  display: none !important;
+  z-index: -1 !important;
+}
+
+.pf-portrait-video-wrapper .pf-portrait-video-overlay:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.pf-portrait-video-wrapper .pf-portrait-video-overlay-content {
+  text-align: center;
+  color: white;
+  position: relative;
+  z-index: 10000 !important;
+  pointer-events: none;
+  font-size: initial;
+  line-height: normal;
+}
+
+.pf-portrait-video-wrapper .pf-portrait-play-button {
+  font-size: 4rem;
+  color: #00ff96;
+  margin-bottom: 1rem;
+  text-shadow: 
+    0 0 30px rgba(0, 255, 150, 1),
+    0 2px 10px rgba(0, 0, 0, 0.8);
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 2px 8px rgba(0, 255, 150, 0.8));
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: none;
+  position: relative;
+  z-index: 10001 !important;
+}
+
+.pf-portrait-video-wrapper .pf-portrait-video-overlay:hover .pf-portrait-play-button {
+  transform: scale(1.15);
+}
+
+.pf-portrait-video-wrapper .pf-portrait-video-overlay-text {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #00ff96;
+  text-shadow: 
+    0 0 15px rgba(0, 255, 150, 0.8),
+    0 2px 4px rgba(0, 0, 0, 0.5);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: none;
+  position: relative;
+  z-index: 10001 !important;
+}
+
+.pf-portrait-video-wrapper .pf-portrait-video::-webkit-media-controls-panel {
+  display: flex !important;
+  opacity: 1 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%) !important;
+}
+
+.pf-portrait-video-wrapper .pf-portrait-video::-webkit-media-controls-play-button {
+  display: flex !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.pf-portrait-video-wrapper .pf-portrait-video::-webkit-media-controls {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+.pf-portrait-video-wrapper .pf-portrait-video::-webkit-media-controls-enclosure {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 10 !important;
+  height: auto !important;
+}
+
+.pf-portrait-video-wrapper .pf-portrait-video::-webkit-media-controls-timeline {
+  background: rgba(255, 255, 255, 0.3) !important;
+}
+
+.pf-portrait-video-wrapper .pf-portrait-video::-webkit-media-controls-current-time-display,
+.pf-portrait-video-wrapper .pf-portrait-video::-webkit-media-controls-time-remaining-display {
+  color: white !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8) !important;
+}
+
 /* Pain Points Section */
 .pf-pain-points-section {
   padding: 3rem 0;
@@ -645,6 +841,23 @@
     padding: 1.1rem 1.5rem;
   }
 
+  .pf-portrait-video-section {
+    padding: 2rem 0;
+  }
+
+  .pf-portrait-video-wrapper {
+    max-width: 90%;
+    padding-bottom: 136%;
+  }
+
+  .pf-portrait-video-wrapper .pf-portrait-play-button {
+    font-size: 3.5rem;
+  }
+
+  .pf-portrait-video-wrapper .pf-portrait-video-overlay-text {
+    font-size: 0.9rem;
+  }
+
   .pf-pain-points-section,
   .pf-value-proposition-section {
     padding: 2rem 0;
@@ -726,6 +939,15 @@
 
   .pf-bullet-icon {
     margin-top: 0;
+  }
+
+  .pf-portrait-video-wrapper {
+    max-width: 85%;
+    padding-bottom: 136%;
+  }
+
+  .pf-portrait-video-wrapper .pf-portrait-play-button {
+    font-size: 3rem;
   }
 }
 
