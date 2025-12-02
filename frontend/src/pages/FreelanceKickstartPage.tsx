@@ -212,6 +212,7 @@ const FreelanceKickstartPage: React.FC<FreelanceKickstartPageProps> = ({ navigat
               <video
                 ref={videoRef}
                 src="https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/692cc54b96dd5b625314f1b9.mp4"
+                poster="/10Day Kickstart Video Thumbnail.jpeg"
                 className="kickstart-video"
                 controls={isVideoPlaying || showVideoControls}
                 controlsList="nodownload"
