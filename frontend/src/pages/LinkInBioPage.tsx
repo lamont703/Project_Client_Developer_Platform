@@ -250,6 +250,10 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
     navigate(route);
   };
 
+  const handleStarFrameworkClick = () => {
+    handleNavigation('/star-method-framework');
+  };
+
   const handlePFAuditClick = () => {
     handleNavigation('/professional-freelancer-audit');
   };
@@ -344,6 +348,20 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
 
         {/* Tier 1: Highest Lead Capture - Top of Page */}
         <div className="tier-1-ctas-section">
+          {/* STAR Method Framework Course Button */}
+          <button 
+            className="star-framework-button"
+            onClick={handleStarFrameworkClick}
+          >
+            <div className="star-framework-button-content">
+              <span className="star-framework-icon">🔓</span>
+              <div className="star-framework-text-wrapper">
+                <span className="star-framework-main-text">FREE Course: Escape the Platform Trap & Get the STAR Framework</span>
+                <span className="star-framework-sub-text">AI Systems Roadmap to Predictable Income</span>
+              </div>
+            </div>
+          </button>
+
           {/* Professional Freelancer Audit Button */}
           <button 
             className="pf-audit-button"
