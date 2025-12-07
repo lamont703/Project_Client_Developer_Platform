@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
 import '../styles/Professional Freelancer Audit/ProfessionalFreelancerAuditPage.css';
-import PFAuditForm from '../components/Professional Freelancer Audit/PFAuditForm';
 
 interface ProfessionalFreelancerAuditPageProps {
   navigateToHome?: () => void;
@@ -21,6 +20,18 @@ const ProfessionalFreelancerAuditPage: React.FC<ProfessionalFreelancerAuditPageP
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', 'Get your free Professional Freelancer Audit and unlock your STAR Method Roadmap. Identify your #1 scaling bottleneck and receive a customized Learning Path Report.');
+    }
+
+    // Load booking calendar script
+    const scriptUrl = 'https://link.msgsndr.com/js/form_embed.js';
+    const existingScript = document.querySelector(`script[src="${scriptUrl}"]`);
+    
+    if (!existingScript) {
+      const script = document.createElement('script');
+      script.src = scriptUrl;
+      script.type = 'text/javascript';
+      script.async = true;
+      document.body.appendChild(script);
     }
   }, []);
 
@@ -437,10 +448,16 @@ const ProfessionalFreelancerAuditPage: React.FC<ProfessionalFreelancerAuditPageP
         </div>
       </section>
 
-      {/* Form Section - Center of Page */}
+      {/* Booking Calendar Section - Center of Page */}
       <section className={`pf-form-section ${showForm ? 'pf-form-section-visible' : ''}`}>
         <div className="pf-container">
-          <PFAuditForm />
+          <iframe 
+            src="https://api.leadconnectorhq.com/widget/booking/0xe9wFX0qYwkldXA6ag5" 
+            style={{ width: '100%', border: 'none', overflow: 'hidden' }} 
+            scrolling="no" 
+            id="0xe9wFX0qYwkldXA6ag5_1765140108768"
+            title="Book Your Professional Freelancer Audit"
+          />
         </div>
       </section>
 
