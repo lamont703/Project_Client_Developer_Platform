@@ -24,4 +24,5 @@ export { default as AIToolStackPage } from './AIToolStackPage';
 export { default as StarInfographicPage } from './StarInfographicPage';
 export { default as ProfessionalFreelancerAuditPage } from './ProfessionalFreelancerAuditPage';
 export { default as ProfessionalFreelancerAuditReportPage } from './ProfessionalFreelancerAuditReportPage';
+export { default as DanteAuditReportPage } from './DanteAuditReportPage';
 export { default as StarMethodFrameworkPage } from './StarMethodFrameworkPage';

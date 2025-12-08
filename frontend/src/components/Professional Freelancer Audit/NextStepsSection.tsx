@@ -1,12 +1,24 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const NextStepsSection: React.FC = () => {
+interface NextStepsSectionProps {
+  pathADescription?: string;
+  pathBDescription?: string;
+}
+
+const NextStepsSection: React.FC<NextStepsSectionProps> = ({ 
+  pathADescription,
+  pathBDescription
+}) => {
   const navigate = useNavigate();
 
   const handleAcceleratedPathClick = () => {
     navigate('/10Day-Freelance-Kickstart');
   };
+
+  const defaultPathADescription = 'While this path is possible, it requires significant time investment and self-discipline. The risk of inconsistency and AI fatigue can derail your progress, making it difficult to maintain momentum.';
+  
+  const defaultPathBDescription = 'This program provides the hands-on "how" to implement the systematic roadmap and build a reliable, scalable, and efficient AI-driven tool stack.';
 
   return (
     <section className="pf-next-steps-section">
@@ -40,9 +52,7 @@ const NextStepsSection: React.FC = () => {
               </div>
               <div className="pf-path-description">
                 <p>
-                  While this path is possible, it requires significant time investment and 
-                  self-discipline. The risk of inconsistency and AI fatigue can derail your 
-                  progress, making it difficult to maintain momentum.
+                  {pathADescription || defaultPathADescription}
                 </p>
               </div>
             </div>
@@ -71,6 +81,11 @@ const NextStepsSection: React.FC = () => {
                   <li>Accelerated timeline: 10 days vs. months of trial and error</li>
                   <li>Proven framework that eliminates guesswork</li>
                 </ul>
+                {pathBDescription && (
+                  <p style={{ marginTop: '1rem', fontStyle: 'italic', color: 'rgba(0, 255, 150, 0.9)' }}>
+                    {pathBDescription}
+                  </p>
+                )}
               </div>
               <div className="pf-path-cta">
                 <button 

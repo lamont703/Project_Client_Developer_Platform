@@ -31,6 +31,12 @@ const CoreBottleneckSection: React.FC<CoreBottleneckSectionProps> = ({ bottlenec
           explanation: 'The absence of CRM or automations for tasks like follow-ups and referrals creates manual bottlenecks that limit your capacity to scale.',
           impact: 'Without automated systems, you\'re trading time for money instead of building scalable processes that generate predictable income.'
         };
+      case 'System-Driven Automation Gap & Acquisition Clarity':
+        return {
+          title: 'System-Driven Automation Gap & Acquisition Clarity',
+          explanation: 'You currently handle all leads, follow-ups, contract generation, and scope definition manually. The absence of a systematic closing process results in client scope creep, where requirements change frequently after work begins ("Can you do this? Can you do this?"). This manual effort prevents the transition from a side hustle to a scalable business with predictable income.',
+          impact: 'Every client interaction requires manual effort, and the lack of a formal closing process leads to scope creep that erodes profitability. Without systematic automation and clear acquisition processes, you cannot scale beyond your current capacity or achieve the goal of two clients every other month.'
+        };
       default:
         return {
           title: finalBottleneck.type || 'Scaling Bottleneck',
