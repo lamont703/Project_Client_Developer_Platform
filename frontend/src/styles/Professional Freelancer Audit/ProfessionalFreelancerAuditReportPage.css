@@ -1,0 +1,1373 @@
+/* Professional Freelancer Audit Report Page - High-Tech Dark Theme */
+
+.pf-report-page {
+  min-height: 100vh;
+  background: #0a0e27;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(0, 255, 150, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 165, 0, 0.03) 0%, transparent 50%),
+    linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1629 100%);
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  padding-left: 280px; /* Space for sidebar */
+}
+
+.pf-circuit-pattern {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(90deg, rgba(0, 255, 150, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(0, 255, 150, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 150, 0.04) 1px, transparent 1px),
+    linear-gradient(rgba(0, 255, 150, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px, 60px 60px, 120px 120px, 120px 120px;
+  background-position: 0 0, 0 0, 30px 30px, 30px 30px;
+  opacity: 0.5;
+  animation: circuitPulse 5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes circuitPulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Mobile Menu Button */
+.pf-mobile-menu-button {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 101;
+  background: rgba(10, 14, 39, 0.95);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(0, 255, 150, 0.3);
+  border-radius: 8px;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.pf-mobile-menu-button:hover {
+  background: rgba(0, 255, 150, 0.1);
+  border-color: rgba(0, 255, 150, 0.5);
+}
+
+.pf-hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 24px;
+}
+
+.pf-hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #00ff96;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 255, 150, 0.5);
+}
+
+.pf-hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(7px, 7px);
+}
+
+.pf-hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.pf-hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Sidebar Overlay */
+.pf-sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 99;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Sidebar Navigation */
+.pf-report-sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 260px;
+  height: 100vh;
+  background: rgba(10, 14, 39, 0.95);
+  backdrop-filter: blur(20px);
+  border-right: 2px solid rgba(0, 255, 150, 0.3);
+  z-index: 100;
+  overflow-y: auto;
+  padding: 2rem 0;
+  transition: transform 0.3s ease;
+}
+
+.pf-sidebar-content {
+  padding: 0 1.5rem;
+}
+
+.pf-sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(0, 255, 150, 0.3);
+}
+
+.pf-sidebar-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #00ff96;
+  text-shadow: 0 0 20px rgba(0, 255, 150, 0.8);
+  margin: 0;
+}
+
+.pf-sidebar-close-button {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #00ff96;
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.pf-sidebar-close-button:hover {
+  background: rgba(0, 255, 150, 0.1);
+}
+
+.pf-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pf-sidebar-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: transparent;
+  border: 1px solid rgba(0, 255, 150, 0.2);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  width: 100%;
+  min-height: 48px; /* Better touch target */
+}
+
+.pf-sidebar-nav-item:hover {
+  background: rgba(0, 255, 150, 0.1);
+  border-color: rgba(0, 255, 150, 0.5);
+  color: #00ff96;
+  transform: translateX(5px);
+}
+
+.pf-sidebar-nav-item.active {
+  background: rgba(0, 255, 150, 0.15);
+  border-color: #00ff96;
+  color: #00ff96;
+  box-shadow: 0 0 20px rgba(0, 255, 150, 0.3);
+}
+
+.pf-sidebar-nav-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.pf-sidebar-nav-label {
+  flex: 1;
+}
+
+.pf-sidebar-nav-short-label {
+  display: none;
+}
+
+/* Main Content */
+.pf-report-main-content {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+  padding: 2rem 0;
+}
+
+.pf-report-section {
+  margin-bottom: 4rem;
+  animation: fadeInUp 0.8s ease-out both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pf-section-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.pf-section-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #00ff96;
+  text-shadow: 
+    0 0 30px rgba(0, 255, 150, 1),
+    0 4px 20px rgba(0, 0, 0, 0.8);
+  margin: 0 0 2rem 0;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+/* Report Header */
+.pf-report-header {
+  padding: 3rem 0;
+  border-bottom: 2px solid rgba(0, 255, 150, 0.3);
+  margin-bottom: 3rem;
+}
+
+.pf-report-header-content {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.pf-report-logo-container {
+  flex-shrink: 0;
+}
+
+.pf-report-logo {
+  max-width: 120px;
+  height: auto;
+  filter: drop-shadow(0 0 20px rgba(0, 255, 150, 0.5));
+}
+
+.pf-report-title-section {
+  flex: 1;
+  min-width: 300px;
+}
+
+.pf-report-main-title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #00ff96;
+  text-shadow: 
+    0 0 30px rgba(0, 255, 150, 1),
+    0 4px 20px rgba(0, 0, 0, 0.8);
+  margin: 0 0 1rem 0;
+  line-height: 1.3;
+}
+
+.pf-report-client-info {
+  margin-top: 1rem;
+}
+
+.pf-report-client-name,
+.pf-report-client-niche {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0.5rem 0;
+}
+
+.pf-report-client-name strong,
+.pf-report-client-niche strong {
+  color: #00ff96;
+  text-shadow: 0 0 10px rgba(0, 255, 150, 0.5);
+}
+
+/* Audit Summary Section */
+.pf-audit-summary-section {
+  padding: 2rem 0;
+}
+
+.pf-overall-score-container {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(0, 255, 150, 0.3);
+  border-radius: 16px;
+}
+
+.pf-score-circle {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0, 255, 150, 0.2), rgba(0, 255, 150, 0.05));
+  border: 4px solid #00ff96;
+  box-shadow: 
+    0 0 40px rgba(0, 255, 150, 0.6),
+    inset 0 0 40px rgba(0, 255, 150, 0.1);
+  margin-bottom: 1rem;
+}
+
+.pf-score-number {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #00ff96;
+  text-shadow: 0 0 20px rgba(0, 255, 150, 0.8);
+  line-height: 1;
+}
+
+.pf-score-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.pf-score-description {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 1rem;
+}
+
+.pf-strengths-container {
+  margin-top: 3rem;
+}
+
+.pf-strengths-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #00ff96;
+  text-shadow: 0 0 20px rgba(0, 255, 150, 0.8);
+  margin: 0 0 2rem 0;
+}
+
+.pf-strength-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.pf-strength-item {
+  display: flex;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(0, 255, 150, 0.3);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.pf-strength-item:hover {
+  border-color: rgba(0, 255, 150, 0.6);
+  box-shadow: 0 0 30px rgba(0, 255, 150, 0.3);
+  transform: translateY(-2px);
+}
+
+.pf-strength-indicator {
+  flex-shrink: 0;
+  font-size: 2.5rem;
+}
+
+.pf-check-mark {
+  filter: drop-shadow(0 0 10px rgba(0, 255, 150, 0.8));
+}
+
+.pf-x-mark {
+  filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.8));
+}
+
+.pf-strength-content {
+  flex: 1;
+}
+
+.pf-strength-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #00ff96;
+  margin: 0 0 0.75rem 0;
+}
+
+.pf-strength-description {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Core Bottleneck Section */
+.pf-bottleneck-section {
+  padding: 2rem 0;
+}
+
+.pf-bottleneck-visual {
+  text-align: center;
+  margin: 3rem 0;
+  padding: 3rem;
+  background: rgba(255, 0, 0, 0.1);
+  border: 3px solid rgba(255, 0, 0, 0.5);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.pf-bottleneck-visual::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(255, 0, 0, 0.1) 10px,
+    rgba(255, 0, 0, 0.1) 20px
+  );
+  opacity: 0.3;
+}
+
+.pf-bottleneck-x-mark {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.8));
+  position: relative;
+  z-index: 1;
+}
+
+.pf-bottleneck-label {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #ff4444;
+  text-shadow: 
+    0 0 30px rgba(255, 68, 68, 1),
+    0 4px 20px rgba(0, 0, 0, 0.8);
+  position: relative;
+  z-index: 1;
+}
+
+.pf-bottleneck-content {
+  margin-top: 3rem;
+}
+
+.pf-bottleneck-problem,
+.pf-bottleneck-impact {
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.4);
+  border-left: 4px solid rgba(255, 0, 0, 0.6);
+  border-radius: 8px;
+}
+
+.pf-bottleneck-subtitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ff4444;
+  margin: 0 0 1rem 0;
+}
+
+.pf-bottleneck-text {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.pf-bottleneck-urgency {
+  margin-top: 2rem;
+  padding: 2rem;
+  background: rgba(255, 165, 0, 0.1);
+  border: 2px solid rgba(255, 165, 0, 0.5);
+  border-radius: 12px;
+}
+
+.pf-bottleneck-urgency-text {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.7;
+  margin: 0;
+  text-align: center;
+}
+
+.pf-bottleneck-urgency-text strong {
+  color: #ffa500;
+  text-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+}
+
+/* STAR Roadmap Section */
+.pf-roadmap-section {
+  padding: 2rem 0;
+}
+
+.pf-roadmap-intro {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.7;
+  margin: 0 0 3rem 0;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.4);
+  border-left: 4px solid #00ff96;
+  border-radius: 8px;
+}
+
+.pf-roadmap-table-container {
+  overflow-x: auto;
+  margin: 2rem 0;
+  border-radius: 12px;
+  border: 2px solid rgba(0, 255, 150, 0.3);
+  background: rgba(0, 0, 0, 0.4);
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 255, 150, 0.5) rgba(0, 0, 0, 0.2);
+}
+
+.pf-roadmap-table-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.pf-roadmap-table-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.pf-roadmap-table-container::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 150, 0.5);
+  border-radius: 4px;
+}
+
+.pf-roadmap-table-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 150, 0.7);
+}
+
+.pf-roadmap-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+.pf-roadmap-table thead {
+  background: rgba(0, 255, 150, 0.15);
+}
+
+.pf-roadmap-table th {
+  padding: 1.5rem;
+  text-align: left;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #00ff96;
+  text-shadow: 0 0 10px rgba(0, 255, 150, 0.5);
+  border-bottom: 2px solid rgba(0, 255, 150, 0.3);
+  white-space: nowrap;
+}
+
+.pf-roadmap-col-phase {
+  width: 20%;
+}
+
+.pf-roadmap-col-focus {
+  width: 30%;
+}
+
+.pf-roadmap-col-goal {
+  width: 50%;
+}
+
+.pf-roadmap-row {
+  border-bottom: 1px solid rgba(0, 255, 150, 0.2);
+  transition: background 0.3s ease;
+}
+
+.pf-roadmap-row:hover {
+  background: rgba(0, 255, 150, 0.1);
+}
+
+.pf-roadmap-row:last-child {
+  border-bottom: none;
+}
+
+.pf-roadmap-phase-cell,
+.pf-roadmap-focus-cell,
+.pf-roadmap-goal-cell {
+  padding: 2rem 1.5rem;
+  vertical-align: top;
+}
+
+/* Mobile Card Layout - Hidden by default */
+.pf-roadmap-mobile-card {
+  display: none;
+}
+
+.pf-phase-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.pf-phase-icon {
+  font-size: 1.5rem;
+}
+
+.pf-phase-name {
+  font-size: 1.2rem;
+  color: #00ff96;
+  text-shadow: 0 0 10px rgba(0, 255, 150, 0.5);
+}
+
+.pf-focus-content {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.pf-goal-content {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.pf-goal-text {
+  margin: 0 0 1rem 0;
+}
+
+.pf-benefit-text {
+  margin: 0;
+  color: rgba(0, 255, 150, 0.9);
+}
+
+.pf-tools-emphasis {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(255, 165, 0, 0.3);
+  border-radius: 12px;
+}
+
+.pf-tools-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffa500;
+  text-shadow: 0 0 20px rgba(255, 165, 0, 0.8);
+  margin: 0 0 1.5rem 0;
+}
+
+.pf-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.pf-tool-item {
+  padding: 1.5rem;
+  background: rgba(0, 255, 150, 0.1);
+  border: 1px solid rgba(0, 255, 150, 0.3);
+  border-radius: 8px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.pf-tool-item:hover {
+  background: rgba(0, 255, 150, 0.2);
+  border-color: rgba(0, 255, 150, 0.6);
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(0, 255, 150, 0.3);
+}
+
+.pf-tool-name {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #00ff96;
+  margin-bottom: 0.5rem;
+}
+
+.pf-tool-category {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.pf-tools-description {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  margin: 0;
+  text-align: center;
+}
+
+/* Next Steps Section */
+.pf-next-steps-section {
+  padding: 2rem 0;
+}
+
+.pf-next-steps-intro {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.7;
+  margin: 0 0 3rem 0;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.4);
+  border-left: 4px solid #ffa500;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.pf-implementation-paths {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.pf-path-box {
+  padding: 2rem;
+  border-radius: 12px;
+  border: 2px solid;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.pf-path-a {
+  background: rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.pf-path-b {
+  background: rgba(0, 255, 150, 0.1);
+  border-color: rgba(0, 255, 150, 0.5);
+  box-shadow: 0 0 30px rgba(0, 255, 150, 0.2);
+}
+
+.pf-path-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid;
+  flex-wrap: wrap;
+}
+
+.pf-path-a .pf-path-header {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.pf-path-b .pf-path-header {
+  border-color: rgba(0, 255, 150, 0.5);
+}
+
+.pf-path-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.3;
+  flex: 1;
+  min-width: 0;
+}
+
+.pf-path-a .pf-path-title {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.pf-path-b .pf-path-title {
+  color: #00ff96;
+  text-shadow: 0 0 10px rgba(0, 255, 150, 0.5);
+}
+
+.pf-path-label {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.pf-path-a .pf-path-label {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.pf-path-recommended {
+  background: rgba(0, 255, 150, 0.3) !important;
+  color: #00ff96 !important;
+  box-shadow: 0 0 15px rgba(0, 255, 150, 0.4);
+}
+
+.pf-path-content {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.pf-path-subtitle {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin: 1.5rem 0 1rem 0;
+  color: #00ff96;
+}
+
+.pf-path-a .pf-path-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.pf-path-program-name {
+  font-size: 1.1rem;
+  color: #00ff96;
+  margin: 0.5rem 0;
+  text-shadow: 0 0 10px rgba(0, 255, 150, 0.5);
+}
+
+.pf-path-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.pf-path-list li {
+  padding: 0.75rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  line-height: 1.6;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.pf-path-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.pf-path-benefits-list li::before {
+  color: #00ff96;
+}
+
+.pf-path-description {
+  margin-top: 1.5rem;
+  line-height: 1.7;
+}
+
+.pf-path-cta {
+  margin-top: 2rem;
+}
+
+.pf-path-button {
+  width: 100%;
+  padding: 1.25rem 2rem;
+  background: linear-gradient(135deg, #00ff96, #00cc77);
+  border: none;
+  border-radius: 8px;
+  color: #0a0e27;
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(0, 255, 150, 0.4);
+  min-height: 56px; /* Better touch target */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.pf-path-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(0, 255, 150, 0.6);
+  background: linear-gradient(135deg, #00ffaa, #00ff96);
+}
+
+.pf-final-cta {
+  margin-top: 4rem;
+  padding: 3rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(0, 255, 150, 0.5);
+  border-radius: 16px;
+  text-align: center;
+}
+
+.pf-final-cta-title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #00ff96;
+  text-shadow: 0 0 20px rgba(0, 255, 150, 0.8);
+  margin: 0 0 1rem 0;
+}
+
+.pf-final-cta-text {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.7;
+  margin: 0 0 2rem 0;
+}
+
+.pf-booking-calendar {
+  margin-top: 2rem;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid rgba(0, 255, 150, 0.3);
+  position: relative;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+.pf-booking-calendar iframe {
+  display: block;
+  width: 100%;
+  border: none;
+  min-height: 1000px;
+  height: 1000px;
+  background: rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .pf-report-page {
+    padding-left: 0;
+    flex-direction: column;
+  }
+
+  .pf-mobile-menu-button {
+    display: flex;
+  }
+
+  .pf-report-sidebar {
+    transform: translateX(-100%);
+    width: 280px;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .pf-report-sidebar.mobile-open {
+    transform: translateX(0);
+  }
+
+  .pf-sidebar-overlay {
+    display: block;
+  }
+
+  .pf-sidebar-close-button {
+    display: flex;
+  }
+
+  .pf-sidebar-nav {
+    flex-direction: column;
+  }
+
+  .pf-sidebar-nav-item {
+    min-width: auto;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 768px) {
+  .pf-mobile-menu-button {
+    top: 0.75rem;
+    left: 0.75rem;
+    width: 44px;
+    height: 44px;
+  }
+
+  .pf-report-sidebar {
+    width: 85%;
+    max-width: 320px;
+  }
+
+  .pf-section-container {
+    padding: 0 1rem;
+  }
+
+  .pf-section-title {
+    font-size: 2rem;
+  }
+
+  .pf-report-header-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .pf-implementation-paths {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .pf-path-box {
+    padding: 1.5rem;
+  }
+
+  .pf-path-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .pf-path-title {
+    font-size: 1.3rem;
+    width: 100%;
+  }
+
+  .pf-path-label {
+    align-self: flex-start;
+  }
+
+  .pf-path-subtitle {
+    font-size: 1.1rem;
+    margin: 1.25rem 0 0.75rem 0;
+  }
+
+  .pf-path-program-name {
+    font-size: 1rem;
+  }
+
+  .pf-path-list {
+    margin: 0.75rem 0;
+  }
+
+  .pf-path-list li {
+    padding: 0.625rem 0;
+    padding-left: 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  .pf-path-description {
+    margin-top: 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  .pf-path-button {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    min-height: 52px;
+  }
+
+  .pf-path-cta {
+    margin-top: 1.5rem;
+  }
+
+  /* Hide table on mobile, show cards */
+  .pf-roadmap-table-container {
+    overflow-x: visible;
+    border: none;
+    background: transparent;
+  }
+
+  .pf-roadmap-table {
+    display: none;
+  }
+
+  .pf-roadmap-mobile-card {
+    display: block;
+  }
+
+  .pf-roadmap-card {
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(0, 255, 150, 0.3);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .pf-roadmap-card:hover {
+    border-color: rgba(0, 255, 150, 0.6);
+    box-shadow: 0 0 20px rgba(0, 255, 150, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .pf-roadmap-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(0, 255, 150, 0.3);
+  }
+
+  .pf-roadmap-card-icon {
+    font-size: 2rem;
+  }
+
+  .pf-roadmap-card-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #00ff96;
+    text-shadow: 0 0 10px rgba(0, 255, 150, 0.5);
+    margin: 0;
+  }
+
+  .pf-roadmap-card-section {
+    margin-bottom: 1.25rem;
+  }
+
+  .pf-roadmap-card-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .pf-roadmap-card-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: rgba(0, 255, 150, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .pf-roadmap-card-content {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .pf-roadmap-card-goal {
+    margin-bottom: 1rem;
+  }
+
+  .pf-tools-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pf-sidebar-nav-item {
+    padding: 1.25rem 1rem; /* Larger touch targets */
+    font-size: 1rem;
+  }
+
+  .pf-sidebar-nav-icon {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pf-mobile-menu-button {
+    top: 0.5rem;
+    left: 0.5rem;
+    width: 40px;
+    height: 40px;
+  }
+
+  .pf-hamburger {
+    width: 20px;
+    gap: 4px;
+  }
+
+  .pf-report-sidebar {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .pf-sidebar-title {
+    font-size: 1rem;
+  }
+
+  .pf-sidebar-nav-label {
+    display: none;
+  }
+
+  .pf-sidebar-nav-short-label {
+    display: inline;
+    flex: 1;
+  }
+
+  .pf-sidebar-nav-item {
+    padding: 1rem 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .pf-section-title {
+    font-size: 1.75rem;
+  }
+
+  .pf-section-container {
+    padding: 0 0.75rem;
+  }
+
+  .pf-roadmap-card {
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .pf-roadmap-card-header {
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .pf-roadmap-card-title {
+    font-size: 1.2rem;
+  }
+
+  .pf-roadmap-card-icon {
+    font-size: 1.75rem;
+  }
+
+  .pf-roadmap-card-content {
+    font-size: 0.95rem;
+  }
+
+  .pf-roadmap-card-label {
+    font-size: 0.8rem;
+  }
+
+  .pf-implementation-paths {
+    gap: 1.25rem;
+    margin: 1.5rem 0;
+  }
+
+  .pf-path-box {
+    padding: 1.25rem;
+  }
+
+  .pf-path-title {
+    font-size: 1.2rem;
+  }
+
+  .pf-path-subtitle {
+    font-size: 1rem;
+    margin: 1rem 0 0.625rem 0;
+  }
+
+  .pf-path-program-name {
+    font-size: 0.95rem;
+  }
+
+  .pf-path-list li {
+    padding: 0.5rem 0;
+    padding-left: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .pf-path-description {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .pf-path-button {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.95rem;
+    min-height: 48px;
+  }
+
+  .pf-path-cta {
+    margin-top: 1.25rem;
+  }
+
+  .pf-final-cta {
+    padding: 2rem 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .pf-final-cta-title {
+    font-size: 1.5rem;
+  }
+
+  .pf-final-cta-text {
+    font-size: 1rem;
+  }
+
+  .pf-booking-calendar {
+    margin-top: 1.5rem;
+    border-radius: 8px;
+    border-width: 1px;
+  }
+
+  .pf-booking-calendar iframe {
+    min-height: 650px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .pf-final-cta {
+    padding: 2rem 1.5rem;
+  }
+
+  .pf-final-cta-title {
+    font-size: 1.75rem;
+  }
+
+  .pf-final-cta-text {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pf-booking-calendar {
+    margin-top: 1.25rem;
+    border-radius: 6px;
+    border-width: 1px;
+  }
+
+  .pf-booking-calendar iframe {
+    min-height: 700px;
+    width: 100%;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pf-final-cta {
+    padding: 1.5rem 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .pf-final-cta-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .pf-final-cta-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+}
+

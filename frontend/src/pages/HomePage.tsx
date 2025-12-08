@@ -195,6 +195,13 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
             <p>Access all our courses, resources, and social media links in one convenient place. Your gateway to everything XRBlockDev has to offer.</p>
             <button className="feature-link">View Links →</button>
           </div>
+
+          <div className="feature-card" onClick={() => handleNavigation('/professional-freelancer-audit-report')}>
+            <div className="feature-icon">📊</div>
+            <h3>Professional Freelancer Audit Report</h3>
+            <p>View your personalized audit report with scaling bottleneck analysis, STAR Method roadmap, and customized learning path to predictable income.</p>
+            <button className="feature-link">View Report →</button>
+          </div>
         </div>
       </div>
 
