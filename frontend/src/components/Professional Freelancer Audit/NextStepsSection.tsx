@@ -17,8 +17,6 @@ const NextStepsSection: React.FC<NextStepsSectionProps> = ({
   };
 
   const defaultPathADescription = 'While this path is possible, it requires significant time investment and self-discipline. The risk of inconsistency and AI fatigue can derail your progress, making it difficult to maintain momentum.';
-  
-  const defaultPathBDescription = 'This program provides the hands-on "how" to implement the systematic roadmap and build a reliable, scalable, and efficient AI-driven tool stack.';
 
   return (
     <section className="pf-next-steps-section">

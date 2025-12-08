@@ -126,7 +126,7 @@ const DanteAuditReportPage: React.FC<DanteAuditReportPageProps> = ({
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [danteReportData.clientName]);
 
   const scrollToSection = (sectionId: string) => {
     const element = sectionRefs.current[sectionId];
