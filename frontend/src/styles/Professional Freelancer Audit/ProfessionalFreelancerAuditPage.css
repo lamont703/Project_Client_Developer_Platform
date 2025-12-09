@@ -651,8 +651,7 @@
 
   .pf-elevenlabs-wrapper {
     min-height: 450px;
-    width: -webkit-fill-available;
-    width: fill-available;
+    width: stretch;
     gap: 0.75rem;
   }
 
@@ -680,8 +679,7 @@
   }
 
   .pf-elevenlabs-wrapper {
-    width: -webkit-fill-available;
-    width: fill-available;
+    width: stretch;
   }
 }
 
