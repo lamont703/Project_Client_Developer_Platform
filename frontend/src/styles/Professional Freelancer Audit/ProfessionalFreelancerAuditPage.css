@@ -398,6 +398,293 @@
   transform: scale(1.02);
 }
 
+/* Professional Freelancer Audit AI Agent Container */
+.pf-ai-agent-container {
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(0, 255, 150, 0.4);
+  border-radius: 20px;
+  padding: 2rem 2rem;
+  box-shadow: 
+    0 0 40px rgba(0, 255, 150, 0.3),
+    inset 0 0 40px rgba(0, 255, 150, 0.05);
+  position: relative;
+  overflow: visible;
+  animation: aiAgentPulse 3s ease-in-out infinite;
+}
+
+@keyframes aiAgentPulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 40px rgba(0, 255, 150, 0.3),
+      inset 0 0 40px rgba(0, 255, 150, 0.05);
+  }
+  50% {
+    box-shadow: 
+      0 0 60px rgba(0, 255, 150, 0.5),
+      inset 0 0 40px rgba(0, 255, 150, 0.1);
+  }
+}
+
+.pf-ai-agent-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(0, 255, 150, 0.3);
+}
+
+.pf-ai-agent-icon {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pf-ai-pulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(0, 255, 150, 0.2);
+  animation: pulseRing 2s ease-out infinite;
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.pf-ai-icon-text {
+  position: relative;
+  font-size: 3rem;
+  z-index: 1;
+  filter: drop-shadow(0 0 15px rgba(0, 255, 150, 0.8));
+}
+
+.pf-ai-agent-title-section {
+  flex: 1;
+}
+
+.pf-ai-agent-title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #00ff96;
+  text-shadow: 
+    0 0 30px rgba(0, 255, 150, 1),
+    0 4px 20px rgba(0, 0, 0, 0.8);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+}
+
+.pf-ai-agent-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.pf-ai-agent-content {
+  position: relative;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0 1rem 0;
+  overflow: visible;
+}
+
+/* ElevenLabs Voice Agent Wrapper */
+.pf-elevenlabs-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  min-height: 500px;
+  position: relative;
+  text-align: center;
+  overflow: visible;
+  padding-top: 0;
+  margin-top: 0;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 1rem;
+}
+
+/* ElevenLabs Instructions */
+.pf-elevenlabs-instructions {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.pf-instructions-text {
+  font-size: 0.95rem;
+  color: rgba(0, 255, 150, 0.9);
+  margin: 0;
+  text-align: center;
+  font-weight: 500;
+  text-shadow: 0 0 10px rgba(0, 255, 150, 0.3);
+}
+
+/* Override ElevenLabs default positioning */
+.pf-elevenlabs-wrapper elevenlabs-convai,
+.pf-elevenlabs-wrapper > elevenlabs-convai {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  margin: 0 auto !important;
+  display: block !important;
+  width: 100% !important;
+  max-width: 600px !important;
+  float: none !important;
+  min-height: 500px !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+/* Target any child elements that might have fixed positioning */
+.pf-elevenlabs-wrapper * {
+  position: relative !important;
+}
+
+.pf-elevenlabs-wrapper [style*="position: fixed"],
+.pf-elevenlabs-wrapper [style*="position: absolute"] {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+  margin: 0 auto !important;
+}
+
+/* Target shadow DOM or iframe elements if any */
+.pf-elevenlabs-wrapper iframe,
+.pf-elevenlabs-wrapper > iframe {
+  margin: 0 auto !important;
+  display: block !important;
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+}
+
+/* Override any floating button styles */
+.pf-elevenlabs-wrapper button[style*="position: fixed"],
+.pf-elevenlabs-wrapper div[style*="position: fixed"],
+.pf-elevenlabs-wrapper [class*="floating"],
+.pf-elevenlabs-wrapper [class*="fixed"] {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+  margin: 0 auto !important;
+}
+
+.pf-ai-agent-footer {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid rgba(0, 255, 150, 0.3);
+  text-align: center;
+}
+
+.pf-ai-agent-footer-text {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.pf-ai-agent-footer-text strong {
+  color: #00ff96;
+  text-shadow: 0 0 10px rgba(0, 255, 150, 0.5);
+}
+
+/* Responsive adjustments for AI Agent Container */
+@media (max-width: 768px) {
+  .pf-ai-agent-container {
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+  }
+
+  .pf-ai-agent-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .pf-ai-agent-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .pf-ai-icon-text {
+    font-size: 2.5rem;
+  }
+
+  .pf-ai-agent-title {
+    font-size: 1.5rem;
+  }
+
+  .pf-ai-agent-subtitle {
+    font-size: 1rem;
+  }
+
+  .pf-ai-agent-content {
+    min-height: 450px;
+    padding: 0.5rem 0;
+  }
+
+  .pf-elevenlabs-wrapper {
+    min-height: 450px;
+    width: -webkit-fill-available;
+    width: fill-available;
+    gap: 0.75rem;
+  }
+
+  .pf-instructions-text {
+    font-size: 0.9rem;
+  }
+
+  .pf-elevenlabs-wrapper elevenlabs-convai,
+  .pf-elevenlabs-wrapper > elevenlabs-convai {
+    min-height: 450px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .pf-ai-agent-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .pf-ai-agent-title {
+    font-size: 1.3rem;
+  }
+
+  .pf-ai-agent-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .pf-elevenlabs-wrapper {
+    width: -webkit-fill-available;
+    width: fill-available;
+  }
+}
+
 /* Portrait Video Section */
 .pf-portrait-video-section {
   padding: 3rem 0;
