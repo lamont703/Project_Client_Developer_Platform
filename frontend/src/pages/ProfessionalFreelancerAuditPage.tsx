@@ -310,7 +310,7 @@ const ProfessionalFreelancerAuditPage: React.FC<ProfessionalFreelancerAuditPageP
             <div className="pf-video-wrapper">
               <video
                 ref={videoRef}
-                src="https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/692d0b8d96dd5b6e8620b030.mov"
+                src="https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/69377954b480b33853addfd2.mov"
                 poster="/pf thumbnail.jpeg"
                 className="pf-authority-video"
                 controls={isVideoPlaying || showVideoControls}
@@ -446,8 +446,8 @@ const ProfessionalFreelancerAuditPage: React.FC<ProfessionalFreelancerAuditPageP
             <div className="pf-portrait-video-wrapper">
               <video
                 ref={portraitVideoRef}
-                src="https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/692e242e2b865e27d9378761.mov"
-                poster="/Thumbnail for PF Video.jpeg"
+                src="https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/692d0b8d96dd5b6e8620b030.mov"
+                poster="https://storage.googleapis.com/msgsndr/QLyYYRoOhCg65lKW9HDX/media/693780cc4b202f0e28db5dbf.jpeg"
                 className="pf-portrait-video"
                 controls={isPortraitVideoPlaying || showPortraitVideoControls}
                 controlsList="nodownload"

@@ -701,8 +701,8 @@
 .pf-portrait-video-wrapper {
   position: relative;
   width: 100%;
-  max-width: 600px;
-  padding-bottom: 136%; /* Reduced by 15% from 160% to compact vertical space */
+  max-width: 900px;
+  padding-bottom: 56.25%; /* 16:9 landscape aspect ratio */
   background: transparent;
   border-radius: 18px;
   overflow: hidden;
@@ -1131,8 +1131,8 @@
   }
 
   .pf-portrait-video-wrapper {
-    max-width: 90%;
-    padding-bottom: 136%;
+    max-width: 95%;
+    padding-bottom: 56.25%; /* 16:9 landscape aspect ratio */
   }
 
   .pf-portrait-video-wrapper .pf-portrait-play-button {
@@ -1227,8 +1227,8 @@
   }
 
   .pf-portrait-video-wrapper {
-    max-width: 85%;
-    padding-bottom: 136%;
+    max-width: 95%;
+    padding-bottom: 56.25%; /* 16:9 landscape aspect ratio */
   }
 
   .pf-portrait-video-wrapper .pf-portrait-play-button {
