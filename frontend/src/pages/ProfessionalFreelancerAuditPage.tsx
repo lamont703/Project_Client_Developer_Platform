@@ -15,6 +15,7 @@ const ProfessionalFreelancerAuditPage: React.FC<ProfessionalFreelancerAuditPageP
   const [showPortraitVideoControls, setShowPortraitVideoControls] = useState(false);
   const [isAgentUnlocked, setIsAgentUnlocked] = useState(false);
   const [userEmail, setUserEmail] = useState<string>('');
+  const [shouldFocusEmailGate, setShouldFocusEmailGate] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const portraitVideoRef = useRef<HTMLVideoElement>(null);
   const agentContainerRef = useRef<HTMLDivElement>(null);
@@ -158,6 +159,9 @@ const ProfessionalFreelancerAuditPage: React.FC<ProfessionalFreelancerAuditPageP
   };
 
   const handleShowForm = () => {
+    // Set flag to focus email input after scroll
+    setShouldFocusEmailGate(true);
+    
     // Scroll to the email gate component
     setTimeout(() => {
       if (agentContainerRef.current) {
@@ -479,6 +483,7 @@ const ProfessionalFreelancerAuditPage: React.FC<ProfessionalFreelancerAuditPageP
               <EmailGate 
                 isOpen={true} 
                 onUnlock={handleUnlockAgent}
+                shouldFocus={shouldFocusEmailGate}
               />
             )}
 

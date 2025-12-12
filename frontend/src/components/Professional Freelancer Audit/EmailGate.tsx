@@ -4,25 +4,28 @@ import '../../styles/Professional Freelancer Audit/EmailGate.css';
 interface EmailGateProps {
   isOpen: boolean;
   onUnlock: (email: string) => void;
+  shouldFocus?: boolean;
 }
 
 const STORAGE_KEY = 'pf_audit_email_unlocked';
 
-const EmailGate: React.FC<EmailGateProps> = ({ isOpen, onUnlock }) => {
+const EmailGate: React.FC<EmailGateProps> = ({ isOpen, onUnlock, shouldFocus = false }) => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isUnlocking, setIsUnlocking] = useState(false);
   const emailInputRef = useRef<HTMLInputElement>(null);
 
-  // Auto-focus email input when modal opens
+  // Auto-focus email input only when explicitly requested (e.g., after CTA click)
   useEffect(() => {
-    if (isOpen && emailInputRef.current) {
-      setTimeout(() => {
-        emailInputRef.current?.focus();
-      }, 300);
+    if (isOpen && shouldFocus && emailInputRef.current) {
+      // Delay focus to allow scroll animation to complete
+      const timer = setTimeout(() => {
+        emailInputRef.current?.focus({ preventScroll: true });
+      }, 600);
+      return () => clearTimeout(timer);
     }
-  }, [isOpen]);
+  }, [isOpen, shouldFocus]);
 
   // Check if already unlocked when component opens
   useEffect(() => {
