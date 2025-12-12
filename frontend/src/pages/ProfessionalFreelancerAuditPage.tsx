@@ -1,5 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import '../styles/Professional Freelancer Audit/ProfessionalFreelancerAuditPage.css';
+import { EmailGate } from '../components/Professional Freelancer Audit';
+import VoiceAgent from '../components/Professional Freelancer Audit/VoiceAgent';
+import NotebookAgent from '../components/Professional Freelancer Audit/NotebookAgent';
 
 interface ProfessionalFreelancerAuditPageProps {
   navigateToHome?: () => void;
@@ -10,68 +13,11 @@ const ProfessionalFreelancerAuditPage: React.FC<ProfessionalFreelancerAuditPageP
   const [showVideoControls, setShowVideoControls] = useState(false);
   const [isPortraitVideoPlaying, setIsPortraitVideoPlaying] = useState(false);
   const [showPortraitVideoControls, setShowPortraitVideoControls] = useState(false);
-  const [showForm, setShowForm] = useState(false);
+  const [isAgentUnlocked, setIsAgentUnlocked] = useState(false);
+  const [userEmail, setUserEmail] = useState<string>('');
   const videoRef = useRef<HTMLVideoElement>(null);
   const portraitVideoRef = useRef<HTMLVideoElement>(null);
-  const elevenlabsWrapperRef = useRef<HTMLDivElement>(null);
-
-  // Function to center ElevenLabs widget
-  const centerElevenLabsWidget = () => {
-    // First, try to find widget in our wrapper
-    if (elevenlabsWrapperRef.current) {
-      const widget = elevenlabsWrapperRef.current.querySelector('elevenlabs-convai');
-      if (widget) {
-        const widgetEl = widget as HTMLElement;
-        // Override any inline styles that might position it
-        widgetEl.style.setProperty('position', 'relative', 'important');
-        widgetEl.style.setProperty('left', 'auto', 'important');
-        widgetEl.style.setProperty('right', 'auto', 'important');
-        widgetEl.style.setProperty('top', 'auto', 'important');
-        widgetEl.style.setProperty('bottom', 'auto', 'important');
-        widgetEl.style.setProperty('margin', '0 auto', 'important');
-        widgetEl.style.setProperty('display', 'block', 'important');
-        widgetEl.style.setProperty('width', '100%', 'important');
-        widgetEl.style.setProperty('max-width', '600px', 'important');
-        widgetEl.style.setProperty('float', 'none', 'important');
-        
-        // Also check for any child elements with fixed positioning
-        const fixedElements = widget.querySelectorAll('*');
-        fixedElements.forEach((el) => {
-          const htmlEl = el as HTMLElement;
-          const computedStyle = window.getComputedStyle(htmlEl);
-          if (computedStyle.position === 'fixed' || computedStyle.position === 'absolute' || 
-              htmlEl.style.position === 'fixed' || htmlEl.style.position === 'absolute') {
-            htmlEl.style.setProperty('position', 'relative', 'important');
-            htmlEl.style.setProperty('left', 'auto', 'important');
-            htmlEl.style.setProperty('right', 'auto', 'important');
-            htmlEl.style.setProperty('top', 'auto', 'important');
-            htmlEl.style.setProperty('bottom', 'auto', 'important');
-            htmlEl.style.setProperty('margin', '0 auto', 'important');
-          }
-        });
-      }
-    }
-
-    // Also search document for any ElevenLabs elements that might be outside our wrapper
-    const allElevenLabsWidgets = document.querySelectorAll('elevenlabs-convai');
-    allElevenLabsWidgets.forEach((widget) => {
-      const widgetEl = widget as HTMLElement;
-      // Only reposition if it's not already in our wrapper or if it's floating
-      const computedStyle = window.getComputedStyle(widgetEl);
-      if (computedStyle.position === 'fixed' || computedStyle.position === 'absolute') {
-        // Move it to our wrapper if possible
-        if (elevenlabsWrapperRef.current && !elevenlabsWrapperRef.current.contains(widgetEl)) {
-          elevenlabsWrapperRef.current.appendChild(widgetEl);
-        }
-        widgetEl.style.setProperty('position', 'relative', 'important');
-        widgetEl.style.setProperty('left', 'auto', 'important');
-        widgetEl.style.setProperty('right', 'auto', 'important');
-        widgetEl.style.setProperty('top', 'auto', 'important');
-        widgetEl.style.setProperty('bottom', 'auto', 'important');
-        widgetEl.style.setProperty('margin', '0 auto', 'important');
-      }
-    });
-  };
+  const agentContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.title = 'Professional Freelancer Audit: Your Learning Path to Scalable Predictable Income';
@@ -81,43 +27,12 @@ const ProfessionalFreelancerAuditPage: React.FC<ProfessionalFreelancerAuditPageP
       metaDescription.setAttribute('content', 'Get your free Professional Freelancer Audit and unlock your STAR Method Roadmap. Identify your #1 scaling bottleneck and receive a customized Learning Path Report.');
     }
 
-    // Load ElevenLabs voice agent script
-    const scriptUrl = 'https://unpkg.com/@elevenlabs/convai-widget-embed';
-    const existingScript = document.querySelector(`script[src="${scriptUrl}"]`);
-    
-    if (!existingScript) {
-      const script = document.createElement('script');
-      script.src = scriptUrl;
-      script.type = 'text/javascript';
-      script.async = true;
-      document.body.appendChild(script);
+    // Check if user has already unlocked the agents
+    const savedEmail = localStorage.getItem('pf_audit_email_unlocked');
+    if (savedEmail) {
+      setIsAgentUnlocked(true);
+      setUserEmail(savedEmail);
     }
-
-    // Set up MutationObserver to catch dynamically added elements
-    let observer: MutationObserver | null = null;
-    if (elevenlabsWrapperRef.current) {
-      observer = new MutationObserver(() => {
-        // Use the function defined outside
-        if (elevenlabsWrapperRef.current) {
-          const widget = elevenlabsWrapperRef.current.querySelector('elevenlabs-convai');
-          if (widget) {
-            centerElevenLabsWidget();
-          }
-        }
-      });
-      observer.observe(elevenlabsWrapperRef.current, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: ['style']
-      });
-    }
-
-    return () => {
-      if (observer) {
-        observer.disconnect();
-      }
-    };
   }, []);
 
   // Ensure videos start paused
@@ -243,33 +158,37 @@ const ProfessionalFreelancerAuditPage: React.FC<ProfessionalFreelancerAuditPageP
   };
 
   const handleShowForm = () => {
-    setShowForm(true);
-    // Scroll to form
+    // Scroll to the email gate component
     setTimeout(() => {
-      const formSection = document.querySelector('.pf-form-section');
-      if (formSection) {
-        formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (agentContainerRef.current) {
+        agentContainerRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        // Fallback to form section if ref not available
+        const formSection = document.querySelector('.pf-form-section');
+        if (formSection) {
+          formSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
       }
-      // Center the ElevenLabs widget after form becomes visible
-      centerElevenLabsWidget();
     }, 100);
   };
 
-  // Center widget when form becomes visible
-  useEffect(() => {
-    if (showForm) {
-      // Try multiple times as the widget may load asynchronously
-      const timers = [
-        setTimeout(() => centerElevenLabsWidget(), 500),
-        setTimeout(() => centerElevenLabsWidget(), 1500),
-        setTimeout(() => centerElevenLabsWidget(), 3000)
-      ];
+  const handleUnlockAgent = (email: string) => {
+    setUserEmail(email);
+    setIsAgentUnlocked(true);
+  };
 
-      return () => {
-        timers.forEach(timer => clearTimeout(timer));
-      };
-    }
-  }, [showForm]);
+  const handleAgentUsed = (agentType: 'voice' | 'notebook') => {
+    // Track which agent was used
+    const trackingData = {
+      agentType,
+      email: userEmail,
+      timestamp: new Date().toISOString()
+    };
+    console.log('Agent used:', trackingData);
+    // You can add analytics tracking here later
+    localStorage.setItem('pf_agent_usage', JSON.stringify(trackingData));
+  };
+
 
   return (
     <div className="pf-audit-page">
@@ -385,8 +304,8 @@ const ProfessionalFreelancerAuditPage: React.FC<ProfessionalFreelancerAuditPageP
               className="pf-video-cta-button"
               onClick={handleShowForm}
             >
-              <span className="pf-cta-icon">🤖</span>
-              <span className="pf-cta-text">Talk to Our AI Agent & Get Your Personalized Audit Report</span>
+              <span className="pf-cta-icon">🚀</span>
+              <span className="pf-cta-text">Unlock Your AI Agents & Get Your Personalized Audit Report</span>
             </button>
           </div>
         </div>
@@ -552,34 +471,28 @@ const ProfessionalFreelancerAuditPage: React.FC<ProfessionalFreelancerAuditPageP
       </section>
 
       {/* Professional Freelancer Audit AI Agent Section - Center of Page */}
-      <section className={`pf-form-section ${showForm ? 'pf-form-section-visible' : ''}`}>
+      <section className="pf-form-section pf-form-section-visible">
         <div className="pf-container">
-          <div className="pf-ai-agent-container">
-            <div className="pf-ai-agent-header">
-              <div className="pf-ai-agent-icon">
-                <span className="pf-ai-pulse"></span>
-                <span className="pf-ai-icon-text">🤖</span>
-              </div>
-              <div className="pf-ai-agent-title-section">
-                <h2 className="pf-ai-agent-title">Professional Freelancer Audit AI Agent</h2>
-                <p className="pf-ai-agent-subtitle">Your personalized AI assistant is ready to help you discover your scaling bottleneck</p>
-              </div>
-            </div>
-            <div className="pf-ai-agent-content">
-              <div className="pf-elevenlabs-wrapper" ref={elevenlabsWrapperRef}>
-                <div className="pf-elevenlabs-instructions">
-                  <p className="pf-instructions-text">Click the microphone to start your conversation</p>
-                </div>
-                {React.createElement('elevenlabs-convai', {
-                  'agent-id': 'agent_4201kbwz7dzyerd8yp1yetva6tvf'
-                })}
-              </div>
-            </div>
-            <div className="pf-ai-agent-footer">
-              <p className="pf-ai-agent-footer-text">
-                <strong>Powered by AI Systems Architecture</strong> • Get instant insights into your freelance business
-              </p>
-            </div>
+          <div className="pf-agents-wrapper" ref={agentContainerRef}>
+            {/* Email Gate Overlay - Show immediately if agents are not unlocked */}
+            {!isAgentUnlocked && (
+              <EmailGate 
+                isOpen={true} 
+                onUnlock={handleUnlockAgent}
+              />
+            )}
+
+            {/* Voice Agent */}
+            <VoiceAgent 
+              isUnlocked={isAgentUnlocked}
+              onAgentUsed={() => handleAgentUsed('voice')}
+            />
+
+            {/* Notebook Agent */}
+            <NotebookAgent 
+              isUnlocked={isAgentUnlocked}
+              onAgentUsed={() => handleAgentUsed('notebook')}
+            />
           </div>
         </div>
       </section>

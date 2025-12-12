@@ -389,13 +389,21 @@
 .pf-form-section {
   padding: 4rem 0;
   animation: fadeInUp 0.8s ease-out 0.8s both;
-  opacity: 0.6;
+  opacity: 1;
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .pf-form-section-visible {
   opacity: 1;
-  transform: scale(1.02);
+  transform: scale(1);
+}
+
+/* Agents Wrapper - Contains both Voice and Notebook Agents */
+.pf-agents-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 /* Professional Freelancer Audit AI Agent Container */
@@ -503,6 +511,52 @@
   overflow: visible;
 }
 
+/* Locked Placeholder */
+.pf-agent-locked-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+  opacity: 0.4;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.4;
+  }
+}
+
+.pf-locked-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  filter: grayscale(0.5) drop-shadow(0 0 20px rgba(0, 255, 150, 0.3));
+  animation: lockedPulse 2s ease-in-out infinite;
+}
+
+@keyframes lockedPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.6;
+  }
+}
+
+.pf-locked-text {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  margin: 0;
+  line-height: 1.5;
+}
+
 /* ElevenLabs Voice Agent Wrapper */
 .pf-elevenlabs-wrapper {
   display: flex;
@@ -519,6 +573,18 @@
   margin-left: auto;
   margin-right: auto;
   gap: 1rem;
+  animation: agentFadeIn 0.8s ease-out;
+}
+
+@keyframes agentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ElevenLabs Instructions */
@@ -612,8 +678,12 @@
   text-shadow: 0 0 10px rgba(0, 255, 150, 0.5);
 }
 
-/* Responsive adjustments for AI Agent Container */
+/* Responsive adjustments for Agents Wrapper */
 @media (max-width: 768px) {
+  .pf-agents-wrapper {
+    gap: 1.5rem;
+  }
+
   .pf-ai-agent-container {
     padding: 2rem 1.5rem;
     border-radius: 16px;
@@ -663,6 +733,18 @@
   .pf-elevenlabs-wrapper > elevenlabs-convai {
     min-height: 450px !important;
   }
+
+  .pf-agent-locked-placeholder {
+    min-height: 450px;
+  }
+
+  .pf-locked-icon {
+    font-size: 3rem;
+  }
+
+  .pf-locked-text {
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -680,6 +762,18 @@
 
   .pf-elevenlabs-wrapper {
     width: stretch;
+  }
+
+  .pf-agent-locked-placeholder {
+    min-height: 400px;
+  }
+
+  .pf-locked-icon {
+    font-size: 2.5rem;
+  }
+
+  .pf-locked-text {
+    font-size: 0.95rem;
   }
 }
 

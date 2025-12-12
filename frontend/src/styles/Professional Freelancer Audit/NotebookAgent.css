@@ -1,0 +1,299 @@
+/* Notebook Agent Component Styles */
+
+.pf-notebook-agent-container {
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(100, 150, 255, 0.4);
+  border-radius: 20px;
+  padding: 2rem 2rem;
+  box-shadow: 
+    0 0 40px rgba(100, 150, 255, 0.3),
+    inset 0 0 40px rgba(100, 150, 255, 0.05);
+  position: relative;
+  overflow: visible;
+  animation: notebookAgentPulse 3s ease-in-out infinite;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes notebookAgentPulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 40px rgba(100, 150, 255, 0.3),
+      inset 0 0 40px rgba(100, 150, 255, 0.05);
+  }
+  50% {
+    box-shadow: 
+      0 0 60px rgba(100, 150, 255, 0.5),
+      inset 0 0 40px rgba(100, 150, 255, 0.1);
+  }
+}
+
+.pf-notebook-agent-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(100, 150, 255, 0.3);
+}
+
+.pf-notebook-agent-icon {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pf-notebook-pulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(100, 150, 255, 0.2);
+  animation: pulseRing 2s ease-out infinite;
+}
+
+.pf-notebook-icon-text {
+  position: relative;
+  font-size: 3rem;
+  z-index: 1;
+  filter: drop-shadow(0 0 15px rgba(100, 150, 255, 0.8));
+}
+
+.pf-notebook-agent-title-section {
+  flex: 1;
+}
+
+.pf-notebook-agent-title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #6496ff;
+  text-shadow: 
+    0 0 30px rgba(100, 150, 255, 1),
+    0 4px 20px rgba(0, 0, 0, 0.8);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+}
+
+.pf-notebook-agent-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.pf-notebook-agent-content {
+  position: relative;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0 1rem 0;
+  overflow: visible;
+}
+
+.pf-notebook-agent-unlocked {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  animation: agentFadeIn 0.8s ease-out;
+}
+
+.pf-notebook-features {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 500px;
+}
+
+.pf-notebook-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(100, 150, 255, 0.1);
+  border: 1px solid rgba(100, 150, 255, 0.3);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.pf-notebook-feature-item:hover {
+  background: rgba(100, 150, 255, 0.15);
+  border-color: rgba(100, 150, 255, 0.5);
+  transform: translateX(5px);
+}
+
+.pf-feature-icon {
+  font-size: 1.5rem;
+  filter: drop-shadow(0 0 10px rgba(100, 150, 255, 0.5));
+}
+
+.pf-feature-text {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.pf-notebook-open-button {
+  width: 100%;
+  max-width: 500px;
+  padding: 1.25rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #6496ff 0%, #4a7fd4 100%);
+  border: none;
+  border-radius: 12px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  box-shadow: 
+    0 4px 20px rgba(100, 150, 255, 0.4),
+    0 0 30px rgba(100, 150, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.pf-notebook-open-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  transition: left 0.5s ease;
+}
+
+.pf-notebook-open-button:hover::before {
+  left: 100%;
+}
+
+.pf-notebook-open-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 25px rgba(100, 150, 255, 0.5),
+    0 0 40px rgba(100, 150, 255, 0.3);
+}
+
+.pf-notebook-open-button:active {
+  transform: translateY(0);
+}
+
+.pf-notebook-button-icon {
+  font-size: 1.25rem;
+}
+
+.pf-notebook-button-text {
+  flex: 1;
+  text-align: center;
+}
+
+.pf-notebook-button-arrow {
+  font-size: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.pf-notebook-open-button:hover .pf-notebook-button-arrow {
+  transform: translateX(5px);
+}
+
+.pf-notebook-note {
+  text-align: center;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.pf-notebook-agent-footer {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid rgba(100, 150, 255, 0.3);
+  text-align: center;
+}
+
+.pf-notebook-agent-footer-text {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.pf-notebook-agent-footer-text strong {
+  color: #6496ff;
+  text-shadow: 0 0 10px rgba(100, 150, 255, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .pf-notebook-agent-container {
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+  }
+
+  .pf-notebook-agent-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .pf-notebook-agent-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .pf-notebook-icon-text {
+    font-size: 2.5rem;
+  }
+
+  .pf-notebook-agent-title {
+    font-size: 1.5rem;
+  }
+
+  .pf-notebook-agent-subtitle {
+    font-size: 1rem;
+  }
+
+  .pf-notebook-agent-content {
+    min-height: 450px;
+  }
+
+  .pf-notebook-features {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .pf-notebook-agent-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .pf-notebook-agent-title {
+    font-size: 1.3rem;
+  }
+
+  .pf-notebook-agent-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .pf-notebook-open-button {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+}
