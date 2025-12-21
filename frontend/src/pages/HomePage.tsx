@@ -210,6 +210,13 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
             <button className="feature-link">Read E-Book →</button>
           </div>
 
+          <div className="feature-card" onClick={() => handleNavigation('/freelancer-power-library')}>
+            <div className="feature-icon">📚⚡</div>
+            <h3>Freelancer Power Library</h3>
+            <p>Stop the Technician's Nightmare. Access the definitive vault of documented AI systems to escape the Platform Trap and secure Reliable Predictive Monthly (R.P.M.) income.</p>
+            <button className="feature-link">Enter Library →</button>
+          </div>
+
           <div className="feature-card" onClick={() => handleNavigation('/professional-freelancer-audit-report')}>
             <div className="feature-icon">📊</div>
             <h3>Professional Freelancer Audit Report</h3>
