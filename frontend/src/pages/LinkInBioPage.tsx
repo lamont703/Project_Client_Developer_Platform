@@ -57,23 +57,6 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
     }
   }, []);
 
-  const handleNavigation = (route: string) => {
-    navigate(route);
-  };
-
-  const handleStarFrameworkClick = () => {
-    handleNavigation('/star-method-framework');
-  };
-
-  const handlePFAuditClick = () => {
-    handleNavigation('/professional-freelancer-audit');
-  };
-
-  const handleGHLTrialClick = () => {
-    // Navigate to activate-ghl page
-    handleNavigation('/activate-ghl');
-  };
-
   const handlePowerLibraryClick = () => {
     window.open('https://innergcomplete.app.clientclub.net/communities/groups/freelancer-power-library/home?invite=694847e67b12d6d631989aa5', '_blank');
   };
