@@ -1,13 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
 import '../styles/Freelance Kickstart/FreelanceKickstartPage.css';
-import PaymentModal from '../components/Freelance Kickstart/PaymentModal';
 
 interface FreelanceKickstartPageProps {
   navigateToHome?: () => void;
 }
 
 const FreelanceKickstartPage: React.FC<FreelanceKickstartPageProps> = ({ navigateToHome }) => {
-  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [showVideoControls, setShowVideoControls] = useState(false);
   const [videoError, setVideoError] = useState<string | null>(null);
@@ -23,8 +21,9 @@ const FreelanceKickstartPage: React.FC<FreelanceKickstartPageProps> = ({ navigat
     }
   }, []);
 
-  const openPaymentModal = () => setIsPaymentModalOpen(true);
-  const closePaymentModal = () => setIsPaymentModalOpen(false);
+  const handleEnrollClick = () => {
+    window.open('https://innergcomplete.app.clientclub.net/communities/groups/ai-freelance-support-network/home?invite=694768667b12d6d6319a9371', '_blank');
+  };
 
   const handleVideoPlayClick = async (e?: React.MouseEvent) => {
     if (e) {
@@ -193,7 +192,7 @@ const FreelanceKickstartPage: React.FC<FreelanceKickstartPageProps> = ({ navigat
     if (metaDescription) {
       metaDescription.setAttribute(
         'content',
-        'The 10 Day AI Freelance Kickstart gives you hands-on implementation of the STAR Method so you can attract $5K–$10K+ AI clients without relying on Upwork or Fiverr. Full program: $497.'
+        'The 10 Day AI Freelance Kickstart gives you hands-on implementation of the STAR Method so you can attract $5K–$10K+ AI clients without relying on Upwork or Fiverr. FREE for a limited time!'
       );
     }
 
@@ -272,14 +271,13 @@ const FreelanceKickstartPage: React.FC<FreelanceKickstartPageProps> = ({ navigat
             </p>
 
             <div className="hero-pricing-block">
-              <div className="hero-price-label">Enrollment Investment</div>
+              <div className="hero-price-label">Limited Time Offer</div>
               <div className="hero-price-amount">
-                <span className="hero-price-currency">$</span>
-                <span className="hero-price-number">497</span>
+                <span className="hero-price-number">FREE</span>
               </div>
-              <p className="hero-price-subcopy">Single Payment • Full Access to All 10 Days & Assets</p>
+              <p className="hero-price-subcopy">Full Access to All 10 Days & Assets • Limited Time Only</p>
 
-              <button className="hero-enroll-button" onClick={openPaymentModal}>
+              <button className="hero-enroll-button" onClick={handleEnrollClick}>
                 <span className="hero-enroll-icon">🔥</span>
                 <span className="hero-enroll-text">Enroll Now: Stop Paying Fees, Start Earning Predictably</span>
               </button>
@@ -467,11 +465,11 @@ const FreelanceKickstartPage: React.FC<FreelanceKickstartPageProps> = ({ navigat
 
           {/* Video CTA */}
           <div className="video-cta-container">
-            <button className="video-cta-button" onClick={openPaymentModal}>
+            <button className="video-cta-button" onClick={handleEnrollClick}>
               <span className="video-cta-icon">🚀</span>
               <span className="video-cta-text">ENROLL NOW: Get the Full 10 Day AI Freelance Kickstart System</span>
             </button>
-            <p className="video-cta-price">Final Price: $497</p>
+            <p className="video-cta-price">FREE for a Limited Time!</p>
           </div>
         </div>
       </section>
@@ -646,20 +644,19 @@ const FreelanceKickstartPage: React.FC<FreelanceKickstartPageProps> = ({ navigat
       <section className="kickstart-final-cta">
         <div className="section-container final-cta-container">
           <div className="final-price-block">
-            <div className="final-price-label">Enrollment Today</div>
+            <div className="final-price-label">Limited Time Offer</div>
             <div className="final-price-amount">
-              <span className="final-price-currency">$</span>
-              <span className="final-price-number">497</span>
+              <span className="final-price-number">FREE</span>
             </div>
             <p className="final-price-subcopy">
-              One-time payment. Full access to the 10 Day AI Freelance Kickstart, Blueprint, and Support Network.
+              Full access to the 10 Day AI Freelance Kickstart, Blueprint, and Support Network. Limited time only!
             </p>
           </div>
 
-          <button className="hero-enroll-button final-enroll-button" onClick={openPaymentModal}>
+          <button className="hero-enroll-button final-enroll-button" onClick={handleEnrollClick}>
             <span className="hero-enroll-icon">✅</span>
             <span className="hero-enroll-text">
-              Yes, I Want the STAR Method: Enroll in the Kickstart for $497
+              Yes, I Want the STAR Method: Enroll FREE Now (Limited Time)
             </span>
           </button>
 
@@ -669,8 +666,6 @@ const FreelanceKickstartPage: React.FC<FreelanceKickstartPageProps> = ({ navigat
           </p>
         </div>
       </section>
-
-      <PaymentModal isOpen={isPaymentModalOpen} onClose={closePaymentModal} />
     </div>
   );
 };
