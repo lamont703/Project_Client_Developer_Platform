@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import '../styles/VibeCodingBootcamp/VibeCodingBootcampPage.css';
 
 interface VibeCodingBootcampPageProps {
@@ -7,7 +6,6 @@ interface VibeCodingBootcampPageProps {
 }
 
 const VibeCodingBootcampPage: React.FC<VibeCodingBootcampPageProps> = ({ navigateToHome }) => {
-  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = 'Vibe Coding Bootcamp - Software 2.0: From Coder to Orchestrator';
