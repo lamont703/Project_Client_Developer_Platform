@@ -203,6 +203,13 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
             <button className="feature-link">Enter Bootcamp →</button>
           </div>
 
+          <div className="feature-card" onClick={() => handleNavigation('/ai-fatigue-cure-ebook')}>
+            <div className="feature-icon">📚</div>
+            <h3>The AI Fatigue Cure E-Book</h3>
+            <p>From Tool-Chasing Technician to Systems Architect. Discover the F.I.T.S. Method to eliminate AI Fatigue and transform your freelance business with a stable, integrated ecosystem.</p>
+            <button className="feature-link">Read E-Book →</button>
+          </div>
+
           <div className="feature-card" onClick={() => handleNavigation('/professional-freelancer-audit-report')}>
             <div className="feature-icon">📊</div>
             <h3>Professional Freelancer Audit Report</h3>

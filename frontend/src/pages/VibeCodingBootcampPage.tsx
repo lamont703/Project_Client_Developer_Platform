@@ -14,6 +14,51 @@ const VibeCodingBootcampPage: React.FC<VibeCodingBootcampPageProps> = ({ navigat
     if (metaDescription) {
       metaDescription.setAttribute('content', 'Join the elite bootcamp teaching the disciplined frameworks of Vibe Coding. Stop writing syntax. Start engineering context.');
     }
+
+    // Install visitor tracking script
+    const installTrackingScript = () => {
+      // Check if script already exists
+      const existingScript = document.querySelector('script[src="https://link.msgsndr.com/js/am.js"]');
+      if (existingScript) {
+        return; // Script already installed
+      }
+
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = 'https://link.msgsndr.com/js/am.js';
+      
+      // Handle script loading with proper TypeScript types
+      const handleScriptLoad = () => {
+        try {
+          if ((window as any).affiliateManager) {
+            (window as any).affiliateManager.init('QLyYYRoOhCg65lKW9HDX', 'https://backend.leadconnectorhq.com', '.www.xrwebsites.io');
+          }
+        } catch (error) {
+          console.error('Error initializing affiliate manager:', error);
+        }
+      };
+
+      // Use onload for modern browsers
+      script.onload = handleScriptLoad;
+      
+      // Handle onreadystatechange for older IE browsers (with type casting)
+      (script as any).onreadystatechange = function() {
+        const readyState = (this as any).readyState;
+        if (!readyState || readyState === 'complete' || readyState === 'loaded') {
+          handleScriptLoad();
+        }
+      };
+
+      const firstScript = document.getElementsByTagName('script')[0];
+      if (firstScript && firstScript.parentNode) {
+        firstScript.parentNode.insertBefore(script, firstScript);
+      } else {
+        document.head.appendChild(script);
+      }
+    };
+
+    installTrackingScript();
   }, []);
 
   const handleSkoolClick = () => {
