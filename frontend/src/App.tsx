@@ -315,7 +315,7 @@ function AppContent() {
               <AIToolStackPage navigateToHome={navigateToHome} />
             </SafeComponent>
           } />
-          <Route path="/link-in-bio" element={
+          <Route path="/school-of-freelancer-freedom" element={
             <SafeComponent>
               <LinkInBioPage navigateToHome={navigateToHome} />
             </SafeComponent>

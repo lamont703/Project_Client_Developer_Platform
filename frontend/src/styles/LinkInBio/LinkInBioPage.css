@@ -141,6 +141,263 @@
   text-shadow: 0 0 10px rgba(255, 107, 107, 0.6);
 }
 
+/* Phase 1: Crisis Hook Section */
+.crisis-hook-section {
+  text-align: center;
+  margin-bottom: 3rem;
+  animation: fadeInDown 0.8s ease-out 0.2s both;
+}
+
+.crisis-headline {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+  text-shadow: 
+    0 0 25px rgba(0, 255, 150, 0.7),
+    0 2px 10px rgba(0, 0, 0, 0.8);
+  letter-spacing: -0.3px;
+  line-height: 1.3;
+}
+
+.crisis-subheadline {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 1.5rem 0;
+  line-height: 1.6;
+  text-shadow: 0 0 10px rgba(0, 255, 150, 0.4);
+}
+
+.crisis-subheadline strong {
+  color: #00ff96;
+  text-shadow: 0 0 10px rgba(0, 255, 150, 0.6);
+}
+
+.data-hook-block {
+  background: rgba(255, 107, 107, 0.15);
+  border: 2px solid rgba(255, 107, 107, 0.4);
+  border-radius: 12px;
+  padding: 1.25rem 1rem;
+  box-shadow: 
+    0 0 25px rgba(255, 107, 107, 0.3),
+    inset 0 0 20px rgba(255, 107, 107, 0.1);
+}
+
+.data-hook-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  line-height: 1.6;
+  text-shadow: 0 0 10px rgba(255, 107, 107, 0.6);
+}
+
+.data-hook-text strong {
+  color: #ff6b6b;
+  text-shadow: 0 0 15px rgba(255, 107, 107, 0.8);
+}
+
+/* Email Capture Form */
+.email-capture-form-container {
+  width: 100%;
+  margin: 2rem 0 0;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(0, 255, 150, 0.3);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 
+    0 0 30px rgba(0, 255, 150, 0.2),
+    0 8px 24px rgba(0, 0, 0, 0.4),
+    inset 0 0 30px rgba(0, 255, 150, 0.05);
+  overflow: hidden;
+}
+
+.email-capture-iframe {
+  width: 100%;
+  height: 492px;
+  border: none;
+  border-radius: 3px;
+  display: block;
+}
+
+/* Phase 2: School Offers Section */
+.school-offers-section {
+  margin-bottom: 3rem;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.school-section-title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #ffffff;
+  text-align: center;
+  margin: 0 0 2.5rem 0;
+  text-shadow: 
+    0 0 25px rgba(0, 255, 150, 0.7),
+    0 2px 10px rgba(0, 0, 0, 0.8);
+  letter-spacing: -0.3px;
+}
+
+.offer-block {
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(0, 255, 150, 0.3);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 0 30px rgba(0, 255, 150, 0.2),
+    0 8px 24px rgba(0, 0, 0, 0.4),
+    inset 0 0 30px rgba(0, 255, 150, 0.05);
+}
+
+.offer-block:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0, 255, 150, 0.5);
+  box-shadow: 
+    0 0 40px rgba(0, 255, 150, 0.4),
+    0 12px 32px rgba(0, 0, 0, 0.5),
+    inset 0 0 40px rgba(0, 255, 150, 0.1);
+}
+
+.offer-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 15px rgba(0, 255, 150, 0.8));
+}
+
+.offer-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 0.75rem 0;
+  text-shadow: 
+    0 0 20px rgba(0, 255, 150, 0.6),
+    0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.offer-focus {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffa500;
+  margin: 0 0 1rem 0;
+  text-shadow: 0 0 15px rgba(255, 165, 0, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.offer-description {
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 1.5rem 0;
+  line-height: 1.6;
+}
+
+.offer-description strong {
+  color: #00ff96;
+  text-shadow: 0 0 10px rgba(0, 255, 150, 0.6);
+}
+
+.offer-cta-button {
+  width: 100%;
+  padding: 1.25rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(0, 255, 150, 0.2) 0%, rgba(0, 255, 150, 0.1) 100%);
+  border: 3px solid #00ff96;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.5),
+    0 2px 4px rgba(0, 0, 0, 0.8);
+  box-shadow: 
+    0 0 30px rgba(0, 255, 150, 0.4),
+    0 8px 24px rgba(0, 0, 0, 0.5),
+    inset 0 0 20px rgba(0, 255, 150, 0.1);
+}
+
+.offer-cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 0 40px rgba(0, 255, 150, 0.6),
+    0 12px 32px rgba(0, 0, 0, 0.6),
+    inset 0 0 30px rgba(0, 255, 150, 0.15);
+  border-color: #00ffb3;
+}
+
+.offer-cta-button:active {
+  transform: translateY(-1px);
+}
+
+/* Phase 3: Final Urgency Section */
+.final-urgency-section {
+  text-align: center;
+  margin-bottom: 3rem;
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+
+.final-urgency-statement {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #ffa500;
+  margin: 0 0 2.5rem 0;
+  text-shadow: 
+    0 0 20px rgba(255, 165, 0, 0.8),
+    0 2px 10px rgba(0, 0, 0, 0.8);
+  line-height: 1.4;
+}
+
+.booking-calendar-section {
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(0, 255, 150, 0.3);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  box-shadow: 
+    0 0 30px rgba(0, 255, 150, 0.2),
+    0 8px 24px rgba(0, 0, 0, 0.4),
+    inset 0 0 30px rgba(0, 255, 150, 0.05);
+}
+
+.booking-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 0.75rem 0;
+  text-shadow: 
+    0 0 20px rgba(0, 255, 150, 0.6),
+    0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.booking-subtitle {
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 1.5rem 0;
+  line-height: 1.6;
+}
+
+.booking-calendar-container {
+  width: 100%;
+  min-height: 600px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.booking-calendar-iframe {
+  width: 100%;
+  min-height: 600px;
+  border: none;
+  border-radius: 12px;
+}
+
 /* Video Hero Section */
 .video-hero-section {
   width: 100%;
@@ -1254,6 +1511,84 @@ video.kickstart-video {
 
   .ghl-trial-sub-text {
     font-size: 0.8rem;
+  }
+
+  /* Crisis Hook Section - Mobile */
+  .crisis-headline {
+    font-size: 1.5rem;
+  }
+
+  .crisis-subheadline {
+    font-size: 1rem;
+  }
+
+  .data-hook-text {
+    font-size: 0.95rem;
+  }
+
+  /* Email Capture Form - Mobile */
+  .email-capture-form-container {
+    padding: 1.25rem;
+    margin: 1.5rem 0 0;
+  }
+
+  .email-capture-iframe {
+    height: 450px;
+  }
+
+  /* School Offers Section - Mobile */
+  .school-section-title {
+    font-size: 1.6rem;
+  }
+
+  .offer-block {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .offer-icon {
+    font-size: 2.5rem;
+  }
+
+  .offer-title {
+    font-size: 1.3rem;
+  }
+
+  .offer-focus {
+    font-size: 1rem;
+  }
+
+  .offer-description {
+    font-size: 0.95rem;
+  }
+
+  .offer-cta-button {
+    padding: 1.1rem 1.25rem;
+    font-size: 1rem;
+  }
+
+  /* Final Urgency Section - Mobile */
+  .final-urgency-statement {
+    font-size: 1.1rem;
+  }
+
+  .booking-calendar-section {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .booking-title {
+    font-size: 1.3rem;
+  }
+
+  .booking-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .booking-calendar-container {
+    min-height: 500px;
+  }
+
+  .booking-calendar-iframe {
+    min-height: 500px;
   }
 
   .support-image-container,

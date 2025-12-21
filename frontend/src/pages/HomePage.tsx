@@ -189,7 +189,7 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
             <button className="feature-link">Activate Trial →</button>
           </div>
 
-          <div className="feature-card" onClick={() => handleNavigation('/link-in-bio')}>
+          <div className="feature-card" onClick={() => handleNavigation('/school-of-freelancer-freedom')}>
             <div className="feature-icon">🔗</div>
             <h3>Link in Bio</h3>
             <p>Access all our courses, resources, and social media links in one convenient place. Your gateway to everything XRBlockDev has to offer.</p>
