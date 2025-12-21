@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import '../styles/LinkInBio/LinkInBioPage.css';
 
 interface LinkInBioPageProps {
@@ -7,7 +6,6 @@ interface LinkInBioPageProps {
 }
 
 const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
-  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = 'Lamont T. Evans - Agency Owner/Educator';
