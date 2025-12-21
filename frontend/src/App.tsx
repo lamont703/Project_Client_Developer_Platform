@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { ScrollToTop } from './components';
-import { HomePage, ChatPage, JobsPage, PostJobPage, DevelopersPage, AICommunityMemberPage, PitchDeckPage, DeFiPage, TaskManagerPage, PipelineDashboardPage, UserFeedbackPage, CodeContributionsPage, CodingEducationPage, FreelanceKickstartPage, DailyLessonPage, ActivateGHLPage, BookLandingPage, AcceleratorCoursePage, WebinarWorkshopPage, LinkInBioPage, AIToolStackPage, StarInfographicPage, ProfessionalFreelancerAuditPage, ProfessionalFreelancerAuditReportPage, DanteAuditReportPage, StarMethodFrameworkPage } from './pages';
+import { HomePage, ChatPage, JobsPage, PostJobPage, DevelopersPage, AICommunityMemberPage, PitchDeckPage, DeFiPage, TaskManagerPage, PipelineDashboardPage, UserFeedbackPage, CodeContributionsPage, CodingEducationPage, FreelanceKickstartPage, DailyLessonPage, ActivateGHLPage, BookLandingPage, AcceleratorCoursePage, WebinarWorkshopPage, LinkInBioPage, AIToolStackPage, StarInfographicPage, ProfessionalFreelancerAuditPage, ProfessionalFreelancerAuditReportPage, DanteAuditReportPage, StarMethodFrameworkPage, VibeCodingBootcampPage } from './pages';
 import LandingPage from './components/Landing Page/LandingPage';
 import DeveloperChatPage from './pages/DeveloperChatPage';
 import ProtoHubPage from './pages/ProtoHubPage';
@@ -338,6 +338,11 @@ function AppContent() {
           <Route path="/star-method-framework" element={
             <SafeComponent>
               <StarMethodFrameworkPage navigateToHome={navigateToHome} />
+            </SafeComponent>
+          } />
+          <Route path="/vibe-coding-bootcamp" element={
+            <SafeComponent>
+              <VibeCodingBootcampPage navigateToHome={navigateToHome} />
             </SafeComponent>
           } />
           <Route path="*" element={<Navigate to="/" replace />} />

@@ -26,3 +26,4 @@ export { default as ProfessionalFreelancerAuditPage } from './ProfessionalFreela
 export { default as ProfessionalFreelancerAuditReportPage } from './ProfessionalFreelancerAuditReportPage';
 export { default as DanteAuditReportPage } from './DanteAuditReportPage';
 export { default as StarMethodFrameworkPage } from './StarMethodFrameworkPage';
+export { default as VibeCodingBootcampPage } from './VibeCodingBootcampPage';

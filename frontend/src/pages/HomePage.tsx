@@ -196,6 +196,13 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
             <button className="feature-link">View Links →</button>
           </div>
 
+          <div className="feature-card" onClick={() => handleNavigation('/vibe-coding-bootcamp')}>
+            <div className="feature-icon">⚡</div>
+            <h3>Vibe Coding Bootcamp</h3>
+            <p>Welcome to Software 2.0: From Coder to Orchestrator. Stop writing syntax. Start engineering context. Join the elite bootcamp teaching disciplined frameworks of Vibe Coding.</p>
+            <button className="feature-link">Enter Bootcamp →</button>
+          </div>
+
           <div className="feature-card" onClick={() => handleNavigation('/professional-freelancer-audit-report')}>
             <div className="feature-icon">📊</div>
             <h3>Professional Freelancer Audit Report</h3>
