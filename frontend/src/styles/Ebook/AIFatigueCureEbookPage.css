@@ -45,7 +45,7 @@
 
 .ebook-reader-wrapper {
   width: 100%;
-  max-width: 700px;
+  max-width: 500px;
   margin: 0 auto;
   position: relative;
   z-index: 1;
@@ -57,39 +57,42 @@
   background: rgba(0, 0, 0, 0.5);
   border: 3px solid rgba(0, 255, 150, 0.3);
   border-radius: 20px;
-  padding: 2rem;
+  padding: 1.5rem;
   box-shadow: 
     0 0 50px rgba(0, 255, 150, 0.3),
     0 10px 40px rgba(0, 0, 0, 0.7),
     inset 0 0 40px rgba(0, 255, 150, 0.05);
-  height: 610px;
-  min-height: 610px;
-  max-height: 610px;
+  height: 750px;
+  min-height: 750px;
+  max-height: 750px;
   display: flex;
   align-items: center;
   justify-content: center;
+  aspect-ratio: 3 / 4;
 }
 
 /* Book Pages */
 .book-pages {
   position: relative;
   width: 100%;
-  height: 550px;
-  min-height: 550px;
-  max-height: 550px;
+  height: 690px;
+  min-height: 690px;
+  max-height: 690px;
   display: flex;
   align-items: center;
   justify-content: center;
+  aspect-ratio: 3 / 4;
 }
 
 .book-page {
   width: 100%;
-  height: 550px;
-  max-height: 550px;
-  min-height: 550px;
+  height: 690px;
+  max-height: 690px;
+  min-height: 690px;
   animation: pageTurn 0.5s ease-in-out;
   position: relative;
   box-sizing: border-box;
+  aspect-ratio: 3 / 4;
 }
 
 @keyframes pageTurn {
@@ -105,17 +108,17 @@
 
 /* Cover Page - Fixed dimensions matching content pages */
 .book-page-cover {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+  background: #0a0e27;
   border: 3px solid rgba(0, 255, 150, 0.4);
   border-radius: 16px;
-  padding: 3.5rem 3rem;
+  padding: 0;
   text-align: center;
   box-shadow: 
     0 0 40px rgba(0, 255, 150, 0.3),
     inset 0 0 40px rgba(0, 255, 150, 0.1);
-  height: 550px;
-  max-height: 550px;
-  min-height: 550px;
+  height: 690px;
+  max-height: 690px;
+  min-height: 690px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -123,6 +126,16 @@
   overflow: hidden;
   position: relative;
   box-sizing: border-box;
+  aspect-ratio: 3 / 4;
+}
+
+.cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 13px;
 }
 
 .cover-content {
@@ -194,9 +207,9 @@
   border-right: 3px solid #d0d0d0;
   border-radius: 2px;
   padding: 3.5rem 3rem;
-  height: 550px;
-  max-height: 550px;
-  min-height: 550px;
+  height: 690px;
+  max-height: 690px;
+  min-height: 690px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -211,6 +224,7 @@
   color: #2c2c2c;
   overflow: hidden;
   box-sizing: border-box;
+  aspect-ratio: 3 / 4;
 }
 
 .page-content {
@@ -549,31 +563,35 @@
   .book-container {
     padding: 1rem;
     height: auto;
-    min-height: 500px;
+    min-height: 600px;
     max-height: none;
     border-radius: 12px;
     border-width: 2px;
+    aspect-ratio: 3 / 4;
   }
 
   .book-pages {
     height: auto;
-    min-height: 450px;
+    min-height: 550px;
     max-height: none;
+    aspect-ratio: 3 / 4;
   }
 
   .book-page {
-    height: 450px;
-    min-height: 450px;
-    max-height: 450px;
+    height: auto;
+    min-height: 550px;
+    max-height: none;
+    aspect-ratio: 3 / 4;
   }
 
   .book-page-cover {
-    padding: 2.5rem 1.5rem;
+    padding: 0;
     border-radius: 8px;
   }
 
   .book-page-content {
     padding: 2rem 1.5rem;
+    min-height: 550px;
   }
 
   .cover-main-title {
@@ -734,30 +752,34 @@
   .book-container {
     padding: 0.75rem;
     height: auto;
-    min-height: 400px;
+    min-height: 500px;
     max-height: none;
     border-radius: 8px;
+    aspect-ratio: 3 / 4;
   }
 
   .book-pages {
-    height: 400px;
-    min-height: 400px;
-    max-height: 400px;
+    height: auto;
+    min-height: 450px;
+    max-height: none;
+    aspect-ratio: 3 / 4;
   }
 
   .book-page {
-    height: 400px;
-    min-height: 400px;
-    max-height: 400px;
+    height: auto;
+    min-height: 450px;
+    max-height: none;
+    aspect-ratio: 3 / 4;
   }
 
   .book-page-cover {
-    padding: 2rem 1.25rem;
+    padding: 0;
     border-radius: 6px;
   }
 
   .book-page-content {
     padding: 1.5rem 1.25rem;
+    min-height: 450px;
   }
 
   .cover-title {

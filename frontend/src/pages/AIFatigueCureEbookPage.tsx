@@ -57,12 +57,11 @@ const AIFatigueCureEbookPage: React.FC<AIFatigueCureEbookPageProps> = ({ navigat
             {/* Page 1: Cover */}
             {currentPage === 1 && (
               <div className="book-page book-page-cover">
-                <div className="cover-content">
-                  <h1 className="cover-title">E-Book</h1>
-                  <h2 className="cover-main-title">The AI Fatigue Cure</h2>
-                  <p className="cover-subtitle">From Tool-Chasing Technician to Systems Architect</p>
-                  <div className="cover-decoration"></div>
-                </div>
+                <img 
+                  src="/The AI Fatigue Cure Cover.png" 
+                  alt="The AI Fatigue Cure - E-Book Cover" 
+                  className="cover-image"
+                />
               </div>
             )}
 
