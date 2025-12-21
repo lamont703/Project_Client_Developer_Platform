@@ -7,7 +7,7 @@ interface AIFatigueCureEbookPageProps {
 
 const AIFatigueCureEbookPage: React.FC<AIFatigueCureEbookPageProps> = ({ navigateToHome }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 7;
+  const totalPages = 10; // Increased from 7 to 10 for better content distribution
 
   useEffect(() => {
     document.title = 'The AI Fatigue Cure - E-Book | From Tool-Chasing Technician to Systems Architect';
@@ -66,7 +66,7 @@ const AIFatigueCureEbookPage: React.FC<AIFatigueCureEbookPageProps> = ({ navigat
               </div>
             )}
 
-            {/* Page 2: Introduction */}
+            {/* Page 2: Introduction Part 1 */}
             {currentPage === 2 && (
               <div className="book-page book-page-content">
                 <div className="page-content">
@@ -105,7 +105,7 @@ const AIFatigueCureEbookPage: React.FC<AIFatigueCureEbookPageProps> = ({ navigat
               </div>
             )}
 
-            {/* Page 4: Phase 1 */}
+            {/* Page 4: Phase 1 Part 1 */}
             {currentPage === 4 && (
               <div className="book-page book-page-content">
                 <div className="page-content">
@@ -116,16 +116,28 @@ const AIFatigueCureEbookPage: React.FC<AIFatigueCureEbookPageProps> = ({ navigat
                   <p className="page-text">
                     When you lack a mandated, integrated tool stack, you feel slow and less capable than a full agency. You may spend hours troubleshooting "free" tools, which is a classic trap because <strong>consistency over novelty</strong> is the only way to maintain a professional organization.
                   </p>
-                  <p className="page-text">
-                    I've learned from my own transition from a highly skilled developer to an agency owner that if a business depends entirely on your manual presence, you don't own a business—you own a job, and it's likely the worst job in the world because your boss is a lunatic.
-                  </p>
                 </div>
                 <div className="page-number">4</div>
               </div>
             )}
 
-            {/* Page 5: FITS Method */}
+            {/* Page 5: Phase 1 Part 2 */}
             {currentPage === 5 && (
+              <div className="book-page book-page-content">
+                <div className="page-content">
+                  <p className="page-text">
+                    I've learned from my own transition from a highly skilled developer to an agency owner that if a business depends entirely on your manual presence, you don't own a business—you own a job, and it's likely the worst job in the world because your boss is a lunatic.
+                  </p>
+                  <p className="page-text">
+                    To break this cycle, you must adopt the <strong>F.I.T.S. Method</strong> to ensure your tools enhance, rather than distract from, your business growth.
+                  </p>
+                </div>
+                <div className="page-number">5</div>
+              </div>
+            )}
+
+            {/* Page 6: FITS Method Intro */}
+            {currentPage === 6 && (
               <div className="book-page book-page-content">
                 <div className="page-content">
                   <h2 className="page-title">Phase 2: The F.I.T.S. Method</h2>
@@ -146,31 +158,42 @@ const AIFatigueCureEbookPage: React.FC<AIFatigueCureEbookPageProps> = ({ navigat
                         <strong>Integrated Categories:</strong> Organize around <strong>Productivity</strong>, <strong>Design</strong>, <strong>Development</strong>, and <strong>Content</strong>.
                       </div>
                     </div>
+                  </div>
+                </div>
+                <div className="page-number">6</div>
+              </div>
+            )}
+
+            {/* Page 7: FITS Method Part 2 */}
+            {currentPage === 7 && (
+              <div className="book-page book-page-content">
+                <div className="page-content">
+                  <div className="fits-list">
                     <div className="fits-item-compact">
                       <span className="fits-letter-small">T</span>
                       <div>
-                        <strong>Tool Selection Test:</strong> Prioritize <strong>Workflow Fit</strong> over "troubleshooting for free."
+                        <strong>Tool Selection Test:</strong> Prioritize <strong>Workflow Fit</strong> over "troubleshooting for free." Constant switching kills the speed necessary to manage high-ticket sales cycles.
                       </div>
                     </div>
                     <div className="fits-item-compact">
                       <span className="fits-letter-small">S</span>
                       <div>
-                        <strong>Speed and System:</strong> Mastery allows a solo freelancer to <strong>appear as capable as a full agency</strong>.
+                        <strong>Speed and System:</strong> Mastery of a stable stack allows a solo freelancer to <strong>appear as capable as a full agency</strong>, providing the professional organization needed to complete projects faster.
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="page-number">5</div>
+                <div className="page-number">7</div>
               </div>
             )}
 
-            {/* Page 6: Tool Stack */}
-            {currentPage === 6 && (
+            {/* Page 8: Tool Stack */}
+            {currentPage === 8 && (
               <div className="book-page book-page-content">
                 <div className="page-content">
                   <h2 className="page-title">Phase 3: The Mandated Agency Stack</h2>
                   <p className="page-text">
-                    To cure fatigue, you must stop searching and start installing. My <strong>Mandated AI Tool Stack</strong> includes:
+                    To cure fatigue, you must stop searching and start installing. My <strong>Mandated AI Tool Stack</strong> for workflow fit and enhanced efficiency includes:
                   </p>
                   
                   <div className="tool-list-compact">
@@ -178,28 +201,28 @@ const AIFatigueCureEbookPage: React.FC<AIFatigueCureEbookPageProps> = ({ navigat
                       <strong>1. GoHighLevel:</strong> Your central command center for CRM, pipelines, and automated follow-ups.
                     </div>
                     <div className="tool-item-compact">
-                      <strong>2. Cursor:</strong> The AI-powered code editor that allows you to build software at 10x speed.
+                      <strong>2. Cursor:</strong> The AI-powered code editor that allows you to build software and applications at 10x speed.
                     </div>
                     <div className="tool-item-compact">
-                      <strong>3. Vercel & Supabase:</strong> High-speed infrastructure for deployment and backend data management.
+                      <strong>3. Vercel & Supabase:</strong> The high-speed infrastructure for deployment and backend data management.
                     </div>
                     <div className="tool-item-compact">
                       <strong>4. NotebookLM:</strong> For deep research and turning raw data into structured frameworks.
                     </div>
                   </div>
-                  
-                  <p className="page-text">
-                    By sticking to this stable stack, you leverage the fact that big companies will eventually adopt effective features anyway, so you can "gladly wait" for them to integrate new tech into your existing workflow.
-                  </p>
                 </div>
-                <div className="page-number">6</div>
+                <div className="page-number">8</div>
               </div>
             )}
 
-            {/* Page 7: Conclusion */}
-            {currentPage === 7 && (
+            {/* Page 9: Tool Stack Conclusion & Path Choice */}
+            {currentPage === 9 && (
               <div className="book-page book-page-content">
                 <div className="page-content">
+                  <p className="page-text">
+                    By sticking to this stable stack, you leverage the fact that big companies will eventually adopt effective features anyway, so you can "gladly wait" for them to integrate new tech into your existing workflow.
+                  </p>
+                  
                   <h2 className="page-title">Conclusion: Your Implementation Path</h2>
                   <p className="page-text">
                     You now face a critical choice: <strong>Path A</strong> is self-guided implementation, where you continue to research and test systems on your own, carrying the high risk of continued <strong>AI Fatigue</strong>.
@@ -207,8 +230,17 @@ const AIFatigueCureEbookPage: React.FC<AIFatigueCureEbookPageProps> = ({ navigat
                   <p className="page-text">
                     <strong>Path B</strong> is the <strong>Accelerated Implementation</strong> through the <strong>10 Day AI Freelance Kickstart</strong>.
                   </p>
+                </div>
+                <div className="page-number">9</div>
+              </div>
+            )}
+
+            {/* Page 10: Final Conclusion & Analogy */}
+            {currentPage === 10 && (
+              <div className="book-page book-page-content">
+                <div className="page-content">
                   <p className="page-text">
-                    It is "not time to play anymore"; you must commit to a professional, repeatable system to secure predictable monthly income. The <strong>STAR Method</strong> gives you the "what" and the "why," but the Kickstart program provides the hands-on "how."
+                    It is "not time to play anymore"; you must commit to a professional, repeatable system to secure predictable monthly income. The <strong>STAR Method</strong> gives you the "what" and the "why," but the Kickstart program provides the hands-on "how" to build a reliable, efficient AI-driven business.
                   </p>
                   
                   <div className="analogy-box">
@@ -218,7 +250,7 @@ const AIFatigueCureEbookPage: React.FC<AIFatigueCureEbookPageProps> = ({ navigat
                     </p>
                   </div>
                 </div>
-                <div className="page-number">7</div>
+                <div className="page-number">10</div>
               </div>
             )}
           </div>
