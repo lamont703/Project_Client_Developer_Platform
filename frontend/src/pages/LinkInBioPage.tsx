@@ -89,7 +89,8 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
         <div className="crisis-hook-section">
           <h2 className="crisis-headline">The Freelance Vibe Coder's 10x Velocity Blueprint</h2>
           <p className="crisis-subheadline">
-            Get The Mandated Agency Stack & 5-Agent AI Workforce to Secure $10K Projects Consistently.
+            Ready To Get The Mandated Agency Stack & 5-Agent AI Workforce to Secure $10K Projects Consistently? 
+            <br />Enter Your Email
           </p>
 
           {/* Email Capture Form */}
