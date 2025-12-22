@@ -1,5 +1,5 @@
-import React from 'react';
-import { JobListing } from '../components';
+import React, { useState } from 'react';
+import { KanbanBoard, AddProjectForm } from '../components/Kanban Board';
 import '../styles/PageLayout.css';
 
 interface JobsPageProps {
@@ -7,32 +7,34 @@ interface JobsPageProps {
 }
 
 const JobsPage: React.FC<JobsPageProps> = ({ navigateToHome }) => {
-  const handleBackToHome = () => {
-    // Scroll to top immediately
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-    // Navigate to home using the full URL
-    navigateToHome();
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  const handleAddProject = () => {
+    setShowAddForm(true);
+  };
+
+  const handleProjectAdded = () => {
+    setRefreshKey(prev => prev + 1);
   };
 
   return (
     <div className="page-layout">
       <div className="page-header">
-        <div className="page-navigation">
-          <button
-            onClick={handleBackToHome}
-            className="nav-link"
-            style={{ background: 'none', border: 'none', cursor: 'pointer' }}
-          >
-            ← Back to Home
-          </button>
-        </div>
-        <h1>💼 Pipeline Projects</h1>
-        <p>Find the perfect opportunity from our extensive job board</p>
+        <h1>📋 School Communities Project Kanban Board</h1>
+        <p>Track student projects through the Client Software Pipeline</p>
       </div>
       
       <div className="page-content">
-        <JobListing />
+        <KanbanBoard key={refreshKey} onAddProject={handleAddProject} />
       </div>
+
+      {showAddForm && (
+        <AddProjectForm
+          onClose={() => setShowAddForm(false)}
+          onSuccess={handleProjectAdded}
+        />
+      )}
     </div>
   );
 };

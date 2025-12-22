@@ -70,7 +70,7 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
             <button className="feature-link">Explore Hub →</button>
           </div>
           
-          <div className="feature-card" onClick={() => handleNavigation('/jobs')}>
+          <div className="feature-card" onClick={() => handleNavigation('/pipeline-manager')}>
             <div className="feature-icon">💼</div>
             <h3>Project Listings</h3>
             <p>Browse active projects and opportunities in your pipeline</p>

@@ -210,11 +210,12 @@ function AppContent() {
               <ProtoHubPage navigateToHome={navigateToHome} />
             </SafeComponent>
           } />
-          <Route path="/jobs" element={
+          <Route path="/pipeline-manager" element={
             <SafeComponent>
               <JobsPage navigateToHome={navigateToHome} />
             </SafeComponent>
           } />
+          <Route path="/jobs" element={<Navigate to="/pipeline-manager" replace />} />
           <Route path="/post-job" element={
             <SafeComponent>
               <PostJobPage navigateToHome={navigateToHome} />

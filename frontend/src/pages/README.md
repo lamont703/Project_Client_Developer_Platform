@@ -14,9 +14,9 @@ This directory contains all the page components for the AI Project Assistant pla
 - Wraps the `ChatInterface` component
 - Page header with navigation back to home
 
-### **JobsPage** (`/jobs`)
-- Job listings and browsing interface
-- Wraps the `JobListing` component
+### **JobsPage** (`/pipeline-manager`)
+- Pipeline manager and kanban board interface
+- Displays the School Communities Project Kanban Board
 - Page header with navigation back to home
 
 ### **PostJobPage** (`/post-job`)
@@ -67,7 +67,7 @@ Routes are configured in `App.tsx`:
 <Routes>
   <Route path="/" element={<HomePage />} />
   <Route path="/chat" element={<ChatPage />} />
-  <Route path="/jobs" element={<JobsPage />} />
+  <Route path="/pipeline-manager" element={<JobsPage />} />
   <Route path="/post-job" element={<PostJobPage />} />
   <Route path="/developers" element={<DevelopersPage />} />
 </Routes>

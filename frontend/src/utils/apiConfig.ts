@@ -35,7 +35,9 @@ export const API_CONFIG = {
     // AI Community Member endpoints
     MONITORING: '/monitoring',
     // Task Manager endpoints
-    TASKS: '/tasks'
+    TASKS: '/tasks',
+    // Kanban Projects endpoints
+    KANBAN_PROJECTS: '/kanban-projects'
   },
   
   // Get full URL for an endpoint
@@ -326,6 +328,36 @@ export class ApiService {
     const queryParams = new URLSearchParams(filters).toString();
     const url = queryParams ? `${API_CONFIG.getUrl(API_CONFIG.ENDPOINTS.ANALYTICS)}?${queryParams}` : API_CONFIG.getUrl(API_CONFIG.ENDPOINTS.ANALYTICS);
     return this.makeRequest(url);
+  }
+
+  // ===== KANBAN PROJECTS API METHODS =====
+
+  static async getKanbanProjects(): Promise<any> {
+    return this.makeRequest(API_CONFIG.getUrl(API_CONFIG.ENDPOINTS.KANBAN_PROJECTS));
+  }
+
+  static async getKanbanProjectById(id: string): Promise<any> {
+    return this.makeRequest(API_CONFIG.getUrl(`${API_CONFIG.ENDPOINTS.KANBAN_PROJECTS}/${id}`));
+  }
+
+  static async createKanbanProject(projectData: any): Promise<any> {
+    return this.makeRequest(API_CONFIG.getUrl(API_CONFIG.ENDPOINTS.KANBAN_PROJECTS), {
+      method: 'POST',
+      body: JSON.stringify(projectData)
+    });
+  }
+
+  static async updateKanbanProject(id: string, projectData: any): Promise<any> {
+    return this.makeRequest(API_CONFIG.getUrl(`${API_CONFIG.ENDPOINTS.KANBAN_PROJECTS}/${id}`), {
+      method: 'PUT',
+      body: JSON.stringify(projectData)
+    });
+  }
+
+  static async deleteKanbanProject(id: string): Promise<any> {
+    return this.makeRequest(API_CONFIG.getUrl(`${API_CONFIG.ENDPOINTS.KANBAN_PROJECTS}/${id}`), {
+      method: 'DELETE'
+    });
   }
 }
 

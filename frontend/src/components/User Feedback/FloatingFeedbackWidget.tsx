@@ -57,7 +57,7 @@ const FloatingFeedbackWidget: React.FC<FloatingFeedbackWidgetProps> = ({
       '/developer-chat': 'ai-developer-assistant',
       '/ai-community-member': 'ai-community-member',
       '/proto-hub': 'proto-hub',
-      '/jobs': 'project-listings',
+      '/pipeline-manager': 'project-listings',
       '/developers': 'developer-directory',
       '/task-manager': 'task-manager',
       '/pitch-deck': 'pitch-deck',

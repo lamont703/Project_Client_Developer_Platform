@@ -5,12 +5,15 @@
   
   /* Restore essential properties */
   display: block !important;
-  width: 100% !important;
-  height: auto !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  min-height: 100vh !important;
   margin: 0 !important;
   padding: 0 !important;
   box-sizing: border-box !important;
   position: relative !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
   
   /* Reset font and text properties that 'all: initial' removes */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif !important;
@@ -22,6 +25,7 @@
   /* Ensure full viewport coverage */
   min-height: 100vh !important;
   overflow-x: hidden !important;
+  overflow-y: auto !important;
 }
 
 /* Ensure all child elements inherit proper styling */

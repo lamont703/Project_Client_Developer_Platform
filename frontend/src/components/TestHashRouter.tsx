@@ -28,8 +28,8 @@ const TestHashRouter: React.FC = () => {
         <button onClick={() => handleTestNavigation('/chat')} style={{ margin: '5px' }}>
           Chat
         </button>
-        <button onClick={() => handleTestNavigation('/jobs')} style={{ margin: '5px' }}>
-          Jobs
+        <button onClick={() => handleTestNavigation('/pipeline-manager')} style={{ margin: '5px' }}>
+          Pipeline Manager
         </button>
       </div>
       
