@@ -55,16 +55,8 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
     }
   }, []);
 
-  const handlePowerLibraryClick = () => {
-    window.open('https://innergcomplete.app.clientclub.net/communities/groups/freelancer-power-library/home?invite=694847e67b12d6d631989aa5', '_blank');
-  };
-
-  const handleVibeCodingClick = () => {
-    window.open('https://innergcomplete.app.clientclub.net/communities/groups/vibe-coding-bootcamp/home?invite=69475df5bb5fdfb631c6ba22', '_blank');
-  };
-
-  const handleKickstartClick = () => {
-    window.open('https://innergcomplete.app.clientclub.net/communities/groups/ai-freelance-support-network/home?invite=694869d0bb5fdfb631066c75', '_blank');
+  const handleSchoolOfFreedomClick = () => {
+    window.open('https://innergcomplete.app.clientclub.net/communities/groups/school-of-freelancer-freedom', '_blank');
   };
 
 
@@ -130,31 +122,14 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
             </p>
             <button 
               className="offer-cta-button power-library-cta"
-              onClick={handlePowerLibraryClick}
+              onClick={handleSchoolOfFreedomClick}
             >
-              ENTER THE BLUEPRINT VAULT
+              Enter The Power Library
             </button>
           </div>
 
-          {/* Offer Block 2: The 10 Day AI Freelance Kickstart */}
+          {/* Offer Block 2: The Vibe Coding Bootcamp */}
           <div className="offer-block offer-block-2">
-            <div className="offer-icon">⚡</div>
-            <h3 className="offer-title">The 10 Day AI Freelance Kickstart</h3>
-            <p className="offer-focus">The Hands-on "How"</p>
-            <p className="offer-description">
-              Accelerated implementation to install your mandated tool stack (GoHighLevel, Cursor, Supabase) 
-              and build a functioning revenue engine. Transform theory into practice.
-            </p>
-            <button 
-              className="offer-cta-button kickstart-cta"
-              onClick={handleKickstartClick}
-            >
-              INSTALL MY REVENUE ENGINE
-            </button>
-          </div>
-
-          {/* Offer Block 3: The Vibe Coding Bootcamp */}
-          <div className="offer-block offer-block-3">
             <div className="offer-icon">🚀</div>
             <h3 className="offer-title">The Vibe Coding Bootcamp</h3>
             <p className="offer-focus">The Advanced Edge</p>
@@ -164,9 +139,26 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
             </p>
             <button 
               className="offer-cta-button bootcamp-cta"
-              onClick={handleVibeCodingClick}
+              onClick={handleSchoolOfFreedomClick}
             >
-              MASTER THE AI EDGE
+              START THE CODING BOOTCAMP
+            </button>
+          </div>
+
+          {/* Offer Block 3: The 10 Day AI Freelance Kickstart */}
+          <div className="offer-block offer-block-3">
+            <div className="offer-icon">⚡</div>
+            <h3 className="offer-title">The 10 Day AI Freelance Kickstart</h3>
+            <p className="offer-focus">The Hands-on "How"</p>
+            <p className="offer-description">
+              Accelerated implementation to install your mandated tool stack (GoHighLevel, Google AI Studio, NotebookLM) 
+              and build a functioning revenue engine. Transform theory into practice.
+            </p>
+            <button 
+              className="offer-cta-button kickstart-cta"
+              onClick={handleSchoolOfFreedomClick}
+            >
+              INSTALL MY REVENUE ENGINE
             </button>
           </div>
         </div>
