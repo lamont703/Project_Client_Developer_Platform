@@ -217,6 +217,13 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
             <button className="feature-link">Enter Library →</button>
           </div>
 
+          <div className="feature-card" onClick={() => handleNavigation('/projects-listing')}>
+            <div className="feature-icon">💻</div>
+            <h3>Software Project Opportunities</h3>
+            <p>Browse available software projects and express your interest. Connect with project owners and find your next development opportunity.</p>
+            <button className="feature-link">Browse Projects →</button>
+          </div>
+
           <div className="feature-card" onClick={() => handleNavigation('/professional-freelancer-audit-report')}>
             <div className="feature-icon">📊</div>
             <h3>Professional Freelancer Audit Report</h3>

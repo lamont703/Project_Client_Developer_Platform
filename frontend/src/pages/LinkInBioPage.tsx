@@ -111,24 +111,7 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
         <div className="school-offers-section">
           <h2 className="school-section-title">The School of Freelancer Freedom</h2>
           
-          {/* Offer Block 1: The Freelancer Power Library */}
-          <div className="offer-block offer-block-1">
-            <div className="offer-icon">📚</div>
-            <h3 className="offer-title">The Freelancer Power Library</h3>
-            <p className="offer-focus">The "What" and "Why"</p>
-            <p className="offer-description">
-              A systems vault containing textbooks/audiobooks like <strong>Blueprint To Freelance Freedom</strong> and <strong>The AI Fatigue Cure</strong>. 
-              Access documented frameworks to understand the foundation of the STAR Method.
-            </p>
-            <button 
-              className="offer-cta-button power-library-cta"
-              onClick={handleSchoolOfFreedomClick}
-            >
-              Enter The Power Library
-            </button>
-          </div>
-
-          {/* Offer Block 2: The Vibe Coding Bootcamp */}
+          {/* Offer Block 1: The Vibe Coding Bootcamp */}
           <div className="offer-block offer-block-2">
             <div className="offer-icon">🚀</div>
             <h3 className="offer-title">The Vibe Coding Bootcamp</h3>
@@ -142,6 +125,23 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
               onClick={handleSchoolOfFreedomClick}
             >
               START THE CODING BOOTCAMP
+            </button>
+          </div>
+
+          {/* Offer Block 2: The Freelancer Power Library */}
+          <div className="offer-block offer-block-1">
+            <div className="offer-icon">📚</div>
+            <h3 className="offer-title">The Freelancer Power Library</h3>
+            <p className="offer-focus">The "What" and "Why"</p>
+            <p className="offer-description">
+              A systems vault containing textbooks/audiobooks like <strong>Blueprint To Freelance Freedom</strong> and <strong>The AI Fatigue Cure</strong>. 
+              Access documented frameworks to understand the foundation of the STAR Method.
+            </p>
+            <button 
+              className="offer-cta-button power-library-cta"
+              onClick={handleSchoolOfFreedomClick}
+            >
+              Enter The Power Library
             </button>
           </div>
 

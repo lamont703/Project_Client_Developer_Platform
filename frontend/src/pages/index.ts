@@ -29,3 +29,4 @@ export { default as StarMethodFrameworkPage } from './StarMethodFrameworkPage';
 export { default as VibeCodingBootcampPage } from './VibeCodingBootcampPage';
 export { default as AIFatigueCureEbookPage } from './AIFatigueCureEbookPage';
 export { default as FreelancerPowerLibraryPage } from './FreelancerPowerLibraryPage';
+export { default as ProjectsListingPage } from './ProjectsListingPage';
