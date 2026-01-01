@@ -24,7 +24,6 @@ const DEFAULT_FORM_ID = 'gL834V7rJSAFPDl6Vcks';
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const [showForm, setShowForm] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleExpressInterest = () => {
     setShowForm(true);
@@ -85,9 +84,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           <button 
             className="express-interest-button"
             onClick={handleExpressInterest}
-            disabled={formSubmitted}
           >
-            {formSubmitted ? '✓ Interest Expressed' : 'Express Interest'}
+            Express Interest
           </button>
         )}
 
