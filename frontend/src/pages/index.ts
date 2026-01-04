@@ -30,3 +30,4 @@ export { default as VibeCodingBootcampPage } from './VibeCodingBootcampPage';
 export { default as AIFatigueCureEbookPage } from './AIFatigueCureEbookPage';
 export { default as FreelancerPowerLibraryPage } from './FreelancerPowerLibraryPage';
 export { default as ProjectsListingPage } from './ProjectsListingPage';
+export { default as BuildYourSoftwarePage } from './BuildYourSoftwarePage';

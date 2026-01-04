@@ -230,6 +230,13 @@ const HomePage: React.FC<HomePageProps> = ({ navigateToHome }) => {
             <p>View your personalized audit report with scaling bottleneck analysis, STAR Method roadmap, and customized learning path to predictable income.</p>
             <button className="feature-link">View Report →</button>
           </div>
+
+          <div className="feature-card" onClick={() => handleNavigation('/buildyoursoftware')}>
+            <div className="feature-icon">💻</div>
+            <h3>Build Your Software</h3>
+            <p>Work with Lamont Evans - Web Developer, Email & CRM Specialist, and XR + Blockchain Strategist. From idea to prototype in 30 minutes.</p>
+            <button className="feature-link">Learn More →</button>
+          </div>
         </div>
       </div>
 
