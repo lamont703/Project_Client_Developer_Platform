@@ -59,6 +59,10 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
     window.open('https://innergcomplete.app.clientclub.net/communities/groups/school-of-freelancer-freedom', '_blank');
   };
 
+  const handleCommunityLogin = () => {
+    window.open('https://innergcomplete.app.clientclub.net/communities/groups/school-of-freelancer-freedom/home?invite=69599d6b1017099e8976ed9b', '_blank');
+  };
+
 
   return (
     <div className="link-in-bio-page">
@@ -110,6 +114,44 @@ const LinkInBioPage: React.FC<LinkInBioPageProps> = ({ navigateToHome }) => {
         {/* Phase 2: Training (The School Offer Suite) */}
         <div className="school-offers-section">
           <h2 className="school-section-title">The School of Freelancer Freedom</h2>
+          
+          {/* Community Login Button */}
+          <div className="community-login-container">
+            <button 
+              className="community-login-button"
+              onClick={handleCommunityLogin}
+            >
+              <span className="login-icon">🔐</span>
+              <span className="login-text">Login to Community</span>
+            </button>
+          </div>
+
+          {/* Community Features */}
+          <div className="community-features-section">
+            <h3 className="community-features-title">Community Benefits</h3>
+            <div className="community-features-grid">
+              <div className="community-feature-item">
+                <div className="feature-icon">🎓</div>
+                <h4 className="feature-item-title">Exclusive Pre-Released Trainings</h4>
+                <p className="feature-item-description">Get early access to new courses and training materials before public release</p>
+              </div>
+              <div className="community-feature-item">
+                <div className="feature-icon">💼</div>
+                <h4 className="feature-item-title">Software Project Leads</h4>
+                <p className="feature-item-description">Access our bank of software project opportunities. Express interest and get paid for your work</p>
+              </div>
+              <div className="community-feature-item">
+                <div className="feature-icon">💬</div>
+                <h4 className="feature-item-title">Weekly Live Office Hours</h4>
+                <p className="feature-item-description">Join weekly Q&A sessions for direct access to expert guidance and support</p>
+              </div>
+              <div className="community-feature-item">
+                <div className="feature-icon">🚀</div>
+                <h4 className="feature-item-title">Additional Community Features</h4>
+                <p className="feature-item-description">Network with other developers, share resources, and grow your freelance business</p>
+              </div>
+            </div>
+          </div>
           
           {/* Offer Block 1: The Vibe Coding Bootcamp */}
           <div className="offer-block offer-block-2">
