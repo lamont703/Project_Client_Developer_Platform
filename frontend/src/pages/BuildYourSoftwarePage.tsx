@@ -55,7 +55,7 @@ const BuildYourSoftwarePage: React.FC<BuildYourSoftwarePageProps> = ({ navigateT
               Mid-to-senior Full-Stack Software Engineer & Systems Architect
             </p>
             <div className="hero-social-links">
-              <a href="mailto:support@lamont.innergcomplete.com" className="social-link" title="Email">✉️</a>
+              <a href="mailto:support@lamont.innergcomplete.com" target="_blank" rel="noopener noreferrer" className="social-link" title="Email">✉️</a>
               <a href="https://linkedin.com/in/lamont-evans-57ab4922a/" target="_blank" rel="noopener noreferrer" className="social-link" title="LinkedIn">🔗</a>
               <a href="https://github.com/lamont703" target="_blank" rel="noopener noreferrer" className="social-link" title="GitHub">💻</a>
             </div>
@@ -224,7 +224,7 @@ const BuildYourSoftwarePage: React.FC<BuildYourSoftwarePageProps> = ({ navigateT
         {/* Footer */}
         <div className="build-your-software-footer">
           <p className="footer-text">
-            Lamont Evans | <a href="mailto:support@lamont.innergcomplete.com" className="footer-link">support@lamont.innergcomplete.com</a>
+            Lamont Evans | <a href="mailto:support@lamont.innergcomplete.com" target="_blank" rel="noopener noreferrer" className="footer-link">support@lamont.innergcomplete.com</a>
           </p>
           <div className="footer-socials" style={{ marginTop: '1rem' }}>
             <span style={{ margin: '0 10px', color: 'rgba(255,255,255,0.6)' }}>Remote (Open to U.S. relocation)</span> |
