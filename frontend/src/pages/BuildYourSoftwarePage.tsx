@@ -10,10 +10,10 @@ const BuildYourSoftwarePage: React.FC<BuildYourSoftwarePageProps> = ({ navigateT
 
   useEffect(() => {
     document.title = 'Build Your Software - Lamont Evans | XRBlockDev';
-    
+
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Lamont Evans - Web Developer, Email & CRM Specialist, and XR + Blockchain Strategist. Build smarter, faster, and together with XRBlockDev.');
+      metaDescription.setAttribute('content', 'Lamont Evans - Full-Stack Software Engineer & Systems Architect. Delivering complex, high-impact platforms with scalable architecture and AI automation.');
     }
 
     // Load form embed script
@@ -41,139 +41,141 @@ const BuildYourSoftwarePage: React.FC<BuildYourSoftwarePageProps> = ({ navigateT
     <div className="build-your-software-page">
       <div className="circuit-pattern"></div>
       <div className="build-your-software-container">
-        
+
         {/* Hero Section */}
         <div className="hero-section">
           <div className="profile-section">
-            <img 
-              src="/XRBlockDev Logo.png" 
-              alt="Lamont Evans" 
+            <img
+              src="/XRBlockDev Logo.png"
+              alt="Lamont Evans"
               className="profile-image"
             />
-            <h1 className="hero-title">Build Your Software</h1>
+            <h1 className="hero-title">Lamont Evans</h1>
             <p className="hero-subtitle">
-              Lamont Evans — Web Developer, Email & CRM Specialist, and XR + Blockchain Strategist
+              Mid-to-senior Full-Stack Software Engineer & Systems Architect
             </p>
+            <div className="hero-social-links">
+              <a href="mailto:support@lamont.innergcomplete.com" className="social-link" title="Email">✉️</a>
+              <a href="https://linkedin.com/in/lamont-evans-57ab4922a/" target="_blank" rel="noopener noreferrer" className="social-link" title="LinkedIn">🔗</a>
+              <a href="https://github.com/lamont703" target="_blank" rel="noopener noreferrer" className="social-link" title="GitHub">💻</a>
+            </div>
           </div>
         </div>
 
-        {/* Who is Lamont Section */}
+        {/* Professional Summary */}
         <div className="content-section">
           <div className="section-header">
-            <div className="section-icon">🧠</div>
-            <h2 className="section-title">Who is Lamont Evans?</h2>
+            <div className="section-icon">🚀</div>
+            <h2 className="section-title">Professional Summary</h2>
           </div>
           <div className="section-content">
             <p className="intro-text">
-              Lamont is a <strong>multi-disciplinary technologist</strong> with a sharp focus on helping small teams and creators <strong>build, automate, and scale</strong> their digital presence. He combines strong technical execution with strategic thinking, creating digital systems that feel like they "just work."
+              I am a self-taught <strong>Full-Stack Software Engineer and Systems Architect</strong> with 4 years of experience building complex, high-impact platforms that combine scalable architecture, AI automation, and immersive user experiences.
             </p>
             <p className="intro-text">
-              He's not just a dev — he's a <strong>partner</strong> in innovation. Whether someone needs:
-            </p>
-            <ul className="feature-list">
-              <li>A complete <strong>online business build</strong> from scratch</li>
-              <li>Help launching a <strong>crypto token or Web3 experience</strong></li>
-              <li>Or a custom <strong>AI chatbot or voice agent</strong> to automate sales...</li>
-            </ul>
-            <p className="intro-text">
-              Lamont can not only execute but guide clients through the process.
+              From leading teams to delivering AI-driven workflow solutions, I turn ambitious ideas into production-ready software that drives measurable results. My unconventional path — from entrepreneurship to software development — has taught me that the most effective solutions combine <strong>technical skill, creativity, and ownership</strong>.
             </p>
           </div>
         </div>
 
-        {/* Expertise Section */}
+        {/* Professional Projects */}
         <div className="content-section">
           <div className="section-header">
-            <div className="section-icon">🔧</div>
-            <h2 className="section-title">Expertise</h2>
+            <div className="section-icon">🛠️</div>
+            <h2 className="section-title">Professional Projects</h2>
+          </div>
+          <div className="projects-grid">
+            <a href="https://project-kanes-book-reader.vercel.app/" target="_blank" rel="noopener noreferrer" className="project-card">
+              <div className="project-header">
+                <h3 className="project-title">Kane's Komets Book Club & Reader</h3>
+                <span className="project-role">Lead Architect</span>
+              </div>
+              <p className="project-tech">Next.js 14, TypeScript, Tailwind CSS, Supabase</p>
+              <p className="project-description">
+                Architected a "cosmic-themed" digital reading platform combining e-commerce and an interactive e-reader.
+                Built a custom e-reader with real-time features and an Admin Dashboard for managing subscriptions and events.
+              </p>
+              <span className="project-link-cta">Visit Project ↗</span>
+            </a>
+
+            <a href="https://plentyofhearts.com/" target="_blank" rel="noopener noreferrer" className="project-card">
+              <div className="project-header">
+                <h3 className="project-title">Plenty of Hearts</h3>
+                <span className="project-role">Systems Architect</span>
+              </div>
+              <p className="project-tech">React 19, TypeScript, Framer Motion, Three.js</p>
+              <p className="project-description">
+                Designed a next-gen dating platform with gamified assessments and 3D interactive components.
+                Built a secure serverless backend with Supabase Edge Functions and achieved sub-second load times.
+              </p>
+              <span className="project-link-cta">Visit Project ↗</span>
+            </a>
+
+            <a href="https://app.innergcomplete.com/v2/preview/7ZGsxW9niDIbFlvSVgPS" target="_blank" rel="noopener noreferrer" className="project-card">
+              <div className="project-header">
+                <h3 className="project-title">JAM Engine (JAM Capital)</h3>
+                <span className="project-role">Lead Full Stack Dev</span>
+              </div>
+              <p className="project-tech">Node.js, Express, Azure, OpenAI API</p>
+              <p className="project-description">
+                Developed an 18-stage credit restoration pipeline utilizing AI agents.
+                Reduced dispute letter generation time from days to minutes and automated 100% of back-office tasks.
+              </p>
+              <span className="project-link-cta">Visit Project ↗</span>
+            </a>
+          </div>
+        </div>
+
+        {/* Technical Skills */}
+        <div className="content-section">
+          <div className="section-header">
+            <div className="section-icon">⚡</div>
+            <h2 className="section-title">Technical Skills</h2>
           </div>
           <div className="expertise-grid">
             <div className="expertise-card">
-              <h3 className="expertise-title">Full Stack Development</h3>
-              <p className="expertise-items">React, TypeScript, Node.js, APIs</p>
+              <h3 className="expertise-title">Languages</h3>
+              <p className="expertise-items">JavaScript, TypeScript, HTML5, CSS3</p>
             </div>
             <div className="expertise-card">
-              <h3 className="expertise-title">Blockchain</h3>
-              <p className="expertise-items">Solana, Rust, Anchor, Token creation</p>
+              <h3 className="expertise-title">Frontend</h3>
+              <p className="expertise-items">React 19, Next.js 14, Tailwind, Framer Motion, Three.js</p>
             </div>
             <div className="expertise-card">
-              <h3 className="expertise-title">XR / AR / VR</h3>
-              <p className="expertise-items">Unity, WebXR, Three.js</p>
+              <h3 className="expertise-title">Backend</h3>
+              <p className="expertise-items">Node.js, Express.js, Supabase (PostgreSQL, Auth, Realtime)</p>
             </div>
             <div className="expertise-card">
-              <h3 className="expertise-title">AI Integration</h3>
-              <p className="expertise-items">Voice agents, GPT-4, automation flows</p>
-            </div>
-            <div className="expertise-card">
-              <h3 className="expertise-title">Email & CRM Systems</h3>
-              <p className="expertise-items">GoHighLevel, Mailchimp, custom automations</p>
-            </div>
-            <div className="expertise-card">
-              <h3 className="expertise-title">Cloud Infrastructure & DevOps</h3>
-              <p className="expertise-items">Docker, Azure, Git</p>
+              <h3 className="expertise-title">Cloud & AI</h3>
+              <p className="expertise-items">Azure, Docker, Vercel, Gemini API, OpenAI API</p>
             </div>
           </div>
         </div>
 
-        {/* Philosophy Section */}
+        {/* Leadership Section */}
         <div className="content-section">
           <div className="section-header">
-            <div className="section-icon">💬</div>
-            <h2 className="section-title">Philosophy & Approach</h2>
+            <div className="section-icon">👔</div>
+            <h2 className="section-title">Leadership & Entrepreneurship</h2>
           </div>
           <div className="philosophy-block">
-            <blockquote className="philosophy-quote">
-              "Let's build smarter, faster, and together."
-            </blockquote>
+            <h3 className="expertise-title" style={{ textAlign: 'center', marginBottom: '1rem' }}>Barber Instructor & Barbershop Owner</h3>
             <p className="philosophy-text">
-              Lamont isn't just a coder. He's a system builder. He believes in helping clients move <strong>from idea to prototype in 30 minutes</strong>, then into full deployment — often with embedded AI agents and automation at the core.
+              Managed a team of barbers and owned a successful barbershop. Designed curricula as a theory and practical instructor, mentoring new professionals.
+              Developed operational workflows and client management systems, demonstrating strong project ownership.
             </p>
-            <p className="philosophy-text">
-              His clients stick around because his <strong>systems scale with them</strong> — including hosting, CRM, and automation infrastructure. This isn't just project-based work — it's <strong>long-term digital partnership</strong>.
-            </p>
-          </div>
-        </div>
-
-        {/* Who He Works With Section */}
-        <div className="content-section">
-          <div className="section-header">
-            <div className="section-icon">🎯</div>
-            <h2 className="section-title">Who He Works With</h2>
-          </div>
-          <div className="clients-grid">
-            <div className="client-card">
-              <div className="client-icon">👤</div>
-              <h3 className="client-title">Solo Creators</h3>
-              <p className="client-description">Launching premium content, communities, or tools</p>
-            </div>
-            <div className="client-card">
-              <div className="client-icon">🏢</div>
-              <h3 className="client-title">Service-Based Businesses</h3>
-              <p className="client-description">Ready to automate operations</p>
-            </div>
-            <div className="client-card">
-              <div className="client-icon">🚀</div>
-              <h3 className="client-title">Startups</h3>
-              <p className="client-description">Building MVPs with Web3 or AI baked in</p>
-            </div>
-            <div className="client-card">
-              <div className="client-icon">👥</div>
-              <h3 className="client-title">Developers</h3>
-              <p className="client-description">Looking to collaborate and grow in the XRBlockDev network</p>
-            </div>
           </div>
         </div>
 
         {/* CTA Section */}
         <div className="cta-section">
-          <h2 className="cta-title">Ready to Build Your Software?</h2>
-          <p className="cta-text">Let's turn your idea into reality — faster, smarter, and together.</p>
-          <button 
-            className="cta-button"
-            onClick={handleGetStarted}
-          >
-            Get Started
-          </button>
+          <h2 className="cta-title">Let's Build Something Ambitious</h2>
+          <p className="cta-text">I thrive in roles where I can combine leadership, full-stack development, and systems thinking.</p>
+          <div className="cta-buttons">
+            <button className="cta-button" onClick={handleGetStarted}>
+              Get In Touch
+            </button>
+          </div>
         </div>
 
         {/* Form Modal */}
@@ -181,15 +183,15 @@ const BuildYourSoftwarePage: React.FC<BuildYourSoftwarePageProps> = ({ navigateT
           <div className="form-modal-overlay" onClick={handleFormClose}>
             <div className="form-modal-content" onClick={(e) => e.stopPropagation()}>
               <div className="form-modal-header">
-                <h3 className="form-modal-title">Build Your Software With Lamont</h3>
+                <h3 className="form-modal-title">Contact Lamont Evans</h3>
                 <button className="form-modal-close" onClick={handleFormClose}>×</button>
               </div>
-              
+
               <div className="form-modal-body">
                 <p className="form-instructions">
-                  Fill out the form below to get started. We'll review your submission and get back to you soon.
+                  Fill out the form below to get in touch regarding opportunities or collaborations.
                 </p>
-                
+
                 <div className="form-embed-container">
                   <iframe
                     src="https://api.leadconnectorhq.com/widget/form/nMTBYglx5kuIWK4nAlcw"
@@ -221,7 +223,14 @@ const BuildYourSoftwarePage: React.FC<BuildYourSoftwarePageProps> = ({ navigateT
 
         {/* Footer */}
         <div className="build-your-software-footer">
-          <p className="footer-text">© {new Date().getFullYear()} XRBlockDev. All rights reserved.</p>
+          <p className="footer-text">
+            Lamont Evans | <a href="mailto:support@lamont.innergcomplete.com" className="footer-link">support@lamont.innergcomplete.com</a>
+          </p>
+          <div className="footer-socials" style={{ marginTop: '1rem' }}>
+            <span style={{ margin: '0 10px', color: 'rgba(255,255,255,0.6)' }}>Remote (Open to U.S. relocation)</span> |
+            <span style={{ margin: '0 10px', color: 'rgba(255,255,255,0.6)' }}>Contract Only</span>
+          </div>
+          <p className="footer-text" style={{ marginTop: '2rem' }}>© 2026 Lamont Evans</p>
         </div>
 
       </div>
